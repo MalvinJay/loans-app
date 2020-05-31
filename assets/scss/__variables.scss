@@ -1,0 +1,53 @@
+@import './_colors';
+@import './_layouts';
+
+$nav-margin: 42px;
+$button-primary-color: #C49000;
+$button-border-radius: 5px;
+$card-border-radius: 20px;
+$default-font-size: 0.7rem;
+
+@mixin button {
+  background-color: $color-primary;
+  color: $white;
+}
+
+@tailwind base;
+:root {
+  font-size: 17px;
+}
+
+@include for-tablet-landscape-only  {
+  :root {
+    font-size: 15px;
+  }
+}
+
+@include for-tablet-portrait-only {
+  :root {
+    font-size: 14px;
+  }
+}
+
+@include for-phone-only {
+  :root {
+    font-size: 13px;
+  }
+  .mobile-order-1 {
+    order: 1;
+  }
+  .mobile-order-2 {
+    order: 2;
+  }
+}
+@include for-smallest-phones {
+  :root {
+    font-size: 10px;
+  }
+}
+
+div {
+  font-family: 'Montserrat', sans-serif;
+}
+
+
