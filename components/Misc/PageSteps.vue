@@ -4,7 +4,7 @@
       <div class="pb-32 px-8">
         <div class="h-t text-center b-b py-16">
           <p class="text-3xl">
-            Business Loan Application
+            Funding Application
           </p>
         </div>
         <div class="main p-5">
@@ -50,10 +50,7 @@ export default {
   },
   watch: {
     current (val) {
-      // eslint-disable-next-line no-console
       this.status.forEach((item, index) => {
-        // eslint-disable-next-line no-console
-        // console.log(index)
         if (index < val) {
           item.status = 'success'
         } else if (val === index) {

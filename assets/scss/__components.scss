@@ -9,6 +9,7 @@
   width: 140px;
   white-space: nowrap;
   text-align: center;
+  text-transform: uppercase;
 }
 
 .button-medium {
@@ -22,12 +23,37 @@
   text-align: center;
 }
 
-input[type=text], input[type=date]{
+input[type=text], input[type=date], input[type=number]{
   height: 50px;
   border-radius: $button-border-radius;
   border: 1px solid $color-gray-alt;
   padding: 17px;
   width: 469px;
+  background-color: $white;
+  -moz-appearance: none;
+  -webkit-appearance:none;
+  &:focus {
+    outline: none;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// /* Firefox */
+// input[type=number] {
+//   -moz-appearance: textfield;
+// }
+
+textarea{
+  border-radius: $button-border-radius;
+  border: 1px solid $color-gray-alt;
+  padding: 0.7rem;
+  width: 469px;
+  height: 5rem;
   background-color: $white;
   -moz-appearance: none;
   -webkit-appearance:none;
@@ -95,6 +121,9 @@ input[type=text], input[type=date]{
   transform: rotate(45deg);
 }
 @include for-tablet-portrait-only {
+  textarea {
+    width: 100%;
+  }
   .checkbox {
     width: -webkit-max-content;
     width: -moz-max-content;
@@ -104,6 +133,9 @@ input[type=text], input[type=date]{
 }
 
 @include for-phone-only {
+  textarea {
+    width: 100%;
+  }
   .button-small {
     width: 115px;
     height: 33px;

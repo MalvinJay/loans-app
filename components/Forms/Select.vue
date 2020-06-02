@@ -1,9 +1,11 @@
 <template>
   <div class="flex relative w-64 container">
-    <select>
-      <option>Select one</option>
-      <option v-for="(item , i) in items" :key="i">
-        {{ item }}
+    <select @change="selected">
+      <option disabled value="" selected="true">
+        {{ first }}
+      </option>
+      <option v-for="(item , i) in items" :key="i" :value="item.val">
+        {{ item.name }}
       </option>
     </select>
     <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
@@ -16,7 +18,29 @@ export default {
   props: {
     items: {
       type: Array,
-      required: true
+      required: false,
+      default: () => {
+        return []
+      }
+    },
+    first: {
+      type: String,
+      required: false,
+      default: 'Select one'
+    }
+  },
+  // data () {
+  //   return {
+  //     items: [
+  //       { name: 'Passport', val: 1 },
+  //       { name: 'Drivers License', val: 2 },
+  //       { name: 'National ID', val: 3 }
+  //     ]
+  //   }
+  // },
+  methods: {
+    selected (e) {
+      this.$emit('input', e.target.value)
     }
   }
 }
@@ -26,6 +50,7 @@ export default {
   width: 469px;
 }
 select {
+  padding-left: 1rem;
   height: 50px;
   border-radius: $button-border-radius;
   border: 1px solid $color-gray-alt;

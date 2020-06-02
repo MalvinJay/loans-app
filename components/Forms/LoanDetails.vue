@@ -2,7 +2,7 @@
   <div v-show="show">
     <div class="grid form-a py-20">
       <div class="mb-10">
-        <Input v-model="loanAmount" name="Funding Amount" />
+        <Input v-model="loanAmount" name="Funding Amount" type="number" />
       </div>
       <div class="mb-10">
         <Input v-model="years" name="Years in Operation" />
@@ -11,7 +11,7 @@
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
           Are you a startup?
         </label>
-        <div class="flex justify-start">
+        <div class="flex justify-start mb-12">
           <label class="checkbox">Yes
             <input id="yes" v-model="startup" type="checkbox" true-value="true" false-value="false">
             <span class="checkmark" />
@@ -21,165 +21,190 @@
             <span class="checkmark" />
           </label>
         </div>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          How has COVID-19 impacted your business
-        </label>
-        <MultiSelect @selected="selected" />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Can you provide proof COVID-19 of impact
-        </label>
-        <div class="flex justify-start">
-          <Checkbox>Yes</Checkbox>
-          <Checkbox>No</Checkbox>
+        <div class="mb-12">
+          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+            Can you provide proof COVID-19 of impact
+          </label>
+          <div class="flex justify-start">
+            <label class="checkbox">Yes
+              <input id="yes" v-model="proofOfImpact" type="checkbox" true-value="true" false-value="false">
+              <span class="checkmark" />
+            </label>
+            <label class="checkbox">No
+              <input id="no" v-model="proofOfImpact" type="checkbox" false-value="true" true-value="false">
+              <span class="checkmark" />
+            </label>
+          </div>
         </div>
       </div>
       <div class="mb-12">
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Repayment Account Details
+          How has COVID-19 impacted your business?
         </label>
-        <div class="flex justify-start ac-dc">
-          <Checkbox>MTN</Checkbox>
-          <Checkbox>Vodafone</Checkbox>
-          <Checkbox>AirtelTigo</Checkbox>
+        <MultiSelect :list="covidImpacts" @selected="selected" />
+        <div class="mt-5">
+          <textarea v-model="covidImpactText" name="" rows="10" placeholder="Please write down the impact" />
         </div>
       </div>
       <div class="mb-4">
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Proof of COVID-19 Impact
+          Proof of COVID-19 Impact Template
         </label>
         <button class="i-t-b" @click="modal1 = true">
           Click to Fill in Template
         </button>
-        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
+        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold" for="username">
           What will you use the funds for
         </label>
-        <Select :items="fundRole" />
-        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
+        <Select v-model="general.fund_purpose_id" :items="fundRoles" />
+        <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
           If other, fill this field
         </label>
-        <Input />
+        <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" />
       </div>
       <div class="mb-4">
+        <div class="mb-12">
+          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+            Repayment Account Details
+          </label>
+          <div class="flex justify-start ac-dc">
+            <div class="flex justify-start">
+              <label class="checkbox">MTN
+                <input id="mtn" v-model="mobileWallet" type="checkbox" false-value="true" true-value="mtn">
+                <span class="checkmark" />
+              </label>
+              <label class="checkbox mr-5">Vodafone
+                <input id="vodafone" v-model="mobileWallet" type="checkbox" false-value="true" true-value="vodafone">
+                <span class="checkmark" />
+              </label>
+              <label class="checkbox">AirtelTigo
+                <input id="airteltigo" v-model="mobileWallet" type="checkbox" true-value="airtelTigo">
+                <span class="checkmark" />
+              </label>
+            </div>
+          </div>
+        </div>
+        <!-- <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+          Repayment Account Details
+        </label> -->
         <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
           Mobile Wallet Number (must use your own mobile wallet account)
         </label>
-        <Input />
+        <Input v-model="general.mobile_wallet_number" />
         <div class="mb-8">
           <label class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
-            Bank Partner
+            Your Selected Bank
           </label>
-          <Select />
+          <Select v-model="general.financial_institution_ID" :items="bankPartner" />
         </div>
         <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
           Bank Account Number
         </label>
-        <Input />
+        <Input v-model="general.account_no" />
       </div>
     </div>
     <Modal v-if="modal1" @close="modal1 = false">
       <div class="income-info">
         <div class="h-d">
           <p class="text-center text-lg">
-            Income Statement
+            Proof of Covid-19 Impact (2020)
+          </p>
+          <p class="text-center text-sm">
+            (Please provide proof of COVID-19 impact on your business, enter amounts as applicable )
           </p>
         </div>
+        <!--   Other (add field for applicant to type in what item)  -->
         <div class="grid grid-cols-5 gap-8 b-d">
           <div />
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">March</label> </div>
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">April</label></div>
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">May</label></div>
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Outstanding Invoice</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed to Company from Customers </label></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_invoice" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_invoice" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_invoice" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Demand Notice</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Outstanding Rent</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company </label></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.demand_notice" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.demand_notice" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.demand_notice" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_rent" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_rent" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_rent" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_salaries" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_salaries" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_salaries" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales </label></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_utility_bills" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_utility_bills" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_utility_bills" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Productivity</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Increased Raw Material Cost</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-bold mb-2">Other</label></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.reduced_productivity" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.reduced_productivity" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.reduced_productivity" placeholder="GHC" small /></div>
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
         </div>
+      </div>
+      <div class="my-20">
+        <button class="button-small" @click="modal1= false">
+          Done
+        </button>
       </div>
     </Modal>
   </div>
 </template>
 <script>
-// import Multiselect from 'vue-multiselect'
 import Modal from '../Misc/Modal'
 import Input from './Input'
-import Checkbox from './Checkbox'
 import Select from './Select'
 import MultiSelect from './MultiSelect'
 export default {
   components: {
     Input,
-    Checkbox,
     Select,
     Modal,
     MultiSelect
   },
   props: {
-    active: Boolean
+    active: Boolean,
+    submit: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
       show: this.active,
-      fundRole: [
-        'Purchase Inventory',
-        'Pay Bill',
-        'Invest in new equipment',
-        'Pay staff',
-        'Hire more staff',
-        'Renovation',
-        'Tax payment',
-        'Marketing expenses',
-        'Other (complete next field)'
-      ],
+      mobileWallet: null,
       modal1: false,
       micro: false,
-      details: {
-      },
       loanAmount: null,
       years: null,
       startup: null,
-      startupYes: null,
-      startupNo: null,
-      covidImpact: []
+      covidImpact: [],
+      proofOfImpact: null,
+      covid_proof_of_march_20: {},
+      covid_proof_of_april_20: {},
+      covid_proof_of_may_20: {},
+      general: {}
+    }
+  },
+  computed: {
+    bankPartner () {
+      return this.$store.getters['pages/bankPartner']
+    },
+    covidImpacts () {
+      return this.$store.getters['pages/covidImpacts']
+    },
+    fundRoles () {
+      return this.$store.getters['pages/fundRoles']
     }
   },
   watch: {
@@ -196,6 +221,28 @@ export default {
       } else {
         this.$store.commit('pages/SET_STARTUP', false)
       }
+    },
+    show (value) {
+      const data = Object.assign({}, this.general) // create copy general object
+
+      // merge general object with necessary data
+      data.covid_impact = this.covidImpact
+      // clone all neccessary data
+      const covidProofOfMarch = Object.assign({}, this.covid_proof_of_march_20)
+      const covidProofOfApril = Object.assign({}, this.covid_proof_of_april_20)
+      const covidProofOfMay = Object.assign({}, this.covid_proof_of_may_20)
+
+      // merge data
+      data.covid_proof_of_march_20 = covidProofOfMarch
+      data.covid_proof_of_april_20 = covidProofOfApril
+      data.covid_proof_of_may_20 = covidProofOfMay
+      data.years_in_business = this.years
+      data.requested_loan_amount = this.loanAmount
+      this.startup === 'true' ? data.is_startup = '1' : data.is_startup = '0'
+      // Once show value changes, commit to store
+      if (value === false) {
+        this.$store.commit('api/SET_GENERAL_DATA', data)
+      }
     }
   },
   created () {
@@ -207,12 +254,7 @@ export default {
     toggleModal1 () {
       this.modal1 = false
     },
-    customLabel (option) {
-      return `${option.library} - ${option.language}`
-    },
     selected (value) {
-      // eslint-disable-next-line no-console
-      console.log(value)
       this.covidImpact = value
     }
   }
@@ -246,7 +288,16 @@ export default {
 .c-f {
   grid-template-columns: 22% 22% 10% 10% 10% 10%;
 }
+label.mobile {
+  display: none;
+}
 @include for-phone-only {
+  label.mobile {
+    display: block;
+  }
+  .not-mobile {
+    display: none;
+  }
   .form-a {
     width: 100%;
     .i-t-b {

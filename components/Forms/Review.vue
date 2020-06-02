@@ -4,16 +4,16 @@
       <div class="card">
         <div class="mb-5">
           <p class="text-lg">
-            Loan Details
+            Fund Details
           </p>
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
           <p class="font-bold">
-            Loan Amount
+            Fund Amount
           </p>
-          <p>$0,000</p>
+          <p>GHC {{ general.requested_loan_amount }}</p>
           <p class="font-bold">
-            Purpose of Loan
+            Purpose of Fund
           </p>
           <p>Lorem Ipsum dolor sit amet</p>
           <p class="font-bold">
@@ -41,19 +41,19 @@
           <p class="font-bold">
             Full Name
           </p>
-          <p>$0,000</p>
+          <p>{{ general.first_name + " " + general.last_name }}</p>
           <p class="font-bold">
             Present Address
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.residential_address }}</p>
           <p class="font-bold">
             Phone Number
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.phone_number }}</p>
           <p class="font-bold">
             Email Address
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.primary_email }}</p>
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">
@@ -71,27 +71,25 @@
           <p class="font-bold">
             Business Name
           </p>
-          <p>$0,000</p>
-          <p class="font-bold">
-            Business Type
-          </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.business_name }}</p>
           <p class="font-bold">
             Business Address
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>
+            {{ general.business_address }}
+          </p>
           <p class="font-bold">
             Business Email
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.business_email }}</p>
           <p class="font-bold">
             Business Number
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.business_phone_number }}</p>
           <p class="font-bold">
             Years in Operation
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>{{ general.years_in_business }}</p>
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">
@@ -109,7 +107,7 @@
           <p class="font-bold">
             Identity
           </p>
-          <p>$0,000</p>
+          <p>{{ general.id_file_name }}</p>
           <p class="font-bold">
             Income
           </p>
@@ -137,6 +135,17 @@ export default {
     return {
       show: this.active
     }
+  },
+  computed: {
+    general () {
+      return this.$store.state.api.general
+    }
+    // fundPurpose () {
+    //   const id = parseInt(this.general.fund_purpose_id)
+    //   // eslint-disable-next-line no-console
+    //   console.log(id)
+    //   return this.$store.getters.pages.fundRoles.find(item => item.val === id)
+    // }
   }
 }
 </script>

@@ -52,7 +52,9 @@
         <p class="text-3xl b-b">
           Are you ready to fund your business?
         </p>
-        <input type="button" value="Apply Now" class="uppercase button-small mr-2">
+        <a href="/apply">
+          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
+        </a>
       </div>
     </footer>
     <div class="copyright flex justify-center py-10 text-white">

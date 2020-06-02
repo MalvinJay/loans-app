@@ -2,17 +2,17 @@
   <div class="navbar" :class="{ pink: alt}">
     <div class="uppercase nav nav-margin text-sm">
       <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">Loans</a></li>
-        <li><a href="">Covid-19 Resources</a></li>
-        <li><a href="">About Us</a></li>
+        <li><a href="">Eligibility Criteria</a></li>
+        <li><a href="">Faq</a></li>
+        <li><a href="">Covid-19 business tips</a></li>
+        <li><a href="">About the Programme</a></li>
       </ul>
-      <div class="logo logo-margin flex rem-margin">
+      <a href="/" class="logo logo-margin flex rem-margin">
         <img src="@/assets/img/menu.png" alt="logo">
         <img src="@/assets/img/logo.png" alt="logo">
-      </div>
+      </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
-        <input type="button" value="Apply Now" class="uppercase button-small mr-2">
+        <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
         <span>Sign in</span>
       </p>
     </div>

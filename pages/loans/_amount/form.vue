@@ -2,12 +2,12 @@
   <div>
     <NavBar alt />
     <Steps :current="current">
-      <Content @current="viewCurrent">
-        <LoanDetails :active="true" />
-        <Info />
-        <BusinessInfo />
-        <Docs />
-        <Review />
+      <Content @current="viewCurrent" @submitted="submit">
+        <LoanDetails :active="true" :submit="submitted" />
+        <Info :submit="submitted" />
+        <BusinessInfo :submit="submitted" />
+        <Docs :submit="submitted" />
+        <Review :submit="submitted" />
       </Content>
     </Steps>
     <Footer />
@@ -41,18 +41,19 @@ export default {
   data () {
     return {
       current: 0,
-      micro: false
+      micro: false,
+      submitted: false
     }
   },
   created () {
-    // eslint-disable-next-line no-console
-    if (this.$route.params.amount < 145000) {
-      this.micro = true
-    }
+    this.$store.dispatch('pages/getDropDowns')
   },
   methods: {
     viewCurrent (value) {
       this.current = value
+    },
+    submit (value) {
+      this.submitted = true
     }
   }
 }

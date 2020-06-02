@@ -14,9 +14,11 @@
         </p>
       </div>
       <div class="mt-12">
-        <button class="button-medium">
-          Apply Now
-        </button>
+        <a href="/apply">
+          <button class="button-medium">
+            Apply Now
+          </button>
+        </a>
       </div>
     </div>
     <div class="r-s">

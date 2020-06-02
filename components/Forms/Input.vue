@@ -4,7 +4,7 @@
       {{ name }}
     </label>
     <input
-      type="text"
+      :type="type"
       :placeholder="placeholder"
       :class="{small: small}"
       :value="value"
@@ -29,6 +29,11 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    type: {
+      required: true,
+      type: String,
+      default: 'text'
     },
     // eslint-disable-next-line vue/require-prop-types
     value: {

@@ -1,6 +1,6 @@
 <template>
   <div v-show="show" class="grid docs border-blue-100">
-    <div @drop.prevent="addFile" @dragover.prevent>
+    <div @drop.prevent="addApplicationId" @dragover.prevent>
       <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Application ID</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
@@ -13,13 +13,18 @@
         </div>
         <div class="u-b">
           <label>
-            <input type="file">
+            <input type="file" @change="btnAddApplicationId">
             <span>Browse Files</span>
           </label>
         </div>
+        <div class="mt-6">
+          <p class="text-center text-sm">
+            {{ applicatonIdFile }}
+          </p>
+        </div>
       </div>
     </div>
-    <div>
+    <div @drop.prevent="addProofOfPaye" @dragover.prevent>
       <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
@@ -36,9 +41,14 @@
             <span>Browse Files</span>
           </label>
         </div>
+        <div class="mt-6">
+          <p class="text-center text-sm">
+            {{ payePaymentsFile }}
+          </p>
+        </div>
       </div>
     </div>
-    <div>
+    <div @drop.prevent="ssnitStatement" @dragover.prevent>
       <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">SSNIT Statement (2019)</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
@@ -55,6 +65,11 @@
             <span>Browse Files</span>
           </label>
         </div>
+        <div class="mt-6">
+          <p class="text-center text-sm">
+            {{ ssnitStatementFile }}
+          </p>
+        </div>
       </div>
     </div>
     <div />
@@ -69,12 +84,42 @@ export default {
   data () {
     return {
       show: this.active,
-      file: null
+      applicatonIdFile: null,
+      payePaymentsFile: null,
+      ssnitStatementFile: null
     }
   },
   methods: {
-    addFile (e) {
-      this.file = e.dataTransfer.files[0]
+    addApplicationId (e) {
+      const file = e.dataTransfer.files[0]
+      // eslint-disable-next-line no-console
+      console.log(file)
+      this.applicatonIdFile = file.name
+      const data = {
+        file, name: 'id_file'
+      }
+      this.$store.commit('api/SET_ID_FILE_NAME', file.name)
+      this.$store.dispatch('api/uploadMedia', data)
+    },
+    btnAddApplicationId (e) {
+      const file = e.target.files[0]
+
+      this.applicatonIdFile = file.name
+      this.$store.dispatch('api/uploadMedia', file)
+    },
+    addProofOfPaye (e) {
+      const file = e.dataTransfer.files[0]
+      this.payePaymentsFile = file.name
+      const formData = new FormData()
+      formData.file = file
+      this.$store.dispatch('api/uploadMedia', formData)
+    },
+    ssnitStatement (e) {
+      const file = e.dataTransfer.files[0]
+      this.ssnitStatementFile = file.name
+      const formData = new FormData()
+      formData.file = file
+      this.$store.dispatch('api/uploadMedia', formData)
     }
   }
 }

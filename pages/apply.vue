@@ -5,7 +5,7 @@
       <div class="main py-12">
         <p class="text-xl font-medium">
           Welcome to the NBSSI Mastercard Foundation COVID19 Application. Please provide us your
-          Business TIN number and Annual Sales at December 2019 to help us assess your business. If
+          Business TIN number and Annual Sales as of December 31, 2019 in order to help us assess your business. If
           you don't have a Business TIN then provide your personal TIN number.
         </p>
         <div class="mt-10">
@@ -14,7 +14,7 @@
               <label class="block text-gray-700 text-lg font-normal mb-2">
                 Tax Identification Number (TIN)
               </label>
-              <Input type="text" small />
+              <Input v-model="tin_number" type="text" small />
             </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-lg font-normal mb-2">
@@ -31,31 +31,30 @@
                 </button>
               </a>
             </div>
-            <div class="text-center">
-              <button>
-                Save
-              </button>
-            </div>
           </div>
         </div>
       </div>
     </BaseCard>
+    <Footer />
   </div>
 </template>
 <script>
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 import Input from '@/components/Forms/Input.vue'
+import Footer from '@/components/Footer/FooterAlt.vue'
 export default {
   layout: 'homeLayout',
   components: {
     NavBar,
     BaseCard,
-    Input
+    Input,
+    Footer
   },
   data () {
     return {
-      sales: null
+      sales: null,
+      tin_number: null
     }
   }
 }
@@ -67,6 +66,9 @@ form {
 }
 .buttons {
   column-gap: 20%;
+  button {
+    width: 279px;
+  }
 }
 .main {
   padding-left: 10%;

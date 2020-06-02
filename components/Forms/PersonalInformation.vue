@@ -2,20 +2,26 @@
   <div v-show="show">
     <div class="grid form-b py-20">
       <div class="mb-10">
-        <Input name="First Name" />
+        <Input v-model="personalInfo.first_name" name="First Name" />
       </div>
       <div class="mb-10">
-        <Input name="Last Name" />
+        <Input v-model="personalInfo.last_name" name="Last Name" />
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">Gender</label>
         <div class="flex justify-start">
-          <Checkbox>Male</Checkbox>
-          <Checkbox>Female</Checkbox>
+          <label class="checkbox">Male
+            <input id="yes" v-model="personalInfo.gender" type="checkbox" true-value="male" false-value="female">
+            <span class="checkmark" />
+          </label>
+          <label class="checkbox">Female
+            <input id="no" v-model="personalInfo.gender" type="checkbox" true-value="female" false-value="male">
+            <span class="checkmark" />
+          </label>
         </div>
       </div>
       <div class="mb-12">
-        <Input name="Email Address" />
+        <Input v-model="personalInfo.primary_email" name="Email Address" />
       </div>
       <div>
         <label
@@ -26,56 +32,90 @@
       <div />
       <div class="mb-12">
         <div class="mb-6">
-          <Input placeholder="Street" />
+          <Input v-model="personalInfo.residential_address" placeholder="Residential Address" />
         </div>
         <div>
-          <Select />
+          <Select v-model="region" first="Region" :items="regions" />
         </div>
       </div>
       <div class="mb-12">
         <div class="mb-6">
-          <Input placeholder="Town" />
+          <Input v-model="personalInfo.town" placeholder="Town" />
         </div>
         <div>
-          <Select />
+          <Select v-model="personalInfo.district" first="District" :items="districts" />
         </div>
       </div>
       <div class="mb-12">
-        <Input name="Phone Number" />
+        <Input v-model="personalInfo.phone_number" name="Phone Number" />
       </div>
       <div class="mb-12">
-        <Input name="Nearest Digital Address Code" placeholder="GA-xxx-xxxx" />
+        <Input v-model="personalInfo.personal_digital_address_code" name="Nearest Digital Address Code" placeholder="GA-xxx-xxxx" />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Date of Birth</label>
-        <input type="date" name>
+        <input v-model="personalInfo.dob" type="date" name>
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Residence Status</label>
-        <Select />
+        <Select v-model="personalInfo.residence_status" :items="residenceStatus" />
       </div>
       <div class="mb-12">
-        <Input name="Applicant's ID (passport, driver's license, Voters Id)" />
+        <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Applicant ID Type</label>
+        <Select v-model="personalInfo.id_type" :items="idType" />
+      </div>
+      <div class="mb-12">
+        <Input v-model="personalInfo.id_number" name="Applicant's ID (passport, driver's license, Voters Id)" />
       </div>
     </div>
   </div>
 </template>
 <script>
 import Input from './Input'
-import Checkbox from './Checkbox'
 import Select from './Select'
 export default {
   components: {
     Input,
-    Checkbox,
     Select
   },
   props: {
-    active: Boolean
+    active: Boolean,
+    submit: {
+      type: Boolean,
+      default: false
+    }
   },
   data () {
     return {
-      show: this.active
+      show: this.active,
+      personalInfo: {},
+      region: ''
+    }
+  },
+  computed: {
+    idType () {
+      return this.$store.getters['pages/idTypes']
+    },
+    regions () {
+      return this.$store.getters['pages/regions']
+    },
+    districts () {
+      return this.$store.getters['pages/districts']
+    },
+    residenceStatus () {
+      return this.$store.getters['pages/residenceStatus']
+    }
+  },
+  watch: {
+    region (value) {
+      this.$store.commit('pages/SET_DISTRICTS', value)
+    },
+    show (value) {
+      const data = Object.assign({}, this.personalInfo)
+      data.region = this.region
+      if (value === false) {
+        this.$store.commit('api/SET_GENERAL_DATA', data)
+      }
     }
   }
 }

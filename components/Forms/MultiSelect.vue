@@ -13,13 +13,13 @@
       <div v-if="showDropdown" v-click-outside="toggleDropdown" class="dropdown">
         <div v-for="(item, i) in list" :key="i">
           <input
-            :id="item"
+            :id="item.name"
             v-model="selected"
             type="checkbox"
-            :value="item"
+            :value="item.val"
             @change="addValue"
           >
-          <label for="person">{{ item }}</label>
+          <label for="person">{{ item.name }}</label>
         </div>
       </div>
     </div>
@@ -32,7 +32,8 @@ export default {
   props: {
     list: {
       type: Array,
-      required: true
+      required: false,
+      default: () => []
     }
   },
   data () {
@@ -60,6 +61,7 @@ export default {
   height: 50px;
   border-radius: $button-border-radius;
   border: 1px solid $color-gray-alt;
+  padding-left: 1rem;
   // padding: 17px;
   width: 469px;
   background-color: $white;
