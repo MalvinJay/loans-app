@@ -40,14 +40,20 @@
         <Input v-model="general.years_in_business" name="Years in Operation" />
       </div> -->
       <div class="mb-12">
-        <Input v-model.number="general.annual_sales" type="number" name="Annual Sales" />
+        <Input v-model.number="general.annual_sales" type="number" name="Annual Sales" money />
       </div>
       <div class="mb-12">
-        <Input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})" name="Tax Identification Number (TIN)" />
+        <Input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})$" name="Tax Identification Number (TIN)" />
       </div>
 
       <div class="mb-12">
-        <Input v-model="general.business_digital_address_code" type="text" name="Business Digital Address Code" placeholder="GA-xxx-xxxx" />
+        <Input
+          v-model="general.business_digital_address_code"
+          type="text"
+          name="Business Digital Address Code"
+          placeholder="GA-xxx-xxxx"
+          regex="GA-[0-9]{3,4}-[0-9]{4}$"
+        />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Industry</label>
@@ -164,23 +170,23 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_revenue" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_revenue" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_revenue_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_revenue_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -189,46 +195,46 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_raw_materials" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_raw_materials" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_raw_materials" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_raw_materials" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_raw_materials" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_raw_materials" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_raw_materials_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_raw_materials_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_raw_materials" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_raw_materials" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount Paid for Salaries</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_salaries" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_salaries" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_salaries" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_salaries" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_salaries" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_salaries" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_salaries_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_salaries_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_salaries" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_salaries" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -237,23 +243,23 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_expenses" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_expenses" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_expenses_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_expenses_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -262,92 +268,92 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_loan_interest" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_loan_interest" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_loan_interest" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_loan_interest" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_loan_interest" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_loan_interest" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_loan_interest_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_loan_interest_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_loan_interest" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_loan_interest" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation Charge on Assets</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.depreciation_charge_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.depreciation_charge_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.depreciation_charge_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.depreciation_charge_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.depreciation_charge_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.depreciation_charge_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.depreciation_charge_assets_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.depreciation_charge_assets_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.depreciation_charge_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.depreciation_charge_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Total Charge in Taxes</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.total_taxes_charge" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.total_taxes_charge" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_taxes_charge" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.total_taxes_charge" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_taxes_charge" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.total_taxes_charge" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.total_taxes_charge_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_taxes_charge_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.total_taxes_charge" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.total_taxes_charge" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Net Profit</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="income_statement_2017.net_profit" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2017.net_profit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.net_profit" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2018.net_profit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.net_profit" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2019.net_profit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input v-model.number="income_statement_2020.net_profit_jan_april" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.net_profit_jan_april" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="income_statement_2020.net_profit" type="number" placeholder="GHC" small />
+            <Input v-model.number="income_statement_2020.net_profit" type="number" placeholder="GHC" money small />
           </div>
         </div>
         <div class="mt-3">
@@ -380,7 +386,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input v-model.number="credit_facilities[0].amount" type="number" placeholder="GHC" small />
+              <Input v-model.number="credit_facilities[0].amount" type="number" placeholder="GHC" money small />
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
@@ -392,7 +398,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input v-model="credit_facilities[0].current_value" type="number" placeholder="GHC" small />
+              <Input v-model="credit_facilities[0].current_value" type="number" placeholder="GHC" money small />
             </div>
           </div>
           <div class="grid c-f gap-8 mb-8">
@@ -406,7 +412,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input v-model.number="credit_facilities[1].amount" type="number" placeholder="GHC" small />
+              <Input v-model.number="credit_facilities[1].amount" type="number" placeholder="GHC" money small />
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
@@ -418,7 +424,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input v-model="credit_facilities[1].current_value" type="number" placeholder="GHC" small />
+              <Input v-model="credit_facilities[1].current_value" type="number" placeholder="GHC" money small />
             </div>
           </div>
           <div class="grid c-f gap-8 mb-8">
@@ -432,7 +438,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input v-model.number="credit_facilities[2].amount" type="number" placeholder="GHC" small />
+              <Input v-model.number="credit_facilities[2].amount" type="number" placeholder="GHC" money small />
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
@@ -444,7 +450,7 @@
             </div>
             <div>
               <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input v-model="credit_facilities[2].current_value" type="number" placeholder="GHC" small />
+              <Input v-model="credit_facilities[2].current_value" type="number" placeholder="GHC" money small />
             </div>
           </div>
           <div class="my-20">
@@ -484,19 +490,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.total_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.total_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.total_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.total_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.total_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.total_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.total_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.total_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -505,19 +511,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.total_receivables_amount" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.total_receivables_amount" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.total_receivables_amount" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.total_receivables_amount" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.total_receivables_amount" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.total_receivables_amount" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.total_receivables_amount" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.total_receivables_amount" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -526,38 +532,38 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.total_net_property" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.total_net_property" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.total_net_property" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.total_net_property" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.total_net_property" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.total_net_property" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.total_net_property" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.total_net_property" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Short Term Assets</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.other_short_term_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.other_short_term_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.other_short_term_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.other_short_term_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.other_short_term_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.other_short_term_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.other_short_term_assets" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.other_short_term_assets" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -566,19 +572,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.total_amount_payables" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.total_amount_payables" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.total_amount_payables" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.total_amount_payables" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.total_amount_payables" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.total_amount_payables" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.total_amount_payables" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.total_amount_payables" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -587,19 +593,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.total_overdraft_outstanding" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.total_overdraft_outstanding" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.total_overdraft_outstanding" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.total_overdraft_outstanding" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.total_overdraft_outstanding" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.total_overdraft_outstanding" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.total_overdraft_outstanding" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.total_overdraft_outstanding" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -608,19 +614,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.other_short_term_liability" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.other_short_term_liability" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.other_short_term_liability" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.other_short_term_liability" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.other_short_term_liability" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.other_short_term_liability" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.other_short_term_liability" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.other_short_term_liability" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -629,19 +635,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.equity_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.equity_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.equity_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.equity_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.equity_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.equity_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.equity_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.equity_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -650,19 +656,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="balance_sheet_2017.retrained_earning_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2017.retrained_earning_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="balance_sheet_2018.retrained_earning_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2018.retrained_earning_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="balance_sheet_2019.retrained_earning_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2019.retrained_earning_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="balance_sheet_2020.retrained_earning_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="balance_sheet_2020.retrained_earning_value" type="number" placeholder="GHC" money small />
           </div>
         </div>
         <div class="my-20">
@@ -703,19 +709,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.ebit" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.ebit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.ebit" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.ebit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.ebit" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.ebit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.ebit" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.ebit" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -724,19 +730,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.depreciation" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.depreciation" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.depreciation" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.depreciation" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.depreciation" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.depreciation" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.depreciation" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.depreciation" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -745,38 +751,38 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.working_capital_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.working_capital_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.working_capital_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.working_capital_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.working_capital_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.working_capital_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.working_capital_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.working_capital_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Any Tax Paid in Cash</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.tax_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.tax_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.tax_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.tax_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.tax_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.tax_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.tax_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.tax_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -785,19 +791,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.total_amount_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.total_amount_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.total_amount_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.total_amount_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.total_amount_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.total_amount_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.total_amount_paid_in_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.total_amount_paid_in_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -806,38 +812,38 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.total_capital_expenditure" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.total_capital_expenditure" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.total_capital_expenditure" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.total_capital_expenditure" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.total_capital_expenditure" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.total_capital_expenditure" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.total_capital_expenditure" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.total_capital_expenditure" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Total Value of Equity Sold</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.total_sold_equity_sold" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.total_sold_equity_sold" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.total_sold_equity_sold" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.total_sold_equity_sold" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.total_sold_equity_sold" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.total_sold_equity_sold" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.total_sold_equity_sold" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.total_sold_equity_sold" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -846,19 +852,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.total_credit_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.total_credit_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.total_credit_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.total_credit_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.total_credit_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.total_credit_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.total_credit_value" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.total_credit_value" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -867,19 +873,19 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.total_principal_paid_loan" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.total_principal_paid_loan" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.total_principal_paid_loan" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.total_principal_paid_loan" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.total_principal_paid_loan" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.total_principal_paid_loan" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.total_principal_paid_loan" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.total_principal_paid_loan" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label
@@ -888,57 +894,57 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.beginning_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.beginning_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.beginning_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.beginning_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.beginning_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.beginning_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.beginning_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.beginning_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Change in Cash</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.cash_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.cash_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.cash_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.cash_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.cash_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.cash_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.cash_change" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.cash_change" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold mb-2">Ending Cash</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input v-model.number="cash_flow_2017.end_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2017.end_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="cash_flow_2018.end_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2018.end_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="cash_flow_2019.end_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2019.end_cash" type="number" placeholder="GHC" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input v-model.number="cash_flow_2020.end_cash" type="number" placeholder="GHC" small />
+            <Input v-model.number="cash_flow_2020.end_cash" type="number" placeholder="GHC" money small />
           </div>
         </div>
         <div class="my-20">

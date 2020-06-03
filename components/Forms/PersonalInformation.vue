@@ -47,10 +47,16 @@
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.phone_number" type="text" name="Phone Number" />
+        <Input v-model="personalInfo.phone_number" type="text" name="Phone Number" regex="0[2-5]{1}[0-9]{7,8}$" />
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.personal_digital_address_code" type="text" name="Nearest Digital Address Code" placeholder="GA-xxx-xxxx" />
+        <Input
+          v-model="personalInfo.personal_digital_address_code"
+          type="text"
+          name="Nearest Digital Address Code"
+          placeholder="GA-xxx-xxxx"
+          regex="GA-[0-9]{3,4}-[0-9]{4}$"
+        />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Date of Birth</label>
@@ -65,7 +71,7 @@
         <Select v-model="personalInfo.id_type" :items="idType" />
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.id_number" type="text" name="Applicant's ID (passport, driver's license, Voters Id)" />
+        <Input v-model="personalInfo.id_number" type="text" name="Applicant's ID (passport, driver's license, Voters Id)" :regex="regex" />
       </div>
     </div>
   </div>
@@ -89,6 +95,7 @@ export default {
     return {
       show: this.active,
       personalInfo: {},
+      regex: '',
       region: ''
     }
   },
@@ -116,6 +123,18 @@ export default {
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
       }
+    },
+    personalInfo: {
+      handler (value) {
+        if (value.id_type === '3') {
+          this.regex = 'MAB-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
+        } else if (value.id_type === '1') {
+          this.regex = '[0-9]{10}$'
+        } else if (value.id_type === '2') {
+          this.regex = 'G[0-9]{9}$'
+        }
+      },
+      deep: true
     }
   }
 }
