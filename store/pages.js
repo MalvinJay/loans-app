@@ -4,7 +4,8 @@ export const state = () => ({
   startup: null,
   dropdowns: null,
   districts: null,
-  mediaResponse: null
+  mediaResponse: null,
+  application_object: process.browser ? JSON.parse(localStorage.getItem('application/object')) : null || null
 })
 
 export const getters = {
@@ -103,7 +104,7 @@ export const getters = {
       return state.dropdowns.covid_impacts.map((item) => {
         return {
           name: item.name,
-          val: item.id
+          val: item.id.toString()
         }
       })
     }
@@ -116,6 +117,11 @@ export const getters = {
           val: item.id
         }
       })
+    }
+  },
+  momo (state) {
+    if (state.dropdowns) {
+      return state.dropdowns.financial_institutions.filter(item => item.type === 'mm')
     }
   }
 }

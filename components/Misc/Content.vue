@@ -121,9 +121,9 @@ export default {
     submitAll () {
       this.$emit('submitted', true)
       this.$store.dispatch('api/submitApplication')
-      // .then(() => {
-      //   window.location = '/submitted'
-      // })
+        .then(() => {
+          window.location = '/loans/submitted'
+        })
     }
   }
 }

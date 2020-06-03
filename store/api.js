@@ -19,6 +19,18 @@ export const mutations = {
 }
 
 export const actions = {
+  async verifyApplication ({ commit }, data) {
+    const url = 'http://35.224.152.25/api/verify'
+    const config = {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }
+    const result = await this.$axios.$post(url, data, config)
+    if (process.browser) {
+      localStorage.setItem('application_object', JSON.stringify(result.data))
+    }
+  },
   async uploadMedia ({ commit }, data) {
     const formData = new FormData()
     formData.append('file', data.file)
