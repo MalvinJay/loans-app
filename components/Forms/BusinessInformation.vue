@@ -1476,7 +1476,11 @@ export default {
     },
     sales () {
       // Get sales from route params
-      return parseFloat(this.$route.params.amount)
+      return parseFloat(this.$route.params.amount.split(' ')[0])
+    },
+    tin_number () {
+      // Get sales from route params
+      return this.$route.params.amount.split(' ')[1]
     },
     startup () {
       return this.$store.state.pages.startup
@@ -1593,7 +1597,8 @@ export default {
     }
   },
   mounted () {
-    this.general.annual_sales = this.$route.params.amount
+    this.general.annual_sales = this.sales
+    // this.general.tin_number = this.tin_number
     // this.general.years_in_business = this.years
   }
 }

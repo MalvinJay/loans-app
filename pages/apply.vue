@@ -14,20 +14,29 @@
               <label class="block text-gray-700 text-lg font-normal mb-2">
                 Tax Identification Number (TIN)
               </label>
-              <Input v-model="tin_number" type="text" small />
+              <Input v-model="tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
             </div>
             <div class="mb-4">
               <label class="block text-gray-700 text-lg font-normal mb-2">
                 Annual Sales or Annual Turnover
               </label>
-              <Input v-model="sales" type="number" placeholder="e.g 1,000" small required />
+              <Input
+                v-model.number="sales"
+                type="number"
+                placeholder="e.g 1,000"
+                small
+                required
+                money
+              />
             </div>
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
             <div class="flex-1">
-              <button class="button-small" @click="submit">
-                Submit
-              </button>
+              <a :href="`/loans/${sales}%${tin_number}/form`">
+                <button class="button-small">
+                  Submit
+                </button>
+              </a>
             </div>
           </div>
         </div>

@@ -94,6 +94,7 @@ export default {
         const regex = RegExp(this.regex)
         if (regex.test(val)) {
           this.error = false
+          this.$emit('input', val)
         } else {
           this.errorMessage = 'Invalid input '
           this.error = true

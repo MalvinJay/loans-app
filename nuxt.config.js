@@ -83,13 +83,8 @@ export default {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
     }
+  },
+  generate: {
+    fallback: true
   }
-  // purgeCSS: {
-  //   whitelistPatterns: [
-  //     /-(leave|enter|appear)(|-(to|from|active))$/,
-  //     /^(?!(|.*?:)cursor-move).+-move$/,
-  //     /^nuxt-link(|-exact)-active$/,
-  //     /multiselect/
-  //   ]
-  // }
 }
