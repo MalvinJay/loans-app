@@ -32,7 +32,7 @@
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
             <div class="flex-1">
-              <a :href="`/loans/${sales}${tin_number}/form`">
+              <a :href="`/loans/${sales}$ {tin_number}/form`">
                 <button class="button-small">
                   Submit
                 </button>
