@@ -20,16 +20,14 @@
               <label class="block text-gray-700 text-lg font-normal mb-2">
                 Annual Sales or Annual Turnover
               </label>
-              <Input v-model="sales" type="text" placeholder="e.g 1,000" small />
+              <Input v-model="sales" type="number" placeholder="e.g 1,000" small required />
             </div>
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
             <div class="flex-1">
-              <a :href="`/loans/${sales}/form`">
-                <button class="button-small">
-                  Submit
-                </button>
-              </a>
+              <button class="button-small" @click="submit">
+                Submit
+              </button>
             </div>
           </div>
         </div>
@@ -55,6 +53,15 @@ export default {
     return {
       sales: null,
       tin_number: null
+    }
+  },
+  methods: {
+    submit () {
+      const applyObject = {
+        annual_sales: this.sales,
+        tin_number: this.tin_number
+      }
+      this.$store.dispatch('api/verifyApplication', applyObject)
     }
   }
 }

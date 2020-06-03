@@ -2,13 +2,13 @@
   <div v-show="show">
     <div class="grid form-a py-20">
       <div class="mb-10">
-        <Input v-model="loanAmount" name="Funding Amount" type="number" />
+        <Input v-model.number="loanAmount" name="Funding Amount" type="number" />
       </div>
       <div class="mb-10">
-        <Input v-model="years" name="Years in Operation" />
+        <Input v-model.number="years" name="Years in Operation" type="number" />
       </div>
       <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
           Are you a startup?
         </label>
         <div class="flex justify-start mb-12">
@@ -22,7 +22,7 @@
           </label>
         </div>
         <div class="mb-12">
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
             Can you provide proof COVID-19 of impact
           </label>
           <div class="flex justify-start">
@@ -38,71 +38,73 @@
         </div>
       </div>
       <div class="mb-12">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
           How has COVID-19 impacted your business?
         </label>
         <MultiSelect :list="covidImpacts" @selected="selected" />
-        <div class="mt-5">
-          <textarea v-model="covidImpactText" name="" rows="10" placeholder="Please write down the impact" />
+        <div v-if="otherSelected" class="mt-5">
+          <textarea v-model="general.other_covid_impact" name="" rows="10" placeholder="Please write down the impact" />
         </div>
       </div>
       <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
           Proof of COVID-19 Impact Template
         </label>
         <button class="i-t-b" @click="modal1 = true">
           Click to Fill in Template
         </button>
-        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold" for="username">
+        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
           What will you use the funds for
         </label>
         <Select v-model="general.fund_purpose_id" :items="fundRoles" />
-        <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
+        <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
           If other, fill this field
         </label>
         <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" />
       </div>
       <div class="mb-4">
         <div class="mb-12">
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
             Repayment Account Details
           </label>
           <div class="flex justify-start ac-dc">
-            <div class="flex justify-start">
-              <label class="checkbox">MTN
-                <input id="mtn" v-model="mobileWallet" type="checkbox" false-value="true" true-value="mtn">
+            <div class="flex justify-start gap-5">
+              <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
+                <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
                 <span class="checkmark" />
               </label>
-              <label class="checkbox mr-5">Vodafone
+              <!-- <label class="checkbox mr-5">Vodafone
                 <input id="vodafone" v-model="mobileWallet" type="checkbox" false-value="true" true-value="vodafone">
                 <span class="checkmark" />
               </label>
               <label class="checkbox">AirtelTigo
                 <input id="airteltigo" v-model="mobileWallet" type="checkbox" true-value="airtelTigo">
                 <span class="checkmark" />
-              </label>
+              </label> -->
             </div>
           </div>
         </div>
-        <!-- <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+        <!-- <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
           Repayment Account Details
         </label> -->
-        <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
+        <label class="block text-gray-900 text-sm font-normal mb-2">
           Mobile Wallet Number (must use your own mobile wallet account)
         </label>
-        <Input v-model="general.mobile_wallet_number" />
+        <Input v-model="general.account_no" type="number" />
         <div class="mb-8">
-          <label class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
+          <label class="block text-gray-900 text-sm font-normal mb-2 mt-8">
             Your Selected Bank
           </label>
-          <Select v-model="general.financial_institution_ID" :items="bankPartner" />
+          <Select v-model="general.financial_institution_id" :items="bankPartner" />
         </div>
-        <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
+        <label class="block text-gray-900 text-sm font-normal mb-2">
           Bank Account Number
         </label>
-        <Input v-model="general.account_no" />
+        <Input v-model="general.account_no" type="number" />
       </div>
     </div>
+    <!-- ===================================================================================
+    =================================COVID TEMPLATE MODAL============================== -->
     <Modal v-if="modal1" @close="modal1 = false">
       <div class="income-info">
         <div class="h-d">
@@ -121,35 +123,35 @@
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">May</label></div>
           <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed to Company from Customers </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.outstanding_invoice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.outstanding_invoice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.outstanding_invoice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model.number="total.outstanding_invoice" type="number" placeholder="GHC" small disabled /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.demand_notice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.demand_notice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.demand_notice" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model.number="total.demand_notice" type="number" placeholder="GHC" small disabled /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.outstanding_rent" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.outstanding_rent" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.outstanding_rent" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model="total.outstanding_rent" type="number" placeholder="GHC" small disabled /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.unpaid_salaries" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.unpaid_salaries" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.unpaid_salaries" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model.number="total.unpaid_salaries" type="number" placeholder="GHC" small disabled /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.unpaid_utility_bills" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.unpaid_utility_bills" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.unpaid_utility_bills" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model.number="total.unpaid_utility_bills" type="number" placeholder="GHC" small disabled /></div>
           <div><label class="block text-gray-900 text-sm font-bold mb-2">Other</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.reduced_productivity" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model.number="covid_proof_of_april_20.reduced_productivity" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model.number="covid_proof_of_may_20.reduced_productivity" type="number" placeholder="GHC" small /></div>
+          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input v-model.number="total.reduced_productivity" type="number" placeholder="GHC" small disabled /></div>
         </div>
       </div>
       <div class="my-20">
@@ -193,7 +195,11 @@ export default {
       covid_proof_of_march_20: {},
       covid_proof_of_april_20: {},
       covid_proof_of_may_20: {},
-      general: {}
+      total: {
+        outstanding_invoice: 0
+      },
+      general: {},
+      otherSelected: false
     }
   },
   computed: {
@@ -205,6 +211,9 @@ export default {
     },
     fundRoles () {
       return this.$store.getters['pages/fundRoles']
+    },
+    momo () {
+      return this.$store.getters['pages/momo']
     }
   },
   watch: {
@@ -233,9 +242,9 @@ export default {
       const covidProofOfMay = Object.assign({}, this.covid_proof_of_may_20)
 
       // merge data
-      data.covid_proof_of_march_20 = covidProofOfMarch
-      data.covid_proof_of_april_20 = covidProofOfApril
-      data.covid_proof_of_may_20 = covidProofOfMay
+      data.covid_proof_mar_20 = covidProofOfMarch
+      data.covid_proof_apr_20 = covidProofOfApril
+      data.covid_proof_may_20 = covidProofOfMay
       data.years_in_business = this.years
       data.requested_loan_amount = this.loanAmount
       this.startup === 'true' ? data.is_startup = '1' : data.is_startup = '0'
@@ -243,7 +252,24 @@ export default {
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
       }
+    },
+    covidImpact: {
+      handler (value) {
+        // eslint-disable-next-line no-console
+        console.log(value)
+        this.otherSelected = value.includes('11')
+      },
+      deep: true
     }
+    // covid_proof_of_may_20: {
+    //   handler (value) {
+    //     // eslint-disable-next-line no-console
+    //     console.log(value.outstanding_invoice)
+    //     this.total.outstanding_invoice += value.outstanding_invoice
+    //   },
+    //   deep: true
+    // }
+
   },
   created () {
     if (this.$route.params.amount < 145000) {

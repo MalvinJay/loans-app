@@ -2,10 +2,10 @@
   <div v-show="show">
     <div class="grid form-b py-20">
       <div class="mb-10">
-        <Input v-model="personalInfo.first_name" name="First Name" />
+        <Input v-model="personalInfo.first_name" type="text" name="First Name" />
       </div>
       <div class="mb-10">
-        <Input v-model="personalInfo.last_name" name="Last Name" />
+        <Input v-model="personalInfo.last_name" type="text" name="Last Name" />
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">Gender</label>
@@ -21,7 +21,7 @@
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.primary_email" name="Email Address" />
+        <Input v-model="personalInfo.primary_email" type="email" name="Email Address" />
       </div>
       <div>
         <label
@@ -32,7 +32,7 @@
       <div />
       <div class="mb-12">
         <div class="mb-6">
-          <Input v-model="personalInfo.residential_address" placeholder="Residential Address" />
+          <Input v-model="personalInfo.residential_address" type="text" placeholder="Residential Address" />
         </div>
         <div>
           <Select v-model="region" first="Region" :items="regions" />
@@ -40,17 +40,17 @@
       </div>
       <div class="mb-12">
         <div class="mb-6">
-          <Input v-model="personalInfo.town" placeholder="Town" />
+          <Input v-model="personalInfo.town" type="text" placeholder="Town" />
         </div>
         <div>
           <Select v-model="personalInfo.district" first="District" :items="districts" />
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.phone_number" name="Phone Number" />
+        <Input v-model="personalInfo.phone_number" type="text" name="Phone Number" />
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.personal_digital_address_code" name="Nearest Digital Address Code" placeholder="GA-xxx-xxxx" />
+        <Input v-model="personalInfo.personal_digital_address_code" type="text" name="Nearest Digital Address Code" placeholder="GA-xxx-xxxx" />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Date of Birth</label>
@@ -65,7 +65,7 @@
         <Select v-model="personalInfo.id_type" :items="idType" />
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.id_number" name="Applicant's ID (passport, driver's license, Voters Id)" />
+        <Input v-model="personalInfo.id_number" type="text" name="Applicant's ID (passport, driver's license, Voters Id)" />
       </div>
     </div>
   </div>
