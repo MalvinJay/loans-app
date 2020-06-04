@@ -20,7 +20,11 @@ export const mutations = {
 
 export const actions = {
   async verifyApplication ({ commit }, data) {
+<<<<<<< HEAD
     const url = 'https://mcftest.plendifyloans.com/api/verify'
+=======
+    const url = 'http://mcftest.plendifyloans.com/api/verify'
+>>>>>>> e270a32dd765cc01ec31fbb523a2bb0088b3c001
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -40,7 +44,11 @@ export const actions = {
         'Content-Type': 'application/json'
       }
     }
+<<<<<<< HEAD
     const url = 'https://mcftest.plendifyloans.com/api/upload-media'
+=======
+    const url = 'http://mcftest.plendifyloans.com/api/upload-media'
+>>>>>>> e270a32dd765cc01ec31fbb523a2bb0088b3c001
     const result = await this.$axios.$post(url, formData, config)
     commit('SET_MEDIA_PATH', { path: result.data.path, name: data.name })
   },
@@ -51,7 +59,11 @@ export const actions = {
           'Content-Type': 'application/json'
         }
       }
+<<<<<<< HEAD
       const url = 'https://mcftest.plendifyloans.com/api/loan-applications'
+=======
+      const url = 'http://mcftest.plendifyloans.com/api/loan-applications'
+>>>>>>> e270a32dd765cc01ec31fbb523a2bb0088b3c001
       this.$axios.$post(url, state.general, config)
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)
