@@ -20,7 +20,7 @@ export const mutations = {
 
 export const actions = {
   async verifyApplication ({ commit }, data) {
-    const url = 'http://35.224.152.25/api/verify'
+    const url = 'https://mcftest.plendifyloans.com/api/verify'
     const config = {
       headers: {
         'Content-Type': 'application/json'
@@ -30,6 +30,7 @@ export const actions = {
     if (process.browser) {
       localStorage.setItem('application_object', JSON.stringify(result.data))
     }
+    return result.data
   },
   async uploadMedia ({ commit }, data) {
     const formData = new FormData()
@@ -39,7 +40,7 @@ export const actions = {
         'Content-Type': 'application/json'
       }
     }
-    const url = 'http://35.224.152.25/api/upload-media'
+    const url = 'https://mcftest.plendifyloans.com/api/upload-media'
     const result = await this.$axios.$post(url, formData, config)
     commit('SET_MEDIA_PATH', { path: result.data.path, name: data.name })
   },
@@ -50,7 +51,7 @@ export const actions = {
           'Content-Type': 'application/json'
         }
       }
-      const url = 'http://35.224.152.25/api/loan-applications'
+      const url = 'https://mcftest.plendifyloans.com/api/loan-applications'
       this.$axios.$post(url, state.general, config)
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)

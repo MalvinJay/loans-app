@@ -11,15 +11,15 @@
         <div class="mt-10">
           <form class="grid">
             <div class="mb-4">
-              <label class="block text-gray-700 text-lg font-normal mb-2">
-                Tax Identification Number (TIN)
-              </label>
+              <label
+                class="block text-gray-700 text-lg font-normal mb-2"
+              >Tax Identification Number (TIN)</label>
               <Input v-model="tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
             </div>
             <div class="mb-4">
-              <label class="block text-gray-700 text-lg font-normal mb-2">
-                Annual Sales or Annual Turnover
-              </label>
+              <label
+                class="block text-gray-700 text-lg font-normal mb-2"
+              >Annual Sales or Annual Turnover</label>
               <Input
                 v-model.number="sales"
                 type="number"
@@ -32,11 +32,13 @@
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
             <div class="flex-1">
-              <a :href="`/loans/${sales} ${tin_number}/form`">
-                <button class="button-small">
-                  Submit
-                </button>
-              </a>
+              <button
+                class="button-small"
+                :disabled="sales === null || tin_number === null"
+                @click="submit"
+              >
+                Submit
+              </button>
             </div>
           </div>
         </div>
@@ -61,7 +63,8 @@ export default {
   data () {
     return {
       sales: null,
-      tin_number: null
+      tin_number: null,
+      showSubmit: true
     }
   },
   methods: {
@@ -70,7 +73,17 @@ export default {
         annual_sales: this.sales,
         tin_number: this.tin_number
       }
-      this.$store.dispatch('api/verifyApplication', applyObject)
+      this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
+        // eslint-disable-next-line no-console
+        if (
+          res.business_scale === 'undefined' ||
+          res.business_scale === null ||
+          res.business_scale === ''
+        ) {
+        } else {
+          window.location = '/loans/0/form'
+        }
+      })
     }
   }
 }

@@ -40,11 +40,15 @@
         <Input v-model="general.years_in_business" name="Years in Operation" />
       </div> -->
       <div class="mb-12">
-        <Input v-model.number="general.annual_sales" type="number" name="Annual Sales" money />
+        <Input v-model.number="general.annual_sales" type="number" name="Annual Sales" money disabled="true" />
       </div>
       <div class="mb-12">
-        <Input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})$" name="Tax Identification Number (TIN)" />
+        <label class="block text-gray-900 text-sm font-bold mb-2" disabled="true">Tax Identification NUmber (TIN)</label>
+        <input v-model="tinNumber" type="text" disabled="true">
       </div>
+      <!-- <div class="mb-12">
+        <Input v-model="general.annual_sales" type="text" name="Tax Identification Number (TIN)" />
+      </div> -->
 
       <div class="mb-12">
         <Input
@@ -1468,6 +1472,9 @@ export default {
     }
   },
   computed: {
+    tinNumber () {
+      return JSON.parse(localStorage.getItem('application_object')).tin_number
+    },
     fundAmount () {
       return this.$store.state.pages.loanAmount
     },
@@ -1477,10 +1484,6 @@ export default {
     sales () {
       // Get sales from route params
       return parseFloat(this.$route.params.amount.split(' ')[0])
-    },
-    tin_number () {
-      // Get sales from route params
-      return this.$route.params.amount.split(' ')[1]
     },
     startup () {
       return this.$store.state.pages.startup
@@ -1582,9 +1585,9 @@ export default {
       data.cash_flow_2020 = cashFlow2019
       data.cash_flow_2019 = cashFlow2020
       data.directors_list = data.legal_organization === '1' || data.legal_organization === '2' ? businessOwner : directorsList
-      // data.directors_list = businessOwner
       data.credit_facilities = creditFacilities
       data.business_region = this.region
+      data.tin_number = this.tinNumber
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
       }
@@ -1597,9 +1600,7 @@ export default {
     }
   },
   mounted () {
-    this.general.annual_sales = this.sales
-    // this.general.tin_number = this.tin_number
-    // this.general.years_in_business = this.years
+    this.general.annual_sales = JSON.parse(localStorage.getItem('application_object')).annual_sales
   }
 }
 </script>

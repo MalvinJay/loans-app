@@ -147,7 +147,7 @@ export const mutations = {
 
 export const actions = {
   async getDropDowns ({ commit }) {
-    const dropdowns = await this.$axios.$get('http://35.224.152.25/api/dropdowns')
+    const dropdowns = await this.$axios.$get('https://mcftest.plendifyloans.com/api/dropdowns')
     commit('SET_DROPDOWNS', dropdowns.data)
   }
 }
