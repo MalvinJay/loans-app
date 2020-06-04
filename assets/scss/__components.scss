@@ -1,0 +1,153 @@
+@import './_variables';
+@import './_layouts';
+
+.button-small {
+  @include button;
+  padding: 10px 24px;
+  border-radius: $button-border-radius;
+  font-size: $default-font-size;
+  width: 140px;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
+}
+
+.button-medium {
+  @include button;
+  padding: 20px, 40px;
+  height: 60px;
+  width: 200px;
+  border-radius: $button-border-radius;
+  font-size: $default-font-size;
+  white-space: nowrap;
+  text-align: center;
+  &:focus {
+    outline: none;
+  }
+}
+
+input[type=text], input[type=date], input[type=number], input[type=email]{
+  height: 50px;
+  border-radius: $button-border-radius;
+  border: 1px solid $color-gray-alt;
+  padding: 17px;
+  width: 469px;
+  background-color: $white;
+  -moz-appearance: none;
+  -webkit-appearance:none;
+  &:focus {
+    outline: none;
+  }
+}
+
+textarea{
+  border-radius: $button-border-radius;
+  border: 1px solid $color-gray-alt;
+  padding: 0.7rem;
+  width: 469px;
+  height: 5rem;
+  background-color: $white;
+  -moz-appearance: none;
+  -webkit-appearance:none;
+  &:focus {
+    outline: none;
+  }
+}
+
+ /* Customize the label (the checkbox) */
+ .checkbox {
+  display: block;
+  position: relative;
+  padding-left: 2rem;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  width: 100px;
+}
+
+/* Hide the browser's default checkbox */
+.checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1.4rem;
+  width: 1.4rem;
+  border: 0.5px solid $color-black;
+  border-radius: 5px;
+}
+
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox .checkmark:after {
+  left: 9px;
+  top: 3px;
+  width: 8px;
+  height: 13px;
+  border: solid $color-black;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+@include for-tablet-portrait-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+  .checkbox {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    font-size: 0.8rem;
+  }
+}
+
+@include for-phone-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+  .button-small {
+    width: 115px;
+    height: 33px;
+  }
+}
+
+@include for-tablet-landscape-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
+  }
+}
