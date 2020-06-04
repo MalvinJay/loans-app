@@ -1,16 +1,26 @@
 <template>
   <div>
     <slot />
-    <div class="buttons flex gap-5">
-      <button v-if="count < items.length-1" class="button-small next" @click="count ++">
-        Next
-      </button>
-      <button v-else class="button-small next" @click="confirmModal=true">
-        Submit
-      </button>
-      <button v-if="count>=1" class="button-small previous" @click="count --">
-        Previous
-      </button>
+    <div class="buttons flex">
+      <div>
+        <button v-if="count < items.length-1" class="button-small next" @click="count ++">
+          Next
+        </button>
+        <button v-else class="button-small next" @click="confirmModal=true">
+          Submit
+        </button>
+        <button v-if="count>=1" class="button-small previous" @click="count --">
+          Previous
+        </button>
+        <!-- <button class="button-small previous small">
+          Save
+        </button> -->
+      </div>
+      <div>
+        <button class="save button-small previous">
+          Save
+        </button>
+      </div>
     </div>
     <Modal v-if="confirmModal" @close="confirmModal=false">
       <div>
@@ -135,13 +145,15 @@ export default {
 .buttons {
   button {
     width: 279px;
+    height: 50px;
+    margin: 10px;
     &.previous {
       border: 1px solid $color-primary;
       color: $color-primary;
       background-color: white;
     }
     &:first-child {
-      margin-right: 10px;
+      margin-bottom: 10px;
     }
   }
   &.c-b {
@@ -162,9 +174,18 @@ export default {
     width: 100%;
   }
   .buttons {
+    flex-direction: column;
+    button {
+      width: 100%;
+    }
     &.c-b {
       width: 100%;
     }
+  }
+}
+@include for-tablet-landscape-up {
+  .save {
+    margin-left: rem;
   }
 }
 </style>

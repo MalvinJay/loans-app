@@ -101,7 +101,7 @@ export const getters = {
   },
   covidImpacts (state) {
     if (state.dropdowns !== null) {
-      return state.dropdowns.covid_impacts.map((item) => {
+      return state.dropdowns.fund_purposes.map((item) => {
         return {
           name: item.name,
           val: item.id.toString()
