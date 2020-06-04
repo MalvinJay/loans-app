@@ -68,7 +68,7 @@
             Repayment Account Details
           </label>
           <div v-if="loanAmount<2000" class="flex justify-start ac-dc">
-            <div class="flex justify-start gap-5">
+            <div class="flex justify-start gap-5 loan-argin">
               <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
                 <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
                 <span class="checkmark" />
@@ -348,6 +348,9 @@ export default {
     color: $color-secondary;
     height: 50px;
     column-gap: 35px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 
@@ -386,6 +389,9 @@ label.mobile {
   .button-small {
     margin-bottom: 70px;
   }
+}
+.momo:nth-child(2) {
+  margin-right: 20px;
 }
 @include for-tablet-portrait-only {
   .form-a {

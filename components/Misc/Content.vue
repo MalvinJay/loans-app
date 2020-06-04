@@ -140,6 +140,9 @@ export default {
       color: $color-primary;
       background-color: white;
     }
+    &:first-child {
+      margin-right: 10px;
+    }
   }
   &.c-b {
     width: 40%;

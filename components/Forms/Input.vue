@@ -99,6 +99,18 @@ export default {
           this.errorMessage = 'Invalid input '
           this.error = true
         }
+      } else if (this.type === 'email') {
+        // eslint-disable-next-line no-useless-escape
+        const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])/
+        if (regex.test(val)) {
+          this.error = false
+          this.$emit('input', val)
+        } else {
+          this.errorMessage = 'Invalid email '
+          this.error = true
+        }
+      } else {
+        this.$emit('input', val)
       }
       // this.$emit('input', val)
     },

@@ -34,7 +34,7 @@
         <Input v-model="general.business_phone_number" type="text" name="Business Phone Number" />
       </div>
       <div class="mb-12">
-        <Input v-model="general.business_email" type="email" name="Business Email Address" />
+        <Input v-model="general.business_email" type="email" name="Business Email Address" :regex="`^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$`" />
       </div>
       <!-- <div class="mb-12">
         <Input v-model="general.years_in_business" name="Years in Operation" />
@@ -1620,6 +1620,9 @@ export default {
     color: $color-secondary;
     height: 50px;
     column-gap: 35px;
+    &:focus {
+      outline: none;
+    }
   }
 }
 .income-info {
