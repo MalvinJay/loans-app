@@ -62,8 +62,7 @@ export default {
   border-radius: $button-border-radius;
   border: 1px solid $color-gray-alt;
   padding-left: 1rem;
-  // padding: 17px;
-  width: 469px;
+  width: 100%;
   background-color: $white;
   -moz-appearance: none;
   -webkit-appearance:none;

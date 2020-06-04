@@ -101,7 +101,7 @@ export const getters = {
   },
   covidImpacts (state) {
     if (state.dropdowns !== null) {
-      return state.dropdowns.covid_impacts.map((item) => {
+      return state.dropdowns.fund_purposes.map((item) => {
         return {
           name: item.name,
           val: item.id.toString()
@@ -147,7 +147,7 @@ export const mutations = {
 
 export const actions = {
   async getDropDowns ({ commit }) {
-    const dropdowns = await this.$axios.$get('http://35.224.152.25/api/dropdowns')
+    const dropdowns = await this.$axios.$get('https://mcftest.plendifyloans.com/api/dropdowns')
     commit('SET_DROPDOWNS', dropdowns.data)
   }
 }

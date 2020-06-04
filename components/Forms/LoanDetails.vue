@@ -77,7 +77,7 @@
           </div>
         </div>
         <label v-if="loanAmount < 2000" class="block text-gray-900 text-sm font-normal mb-2">
-          Mobile Wallet Number (must use your own mobile wallet account)
+          Mobile Wallet Number (must use your own mobile wallet)
         </label>
         <Input v-if="loanAmount<2000" v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
         <div v-else>
@@ -302,18 +302,106 @@ export default {
       handler (value) {
         // eslint-disable-next-line no-console
         console.log(value)
-        this.otherSelected = value.includes('11')
+        this.otherSelected = value.includes('9')
+      },
+      deep: true
+    },
+    covid_proof_of_may_20: {
+      handler (value) {
+        // calculate total outstanding invoie
+        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+
+        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+
+        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+
+        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+
+        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+
+        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+
+        // calculate total demand notce
+      },
+      deep: true
+    },
+    covid_proof_of_april_20: {
+      handler (value) {
+        // calculate total outstanding invoie
+        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+
+        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+
+        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+
+        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+
+        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+
+        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+
+        // calculate total demand notce
+      },
+      deep: true
+    },
+    covid_proof_of_march_20: {
+      handler (value) {
+        // calculate total outstanding invoice
+        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+
+        // calculate total demand notice
+        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+
+        // calculate total outstanding rent
+        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+
+        // calculate total unpaid salaries
+        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+
+        // calculate total unpaid utility bills
+        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+
+        // calculate total reduced productivity
+        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
       },
       deep: true
     }
-    // covid_proof_of_may_20: {
-    //   handler (value) {
-    //     // eslint-disable-next-line no-console
-    //     console.log(value.outstanding_invoice)
-    //     this.total.outstanding_invoice += value.outstanding_invoice
-    //   },
-    //   deep: true
-    // }
 
   },
   created () {
@@ -327,6 +415,14 @@ export default {
     },
     selected (value) {
       this.covidImpact = value
+    },
+    parseNumber (value) {
+      const val = parseFloat(value)
+      if (isNaN(val)) {
+        return 0
+      } else {
+        return val
+      }
     }
   }
 }

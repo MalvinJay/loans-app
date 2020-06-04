@@ -45,6 +45,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .steps {
   width: 100%;
   .l-c {
@@ -52,7 +53,7 @@ export default {
   }
   .name {
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .check {
       width: 32px;

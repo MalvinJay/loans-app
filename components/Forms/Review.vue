@@ -15,15 +15,19 @@
           <p class="font-bold">
             Purpose of Fund
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>
+            N/A
+          </p>
           <p class="font-bold">
             Term
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>N/A</p>
           <p class="font-bold">
             Fixing Period
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>
+            N/A
+          </p>
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">
@@ -111,11 +115,11 @@
           <p class="font-bold">
             Income
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>N/A</p>
           <p class="font-bold">
             Business Ownership
           </p>
-          <p>Lorem Ipsum dolor sit amet</p>
+          <p>N/A</p>
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">
