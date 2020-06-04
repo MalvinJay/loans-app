@@ -43,14 +43,22 @@ export const actions = {
     const result = await this.$axios.$post(url, formData, config)
     commit('SET_MEDIA_PATH', { path: result.data.path, name: data.name })
   },
-  async submitApplication ({ state, commit }) {
-    const config = {
-      headers: {
-        'Content-Type': 'application/json'
+  submitApplication ({ state, commit }) {
+    return new Promise((resolve, reject) => {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
       }
-    }
-    const url = 'http://35.224.152.25/api/loan-applications'
-    const result = await this.$axios.$post(url, state.general, config)
-    commit('SET_APPLICATION_RESPONSE', result.data)
+      const url = 'http://35.224.152.25/api/loan-applications'
+      this.$axios.$post(url, state.general, config)
+        .then((result) => {
+          commit('SET_APPLICATION_RESPONSE', result.data)
+          resolve(result)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
 }

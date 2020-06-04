@@ -1,6 +1,6 @@
 
 export default {
-  mode: 'universal',
+  mode: 'spa',
   /*
   ** Headers of the page
   */
@@ -10,6 +10,7 @@ export default {
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
+      // { 'http-equiv': 'Content-Security-Policy', content: 'upgrade-insecure-requests' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -83,13 +84,8 @@ export default {
         config.devtool = ctx.isClient ? 'source-map' : 'inline-source-map'
       }
     }
+  },
+  generate: {
+    fallback: true
   }
-  // purgeCSS: {
-  //   whitelistPatterns: [
-  //     /-(leave|enter|appear)(|-(to|from|active))$/,
-  //     /^(?!(|.*?:)cursor-move).+-move$/,
-  //     /^nuxt-link(|-exact)-active$/,
-  //     /multiselect/
-  //   ]
-  // }
 }

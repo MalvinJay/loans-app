@@ -121,8 +121,11 @@ export default {
     submitAll () {
       this.$emit('submitted', true)
       this.$store.dispatch('api/submitApplication')
-        .then(() => {
+        .then((result) => {
           window.location = '/loans/submitted'
+          // eslint-disable-next-line no-console
+          // console.log(result)
+          // window.location = '/loans/submitted'
         })
     }
   }
@@ -136,6 +139,9 @@ export default {
       border: 1px solid $color-primary;
       color: $color-primary;
       background-color: white;
+    }
+    &:first-child {
+      margin-right: 10px;
     }
   }
   &.c-b {

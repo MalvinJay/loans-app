@@ -10,6 +10,9 @@
   white-space: nowrap;
   text-align: center;
   text-transform: uppercase;
+  &:focus {
+    outline: none;
+  }
 }
 
 .button-medium {
@@ -21,6 +24,9 @@
   font-size: $default-font-size;
   white-space: nowrap;
   text-align: center;
+  &:focus {
+    outline: none;
+  }
 }
 
 input[type=text], input[type=date], input[type=number], input[type=email]{
@@ -110,6 +116,9 @@ textarea{
   transform: rotate(45deg);
 }
 @include for-tablet-portrait-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
   textarea {
     width: 100%;
   }
@@ -122,11 +131,23 @@ textarea{
 }
 
 @include for-phone-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
   textarea {
     width: 100%;
   }
   .button-small {
     width: 115px;
     height: 33px;
+  }
+}
+
+@include for-tablet-landscape-only {
+  input[type=text],input[type=date], input[type=number], input[type=email] {
+    width: 100%;
+  }
+  textarea {
+    width: 100%;
   }
 }
