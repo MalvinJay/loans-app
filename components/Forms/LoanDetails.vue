@@ -60,7 +60,7 @@
         <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
           If other, fill this field
         </label>
-        <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" />
+        <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" type="text" />
       </div>
       <div class="mb-4">
         <div class="mb-12">
@@ -301,8 +301,7 @@ export default {
     covidImpact: {
       handler (value) {
         // eslint-disable-next-line no-console
-        console.log(value)
-        this.otherSelected = value.includes('9')
+        this.otherSelected = value.includes('11')
       },
       deep: true
     },

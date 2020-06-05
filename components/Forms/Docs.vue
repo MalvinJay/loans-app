@@ -100,6 +100,13 @@ export default {
       }
       this.$store.commit('api/SET_ID_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
+        .then(() => {
+          this.$toasted.show('Image uploaded successfully', {
+            theme: 'toasted-primary',
+            position: 'top-right',
+            duration: 5000
+          })
+        })
     },
     btnAddApplicationId (e) {
       const file = e.target.files[0]

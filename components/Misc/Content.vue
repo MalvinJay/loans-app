@@ -133,9 +133,6 @@ export default {
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
           window.location = '/loans/submitted'
-          // eslint-disable-next-line no-console
-          // console.log(result)
-          // window.location = '/loans/submitted'
         })
     }
   }

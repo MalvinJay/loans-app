@@ -36,27 +36,21 @@
       <div class="mb-12">
         <Input v-model="general.business_email" type="email" name="Business Email Address" :regex="`^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$`" />
       </div>
-      <!-- <div class="mb-12">
-        <Input v-model="general.years_in_business" name="Years in Operation" />
-      </div> -->
-      <div class="mb-12">
-        <Input v-model.number="general.annual_sales" type="number" name="Annual Sales" money disabled="true" />
+      <div class="mb-12 text">
+        <label class="block text-gray-900 text-sm font-bold mb-2" :disabled="true">Annual Sales</label>
+        <input v-model="annual_sales_display" type="text" :disabled="true" class="text-right">
       </div>
       <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2" disabled="true">Tax Identification NUmber (TIN)</label>
-        <input v-model="tinNumber" type="text" disabled="true">
+        <label class="block text-gray-900 text-sm font-bold mb-2" :disabled="true">Tax Identification NUmber (TIN)</label>
+        <input v-model="tinNumber" type="text" :disabled="true">
       </div>
-      <!-- <div class="mb-12">
-        <Input v-model="general.annual_sales" type="text" name="Tax Identification Number (TIN)" />
-      </div> -->
-
       <div class="mb-12">
         <Input
           v-model="general.business_digital_address_code"
           type="text"
           name="Business Digital Address Code"
           placeholder="GA-xxx-xxxx"
-          regex="GA-[0-9]{3,4}-[0-9]{4}$"
+          regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
         />
       </div>
       <div class="mb-12">
@@ -973,7 +967,7 @@
             <Input v-model="directors_list[0].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
             <Input v-model.trim="directors_list[0].tin_number" type="text" small />
           </div>
           <div>
@@ -1023,8 +1017,8 @@
             <Input v-model="directors_list[1].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="directors_list[1].tin_number" type="text" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="directors_list[1].tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1073,8 +1067,8 @@
             <Input v-model="directors_list[2].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="directors_list[2].tin_number" type="text" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="directors_list[2].tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1123,8 +1117,8 @@
             <Input v-model="directors_list[3].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="directors_list[3].tin_number" type="text" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="directors_list[3].tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1173,8 +1167,8 @@
             <Input v-model="directors_list[4].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="directors_list[4].tin_number" type="text" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="directors_list[4].tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1239,8 +1233,8 @@
             <Input v-model="business_owner[0].name" type="text" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="business_owner[0].tin_number" type="text" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="business_owner[0].tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1277,8 +1271,8 @@
             <Input v-model="business_owner[1].name" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="business_owner[1].tin_number" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="business_owner[1].tin_number" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1314,8 +1308,8 @@
             <Input v-model="business_owner[2].name" small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">TIN</label>
-            <Input v-model="business_owner[2].tin_number" small />
+            <label class="block text-gray-900 text-sm font-normal mb-2">Tax Identification Number(TIN)</label>
+            <Input v-model="business_owner[2].tin_number" small regex="([A-Z]{1})([0-9]{10})$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -1413,7 +1407,11 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Date Valid Up To</label>
-            <Input v-model="tax_clearance.validity" type="date" small />
+            <!-- <Input v-model="tax_clearance.validity" type="date" small /> -->
+            <!-- <div class="mb-12"> -->
+            <!-- <label class="block text-gray-900 text-sm font-bold mb-2">Date Valid Up To</label> -->
+            <input v-model="tax_clearance.validity" type="date" name>
+            <!-- </div> -->
           </div>
         </div>
         <div class="my-20">
@@ -1468,7 +1466,8 @@ export default {
         {}, {}, {}, {}, {}
       ],
       credit_facilities: [{}, {}, {}],
-      region: null
+      region: null,
+      annual_sales_display: null
     }
   },
   computed: {
@@ -1601,6 +1600,7 @@ export default {
   },
   mounted () {
     this.general.annual_sales = JSON.parse(localStorage.getItem('application_object')).annual_sales
+    this.annual_sales_display = JSON.parse(localStorage.getItem('application_object')).annual_sales.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   }
 }
 </script>

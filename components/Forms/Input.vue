@@ -115,8 +115,10 @@ export default {
       // this.$emit('input', val)
     },
     onBlurNumber (e) {
-      this.amount = this.thousandSeprator(e.target.value)
-      this.visible = false
+      if (this.type === 'number') {
+        this.amount = this.thousandSeprator(e.target.value)
+        this.visible = false
+      }
     },
     onFocusText () {
       this.visible = true

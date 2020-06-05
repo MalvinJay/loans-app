@@ -34,7 +34,6 @@
             <div class="flex-1">
               <button
                 class="button-small"
-                :disabled="sales === null || tin_number === null"
                 @click="submit"
               >
                 Submit
@@ -69,21 +68,31 @@ export default {
   },
   methods: {
     submit () {
-      const applyObject = {
-        annual_sales: this.sales,
-        tin_number: this.tin_number
-      }
-      this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
-        // eslint-disable-next-line no-console
-        if (
-          res.business_scale === 'undefined' ||
-          res.business_scale === null ||
-          res.business_scale === ''
-        ) {
-        } else {
-          window.location = '/loans/0/form'
+      if (this.tin_number === null || this.sales === null || this.tin_number === '' || this.sales === '') {
+        this.$toasted.error('Some fields are empty', {
+          theme: 'toasted-primary',
+          position: 'top-right',
+          duration: 5000
+        })
+      } else {
+        const applyObject = {
+          annual_sales: this.sales,
+          tin_number: this.tin_number
         }
-      })
+        // this.$toast.show('Logging in...')
+        this.$toasted.show('Verifying tin Number', {
+          theme: 'toasted-primary',
+          position: 'top-right',
+          duration: 5000
+        })
+
+        this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
+          window.location = '/loans/0/form'
+        })
+          .catch(() => {
+            this.$toast.error('Wrong TIN number')
+          })
+      }
     }
   }
 }
@@ -96,6 +105,7 @@ form {
 .buttons {
   column-gap: 20%;
   button {
+    height: 50px;
     width: 279px;
   }
 }
@@ -106,6 +116,12 @@ form {
 @include for-phone-only {
   form {
     grid-template-columns: 100%;
+  }
+.buttons {
+  button {
+    height: 50px;
+    width: 100%;
+    }
   }
 }
 </style>

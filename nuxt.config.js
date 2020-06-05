@@ -64,12 +64,28 @@ export default {
     '@nuxtjs/pwa',
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    '@nuxtjs/toast'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
+
+  toast: {
+    position: 'top-right',
+    theme: 'toasted-primary',
+    duration: 5000,
+    register: [ // Register custom toasts
+      {
+        name: 'my-error',
+        message: 'Oops...Something went wrong',
+        options: {
+          type: 'error'
+        }
+      }
+    ]
+  },
   axios: {
   },
   /*
