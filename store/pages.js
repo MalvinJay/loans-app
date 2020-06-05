@@ -91,7 +91,7 @@ export const getters = {
   },
   bankPartner (state) {
     if (state.dropdowns !== null) {
-      return state.dropdowns.financial_institutions.map((item) => {
+      return state.dropdowns.financial_institutions.filter(item => item.type !== 'mm').map((item) => {
         return {
           name: item.bank_name,
           val: item.id
