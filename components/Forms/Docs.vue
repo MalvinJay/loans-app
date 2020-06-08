@@ -1,7 +1,7 @@
 <template>
   <div v-show="show" class="grid docs border-blue-100">
     <div @drop.prevent="addApplicationId" @dragover.prevent>
-      <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Application ID</label>
+      <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
           <img src="@/assets/img/docs.png" alt>
@@ -20,6 +20,9 @@
         <div class="mt-6">
           <p class="text-center text-sm">
             {{ applicatonIdFile }}
+          </p>
+          <p v-if="loading" class="text-center text-sm">
+            Please wait....
           </p>
         </div>
       </div>
@@ -86,22 +89,33 @@ export default {
       show: this.active,
       applicatonIdFile: null,
       payePaymentsFile: null,
-      ssnitStatementFile: null
+      ssnitStatementFile: null,
+      loading: false
     }
   },
   methods: {
     addApplicationId (e) {
       const file = e.dataTransfer.files[0]
       // eslint-disable-next-line no-console
-      console.log(file)
-      this.applicatonIdFile = file.name
+      // console.log(file)
+      this.loading = true
       const data = {
         file, name: 'id_file'
       }
       this.$store.commit('api/SET_ID_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
         .then(() => {
+          this.applicatonIdFile = file.name
+          this.loading = false
           this.$toasted.show('Image uploaded successfully', {
+            theme: 'toasted-primary',
+            position: 'top-right',
+            duration: 5000
+          })
+        })
+        .catch(() => {
+          this.loading = false
+          this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
             duration: 5000

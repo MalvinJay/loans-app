@@ -11,15 +11,13 @@
         <div class="mt-10">
           <form class="grid">
             <div class="mb-4">
-              <label
-                class="block text-gray-700 text-lg font-normal mb-2"
-              >Tax Identification Number (TIN)</label>
-              <Input v-model="tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
+              <label class="block text-gray-900 text-sm mb-2">Applicant ID Type</label>
+              <Select :items="idType" small />
             </div>
             <div class="mb-4">
               <label
-                class="block text-gray-700 text-lg font-normal mb-2"
-              >Annual Sales or Annual Turnover</label>
+                class="block text-gray-700 text-sm font-normal mb-2"
+              >2019 Annual Sales or 2019 Annual Turnover</label>
               <Input
                 v-model.number="sales"
                 type="number"
@@ -28,6 +26,20 @@
                 required
                 money
               />
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-900 text-sm mb-2">Applicant's ID (passport, driver's license, Voters Id)</label>
+              <Input
+                type="text"
+                :regex="regex"
+                small
+              />
+            </div>
+            <div class="mb-4">
+              <label
+                class="block text-gray-700 text-sm font-normal mb-2"
+              >Tax Identification Number (TIN)</label>
+              <Input v-model="tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
             </div>
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
@@ -50,6 +62,7 @@
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 import Input from '@/components/Forms/Input.vue'
+import Select from '@/components/Forms/Select.vue'
 import Footer from '@/components/Footer/FooterAlt.vue'
 export default {
   layout: 'homeLayout',
@@ -57,14 +70,23 @@ export default {
     NavBar,
     BaseCard,
     Input,
+    Select,
     Footer
   },
   data () {
     return {
       sales: null,
-      tin_number: null,
+      tin_number: '',
       showSubmit: true
     }
+  },
+  computed: {
+    idType () {
+      return this.$store.getters['pages/idTypes']
+    }
+  },
+  beforeCreate () {
+    this.$store.dispatch('pages/getDropDowns')
   },
   methods: {
     submit () {
@@ -100,7 +122,7 @@ export default {
 <style lang="scss" scoped>
 form {
   grid-template-columns: repeat(2, 1fr);
-  column-gap: 10%;
+  column-gap: 3%;
 }
 .buttons {
   column-gap: 20%;

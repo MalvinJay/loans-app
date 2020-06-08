@@ -1,26 +1,37 @@
 <template>
   <div>
     <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }}</label>
+    <div v-if="type === 'number'">
+      <input
+        v-if="visible && type==='number'"
+        :type="type"
+        :placeholder="placeholder"
+        :class="{small: small, error:error, textRight:money }"
+        :value="value"
+        :disabled="disabled"
+        @input="validateSend"
+        @blur="onBlurNumber"
+      >
+      <!-- v-if="type!=='number'" -->
+      <input
+        v-else
+        v-model="amount"
+        type="text"
+        :placeholder="placeholder"
+        :class="{small: small, error:error, textRight:money }"
+        :disabled="disabled"
+        @input="validateSend"
+        @focus="onFocusText"
+      >
+    </div>
     <input
-      v-if="visible && type==='number'"
+      v-else
       :type="type"
       :placeholder="placeholder"
       :class="{small: small, error:error, textRight:money }"
       :value="value"
-      :disabled="disabled"
       @input="validateSend"
-      @blur="onBlurNumber"
-    >
-    <!-- v-if="type!=='number'" -->
-    <input
-      v-else
-      v-model="amount"
-      type="text"
-      :placeholder="placeholder"
-      :class="{small: small, error:error, textRight:money }"
-      :disabled="disabled"
-      @input="validateSend"
-      @focus="onFocusText"
+      @blur="checkOptional"
     >
     <small v-if="error" class="text-sm text-red-700 block">{{ errorMessage }}</small>
   </div>
@@ -66,22 +77,34 @@ export default {
       required: false,
       type: String,
       default: ''
+    },
+    optional: {
+      required: false,
+      default: false,
+      type: Boolean
     }
   },
   data () {
     return {
       error: false,
       amount: null,
-      temp: null,
+      temp: '',
       visible: true,
-      // regex: '([A-Z]{1})([0-9]{10})',
       errorMessage: ''
     }
   },
+  // watch: {
+  // temp (val) {
+  //   if (val === '' && this.optional === true) {
+  //     this.error = false
+  //   }
+  // }
+  // },
   methods: {
     // ([A-Z]{1})([0-9]{10})
     validateSend (e) {
       const val = e.target.value
+      this.temp = val
       if (this.type === 'number') {
         if (!isNaN(parseFloat(val)) || val === '') {
           this.error = false
@@ -90,14 +113,16 @@ export default {
           this.errorMessage = 'please enter a valid number'
           this.error = true
         }
-      } else if (this.type === 'text' && this.regex !== null && this.regex !== '') {
+      } else if (this.type === 'text' && this.regex !== '' && val !== '') {
         const regex = RegExp(this.regex)
         if (regex.test(val)) {
           this.error = false
           this.$emit('input', val)
         } else {
+          // this.$emit('input', null)
           this.errorMessage = 'Invalid input '
           this.error = true
+          this.$emit('input', val)
         }
       } else if (this.type === 'email') {
         // eslint-disable-next-line no-useless-escape
@@ -108,6 +133,7 @@ export default {
         } else {
           this.errorMessage = 'Invalid email '
           this.error = true
+          this.$emit('input', val)
         }
       } else {
         this.$emit('input', val)
@@ -128,6 +154,11 @@ export default {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount
+      }
+    },
+    checkOptional () {
+      if (this.optional === true && this.temp === '') {
+        this.error = false
       }
     }
   }

@@ -11,19 +11,19 @@
           <p class="font-bold">
             Fund Amount
           </p>
-          <p>GHC {{ general.requested_loan_amount }}</p>
+          <p>GHS {{ general.requested_loan_amount }}</p>
           <p class="font-bold">
             Purpose of Fund
           </p>
           <p>{{ purpose }}</p>
-          <p class="font-bold">
+          <!-- <p class="font-bold">
             Term
           </p>
-          <p>N/A</p>
-          <p class="font-bold">
+          <p>N/A</p> -->
+          <!-- <p class="font-bold">
             Fixing Period
           </p>
-          <p>N/A</p>
+          <p>N/A</p> -->
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">

@@ -35,7 +35,7 @@
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.primary_email" type="email" name="Email Address" />
+        <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
@@ -65,7 +65,7 @@
         <Input
           v-model="personalInfo.phone_number"
           type="text"
-          name="Phone Number"
+          name="Main Phone Number"
           regex="0[2-5]{1}[0-9]{7,8}$"
         />
       </div>
@@ -73,18 +73,15 @@
         <Input
           v-model="personalInfo.personal_digital_address_code"
           type="text"
-          name="Nearest Digital Address Code"
+          name="Nearest Digital Address Code (Optional)"
           placeholder="GA-xxx-xxxx"
           regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
+          optional
         />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
         <input v-model="personalInfo.dob" type="date" name>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Residence Status</label>
-        <Select v-model="personalInfo.residence_status" :items="residenceStatus" />
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Applicant ID Type</label>
@@ -102,6 +99,7 @@
   </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators'
 import Input from './Input'
 import Select from './Select'
 export default {
@@ -121,7 +119,7 @@ export default {
       show: this.active,
       personalInfo: {},
       regex: '',
-      region: ''
+      region: null
     }
   },
   computed: {
@@ -137,6 +135,41 @@ export default {
     residenceStatus () {
       return this.$store.getters['pages/residenceStatus']
     }
+  },
+  validations: {
+    personalInfo: {
+      first_name: {
+        required
+      },
+      last_name: {
+        required
+      },
+      gender: {
+        required
+      },
+      residential_address: {
+        required
+      },
+      town: {
+        required
+      },
+      district: {
+        required
+      },
+      phone_number: {
+        required
+      },
+      dob: {
+        required
+      },
+      id_number: {
+        required
+      }
+    },
+    region: {
+      required
+    }
+
   },
   watch: {
     region (value) {
@@ -161,7 +194,22 @@ export default {
       },
       deep: true
     }
+  },
+  beforeUpdate () {
+    this.$v.$touch()
+    if (this.$v.$invalid) {
+      this.$store.commit(
+        'pages/SET_FORM_ERRORS',
+        'please fill all fields before moving to next page'
+      )
+    } else {
+      this.$store.commit('pages/SET_FORM_ERRORS', '')
+    }
   }
+  // updated () {
+  //   // eslint-disable-next-line no-console
+  //   console.log('personal is updated')
+  // }
 }
 </script>
 <style lang="scss" scoped>

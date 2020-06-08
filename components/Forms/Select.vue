@@ -1,5 +1,8 @@
 <template>
-  <div class="flex relative w-64 container">
+  <div
+    class="flex relative w-64 container"
+    :class="{small: small}"
+  >
     <select @change="selected">
       <option disabled value="" selected="true">
         {{ first }}
@@ -27,17 +30,13 @@ export default {
       type: String,
       required: false,
       default: 'Select one'
+    },
+    small: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
-  // data () {
-  //   return {
-  //     items: [
-  //       { name: 'Passport', val: 1 },
-  //       { name: 'Drivers License', val: 2 },
-  //       { name: 'National ID', val: 3 }
-  //     ]
-  //   }
-  // },
   methods: {
     selected (e) {
       this.$emit('input', e.target.value)
@@ -48,6 +47,12 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 469px;
+    &.small {
+    width: 100%;
+    select {
+      width: 100%;
+    }
+  }
 }
 select {
   padding-left: 1rem;

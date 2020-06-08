@@ -44,7 +44,8 @@ export default {
   plugins: [
     '~/plugins/v-scroll-lock.js',
     '~/plugins/v-click-outside.js',
-    '~/plugins/vue-multiselect.js'
+    '~/plugins/vue-multiselect.js',
+    '~/plugins/Vuelidate.js'
   ],
   /*
   ** Nuxt.js dev-modules

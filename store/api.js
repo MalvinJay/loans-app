@@ -1,7 +1,17 @@
 export const state = () => ({
   general: {},
-  covidProofOfMay20: {}
+  covidProofOfMay20: {},
+  errors: {}
 })
+
+export const getters = {
+  GET_ERRORS (state) {
+    for (const i in state.errors.errors) {
+      // eslint-disable-next-line no-console
+      return state.errors.errors[i][0]
+    }
+  }
+}
 
 export const mutations = {
   SET_GENERAL_DATA (state, data) {
@@ -15,6 +25,9 @@ export const mutations = {
   },
   SET_COVID_PROOF_OF_MAY (state, data) {
     state.covidProofOfMay20 = data
+  },
+  SET_ERRORS (state, data) {
+    state.errors = data
   }
 }
 
@@ -70,9 +83,15 @@ export const actions = {
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)
           resolve(result)
+          // eslint-disable-next-line no-console
+          console.log(result)
         })
         .catch((error) => {
-          reject(error)
+          // eslint-disable-next-line no-console
+          // console.log(error.request.response)
+          const errors = JSON.parse(error.request.response)
+          commit('SET_ERRORS', errors)
+          reject(errors)
         })
     })
   }
