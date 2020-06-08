@@ -102,10 +102,10 @@ export default {
           tin_number: this.tin_number
         }
         // this.$toast.show('Logging in...')
-        this.$toasted.show('Verifying tin Number', {
+        this.$toasted.show('Please wait...', {
           theme: 'toasted-primary',
           position: 'top-right',
-          duration: 5000
+          duration: 10000
         })
 
         this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
