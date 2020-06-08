@@ -48,6 +48,11 @@ export default {
   created () {
     this.$store.dispatch('pages/getDropDowns')
   },
+  // beforeUpdate () {
+  //   // eslint-disable-next-line no-console
+  //   // console.log('preUpdate')
+  //   alert('preupdate')
+  // },
   methods: {
     viewCurrent (value) {
       this.current = value

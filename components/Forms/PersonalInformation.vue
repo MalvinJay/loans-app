@@ -8,31 +8,46 @@
         <Input v-model="personalInfo.last_name" type="text" name="Last Name" />
       </div>
       <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">Gender</label>
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
         <div class="flex justify-start">
-          <label class="checkbox">Male
-            <input id="yes" v-model="personalInfo.gender" type="checkbox" true-value="male" false-value="female">
+          <label class="checkbox">
+            Male
+            <input
+              id="yes"
+              v-model="personalInfo.gender"
+              type="checkbox"
+              true-value="male"
+              false-value="female"
+            >
             <span class="checkmark" />
           </label>
-          <label class="checkbox">Female
-            <input id="no" v-model="personalInfo.gender" type="checkbox" true-value="female" false-value="male">
+          <label class="checkbox">
+            Female
+            <input
+              id="no"
+              v-model="personalInfo.gender"
+              type="checkbox"
+              true-value="female"
+              false-value="male"
+            >
             <span class="checkmark" />
           </label>
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.primary_email" type="email" name="Email Address" />
+        <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
       </div>
       <div>
-        <label
-          class="block text-gray-700 text-sm font-normal mb-2 font-bold"
-          for="username"
-        >Present Address</label>
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
       </div>
       <div />
       <div class="mb-12">
         <div class="mb-6">
-          <Input v-model="personalInfo.residential_address" type="text" placeholder="Residential Address" />
+          <Input
+            v-model="personalInfo.residential_address"
+            type="text"
+            placeholder="Residential Address"
+          />
         </div>
         <div>
           <Select v-model="region" first="Region" :items="regions" />
@@ -47,36 +62,44 @@
         </div>
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.phone_number" type="text" name="Phone Number" regex="0[2-5]{1}[0-9]{7,8}$" />
+        <Input
+          v-model="personalInfo.phone_number"
+          type="text"
+          name="Main Phone Number"
+          regex="0[2-5]{1}[0-9]{7,8}$"
+        />
       </div>
       <div class="mb-12">
         <Input
           v-model="personalInfo.personal_digital_address_code"
           type="text"
-          name="Nearest Digital Address Code"
+          name="Nearest Digital Address Code (Optional)"
           placeholder="GA-xxx-xxxx"
-          regex="GA-[0-9]{3,4}-[0-9]{4}$"
+          regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
+          optional
         />
       </div>
       <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Date of Birth</label>
+        <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
         <input v-model="personalInfo.dob" type="date" name>
       </div>
       <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Residence Status</label>
-        <Select v-model="personalInfo.residence_status" :items="residenceStatus" />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2" for="username">Applicant ID Type</label>
+        <label class="block text-gray-900 text-sm font-bold mb-2">Applicant ID Type</label>
         <Select v-model="personalInfo.id_type" :items="idType" />
       </div>
       <div class="mb-12">
-        <Input v-model="personalInfo.id_number" type="text" name="Applicant's ID (passport, driver's license, Voters Id)" :regex="regex" />
+        <Input
+          v-model="personalInfo.id_number"
+          type="text"
+          name="Applicant's ID (passport, driver's license, Voters Id)"
+          :regex="regex"
+        />
       </div>
     </div>
   </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators'
 import Input from './Input'
 import Select from './Select'
 export default {
@@ -96,7 +119,7 @@ export default {
       show: this.active,
       personalInfo: {},
       regex: '',
-      region: ''
+      region: null
     }
   },
   computed: {
@@ -113,6 +136,41 @@ export default {
       return this.$store.getters['pages/residenceStatus']
     }
   },
+  validations: {
+    personalInfo: {
+      first_name: {
+        required
+      },
+      last_name: {
+        required
+      },
+      gender: {
+        required
+      },
+      residential_address: {
+        required
+      },
+      town: {
+        required
+      },
+      district: {
+        required
+      },
+      phone_number: {
+        required
+      },
+      dob: {
+        required
+      },
+      id_number: {
+        required
+      }
+    },
+    region: {
+      required
+    }
+
+  },
   watch: {
     region (value) {
       this.$store.commit('pages/SET_DISTRICTS', value)
@@ -127,16 +185,31 @@ export default {
     personalInfo: {
       handler (value) {
         if (value.id_type === '3') {
-          this.regex = 'MAB-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
+          this.regex = '[A-Z]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
         } else if (value.id_type === '1') {
           this.regex = '[0-9]{10}$'
         } else if (value.id_type === '2') {
-          this.regex = 'G[0-9]{9}$'
+          this.regex = '[A-Z]{1}[0-9]{9}$'
         }
       },
       deep: true
     }
+  },
+  beforeUpdate () {
+    this.$v.$touch()
+    if (this.$v.$invalid) {
+      this.$store.commit(
+        'pages/SET_FORM_ERRORS',
+        'please fill all fields before moving to next page'
+      )
+    } else {
+      this.$store.commit('pages/SET_FORM_ERRORS', '')
+    }
   }
+  // updated () {
+  //   // eslint-disable-next-line no-console
+  //   console.log('personal is updated')
+  // }
 }
 </script>
 <style lang="scss" scoped>
@@ -165,7 +238,7 @@ export default {
   .form-b {
     width: 100%;
   }
-  input[type=date] {
+  input[type="date"] {
     width: 100%;
   }
 }
@@ -173,7 +246,7 @@ export default {
   .form-b {
     width: 100%;
   }
-  input[type=date] {
+  input[type="date"] {
     width: 100%;
   }
 }
@@ -181,7 +254,7 @@ export default {
   .form-b {
     width: 100%;
   }
-  input[type=date] {
+  input[type="date"] {
     width: 100%;
   }
 }
