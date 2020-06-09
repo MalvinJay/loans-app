@@ -149,6 +149,12 @@
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
         <Select v-model="general.business_association" :items="businessAssociation" />
+        <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">If other, fill this</label>
+        <Input
+          v-if="general.business_association === '80'"
+          v-model="general.other_business_association"
+          type="text"
+        />
       </div>
       <div
         v-if="general.legal_organization == '1' || general.legal_organization == '2'"
