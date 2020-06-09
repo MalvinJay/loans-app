@@ -2731,22 +2731,28 @@ export default {
   },
   validations: {
     general: {
-      business_name: {
-        required
-      },
       business_address: {
         required
       },
-      business_town: {
+      business_association: {
         required
       },
       business_district: {
         required
       },
+      business_name: {
+        required
+      },
       business_phone_number: {
         required
       },
-      tin_number: {
+      business_services: {
+        required
+      },
+      business_town: {
+        required
+      },
+      covid_products: {
         required
       },
       industry: {
@@ -2755,16 +2761,10 @@ export default {
       legal_organization: {
         required
       },
-      business_services: {
-        required
-      },
       social_enterprise: {
         required
       },
-      covid_producsts: {
-        required
-      },
-      business_association: {
+      tin_number: {
         required
       }
     }
