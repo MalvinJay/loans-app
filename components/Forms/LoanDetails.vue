@@ -9,7 +9,7 @@
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-          Are you a startup?
+          Are you a startup (i.e. between 0 and 2 years' old)?
         </label>
         <div class="flex justify-start mb-12">
           <label class="checkbox">Yes
@@ -50,8 +50,9 @@
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
           Proof of COVID-19 Impact Template
         </label>
-        <button class="i-t-b" @click="modal1 = true">
+        <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
           Click to Fill in Template
+          <span v-if="checkModal1">&#10003;</span>
         </button>
         <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
           What will you use the funds for?
@@ -199,9 +200,12 @@
           </div>
         </div>
       </div>
-      <div class="my-20">
-        <button class="button-small" @click="modal1= false">
+      <div class="my-20 flex gap-3 buttons">
+        <button class="button-small" @click="doneModal1">
           Done
+        </button>
+        <button class="button-small" @click="modal1 = false">
+          Cancel
         </button>
       </div>
     </Modal>
@@ -237,6 +241,7 @@ export default {
       show: this.active,
       mobileWallet: null,
       modal1: false,
+      checkModal1: false,
       micro: false,
       loanAmount: null,
       startup: null,
@@ -447,7 +452,8 @@ export default {
     // eslint-disable-next-line no-console
     // console.log(this.$v)
     if (this.$v.$invalid) {
-      this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
+      // alert('error')
+      this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields on fund details before moving to next page')
     } else {
       this.$store.commit('pages/SET_FORM_ERRORS', '')
     }
@@ -469,6 +475,10 @@ export default {
       } else {
         return val
       }
+    },
+    doneModal1 (value) {
+      this.checkModal1 = true
+      this.modal1 = false
     }
   }
 }
@@ -492,6 +502,10 @@ export default {
     column-gap: 35px;
     &:focus {
       outline: none;
+    }
+    &.done {
+      color: rgb(31, 189, 17);
+      border-color: rgb(31, 189, 17);
     }
   }
 }
@@ -530,6 +544,9 @@ label.mobile {
   }
   .button-small {
     margin-bottom: 70px;
+  }
+  .buttons {
+    justify-content: space-between;
   }
 }
 .momo:nth-child(2) {
