@@ -6,7 +6,7 @@ export const state = () => ({
   districts: null,
   mediaResponse: null,
   formErrors: '',
-  application_object: process.browser ? JSON.parse(localStorage.getItem('application/object')) : null || null
+  application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null
 })
 
 export const getters = {
@@ -71,14 +71,7 @@ export const getters = {
     }
   },
   businessScale (state) {
-    if (state.dropdowns !== null) {
-      return state.dropdowns.business_scale.map((item) => {
-        return {
-          name: item.name,
-          val: item.id
-        }
-      })
-    }
+    return state.application_object.business_scale
   },
   legalOrganization (state) {
     if (state.dropdowns !== null) {
