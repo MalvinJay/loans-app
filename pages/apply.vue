@@ -4,9 +4,7 @@
     <BaseCard>
       <div class="main py-12">
         <p class="text-xl font-medium">
-          Welcome to the NBSSI Mastercard Foundation COVID19 Application. Please provide us your
-          Business TIN number and Annual Sales as of December 31, 2019 in order to help us assess your business. If
-          you don't have a Business TIN then provide your personal TIN number.
+          Welcome to the  Mastercard Foundation COVID-19 Recovery and Resilience Program in partnership with NBSSI. Please provide the requested pre-application information below and also thoroughly complete the funding application to the best of your ability.  We will use the information from the submitted funding application to assess your business and provide you with a funding decision.
         </p>
         <div class="mt-10">
           <form class="grid">

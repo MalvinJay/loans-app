@@ -266,7 +266,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_revenue_jan_april"
+              v-model.number="income_statement_apr_2020.total_revenue"
               type="number"
               placeholder="GHS"
               money
@@ -321,7 +321,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_raw_materials_jan_april"
+              v-model.number="income_statement_apr_2020.total_raw_materials"
               type="number"
               placeholder="GHS"
               money
@@ -374,7 +374,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_salaries_jan_april"
+              v-model.number="income_statement_apr_2020.total_salaries"
               type="number"
               placeholder="GHS"
               money
@@ -427,7 +427,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_expenses_jan_april"
+              v-model.number="income_statement_apr_2020.total_expenses"
               type="number"
               placeholder="GHS"
               money
@@ -480,7 +480,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_loan_interest_jan_april"
+              v-model.number="income_statement_apr_2020.total_loan_interest"
               type="number"
               placeholder="GHS"
               money
@@ -533,7 +533,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.depreciation_charge_assets_jan_april"
+              v-model.number="income_statement_apr_2020.depreciation_charge_assets"
               type="number"
               placeholder="GHS"
               money
@@ -586,7 +586,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_taxes_charge_jan_april"
+              v-model.number="income_statement_apr_2020.total_taxes_charge"
               type="number"
               placeholder="GHS"
               money
@@ -614,6 +614,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -624,6 +625,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -634,16 +636,18 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.net_profit_jan_april"
+              v-model.number="income_statement_apr_2020.net_profit"
               type="number"
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -654,6 +658,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
         </div>
@@ -2588,6 +2593,7 @@ export default {
       income_statement_2018: {},
       income_statement_2019: {},
       income_statement_2020: {},
+      income_statement_apr_2020: {},
       tax_clearance: {},
       business_owner: [{}, {}, {}],
       directors_list: [{}, {}, {}, {}, {}],
@@ -2684,6 +2690,7 @@ export default {
       const incomeStatement2018 = Object.assign({}, this.income_statement_2018)
       const incomeStatement2019 = Object.assign({}, this.income_statement_2019)
       const incomeStatement2020 = Object.assign({}, this.income_statement_2020)
+      const incomeStatementApr2020 = Object.assign({}, this.income_statement_apr_2020)
 
       // Clone all balance Sheet objects
       const balanceSheet2017 = Object.assign({}, this.balance_sheet_2017)
@@ -2721,6 +2728,7 @@ export default {
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019
       data.income_statement_2020 = incomeStatement2020
+      data.income_statement_apr_2020 = incomeStatementApr2020
       data.balance_sheet_2017 = balanceSheet2017
       data.balance_sheet_2018 = balanceSheet2018
       data.balance_sheet_2019 = balanceSheet2019
