@@ -8,7 +8,7 @@
         </div>
         <div class="my-6">
           <p class="text-center text-sm">
-            Drag & Drop file here
+            Drag & Drop file here (max: 5MB)
           </p>
         </div>
         <div class="u-b">
@@ -27,7 +27,7 @@
         </div>
       </div>
     </div>
-    <div @drop.prevent="addProofOfPaye" @dragover.prevent>
+    <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
       <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
@@ -35,7 +35,7 @@
         </div>
         <div class="my-6">
           <p class="text-center text-sm">
-            Drag & Drop file here
+            Drag & Drop file here (max: 5MB)
           </p>
         </div>
         <div class="u-b">
@@ -51,7 +51,7 @@
         </div>
       </div>
     </div>
-    <div @drop.prevent="ssnitStatement" @dragover.prevent>
+    <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
       <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">SSNIT Statement (2019)</label>
       <div class="d-i border border-gray-900 py-12">
         <div class="img">
@@ -59,7 +59,7 @@
         </div>
         <div class="my-6">
           <p class="text-center text-sm">
-            Drag & Drop file here
+            Drag & Drop file here (max: 5MB)
           </p>
         </div>
         <div class="u-b">
@@ -91,6 +91,14 @@ export default {
       payePaymentsFile: null,
       ssnitStatementFile: null,
       loading: false
+    }
+  },
+  computed: {
+    businessScale () {
+      return this.$store.getters['pages/businessScale']
+    },
+    isStartup () {
+      return this.$store.getters['pages/isStartup']
     }
   },
   methods: {

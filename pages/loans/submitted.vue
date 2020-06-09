@@ -16,7 +16,7 @@
         </div>
         <div class="mt-10">
           <p class="text-white text-2xl ">
-            We will verify your documents and get back to you in 2 weeks
+            We will verify your documents and get back to you within 2 weeks
           </p>
         </div>
         <div class="mt-10">

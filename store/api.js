@@ -28,6 +28,10 @@ export const mutations = {
   },
   SET_ERRORS (state, data) {
     state.errors = data
+  },
+  SET_ID (state, data) {
+    state.general.id_type = data.id_type
+    state.general.id_number = data.id_number
   }
 }
 

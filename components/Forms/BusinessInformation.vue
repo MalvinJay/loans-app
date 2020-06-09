@@ -57,11 +57,13 @@
         <input v-model="annual_sales_display" type="text" :disabled="true" class="text-right">
       </div>
       <div class="mb-12">
-        <label
-          class="block text-gray-900 text-sm font-bold mb-2"
-          :disabled="true"
-        >Tax Identification NUmber (TIN)</label>
-        <Input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})$" small />
+        <Input
+          v-model="general.tin_number"
+          type="text"
+          name="Tax Identification Number (TIN)"
+          optional
+          regex="([A-Z]{1})([0-9]{10})$"
+        />
       </div>
       <div class="mb-12">
         <Input
@@ -147,6 +149,12 @@
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
         <Select v-model="general.business_association" :items="businessAssociation" />
+        <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">If other, fill this</label>
+        <Input
+          v-if="general.business_association === '80'"
+          v-model="general.other_business_association"
+          type="text"
+        />
       </div>
       <div
         v-if="general.legal_organization == '1' || general.legal_organization == '2'"
@@ -163,7 +171,7 @@
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="businessScale === '1' || businessScale === '2'" class="mb-12">
+      <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
         <button class="i-t-b" @click="microIncomeModal=true">
           Click to Fill in Template
@@ -175,13 +183,13 @@
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="businessScale === '4' || businessScale === '5'" class="mb-12">
+      <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
         <button class="i-t-b" @click="balanceSheetModal=true">
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="businessScale === '4' || businessScale === '5'" class="mb-12">
+      <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
         <button class="i-t-b" @click="cashFlowModal=true">
           Click to Fill in Template
@@ -264,7 +272,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_revenue_jan_april"
+              v-model.number="income_statement_apr_2020.total_revenue"
               type="number"
               placeholder="GHS"
               money
@@ -319,7 +327,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_raw_materials_jan_april"
+              v-model.number="income_statement_apr_2020.total_raw_materials"
               type="number"
               placeholder="GHS"
               money
@@ -372,7 +380,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_salaries_jan_april"
+              v-model.number="income_statement_apr_2020.total_salaries"
               type="number"
               placeholder="GHS"
               money
@@ -425,7 +433,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_expenses_jan_april"
+              v-model.number="income_statement_apr_2020.total_expenses"
               type="number"
               placeholder="GHS"
               money
@@ -478,7 +486,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_loan_interest_jan_april"
+              v-model.number="income_statement_apr_2020.total_loan_interest"
               type="number"
               placeholder="GHS"
               money
@@ -531,7 +539,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.depreciation_charge_assets_jan_april"
+              v-model.number="income_statement_apr_2020.depreciation_charge_assets"
               type="number"
               placeholder="GHS"
               money
@@ -584,7 +592,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.total_taxes_charge_jan_april"
+              v-model.number="income_statement_apr_2020.total_taxes_charge"
               type="number"
               placeholder="GHS"
               money
@@ -612,6 +620,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -622,6 +631,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -632,16 +642,18 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_2020.net_profit_jan_april"
+              v-model.number="income_statement_apr_2020.net_profit"
               type="number"
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
           <div>
@@ -652,6 +664,7 @@
               placeholder="GHS"
               money
               small
+              disabled
             />
           </div>
         </div>
@@ -1821,7 +1834,7 @@
             >Tax Identification Number(TIN)</label>
             <Input
               v-model.trim="directors_list[0].tin_number"
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
               type="text"
               small
             />
@@ -1908,7 +1921,7 @@
               v-model="directors_list[1].tin_number"
               type="text"
               small
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
             />
           </div>
           <div>
@@ -1993,7 +2006,7 @@
               v-model="directors_list[2].tin_number"
               type="text"
               small
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
             />
           </div>
           <div>
@@ -2078,7 +2091,7 @@
               v-model="directors_list[3].tin_number"
               type="text"
               small
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
             />
           </div>
           <div>
@@ -2163,7 +2176,7 @@
               v-model="directors_list[4].tin_number"
               type="text"
               small
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
             />
           </div>
           <div>
@@ -2266,41 +2279,41 @@
           </div>
           <div>
             <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
             >Total Revenue</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
             >Total Expenses</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
             >Profit Before Tax</label>
           </div>
           <div>
@@ -2345,7 +2358,7 @@
               v-model="business_owner[0].tin_number"
               type="text"
               small
-              regex="([A-Z]{1})([0-9]{10})$"
+              regex="([P]{1})([0-9]{10})$"
             />
           </div>
           <div>
@@ -2400,7 +2413,11 @@
             <label
               class="block text-gray-900 text-sm font-normal mb-2"
             >Tax Identification Number(TIN)</label>
-            <Input v-model="business_owner[1].tin_number" small regex="([A-Z]{1})([0-9]{10})$" />
+            <Input
+              v-model="business_owner[1].tin_number"
+              small
+              regex="([P]{1})([0-9]{10})$"
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -2453,7 +2470,11 @@
             <label
               class="block text-gray-900 text-sm font-normal mb-2"
             >Tax Identification Number(TIN)</label>
-            <Input v-model="business_owner[2].tin_number" small regex="([A-Z]{1})([0-9]{10})$" />
+            <Input
+              v-model="business_owner[2].tin_number"
+              small
+              regex="([P]{1})([0-9]{10})$"
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -2520,11 +2541,11 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Permanent Employees</label>
-            <Input v-model.number="general.full_time_employees" type="number" small />
+            <Input v-model.number="general.permanent_employees" type="number" small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Temporary Employees</label>
-            <Input v-model.number="general.part_time_employees" type="number" small />
+            <Input v-model.number="general.temporary_employees" type="number" small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Female Employees</label>
@@ -2578,6 +2599,7 @@ export default {
       income_statement_2018: {},
       income_statement_2019: {},
       income_statement_2020: {},
+      income_statement_apr_2020: {},
       tax_clearance: {},
       business_owner: [{}, {}, {}],
       directors_list: [{}, {}, {}, {}, {}],
@@ -2644,6 +2666,9 @@ export default {
     businessScale () {
       return this.$store.getters['pages/businessScale']
     },
+    isStartup () {
+      return this.$store.getters['pages/isStartup']
+    },
     regions () {
       return this.$store.getters['pages/regions']
     },
@@ -2671,6 +2696,7 @@ export default {
       const incomeStatement2018 = Object.assign({}, this.income_statement_2018)
       const incomeStatement2019 = Object.assign({}, this.income_statement_2019)
       const incomeStatement2020 = Object.assign({}, this.income_statement_2020)
+      const incomeStatementApr2020 = Object.assign({}, this.income_statement_apr_2020)
 
       // Clone all balance Sheet objects
       const balanceSheet2017 = Object.assign({}, this.balance_sheet_2017)
@@ -2708,6 +2734,7 @@ export default {
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019
       data.income_statement_2020 = incomeStatement2020
+      data.income_statement_apr_2020 = incomeStatementApr2020
       data.balance_sheet_2017 = balanceSheet2017
       data.balance_sheet_2018 = balanceSheet2018
       data.balance_sheet_2019 = balanceSheet2019
@@ -2723,7 +2750,6 @@ export default {
           : directorsList
       data.credit_facilities = creditFacilities
       data.business_region = this.region
-      data.tin_number = this.tinNumber
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
       }
@@ -2731,22 +2757,28 @@ export default {
   },
   validations: {
     general: {
-      business_name: {
-        required
-      },
       business_address: {
         required
       },
-      business_town: {
+      business_association: {
         required
       },
       business_district: {
         required
       },
+      business_name: {
+        required
+      },
       business_phone_number: {
         required
       },
-      tin_number: {
+      business_services: {
+        required
+      },
+      business_town: {
+        required
+      },
+      covid_products: {
         required
       },
       industry: {
@@ -2755,16 +2787,10 @@ export default {
       legal_organization: {
         required
       },
-      business_services: {
-        required
-      },
       social_enterprise: {
         required
       },
-      covid_producsts: {
-        required
-      },
-      business_association: {
+      tin_number: {
         required
       }
     }

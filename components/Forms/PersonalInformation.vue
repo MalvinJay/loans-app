@@ -83,7 +83,7 @@
         <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
         <input v-model="personalInfo.dob" type="date" name>
       </div>
-      <div class="mb-12">
+      <!-- <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Applicant ID Type</label>
         <Select v-model="personalInfo.id_type" :items="idType" />
       </div>
@@ -94,7 +94,7 @@
           name="Applicant's ID (passport, driver's license, Voters Id)"
           :regex="regex"
         />
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -134,6 +134,9 @@ export default {
     },
     residenceStatus () {
       return this.$store.getters['pages/residenceStatus']
+    },
+    applicationObject () {
+      return this.$store.state.pages.application_object
     }
   },
   validations: {
@@ -161,9 +164,6 @@ export default {
       },
       dob: {
         required
-      },
-      id_number: {
-        required
       }
     },
     region: {
@@ -180,6 +180,7 @@ export default {
       data.region = this.region
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        this.$store.commit('api/SET_ID', this.applicationObject)
       }
     },
     personalInfo: {

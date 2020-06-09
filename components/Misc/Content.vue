@@ -133,6 +133,11 @@ export default {
   methods: {
     submitAll () {
       this.$emit('submitted', true)
+      this.$toasted.show('Submitting...', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 5000
+      })
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
           window.location = '/loans/submitted'
