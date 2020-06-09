@@ -61,7 +61,7 @@
           class="block text-gray-900 text-sm font-bold mb-2"
           :disabled="true"
         >Tax Identification NUmber (TIN)</label>
-        <input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})$">
+        <Input v-model="general.tin_number" type="text" regex="([A-Z]{1})([0-9]{10})$" small />
       </div>
       <div class="mb-12">
         <Input
@@ -161,25 +161,25 @@
           Click to Fill in Template
         </button>
       </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-        <button class="i-t-b" @click="incomeModal=true">
-          Click to Fill in Template
-        </button>
-      </div>
-      <div class="mb-12">
+      <div v-if="businessScale === '1' || businessScale === '2'" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
         <button class="i-t-b" @click="microIncomeModal=true">
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="!microGrant && !microLoan && !startupGrant && !startupLoan" class="mb-12">
+      <div v-else class="mb-12">
+        <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
+        <button class="i-t-b" @click="incomeModal=true">
+          Click to Fill in Template
+        </button>
+      </div>
+      <div v-if="businessScale === '4' || businessScale === '5'" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
         <button class="i-t-b" @click="balanceSheetModal=true">
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="!microGrant && !microLoan && !startupGrant && !startupLoan" class="mb-12">
+      <div v-if="businessScale === '4' || businessScale === '5'"  class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
         <button class="i-t-b" @click="cashFlowModal=true">
           Click to Fill in Template
@@ -2350,24 +2350,10 @@
             />
           </div>
           <div class="my-20">
-            <button class="button-small" @click="employeesModal= false">
+            <button class="button-small" @click="microIncomeModal= false">
               Done
             </button>
           </div>
-          <!-- <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Total Revenue</label>
-            <Input type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Income Statement</label>
-            <Input
-              type="text"
-              small
-              regex="([A-Z]{1})([0-9]{10})$"
-            />
-          </div> -->
         </div>
       </div>
     </Modal>
@@ -2635,9 +2621,9 @@ export default {
     }
   },
   computed: {
-    // tinNumber () {
-    //   return JSON.parse(localStorage.getItem('application_object')).tin_number
-    // },
+    is_startup () {
+      return 1
+    },
     fundAmount () {
       return this.$store.state.pages.loanAmount
     },

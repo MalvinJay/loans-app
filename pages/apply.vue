@@ -12,14 +12,14 @@
           <form class="grid">
             <div class="mb-4">
               <label class="block text-gray-900 text-sm mb-2">Applicant ID Type</label>
-              <Select :items="idType" small />
+              <Select v-model="id_type" :items="idType" small />
             </div>
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-normal mb-2"
               >2019 Annual Sales or 2019 Annual Turnover</label>
               <Input
-                v-model.number="sales"
+                v-model.number="annual_sales"
                 type="number"
                 placeholder="e.g 1,000"
                 small
@@ -30,6 +30,7 @@
             <div class="mb-4">
               <label class="block text-gray-900 text-sm mb-2">Applicant's ID (passport, driver's license, Voters Id)</label>
               <Input
+                v-model="id_number"
                 type="text"
                 :regex="regex"
                 small
@@ -38,8 +39,8 @@
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-normal mb-2"
-              >Tax Identification Number (TIN)</label>
-              <Input v-model="tin_number" type="text" small regex="([A-Z]{1})([0-9]{10})$" />
+              >Years in Business</label>
+              <Input v-model.number="years_in_business" type="text" small />
             </div>
           </form>
           <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
@@ -59,6 +60,7 @@
   </div>
 </template>
 <script>
+import { required, minValue } from 'vuelidate/lib/validators'
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 import Input from '@/components/Forms/Input.vue'
@@ -75,9 +77,26 @@ export default {
   },
   data () {
     return {
-      sales: null,
-      tin_number: '',
+      annual_sales: null,
+      id_type: null,
+      id_number: null,
+      years_in_business: null,
       showSubmit: true
+    }
+  },
+  validations: {
+    annual_sales: {
+      required,
+      minValue: minValue(10)
+    },
+    id_type: {
+      required
+    },
+    years_in_business: {
+      required
+    },
+    id_number: {
+      required
     }
   },
   computed: {
@@ -90,21 +109,24 @@ export default {
   },
   methods: {
     submit () {
-      if (this.tin_number === null || this.sales === null || this.tin_number === '' || this.sales === '') {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
         this.$toasted.error('Some fields are empty', {
           theme: 'toasted-primary',
-          position: 'top-right',
+          position: 'top-center',
           duration: 5000
         })
       } else {
         const applyObject = {
-          annual_sales: this.sales,
-          tin_number: this.tin_number
+          annual_sales: this.annual_sales,
+          id_type: this.id_type,
+          id_number: this.id_number,
+          years_in_business: this.years_in_business
         }
         // this.$toast.show('Logging in...')
         this.$toasted.show('Please wait...', {
           theme: 'toasted-primary',
-          position: 'top-right',
+          position: 'top-center',
           duration: 10000
         })
 
@@ -112,7 +134,7 @@ export default {
           window.location = '/loans/0/form'
         })
           .catch(() => {
-            this.$toast.error('Wrong TIN number')
+            this.$toast.error('Wrong Id number provided')
           })
       }
     }

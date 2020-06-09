@@ -12,10 +12,10 @@
             Fund Amount
           </p>
           <p>GHS {{ general.requested_loan_amount }}</p>
-          <p class="font-bold">
+          <!-- <p class="font-bold">
             Purpose of Fund
           </p>
-          <p>{{ purpose }}</p>
+          <p>{{ purpose }}</p> -->
           <!-- <p class="font-bold">
             Term
           </p>
@@ -146,10 +146,10 @@ export default {
   },
   watch: {
     show () {
-      if (this.general !== null && this.fundRoles !== undefined) {
-        const purpose = this.fundRoles.filter(item => item.val === parseInt(this.general.fund_purpose_id))[0]
-        this.purpose = purpose.name
-      }
+      // if (this.general !== null && this.fundRoles !== undefined) {
+      //   const purpose = this.fundRoles.filter(item => item.val === parseInt(this.general.fund_purpose_id))[0]
+      //   this.purpose = purpose.name
+      // }
     }
   }
 }

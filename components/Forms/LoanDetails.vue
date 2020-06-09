@@ -5,7 +5,7 @@
         <Input v-model.number="loanAmount" name="Amount Requested" type="number" money />
       </div>
       <div class="mb-10">
-        <Input v-model.number="years" name="Years in Operation" type="number" />
+        <Input v-model.number="years" name="Years in Operation" type="number" disabled />
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
@@ -56,14 +56,14 @@
         <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
           What will you use the funds for?
         </label>
-        <Select v-model="general.fund_purpose_id" :items="fundRoles" />
-        <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
+        <MultiSelect :list="fundRoles" @selected="selectedFunds" />
+        <label v-if="fundOtherSelected" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
           If other, fill this field
         </label>
-        <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" type="text" />
+        <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
       </div>
       <div class="mb-4">
-        <div class="mb-12">
+        <div>
           <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
             Repayment Account Details
           </label>
@@ -82,7 +82,7 @@
         <Input v-if="loanAmount<= 2000" v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
         <div v-else>
           <div class="mb-8">
-            <label class="block text-gray-900 text-sm font-normal mb-2 mt-8">
+            <label class="block text-gray-900 text-sm font-normal mb-2">
               Your Selected Bank
             </label>
             <Select v-model="general.financial_institution_id" :items="bankPartner" />
@@ -239,7 +239,6 @@ export default {
       modal1: false,
       micro: false,
       loanAmount: null,
-      years: null,
       startup: null,
       covidImpact: [],
       proofOfImpact: null,
@@ -250,7 +249,9 @@ export default {
         outstanding_invoice: 0
       },
       general: {},
-      otherSelected: false
+      otherSelected: false,
+      fundOtherSelected: false,
+      fund_purposes: null
     }
   },
   validations: {
@@ -258,20 +259,22 @@ export default {
       account_no: {
         required
       },
-      fund_purpose_id: {
+      financial_institution_id: {
         required
       }
+    },
+    fund_purposes: {
+      required
     },
     loanAmount: {
       required,
       minValue: minValue(4)
-    },
-    years: {
-      required,
-      minValue: minValue(1)
     }
   },
   computed: {
+    years () {
+      return 3
+    },
     bankPartner () {
       return this.$store.getters['pages/bankPartner']
     },
@@ -286,6 +289,12 @@ export default {
     }
   },
   watch: {
+    fund_purposes: {
+      handler (value) {
+        this.fundOtherSelected = value.includes(9)
+      },
+      deep: true
+    },
     loanAmount (value) {
       this.$store.commit('pages/SET_AMOUNT', value)
     },
@@ -309,8 +318,10 @@ export default {
       const covidProofOfMarch = Object.assign({}, this.covid_proof_of_march_20)
       const covidProofOfApril = Object.assign({}, this.covid_proof_of_april_20)
       const covidProofOfMay = Object.assign({}, this.covid_proof_of_may_20)
+      const fundPurposes = JSON.parse(JSON.stringify(this.fund_purposes))
 
       // merge data
+      data.fund_purposes = fundPurposes
       data.covid_proof_mar_20 = covidProofOfMarch
       data.covid_proof_apr_20 = covidProofOfApril
       data.covid_proof_may_20 = covidProofOfMay
@@ -324,7 +335,6 @@ export default {
     },
     covidImpact: {
       handler (value) {
-        // eslint-disable-next-line no-console
         this.otherSelected = value.includes('11')
       },
       deep: true
@@ -434,23 +444,23 @@ export default {
   },
   beforeUpdate () {
     this.$v.$touch()
+    // eslint-disable-next-line no-console
+    // console.log(this.$v)
     if (this.$v.$invalid) {
       this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
     } else {
       this.$store.commit('pages/SET_FORM_ERRORS', '')
     }
   },
-  // updated () {
-  //   // eslint-disable-next-line no-console
-  //   // console.log('loan is updated')
-  //   this.$store.commit('pages/SET_FORM_ERRORS', '')
-  // },
   methods: {
     toggleModal1 () {
       this.modal1 = false
     },
     selected (value) {
       this.covidImpact = value
+    },
+    selectedFunds (value) {
+      this.fund_purposes = value
     },
     parseNumber (value) {
       const val = parseFloat(value)

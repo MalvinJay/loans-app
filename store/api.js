@@ -34,7 +34,7 @@ export const mutations = {
 export const actions = {
   verifyApplication ({ commit }, data) {
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/verify'
+      const url = 'https://mcftest.plendifyloans.com/api/verify-id'
       const config = {
         headers: {
           'Content-Type': 'application/json'
