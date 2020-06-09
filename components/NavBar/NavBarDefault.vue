@@ -54,6 +54,10 @@ ul {
     &:first-child {
       display: none;
     }
+    &:last-child {
+      max-width: 13rem;
+      height: auto;
+    }
   }
 }
 .r-s {

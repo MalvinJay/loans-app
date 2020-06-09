@@ -116,18 +116,25 @@ export default {
     count (value) {
       this.items.forEach((item, i) => {
         if (i === this.count) {
+          // show page is page index equals count
           item.show = true
         } else {
+          // hide page if page index is less than count
           item.show = false
         }
       })
+      // pass current tab number to parent
       this.$emit('current', value)
+      // set current tab number in store
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', value)
     }
   },
   beforeCreate () {
+    // get all dropdowns
     this.$store.dispatch('pages/getDropDowns')
   },
   mounted () {
+    // get all children when component is mounted
     this.items = this.$children
   },
   methods: {
@@ -143,6 +150,7 @@ export default {
           window.location = '/loans/submitted'
         })
         .catch((errors) => {
+          // get errors from api if any
           for (const error in errors.errors) {
             this.$toasted.show(`${errors.errors[error][0]}`, {
               theme: 'toasted-primary',
