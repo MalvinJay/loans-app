@@ -11,23 +11,19 @@
           <p class="font-bold">
             Fund Amount
           </p>
-          <p>GHC {{ general.requested_loan_amount }}</p>
-          <p class="font-bold">
+          <p>GHS {{ general.requested_loan_amount }}</p>
+          <!-- <p class="font-bold">
             Purpose of Fund
           </p>
-          <p>
-            N/A
-          </p>
-          <p class="font-bold">
+          <p>{{ purpose }}</p> -->
+          <!-- <p class="font-bold">
             Term
           </p>
-          <p>N/A</p>
-          <p class="font-bold">
+          <p>N/A</p> -->
+          <!-- <p class="font-bold">
             Fixing Period
           </p>
-          <p>
-            N/A
-          </p>
+          <p>N/A</p> -->
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer">
@@ -79,9 +75,7 @@
           <p class="font-bold">
             Business Address
           </p>
-          <p>
-            {{ general.business_address }}
-          </p>
+          <p>{{ general.business_address }}</p>
           <p class="font-bold">
             Business Email
           </p>
@@ -137,19 +131,26 @@ export default {
   },
   data () {
     return {
-      show: this.active
+      show: this.active,
+      // fundPurpose: null
+      purpose: null
     }
   },
   computed: {
     general () {
       return this.$store.state.api.general
+    },
+    fundRoles () {
+      return this.$store.getters['pages/fundRoles']
     }
-    // fundPurpose () {
-    //   const id = parseInt(this.general.fund_purpose_id)
-    //   // eslint-disable-next-line no-console
-    //   console.log(id)
-    //   return this.$store.getters.pages.fundRoles.find(item => item.val === id)
-    // }
+  },
+  watch: {
+    show () {
+      // if (this.general !== null && this.fundRoles !== undefined) {
+      //   const purpose = this.fundRoles.filter(item => item.val === parseInt(this.general.fund_purpose_id))[0]
+      //   this.purpose = purpose.name
+      // }
+    }
   }
 }
 </script>
@@ -160,7 +161,7 @@ export default {
 }
 .card {
   padding: 20px;
-  background-color: #FBFBFB;
+  background-color: #fbfbfb;
 }
 .edit {
   color: $color-secondary;

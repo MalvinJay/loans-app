@@ -3,13 +3,13 @@
     <slot />
     <div class="buttons flex">
       <div>
-        <button v-if="count < items.length-1" class="button-small next" @click="count ++">
+        <button v-if="count < items.length-1" class="button-small next" @click="moveNext">
           Next
         </button>
         <button v-else class="button-small next" @click="confirmModal=true">
           Submit
         </button>
-        <button v-if="count>=1" class="button-small previous" @click="count --">
+        <button v-if="count>=1" class="button-small previous" @click="movePrevious">
           Previous
         </button>
         <!-- <button class="button-small previous small">
@@ -79,7 +79,7 @@
         <div class="sig">
           <label class="block text-gray-900 text-sm font-bold mb-2">Input your initials here</label>
           <div>
-            <Input v-model="signature" small />
+            <Input v-model="signature" small type="text" />
           </div>
         </div>
         <div class="buttons c-b flex gap-5">
@@ -124,6 +124,9 @@ export default {
       this.$emit('current', value)
     }
   },
+  beforeCreate () {
+    this.$store.dispatch('pages/getDropDowns')
+  },
   mounted () {
     this.items = this.$children
   },
@@ -133,10 +136,32 @@ export default {
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
           window.location = '/loans/submitted'
-          // eslint-disable-next-line no-console
-          // console.log(result)
-          // window.location = '/loans/submitted'
         })
+        .catch((errors) => {
+          for (const error in errors.errors) {
+            this.$toasted.show(`${errors.errors[error][0]}`, {
+              theme: 'toasted-primary',
+              position: 'top-right',
+              duration: 5000
+            })
+          }
+        })
+    },
+    moveNext () {
+      this.count++
+      // eslint-disable-next-line no-console
+      if (this.$store.state.pages.formErrors !== '') {
+        this.$toasted.error('Please fill in all fields', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+        this.count--
+      }
+    },
+    movePrevious () {
+      // Remove errors
+      this.count--
     }
   }
 }

@@ -5,7 +5,7 @@
   "author": "Joseph Maclean Arhin",
   "private": true,
   "scripts": {
-    "dev": "nuxt --port 8080",
+    "dev": "nuxt --port 8081",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -18,12 +18,14 @@
     "@nuxtjs/pwa": "^3.0.0-0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/tailwindcss": "^1.0.0",
+    "@nuxtjs/toast": "^3.3.0",
     "countup.js": "^2.0.5",
     "nuxt": "^2.0.0",
     "v-click-outside": "^3.0.1",
     "v-scroll-lock": "^1.2.0",
     "vue-countup-v2": "^4.0.0",
-    "vue-multiselect": "^2.1.6"
+    "vue-multiselect": "^2.1.6",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.0",

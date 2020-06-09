@@ -5,7 +5,8 @@ export const state = () => ({
   dropdowns: null,
   districts: null,
   mediaResponse: null,
-  application_object: process.browser ? JSON.parse(localStorage.getItem('application/object')) : null || null
+  formErrors: '',
+  application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null
 })
 
 export const getters = {
@@ -70,14 +71,7 @@ export const getters = {
     }
   },
   businessScale (state) {
-    if (state.dropdowns !== null) {
-      return state.dropdowns.business_scale.map((item) => {
-        return {
-          name: item.name,
-          val: item.id
-        }
-      })
-    }
+    return state.application_object.business_scale
   },
   legalOrganization (state) {
     if (state.dropdowns !== null) {
@@ -91,7 +85,7 @@ export const getters = {
   },
   bankPartner (state) {
     if (state.dropdowns !== null) {
-      return state.dropdowns.financial_institutions.map((item) => {
+      return state.dropdowns.financial_institutions.filter(item => item.type !== 'mm').map((item) => {
         return {
           name: item.bank_name,
           val: item.id
@@ -101,7 +95,7 @@ export const getters = {
   },
   covidImpacts (state) {
     if (state.dropdowns !== null) {
-      return state.dropdowns.fund_purposes.map((item) => {
+      return state.dropdowns.covid_impacts.map((item) => {
         return {
           name: item.name,
           val: item.id.toString()
@@ -127,6 +121,9 @@ export const getters = {
 }
 
 export const mutations = {
+  SET_FORM_ERRORS (state, data) {
+    state.formErrors = data
+  },
   SET_AMOUNT (state, data) {
     state.loanAmount = parseFloat(data)
   },
