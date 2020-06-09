@@ -116,7 +116,9 @@
             <span class="checkmark" />
           </label>
         </div>
-        <label class="block text-gray-900 text-sm font-normal mb-2">Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)</label>
+        <label
+          class="block text-gray-900 text-sm font-normal mb-2"
+        >Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)</label>
         <div class="flex">
           <label class="checkbox">
             Yes
@@ -179,7 +181,7 @@
           Click to Fill in Template
         </button>
       </div>
-      <div v-if="businessScale === '4' || businessScale === '5'"  class="mb-12">
+      <div v-if="businessScale === '4' || businessScale === '5'" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
         <button class="i-t-b" @click="cashFlowModal=true">
           Click to Fill in Template
@@ -388,9 +390,7 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Other Operating Expenses</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Other Operating Expenses</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -443,9 +443,7 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Interest on Loans</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Interest on Loans</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1821,7 +1819,12 @@
             <label
               class="block text-gray-900 text-sm font-normal mb-2"
             >Tax Identification Number(TIN)</label>
-            <Input v-model.trim="directors_list[0].tin_number" regex="([A-Z]{1})([0-9]{10})$" type="text" small />
+            <Input
+              v-model.trim="directors_list[0].tin_number"
+              regex="([A-Z]{1})([0-9]{10})$"
+              type="text"
+              small
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -2257,97 +2260,60 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Jan 2020 - April 2020</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >Jan 2020 - April 2020</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total Revenue</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020 </label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total Expenses</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >Total Revenue</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020 </label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Profit Before Tax</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >Total Expenses</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020 </label>
-            <Input
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+            <Input type="number" placeholder="GHS" money small />
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >Profit Before Tax</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+            <Input type="number" placeholder="GHS" money small />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <Input type="number" placeholder="GHS" money small />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+            <Input type="number" placeholder="GHS" money small />
           </div>
           <div class="my-20">
             <button class="button-small" @click="microIncomeModal= false">
@@ -2836,7 +2802,8 @@ export default {
         JSON.stringify(this.business_owner)
       ).filter(value => JSON.stringify(value) !== '{}')
 
-      const reducer = (accumulator, currentValue) => accumulator + currentValue.share
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue.share
 
       const total = businessOwner.reduce(reducer, 0)
       if (total !== 100) {
