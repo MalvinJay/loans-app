@@ -73,6 +73,12 @@ export const getters = {
   businessScale (state) {
     return state.application_object.business_scale
   },
+  isStartup (state) {
+    return state.application_object.is_startup
+  },
+  yearsInBusiness (state) {
+    return state.application_object.years_in_business
+  },
   legalOrganization (state) {
     if (state.dropdowns !== null) {
       return state.dropdowns.legal_organization.map((item) => {

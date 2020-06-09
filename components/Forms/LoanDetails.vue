@@ -273,7 +273,7 @@ export default {
   },
   computed: {
     years () {
-      return 3
+      return this.$store.getters['pages/yearsInBusiness']
     },
     bankPartner () {
       return this.$store.getters['pages/bankPartner']
