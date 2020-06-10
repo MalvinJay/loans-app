@@ -83,18 +83,22 @@
         <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
         <input v-model="personalInfo.dob" type="date" name>
       </div>
-      <!-- <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Applicant ID Type</label>
-        <Select v-model="personalInfo.id_type" :items="idType" />
+    </div>
+    <div class="nav-buttons flex">
+      <div>
+        <button class="button-small next" @click="moveNext">
+          Next
+        </button>
+        <!-- <button class="button-small next" @click="confirmModal=true">
+          Submit
+        </button> -->
+        <button class="button-small previous" @click="movePrevious">
+          Previous
+        </button>
+        <button class="button-small previous small">
+          Save
+        </button>
       </div>
-      <div class="mb-12">
-        <Input
-          v-model="personalInfo.id_number"
-          type="text"
-          name="Applicant's ID (passport, driver's license, Voters Id)"
-          :regex="regex"
-        />
-      </div> -->
     </div>
   </div>
 </template>
@@ -179,15 +183,17 @@ export default {
       this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
-      // this.$v.$touch()
-      // eslint-disable-next-line no-console
-      // console.log(this.$v)
-      // if (this.$v.$invalid) {
-      //   // alert(this.$v.)
-      //   this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
-      // } else {
-      //   this.$store.commit('pages/SET_FORM_ERRORS', '')
-      // }
+      this.$v.$touch()
+      if (this.currentTab === 1) {
+        if (this.$v.$invalid) {
+          this.$store.commit(
+            'pages/SET_FORM_ERRORS',
+            'please fill all fields before moving to next page'
+          )
+        } else {
+          this.$store.commit('pages/SET_FORM_ERRORS', 'personal')
+        }
+      }
       const data = Object.assign({}, this.personalInfo)
       data.region = this.region
       if (value === false) {
@@ -208,21 +214,23 @@ export default {
       deep: true
     }
   },
-  beforeUpdate () {
-    this.$v.$touch()
-    if (this.$v.$invalid && this.currentTab === 1) {
-      this.$store.commit(
-        'pages/SET_FORM_ERRORS',
-        'please fill all fields on personal info before moving to next page'
-      )
-    } else {
-      this.$store.commit('pages/SET_FORM_ERRORS', '')
+  methods: {
+    moveNext () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.$toasted.error('Please fill in all fields', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+      }
+    },
+    movePrevious () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 0)
     }
   }
-  // updated () {
-  //   // eslint-disable-next-line no-console
-  //   console.log('personal is updated')
-  // }
 }
 </script>
 <style lang="scss" scoped>

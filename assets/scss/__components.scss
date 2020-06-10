@@ -115,6 +115,29 @@ textarea{
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
 }
+
+.nav-buttons {
+  button {
+    width: 279px;
+    height: 50px;
+    margin: 10px;
+    &.previous {
+      border: 1px solid $color-primary;
+      color: $color-primary;
+      background-color: white;
+    }
+    &:first-child {
+      margin-bottom: 10px;
+    }
+  }
+  &.c-b {
+    width: 40%;
+    margin: 0 auto;
+    button {
+      width: 100%;
+    }
+  }
+}
 @include for-tablet-portrait-only {
   input[type=text], input[type=date], input[type=number], input[type=email], input[type=password]{
     width: 100%;
@@ -140,6 +163,15 @@ textarea{
   .button-small {
     width: 115px;
     height: 33px;
+  }
+  .nav-buttons {
+    flex-direction: column;
+    button {
+      width: 100%;
+    }
+    &.c-b {
+      width: 100%;
+    }
   }
 }
 

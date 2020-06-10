@@ -214,6 +214,19 @@
         </button>
       </div>
     </div>
+    <div class="nav-buttons flex">
+      <div>
+        <button class="button-small next" @click="moveNext">
+          Next
+        </button>
+        <button class="button-small previous" @click="movePrevious">
+          Previous
+        </button>
+        <button class="button-small previous small">
+          Save
+        </button>
+      </div>
+    </div>
     <!-- =============================================================================================================
     ========================================= INCOME MODAL ===================================================-->
 
@@ -2859,6 +2872,17 @@ export default {
       }
     },
     show (value) {
+      this.$v.$touch()
+      if (this.currentTab === 2) {
+        if (this.$v.$invalid) {
+          this.$store.commit(
+            'pages/SET_FORM_ERRORS',
+            'please fill all fields on business info before moving to next page'
+          )
+        } else {
+          this.$store.commit('pages/SET_FORM_ERRORS', 'busines')
+        }
+      }
       const data = Object.assign({}, this.general)
 
       // TODO: refactor deep cloning using lodash
@@ -2989,18 +3013,22 @@ export default {
       .annual_sales.toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   },
-  beforeUpdate () {
-    this.$v.$touch()
-    if (this.$v.$invalid && this.currentTab === 2) {
-      this.$store.commit(
-        'pages/SET_FORM_ERRORS',
-        'please fill all fields on business info before moving to next page'
-      )
-    } else {
-      this.$store.commit('pages/SET_FORM_ERRORS', '')
-    }
-  },
   methods: {
+    moveNext () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.$toasted.error('Please fill in all fields', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      }
+    },
+    movePrevious () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
+    },
     doneIncomeModal () {
       this.checkIncomeModal = true
       this.incomeModal = false
