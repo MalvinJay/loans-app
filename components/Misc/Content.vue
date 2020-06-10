@@ -43,27 +43,8 @@ export default {
     this.$store.dispatch('pages/getDropDowns')
   },
   mounted () {
-    // get all children when component is mounted
     this.items = this.$children
   }
-//   methods: {
-//     moveNext () {
-//       this.count++
-//       // eslint-disable-next-line no-console
-//       if (this.$store.state.pages.formErrors !== '') {
-//         this.$toasted.error('Please fill in all fields', {
-//           theme: 'toasted-primary',
-//           position: 'top-center',
-//           duration: 5000
-//         })
-//         this.count--
-//       }
-//     },
-//     movePrevious () {
-//       // Remove errors
-//       this.count--
-//     }
-//   }
 }
 </script>
 <style lang="scss" scoped>

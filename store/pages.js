@@ -7,10 +7,21 @@ export const state = () => ({
   mediaResponse: null,
   formErrors: '',
   application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null,
-  currentTab: 0
+  currentTab: 0,
+  countries: null
 })
 
 export const getters = {
+  countries (state) {
+    if (state.countries !== null) {
+      return state.countries.map((item) => {
+        return {
+          name: item.name,
+          val: item.name
+        }
+      })
+    }
+  },
   idTypes (state) {
     if (state.dropdowns !== null) {
       return state.dropdowns.id_types.map((item) => {
@@ -146,15 +157,19 @@ export const mutations = {
   SET_DROPDOWNS (state, data) {
     state.dropdowns = data
   },
+  SET_COUNTRIES (state, data) {
+    state.countries = data
+  },
   SET_DISTRICTS (state, data) {
     const districts = state.dropdowns.districts.filter(item => item.region_id === parseInt(data))
     state.districts = districts
   }
 }
-
 export const actions = {
   async getDropDowns ({ commit }) {
     const dropdowns = await this.$axios.$get('https://mcftest.plendifyloans.com/api/dropdowns')
+    const countries = await this.$axios.$get('https://restcountries.eu/rest/v2/all')
     commit('SET_DROPDOWNS', dropdowns.data)
+    commit('SET_COUNTRIES', countries)
   }
 }
