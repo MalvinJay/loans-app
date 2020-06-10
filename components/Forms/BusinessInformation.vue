@@ -2485,15 +2485,36 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_18"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_19"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input v-model.number="income_statement_2020.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_20"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div class="my-20 flex gap-3 buttons">
             <button class="button-small" @click="doneMicroIncomeModal">
@@ -2783,6 +2804,7 @@ export default {
       income_statement_2019: {},
       income_statement_2020: {},
       income_statement_apr_2020: {},
+      total_micro_statement: {},
       tax_clearance: {},
       business_owner: [{}, {}, {}],
       directors_list: [{}, {}, {}, {}, {}],
@@ -2792,9 +2814,6 @@ export default {
     }
   },
   computed: {
-    is_startup () {
-      return 1
-    },
     fundAmount () {
       return this.$store.state.pages.loanAmount
     },
@@ -2863,13 +2882,26 @@ export default {
     }
   },
   watch: {
-    region (value) {
-      this.$store.commit('pages/SET_DISTRICTS', value)
-    },
     income_statement_2018: {
       handler (value) {
-
-      }
+        this.total_micro_statement.profit_18 = this.income_statement_2018.total_revenue - this.income_statement_2018.total_expenses
+      },
+      deep: true
+    },
+    income_statement_2019: {
+      handler (value) {
+        this.total_micro_statement.profit_19 = this.income_statement_2019.total_revenue - this.income_statement_2019.total_expenses
+      },
+      deep: true
+    },
+    income_statement_2020: {
+      handler (value) {
+        this.total_micro_statement.profit_20 = this.income_statement_2020.total_revenue - this.income_statement_2020.total_expenses
+      },
+      deep: true
+    },
+    region (value) {
+      this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
       const data = Object.assign({}, this.general)
