@@ -85,6 +85,12 @@ export default {
     padding-left: 50px;
   }
 }
+.logo {
+  img {
+      max-width: 13rem;
+      height: auto;
+  }
+}
 footer {
   background-color: $color-gray;
   position: relative;

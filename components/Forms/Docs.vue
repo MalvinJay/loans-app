@@ -1,87 +1,105 @@
 <template>
-  <div v-show="show" class="grid docs border-blue-100">
-    <div @drop.prevent="addApplicationId" @dragover.prevent>
-      <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>
-      <div class="d-i border border-gray-900 py-12">
-        <div class="img">
-          <img src="@/assets/img/docs.png" alt>
-        </div>
-        <div class="my-6">
-          <p class="text-center text-sm">
-            Drag & Drop file here (max: 5MB)
-          </p>
-        </div>
-        <div class="u-b">
-          <label>
-            <input type="file" @change="btnAddApplicationId">
-            <span>Browse Files</span>
-          </label>
-        </div>
-        <div class="mt-6">
-          <p class="text-center text-sm">
-            {{ applicatonIdFile }}
-          </p>
-          <p v-if="loading" class="text-center text-sm">
-            Please wait....
-          </p>
-        </div>
-      </div>
-    </div>
-    <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
-      <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
-      <div class="d-i border border-gray-900 py-12">
-        <div class="img">
-          <img src="@/assets/img/docs.png" alt>
-        </div>
-        <div class="my-6">
-          <p class="text-center text-sm">
-            Drag & Drop file here (max: 5MB)
-          </p>
-        </div>
-        <div class="u-b">
-          <label>
-            <input type="file" @change="btnAddProofOfPaye">
-            <span>Browse Files</span>
-          </label>
-        </div>
-        <div class="mt-6">
-          <p class="text-center text-sm">
-            {{ payePaymentsFile }}
-          </p>
-          <p v-if="payeloading" class="text-center text-sm">
-            Please wait....
-          </p>
+  <div v-show="show">
+    <div class="grid docs border-blue-100">
+      <div @drop.prevent="addApplicationId" @dragover.prevent>
+        <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>
+        <div class="d-i border border-gray-900 py-12">
+          <div class="img">
+            <img src="@/assets/img/docs.png" alt>
+          </div>
+          <div class="my-6">
+            <p class="text-center text-sm">
+              Drag & Drop file here (max: 5MB)
+            </p>
+          </div>
+          <div class="u-b">
+            <label>
+              <input type="file" @change="btnAddApplicationId">
+              <span>Browse Files</span>
+            </label>
+          </div>
+          <div class="mt-6">
+            <p class="text-center text-sm">
+              {{ applicatonIdFile }}
+            </p>
+            <p v-if="loading" class="text-center text-sm">
+              Please wait....
+            </p>
+          </div>
         </div>
       </div>
-    </div>
-    <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
-      <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">SSNIT Statement (2019)</label>
-      <div class="d-i border border-gray-900 py-12">
-        <div class="img">
-          <img src="@/assets/img/docs.png" alt>
-        </div>
-        <div class="my-6">
-          <p class="text-center text-sm">
-            Drag & Drop file here (max: 5MB)
-          </p>
-        </div>
-        <div class="u-b">
-          <label>
-            <input type="file" @change="btnAddSsnitStatement">
-            <span>Browse Files</span>
-          </label>
-        </div>
-        <div class="mt-6">
-          <p class="text-center text-sm">
-            {{ ssnitStatementFile }}
-          </p>
-          <p v-if="ssnitloading" class="text-center text-sm">
-            Please wait....
-          </p>
+      <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
+        <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
+        <div class="d-i border border-gray-900 py-12">
+          <div class="img">
+            <img src="@/assets/img/docs.png" alt>
+          </div>
+          <div class="my-6">
+            <p class="text-center text-sm">
+              Drag & Drop file here (max: 5MB)
+            </p>
+          </div>
+          <div class="u-b">
+            <label>
+              <input type="file" @change="btnAddProofOfPaye">
+              <span>Browse Files</span>
+            </label>
+          </div>
+          <div class="mt-6">
+            <p class="text-center text-sm">
+              {{ payePaymentsFile }}
+            </p>
+            <p v-if="payeloading" class="text-center text-sm">
+              Please wait....
+            </p>
+          </div>
         </div>
       </div>
+      <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
+        <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">SSNIT Statement (2019)</label>
+        <div class="d-i border border-gray-900 py-12">
+          <div class="img">
+            <img src="@/assets/img/docs.png" alt>
+          </div>
+          <div class="my-6">
+            <p class="text-center text-sm">
+              Drag & Drop file here (max: 5MB)
+            </p>
+          </div>
+          <div class="u-b">
+            <label>
+              <input type="file" @change="btnAddSsnitStatement">
+              <span>Browse Files</span>
+            </label>
+          </div>
+          <div class="mt-6">
+            <p class="text-center text-sm">
+              {{ ssnitStatementFile }}
+            </p>
+            <p v-if="ssnitloading" class="text-center text-sm">
+              Please wait....
+            </p>
+          </div>
+        </div>
+      </div>
+      <div />
     </div>
-    <div />
+    <div class="nav-buttons flex">
+      <div>
+        <button class="button-small next" @click="moveNext">
+          Next
+        </button>
+        <!-- <button class="button-small next" @click="confirmModal=true">
+          Submit
+        </button> -->
+        <button class="button-small previous" @click="movePrevious">
+          Previous
+        </button>
+        <button class="button-small previous small">
+          Save
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 <script>
@@ -110,6 +128,12 @@ export default {
     }
   },
   methods: {
+    moveNext () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
+    },
+    movePrevious () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+    },
     addApplicationId (e) {
       const file = e.dataTransfer.files[0]
       this.loading = true
