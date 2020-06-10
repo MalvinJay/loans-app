@@ -137,6 +137,9 @@ export default {
     },
     applicationObject () {
       return this.$store.state.pages.application_object
+    },
+    currentTab () {
+      return this.$store.state.pages.currentTab
     }
   },
   validations: {
@@ -176,6 +179,15 @@ export default {
       this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
+      // this.$v.$touch()
+      // eslint-disable-next-line no-console
+      // console.log(this.$v)
+      // if (this.$v.$invalid) {
+      //   // alert(this.$v.)
+      //   this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
+      // } else {
+      //   this.$store.commit('pages/SET_FORM_ERRORS', '')
+      // }
       const data = Object.assign({}, this.personalInfo)
       data.region = this.region
       if (value === false) {
@@ -198,10 +210,10 @@ export default {
   },
   beforeUpdate () {
     this.$v.$touch()
-    if (this.$v.$invalid) {
+    if (this.$v.$invalid && this.currentTab === 1) {
       this.$store.commit(
         'pages/SET_FORM_ERRORS',
-        'please fill all fields before moving to next page'
+        'please fill all fields on personal info before moving to next page'
       )
     } else {
       this.$store.commit('pages/SET_FORM_ERRORS', '')

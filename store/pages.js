@@ -6,7 +6,8 @@ export const state = () => ({
   districts: null,
   mediaResponse: null,
   formErrors: '',
-  application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null
+  application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null,
+  currentTab: 0
 })
 
 export const getters = {
@@ -127,6 +128,9 @@ export const getters = {
 }
 
 export const mutations = {
+  SET_CURRENT_TAB_NUMBER (state, data) {
+    state.currentTab = data
+  },
   SET_FORM_ERRORS (state, data) {
     state.formErrors = data
   },

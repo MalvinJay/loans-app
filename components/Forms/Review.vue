@@ -9,7 +9,7 @@
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
           <p class="font-bold">
-            Fund Amount
+            Amount Requested
           </p>
           <p>GHS {{ general.requested_loan_amount }}</p>
           <!-- <p class="font-bold">
@@ -103,15 +103,15 @@
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
           <p class="font-bold">
-            Identity
+            Photo ID
           </p>
           <p>{{ general.id_file_name }}</p>
           <p class="font-bold">
-            Income
+            Proof of PAYE
           </p>
           <p>N/A</p>
           <p class="font-bold">
-            Business Ownership
+            SSNIT Statement 2019
           </p>
           <p>N/A</p>
         </div>

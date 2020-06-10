@@ -149,7 +149,9 @@
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
         <Select v-model="general.business_association" :items="businessAssociation" />
-        <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">If other, fill this</label>
+        <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">
+          If other, please provide your Business Association
+        </label>
         <Input
           v-if="general.business_association === '80'"
           v-model="general.other_business_association"
@@ -161,38 +163,44 @@
         class="mb-12"
       >
         <label class="block text-gray-900 text-sm font-bold mb-2">Business Owner</label>
-        <button class="i-t-b" @click="ownerModal=true">
+        <button class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
           Click to Fill in Template
+          <span v-if="checkOwnerModal">&#10003;</span>
         </button>
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
-        <button class="i-t-b" @click="employeesModal=true">
+        <button class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
           Click to Fill in Template
+          <span v-if="checkEmployeesModal">&#10003;</span>
         </button>
       </div>
       <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-        <button class="i-t-b" @click="microIncomeModal=true">
+        <button class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
           Click to Fill in Template
+          <span v-if="checkMicroIncomeModal">&#10003;</span>
         </button>
       </div>
       <div v-else class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-        <button class="i-t-b" @click="incomeModal=true">
+        <button class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
           Click to Fill in Template
+          <span v-if="checkIncomeModal">&#10003;</span>
         </button>
       </div>
       <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
-        <button class="i-t-b" @click="balanceSheetModal=true">
+        <button class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
           Click to Fill in Template
+          <span v-if="checkBalanceSheetModal">&#10003;</span>
         </button>
       </div>
       <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
-        <button class="i-t-b" @click="cashFlowModal=true">
+        <button class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
           Click to Fill in Template
+          <span v-if="checkCashFlowModal">&#10003;</span>
         </button>
       </div>
       <div
@@ -200,8 +208,9 @@
         class="mb-12"
       >
         <label class="block text-gray-900 text-sm font-bold mb-2">Director and Shareholder List</label>
-        <button class="i-t-b" @click="shareHolderModal=true">
+        <button class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
           Click to Fill in Template
+          <span v-if="checkShareHolderModal">&#10003;</span>
         </button>
       </div>
     </div>
@@ -224,7 +233,7 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
           </div>
           <div>
             <label
@@ -260,7 +269,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.total_revenue"
               type="number"
@@ -315,7 +324,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.total_raw_materials"
               type="number"
@@ -368,7 +377,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.total_salaries"
               type="number"
@@ -421,7 +430,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.total_expenses"
               type="number"
@@ -456,7 +465,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="income_statement_2017.total_loan_interest"
+              v-model.number="income_statement_2017.total_loan_repayment"
               type="number"
               placeholder="GHS"
               money
@@ -466,7 +475,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="income_statement_2018.total_loan_interest"
+              v-model.number="income_statement_2018.total_loan_repayment"
               type="number"
               placeholder="GHS"
               money
@@ -474,9 +483,9 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
-              v-model.number="income_statement_2019.total_loan_interest"
+              v-model.number="income_statement_2019.total_loan_repayment"
               type="number"
               placeholder="GHS"
               money
@@ -486,7 +495,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_apr_2020.total_loan_interest"
+              v-model.number="income_statement_apr_2020.total_loan_repayment"
               type="number"
               placeholder="GHS"
               money
@@ -496,7 +505,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
-              v-model.number="income_statement_2020.total_loan_interest"
+              v-model.number="income_statement_2020.total_loan_repayment"
               type="number"
               placeholder="GHS"
               money
@@ -527,7 +536,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.depreciation_charge_assets"
               type="number"
@@ -580,7 +589,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.total_taxes_charge"
               type="number"
@@ -635,7 +644,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="income_statement_2019.net_profit"
               type="number"
@@ -815,9 +824,12 @@
               />
             </div>
           </div>
-          <div class="my-20">
-            <button class="button-small" @click="incomeModal= false">
+          <div class="my-20 flex gap-3 buttons">
+            <button class="button-small" @click="doneIncomeModal">
               Done
+            </button>
+            <button class="button-small" @click="incomeModal= false">
+              Cancel
             </button>
           </div>
         </div>
@@ -842,7 +854,7 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
           </div>
           <div>
             <label
@@ -893,9 +905,52 @@
             />
           </div>
           <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount of Inventory</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+            <Input
+              v-model.number="balance_sheet_2017.total_inventory_amount"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+            <Input
+              v-model.number="balance_sheet_2018.total_inventory_amount"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+            <Input
+              v-model.number="balance_sheet_2019.total_inventory_amount"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+            <Input
+              v-model.number="balance_sheet_2020.total_inventory_amount"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
             <label
               class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Amount of Receivable (how much is owed by customers)</label>
+            >Total Amount of Receivables (how much is owed by customers)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -918,7 +973,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="balance_sheet_2019.total_receivables_amount"
               type="number"
@@ -931,6 +986,49 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="balance_sheet_2020.total_receivables_amount"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Short Term Assets</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+            <Input
+              v-model.number="balance_sheet_2017.other_short_term_assets"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+            <Input
+              v-model.number="balance_sheet_2018.other_short_term_assets"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+            <Input
+              v-model.number="balance_sheet_2019.other_short_term_assets"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+            <Input
+              v-model.number="balance_sheet_2020.other_short_term_assets"
               type="number"
               placeholder="GHS"
               money
@@ -963,7 +1061,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="balance_sheet_2019.total_net_property"
               type="number"
@@ -983,49 +1081,6 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Short Term Assets</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              v-model.number="balance_sheet_2019.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
             <label
               class="block text-gray-900 text-sm font-bold mb-2"
             >Total Amount of Payables (how much is owed to suppliers by the company)</label>
@@ -1033,7 +1088,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="balance_sheet_2017.total_amount_payables"
+              v-model.number="balance_sheet_2017.total_payables_amount"
               type="number"
               placeholder="GHS"
               money
@@ -1043,7 +1098,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="balance_sheet_2018.total_amount_payables"
+              v-model.number="balance_sheet_2018.total_payables_amount"
               type="number"
               placeholder="GHS"
               money
@@ -1051,9 +1106,9 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
-              v-model.number="balance_sheet_2019.total_amount_payables"
+              v-model.number="balance_sheet_2019.total_payables_amount"
               type="number"
               placeholder="GHS"
               money
@@ -1063,7 +1118,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
-              v-model.number="balance_sheet_2020.total_amount_payables"
+              v-model.number="balance_sheet_2020.total_payables_amount"
               type="number"
               placeholder="GHS"
               money
@@ -1096,7 +1151,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="balance_sheet_2019.total_overdraft_outstanding"
               type="number"
@@ -1141,7 +1196,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="balance_sheet_2019.other_short_term_liability"
               type="number"
@@ -1163,7 +1218,52 @@
           <div>
             <label
               class="block text-gray-900 text-sm font-bold mb-2"
-            >Value of Equity (if shares have been issued)</label>
+            >Total Loans Outstanding</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+            <Input
+              v-model.number="balance_sheet_2017.total_loan_outstanding"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+            <Input
+              v-model.number="balance_sheet_2018.total_loan_outstanding"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+            <Input
+              v-model.number="balance_sheet_2019.total_loan_outstanding"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+            <Input
+              v-model.number="balance_sheet_2020.total_loan_outstanding"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold mb-2"
+            >Value of Equity</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1186,7 +1286,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="balance_sheet_2019.equity_value"
               type="number"
@@ -1206,12 +1306,12 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Value of retained earnings</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Value of Retained Earnings</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="balance_sheet_2017.retrained_earning_value"
+              v-model.number="balance_sheet_2017.retained_earning_value"
               type="number"
               placeholder="GHS"
               money
@@ -1221,7 +1321,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="balance_sheet_2018.retrained_earning_value"
+              v-model.number="balance_sheet_2018.retained_earning_value"
               type="number"
               placeholder="GHS"
               money
@@ -1229,9 +1329,9 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
-              v-model.number="balance_sheet_2019.retrained_earning_value"
+              v-model.number="balance_sheet_2019.retained_earning_value"
               type="number"
               placeholder="GHS"
               money
@@ -1241,7 +1341,52 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
-              v-model.number="balance_sheet_2020.retrained_earning_value"
+              v-model.number="balance_sheet_2020.retained_earning_value"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold mb-2"
+            >Any Other Equity</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+            <Input
+              v-model.number="balance_sheet_2017.other_equity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+            <Input
+              v-model.number="balance_sheet_2018.other_equity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+            <Input
+              v-model.number="balance_sheet_2019.other_equity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+            <Input
+              v-model.number="balance_sheet_2020.other_equity"
               type="number"
               placeholder="GHS"
               money
@@ -1249,9 +1394,12 @@
             />
           </div>
         </div>
-        <div class="my-20">
-          <button class="button-small" @click="balanceSheetModal= false">
+        <div class="my-20 flex gap-3 buttons">
+          <button class="button-small" @click="doneBalanceSheetModal">
             Done
+          </button>
+          <button class="button-small" @click="balanceSheetModal= false">
+            Cancel
           </button>
         </div>
       </div>
@@ -1275,7 +1423,7 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
@@ -1304,7 +1452,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.ebit"
               type="number"
@@ -1347,7 +1495,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.depreciation"
               type="number"
@@ -1390,7 +1538,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.working_capital_change"
               type="number"
@@ -1433,7 +1581,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.tax_paid_in_cash"
               type="number"
@@ -1460,7 +1608,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="cash_flow_2017.total_amount_paid_in_cash"
+              v-model.number="cash_flow_2017.total_interest_paid_in_cash"
               type="number"
               placeholder="GHS"
               money
@@ -1470,7 +1618,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="cash_flow_2018.total_amount_paid_in_cash"
+              v-model.number="cash_flow_2018.total_interest_paid_in_cash"
               type="number"
               placeholder="GHS"
               money
@@ -1478,9 +1626,9 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
-              v-model.number="cash_flow_2019.total_amount_paid_in_cash"
+              v-model.number="cash_flow_2019.total_interest_paid_in_cash"
               type="number"
               placeholder="GHS"
               money
@@ -1490,7 +1638,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
-              v-model.number="cash_flow_2020.total_amount_paid_in_cash"
+              v-model.number="cash_flow_2020.total_interest_paid_in_cash"
               type="number"
               placeholder="GHS"
               money
@@ -1523,7 +1671,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.total_capital_expenditure"
               type="number"
@@ -1543,7 +1691,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Value of Equity Sold</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Total Value of Equity Sold (if shares have been issued)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1566,7 +1714,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.total_sold_equity_sold"
               type="number"
@@ -1611,7 +1759,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.total_credit_value"
               type="number"
@@ -1656,7 +1804,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.total_principal_paid_loan"
               type="number"
@@ -1701,7 +1849,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.beginning_cash"
               type="number"
@@ -1744,7 +1892,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.cash_change"
               type="number"
@@ -1787,7 +1935,7 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.end_cash"
               type="number"
@@ -1807,9 +1955,12 @@
             />
           </div>
         </div>
-        <div class="my-20">
-          <button class="button-small" @click="cashFlowModal= false">
+        <div class="my-20 flex gap-3 buttons">
+          <button class="button-small" @click="doneCashFlowModal">
             Done
+          </button>
+          <button class="button-small" @click="cashFlowModal= false">
+            Cancel
           </button>
         </div>
       </div>
@@ -2248,9 +2399,12 @@
             <Input v-model.number="directors_list[4].share" type="number" small />
           </div>
         </div>
-        <div class="my-20">
-          <button class="button-small" @click="shareHolderModal= false">
+        <div class="my-20 flex gap-3 buttons">
+          <button class="button-small" @click="doneShareHolderModal">
             Done
+          </button>
+          <button class="button-small" @click="shareHolderModal = false">
+            Cancel
           </button>
         </div>
       </div>
@@ -2318,19 +2472,22 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2018.profit" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2019.profit" type="number" placeholder="GHS" money small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input type="number" placeholder="GHS" money small />
+            <Input v-model.number="income_statement_2020.profit" type="number" placeholder="GHS" money small />
           </div>
-          <div class="my-20">
-            <button class="button-small" @click="microIncomeModal= false">
+          <div class="my-20 flex gap-3 buttons">
+            <button class="button-small" @click="doneMicroIncomeModal">
               Done
+            </button>
+            <button class="button-small" @click="microIncomeModal= false">
+              Cancel
             </button>
           </div>
         </div>
@@ -2516,9 +2673,12 @@
             <Input v-model.number="business_owner[2].share" small />
           </div>
         </div>
-        <div class="my-20">
-          <button class="button-small" @click="closeOwnerModal">
+        <div class="my-20 flex gap-3 buttons">
+          <button class="button-small" @click="doneOwnerModal">
             Done
+          </button>
+          <button class="button-small" @click="ownerModal = false">
+            Cancel
           </button>
         </div>
       </div>
@@ -2553,9 +2713,12 @@
           </div>
         </div>
       </div>
-      <div class="my-20">
-        <button class="button-small" @click="employeesModal= false">
+      <div class="my-20 flex gap-3 buttons">
+        <button class="button-small" @click="doneEmployeesModal">
           Done
+        </button>
+        <button class="button-small" @click="employeesModal= false">
+          Cancel
         </button>
       </div>
     </Modal>
@@ -2585,6 +2748,13 @@ export default {
       shareHolderModal: false,
       ownerModal: false,
       employeesModal: false,
+      checkIncomeModal: false,
+      checkMicroIncomeModal: false,
+      checkBalanceSheetModal: false,
+      checkCashFlowModal: false,
+      checkShareHolderModal: false,
+      checkOwnerModal: false,
+      checkEmployeesModal: false,
       micro: false,
       general: {},
       cash_flow_2017: {},
@@ -2674,11 +2844,19 @@ export default {
     },
     districts () {
       return this.$store.getters['pages/districts']
+    },
+    currentTab () {
+      return this.$store.state.pages.currentTab
     }
   },
   watch: {
     region (value) {
       this.$store.commit('pages/SET_DISTRICTS', value)
+    },
+    income_statement_2018: {
+      handler (value) {
+
+      }
     },
     show (value) {
       const data = Object.assign({}, this.general)
@@ -2813,17 +2991,54 @@ export default {
   },
   beforeUpdate () {
     this.$v.$touch()
-    if (this.$v.$invalid) {
+    if (this.$v.$invalid && this.currentTab === 2) {
       this.$store.commit(
         'pages/SET_FORM_ERRORS',
-        'please fill all fields before moving to next page'
+        'please fill all fields on business info before moving to next page'
       )
     } else {
       this.$store.commit('pages/SET_FORM_ERRORS', '')
     }
   },
   methods: {
-    closeOwnerModal () {
+    doneIncomeModal () {
+      this.checkIncomeModal = true
+      this.incomeModal = false
+    },
+    doneMicroIncomeModal () {
+      this.checkMicroIncomeModal = true
+      this.microIncomeModal = false
+    },
+    doneBalanceSheetModal () {
+      this.checkBalanceSheetModal = true
+      this.balanceSheetModal = false
+    },
+    doneCashFlowModal () {
+      this.checkCashFlowModal = true
+      this.cashFlowModal = false
+    },
+    doneShareHolderModal () {
+      // filter out empty directors
+      const directorsList = JSON.parse(
+        JSON.stringify(this.directors_list)
+      ).filter(value => JSON.stringify(value) !== '{}')
+
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue.share
+
+      const total = directorsList.reduce(reducer, 0)
+      if (total !== 100) {
+        this.$toasted.error('Share percentage should equal 100%', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.shareHolderModal = false
+        this.checkShareHolderModal = true
+      }
+    },
+    doneOwnerModal () {
       const businessOwner = JSON.parse(
         JSON.stringify(this.business_owner)
       ).filter(value => JSON.stringify(value) !== '{}')
@@ -2839,8 +3054,13 @@ export default {
           duration: 5000
         })
       } else {
+        this.checkOwnerModal = true
         this.ownerModal = false
       }
+    },
+    doneEmployeesModal () {
+      this.checkEmployeesModal = true
+      this.employeesModal = false
     }
   }
 }
@@ -2864,6 +3084,10 @@ export default {
     column-gap: 35px;
     &:focus {
       outline: none;
+    }
+    &.done {
+      color: rgb(31, 189, 17);
+      border-color: rgb(31, 189, 17);
     }
   }
 }
@@ -2907,6 +3131,9 @@ label.mobile {
     .i-t-b {
       width: 100%;
     }
+  }
+  .buttons {
+    justify-content: space-between;
   }
   .button-small {
     margin-bottom: 70px;
