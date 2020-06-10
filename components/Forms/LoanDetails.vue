@@ -68,8 +68,8 @@
           <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
             Repayment Account Details
           </label>
-          <div v-if="loanAmount<=2000" class="flex justify-start ac-dc">
-            <div class="flex justify-start gap-5 loan-argin">
+          <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
+            <div class="grid grid-cols-2 gap-5">
               <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
                 <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
                 <span class="checkmark" />
@@ -95,6 +95,15 @@
         </div>
       </div>
     </div>
+    <div class="nav-buttons flex">
+      <button class="button-small next" @click="moveNext">
+        Next
+      </button>
+      <button class="button-small previous small">
+        Save
+      </button>
+    </div>
+
     <!-- ===================================================================================
     =================================COVID TEMPLATE MODAL============================== -->
     <Modal v-if="modal1" @close="modal1 = false">
@@ -291,6 +300,9 @@ export default {
     },
     momo () {
       return this.$store.getters['pages/momo']
+    },
+    currentTab () {
+      return this.$store.state.pages.currentTab
     }
   },
   watch: {
@@ -300,21 +312,19 @@ export default {
       },
       deep: true
     },
-    loanAmount (value) {
-      this.$store.commit('pages/SET_AMOUNT', value)
-    },
-    years (value) {
-      this.$store.commit('pages/SET_YEARS', value)
-    },
-    startup (value) {
-      this.$store.commit('pages/SET_STARTUP', value)
-      if (value === 'true') {
-        this.$store.commit('pages/SET_STARTUP', true)
-      } else {
-        this.$store.commit('pages/SET_STARTUP', false)
-      }
-    },
     show (value) {
+      // alert('proper')
+      this.$v.$touch()
+      // alert(this.$v.$invalid)
+      if (this.currentTab === 0) {
+        alert(this.currentTab)
+        if (this.$v.$invalid) {
+        // this.show = true
+          this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
+        } else {
+          this.$store.commit('pages/SET_FORM_ERRORS', 'loandetail')
+        }
+      }
       const data = Object.assign({}, this.general) // create copy general object
 
       // merge general object with necessary data
@@ -447,18 +457,19 @@ export default {
       this.micro = true
     }
   },
-  beforeUpdate () {
-    this.$v.$touch()
-    // eslint-disable-next-line no-console
-    // console.log(this.$v)
-    if (this.$v.$invalid) {
-      // alert('error')
-      this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields on fund details before moving to next page')
-    } else {
-      this.$store.commit('pages/SET_FORM_ERRORS', '')
-    }
-  },
   methods: {
+    moveNext () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.$toasted.error('Please fill in all fields', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
+      }
+    },
     toggleModal1 () {
       this.modal1 = false
     },

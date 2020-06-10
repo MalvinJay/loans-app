@@ -214,6 +214,19 @@
         </button>
       </div>
     </div>
+    <div class="nav-buttons flex">
+      <div>
+        <button class="button-small next" @click="moveNext">
+          Next
+        </button>
+        <button class="button-small previous" @click="movePrevious">
+          Previous
+        </button>
+        <button class="button-small previous small">
+          Save
+        </button>
+      </div>
+    </div>
     <!-- =============================================================================================================
     ========================================= INCOME MODAL ===================================================-->
 
@@ -2920,8 +2933,8 @@ export default {
       data.tax_clearance = taxClearance
       data.cash_flow_2017 = cashFlow2017
       data.cash_flow_2018 = cashFlow2018
-      data.cash_flow_2020 = cashFlow2019
-      data.cash_flow_2019 = cashFlow2020
+      data.cash_flow_2019 = cashFlow2019
+      data.cash_flow_2020 = cashFlow2020
       data.directors_list =
         data.legal_organization === '1' || data.legal_organization === '2'
           ? businessOwner
@@ -2989,18 +3002,22 @@ export default {
       .annual_sales.toString()
       .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
   },
-  beforeUpdate () {
-    this.$v.$touch()
-    if (this.$v.$invalid && this.currentTab === 2) {
-      this.$store.commit(
-        'pages/SET_FORM_ERRORS',
-        'please fill all fields on business info before moving to next page'
-      )
-    } else {
-      this.$store.commit('pages/SET_FORM_ERRORS', '')
-    }
-  },
   methods: {
+    moveNext () {
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.$toasted.error('Please fill in all fields', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      }
+    },
+    movePrevious () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
+    },
     doneIncomeModal () {
       this.checkIncomeModal = true
       this.incomeModal = false
