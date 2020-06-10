@@ -2872,17 +2872,6 @@ export default {
       }
     },
     show (value) {
-      this.$v.$touch()
-      if (this.currentTab === 2) {
-        if (this.$v.$invalid) {
-          this.$store.commit(
-            'pages/SET_FORM_ERRORS',
-            'please fill all fields on business info before moving to next page'
-          )
-        } else {
-          this.$store.commit('pages/SET_FORM_ERRORS', 'busines')
-        }
-      }
       const data = Object.assign({}, this.general)
 
       // TODO: refactor deep cloning using lodash
@@ -2944,8 +2933,8 @@ export default {
       data.tax_clearance = taxClearance
       data.cash_flow_2017 = cashFlow2017
       data.cash_flow_2018 = cashFlow2018
-      data.cash_flow_2020 = cashFlow2019
-      data.cash_flow_2019 = cashFlow2020
+      data.cash_flow_2019 = cashFlow2019
+      data.cash_flow_2020 = cashFlow2020
       data.directors_list =
         data.legal_organization === '1' || data.legal_organization === '2'
           ? businessOwner
