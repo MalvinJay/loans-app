@@ -637,7 +637,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="income_statement_2017.net_profit"
+              v-model.number="total_income_statement.net_profit_17"
               type="number"
               placeholder="GHS"
               money
@@ -648,7 +648,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="income_statement_2018.net_profit"
+              v-model.number="total_income_statement.net_profit_18"
               type="number"
               placeholder="GHS"
               money
@@ -659,7 +659,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
-              v-model.number="income_statement_2019.net_profit"
+              v-model.number="total_income_statement.net_profit_19"
               type="number"
               placeholder="GHS"
               money
@@ -670,7 +670,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
-              v-model.number="income_statement_apr_2020.net_profit"
+              v-model.number="total_income_statement.net_profit_apr_20"
               type="number"
               placeholder="GHS"
               money
@@ -681,7 +681,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
-              v-model.number="income_statement_2020.net_profit"
+              v-model.number="total_income_statement.net_profit_20"
               type="number"
               placeholder="GHS"
               money
@@ -2036,7 +2036,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="directors_list[0].nationality" type="text" small />
+            <div>
+              <Select v-model="directors_list[0].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label
@@ -2121,7 +2123,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="directors_list[1].nationality" type="text" small />
+            <div>
+              <Select v-model="directors_list[1].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label
@@ -2206,7 +2210,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="directors_list[2].nationality" type="text" small />
+            <div>
+              <Select v-model="directors_list[2].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label
@@ -2291,7 +2297,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="directors_list[3].nationality" type="text" small />
+            <div>
+              <Select v-model="directors_list[3].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label
@@ -2376,7 +2384,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="directors_list[4].nationality" type="text" small />
+            <div>
+              <Select v-model="directors_list[4].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label
@@ -2485,15 +2495,36 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_18"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_19"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input v-model.number="income_statement_2020.profit" type="number" placeholder="GHS" money small />
+            <Input
+              v-model.number="total_micro_statement.profit_20"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
           </div>
           <div class="my-20 flex gap-3 buttons">
             <button class="button-small" @click="doneMicroIncomeModal">
@@ -2564,7 +2595,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="business_owner[0].nationality" small />
+            <div>
+              <Select v-model="business_owner[0].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
@@ -2622,7 +2655,9 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="business_owner[1].nationality" small />
+            <div>
+              <Select v-model="business_owner[1].nationality" first="Country" :items="countries" small />
+            </div>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
@@ -2679,7 +2714,10 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <Input v-model="business_owner[2].nationality" small />
+            <div>
+              <Select v-model="business_owner[2].nationality" first="Country" :items="countries" small />
+            </div>
+            <!-- <Input v-model="business_owner[2].nationality" small /> -->
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
@@ -2783,6 +2821,8 @@ export default {
       income_statement_2019: {},
       income_statement_2020: {},
       income_statement_apr_2020: {},
+      total_micro_statement: {},
+      total_income_statement: {},
       tax_clearance: {},
       business_owner: [{}, {}, {}],
       directors_list: [{}, {}, {}, {}, {}],
@@ -2792,51 +2832,6 @@ export default {
     }
   },
   computed: {
-    is_startup () {
-      return 1
-    },
-    fundAmount () {
-      return this.$store.state.pages.loanAmount
-    },
-    years () {
-      return this.$store.state.pages.years
-    },
-    sales () {
-      // Get sales from route params
-      return parseFloat(this.$route.params.amount.split(' ')[0])
-    },
-    startup () {
-      return this.$store.state.pages.startup
-    },
-    // Caculate Funding type based years, loanAmount and sales
-    microGrant () {
-      return this.sales <= 145000 && this.fundAmount <= 2000 && this.years > 2
-    },
-    microLoan () {
-      return this.sales <= 145000 && this.fundAmount > 2000 && this.years > 2
-    },
-    lseLoan () {
-      return (
-        this.sales > 145000 &&
-        this.sales < 250000 &&
-        this.fundAmount > 2000 &&
-        this.years > 2
-      )
-    },
-    mseLoan () {
-      return (
-        this.sales > 250000 &&
-        this.sales < 5000000 &&
-        this.fundAmount > 2000 &&
-        this.years > 2
-      )
-    },
-    startupGrant () {
-      return this.startup && this.fundAmount <= 50000 && this.years < 2
-    },
-    startupLoan () {
-      return this.startup && this.fundAmount > 50000 && this.years < 2
-    },
     businessAssociation () {
       return this.$store.getters['pages/businessAssociation']
     },
@@ -2858,18 +2853,97 @@ export default {
     districts () {
       return this.$store.getters['pages/districts']
     },
-    currentTab () {
-      return this.$store.state.pages.currentTab
+    countries () {
+      return this.$store.getters['pages/countries']
     }
   },
   watch: {
-    region (value) {
-      this.$store.commit('pages/SET_DISTRICTS', value)
+    income_statement_2017: {
+      handler (value) {
+        const income = this.income_statement_2017
+        // eslint-disable-next-line no-console
+        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
+        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
+        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
+        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+
+        this.total_income_statement.net_profit_17 = (income.total_revenue - rawMaterials -
+        totalSalaries - totalExpenses - totalLoanRepayment -
+        depreciationChargeAssets - totalTaxesCharge)
+      },
+      deep: true
     },
     income_statement_2018: {
       handler (value) {
+        const income = this.income_statement_2018
+        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
+        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
+        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
+        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-      }
+        this.total_micro_statement.profit_18 = income.total_revenue - income.total_expenses
+        this.total_income_statement.net_profit_18 = (income.total_revenue - rawMaterials -
+        totalSalaries - totalExpenses - totalLoanRepayment -
+        depreciationChargeAssets - totalTaxesCharge)
+      },
+      deep: true
+    },
+    income_statement_2019: {
+      handler (value) {
+        const income = this.income_statement_2019
+        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
+        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
+        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
+        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+
+        this.total_micro_statement.profit_19 = income.total_revenue - income.total_expenses
+        this.total_income_statement.net_profit_19 = (income.total_revenue - rawMaterials -
+        totalSalaries - totalExpenses - totalLoanRepayment -
+        depreciationChargeAssets - totalTaxesCharge)
+      },
+      deep: true
+    },
+    income_statement_2020: {
+      handler (value) {
+        const income = this.income_statement_2020
+        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
+        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
+        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
+        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+
+        this.total_micro_statement.profit_20 = income.total_revenue - income.total_expenses
+        this.total_income_statement.net_profit_20 = (income.total_revenue - rawMaterials -
+        totalSalaries - totalExpenses - totalLoanRepayment -
+        depreciationChargeAssets - totalTaxesCharge)
+      },
+      deep: true
+    },
+    income_statement_apr_2020: {
+      handler (value) {
+        const income = this.income_statement_apr_2020
+        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
+        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
+        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
+        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+
+        this.total_income_statement.net_profit_apr_20 = (income.total_revenue - rawMaterials -
+        totalSalaries - totalExpenses - totalLoanRepayment -
+        depreciationChargeAssets - totalTaxesCharge)
+      },
+      deep: true
+    },
+    region (value) {
+      this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
       const data = Object.assign({}, this.general)
@@ -3112,7 +3186,7 @@ export default {
   width: 100%;
 }
 .c-f {
-  grid-template-columns: 22% 22% 10% 10% 10% 10%;
+  grid-template-columns: 18% 18% 12% 12% 12% 12%;
   width: 100%;
 }
 label.mobile {
