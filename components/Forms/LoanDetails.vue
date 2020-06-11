@@ -66,7 +66,7 @@
       <div class="mb-4">
         <div>
           <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-            Repayment Account Details
+            Payment Account Details
           </label>
           <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
             <div class="grid grid-cols-2 gap-5">
@@ -91,16 +91,13 @@
           <label class="block text-gray-900 text-sm font-normal mb-2">
             Bank Account Number
           </label>
-          <Input v-model="general.account_no" type="text" />
+          <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
         </div>
       </div>
     </div>
     <div class="nav-buttons flex">
       <button class="button-small next" @click="moveNext">
         Next
-      </button>
-      <button class="button-small previous small">
-        Save
       </button>
     </div>
 
@@ -129,8 +126,8 @@
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.outstanding_invoice" type="number" placeholder="GHS" money small /></div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
-              v-model.number="total.outstanding_invoice"
-              type="number"
+              v-model="total.outstanding_invoice"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -143,8 +140,8 @@
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.demand_notice" type="number" placeholder="GHS" money small /></div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
-              v-model.number="total.demand_notice"
-              type="number"
+              v-model="total.demand_notice"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -158,7 +155,7 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
               v-model="total.outstanding_rent"
-              type="number"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -171,8 +168,8 @@
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.unpaid_salaries" type="number" placeholder="GHS" money small /></div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
-              v-model.number="total.unpaid_salaries"
-              type="number"
+              v-model="total.unpaid_salaries"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -185,8 +182,8 @@
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.unpaid_utility_bills" type="number" placeholder="GHS" money small /></div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
-              v-model.number="total.unpaid_utility_bills"
-              type="number"
+              v-model="total.unpaid_utility_bills"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -199,8 +196,8 @@
           <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.reduced_productivity" type="number" placeholder="GHS" money small /></div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
-              v-model.number="total.reduced_productivity"
-              type="number"
+              v-model="total.reduced_productivity"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -346,29 +343,35 @@ export default {
     covid_proof_of_may_20: {
       handler (value) {
         // calculate total outstanding invoie
-        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        const data = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(data)
 
-        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
 
-        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
 
-        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
-        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
-        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(productivityData)
 
         // calculate total demand notce
       },
@@ -377,30 +380,35 @@ export default {
     covid_proof_of_april_20: {
       handler (value) {
         // calculate total outstanding invoie
-        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        const invoiceData = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
 
-        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
 
-        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
 
-        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
-        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
-        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
-
+        this.total.reduced_productivity = this.thousandSeprator(productivityData)
         // calculate total demand notce
       },
       deep: true
@@ -408,34 +416,40 @@ export default {
     covid_proof_of_march_20: {
       handler (value) {
         // calculate total outstanding invoice
-        this.total.outstanding_invoice = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+        const invoiceData = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
 
         // calculate total demand notice
-        this.total.demand_notice = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
         this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
 
         // calculate total outstanding rent
-        this.total.outstanding_rent = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
         this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
 
         // calculate total unpaid salaries
-        this.total.unpaid_salaries = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
         // calculate total unpaid utility bills
-        this.total.unpaid_utility_bills = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
         this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
         // calculate total reduced productivity
-        this.total.reduced_productivity = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
         this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(productivityData)
       },
       deep: true
     }
@@ -479,6 +493,13 @@ export default {
     doneModal1 (value) {
       this.checkModal1 = true
       this.modal1 = false
+    },
+    thousandSeprator (amount) {
+      if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      } else {
+        return amount
+      }
     }
   }
 }

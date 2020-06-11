@@ -89,13 +89,10 @@
         <button class="button-small next" @click="moveNext">
           Next
         </button>
-        <!-- <button class="button-small next" @click="confirmModal=true">
-          Submit
-        </button> -->
         <button class="button-small previous" @click="movePrevious">
           Previous
         </button>
-        <button class="button-small previous small">
+        <button class="button-small previous small" @click="save">
           Save
         </button>
       </div>
@@ -304,6 +301,26 @@ export default {
           this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
+            duration: 5000
+          })
+        })
+    },
+    async save () {
+      this.$toasted.show('Saved', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 7000
+      })
+      await (new Promise((resolve, reject) => {
+        const data = this.aggregate()
+        this.$store.commit('api/SET_GENERAL_DATA', data)
+        resolve(data)
+      }))
+      this.$store.dispatch('api/saveApplication')
+        .then(() => {
+          this.$toasted.show('Saved', {
+            theme: 'toasted-primary',
+            position: 'top-center',
             duration: 5000
           })
         })

@@ -81,7 +81,14 @@
       </div>
       <div class="mb-12">
         <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
-        <input v-model="personalInfo.dob" type="date" name>
+        <input
+          id="dob"
+          v-model="personalInfo.dob"
+          type="date"
+          name
+          min="1920-01-01"
+          max="2010-01-01"
+        >
       </div>
     </div>
     <div class="nav-buttons flex">
@@ -183,19 +190,7 @@ export default {
       this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
-      this.$v.$touch()
-      if (this.currentTab === 1) {
-        if (this.$v.$invalid) {
-          this.$store.commit(
-            'pages/SET_FORM_ERRORS',
-            'please fill all fields before moving to next page'
-          )
-        } else {
-          this.$store.commit('pages/SET_FORM_ERRORS', 'personal')
-        }
-      }
-      const data = Object.assign({}, this.personalInfo)
-      data.region = this.region
+      const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
         this.$store.commit('api/SET_ID', this.applicationObject)
@@ -215,6 +210,11 @@ export default {
     }
   },
   methods: {
+    aggregate () {
+      const data = Object.assign({}, this.personalInfo)
+      data.region = this.region
+      return data
+    },
     moveNext () {
       this.$v.$touch()
       if (this.$v.$invalid) {

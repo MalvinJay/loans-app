@@ -53,7 +53,7 @@
           <p class="font-bold">
             Email Address
           </p>
-          <p v-if="general.primary_email !== undefined">
+          <p v-if="general.primary_email !== undefined" class="emailAddress">
             {{ general.primary_email }}
           </p>
           <p v-else>
@@ -84,7 +84,7 @@
           <p class="font-bold">
             Business Email
           </p>
-          <p v-if="general.business_email !== undefined">
+          <p v-if="general.business_email !== undefined" class="emailAddress">
             {{ general.business_email }}
           </p>
           <p v-else>
@@ -313,6 +313,9 @@ export default {
 .edit {
   color: $color-secondary;
   width: 50%;
+}
+p.emailAddress {
+  word-break: break-word;
 }
 @include for-phone-only {
   .sig {
