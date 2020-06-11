@@ -103,6 +103,7 @@
   </div>
 </template>
 <script>
+import { required } from 'vuelidate/lib/validators'
 export default {
   components: {},
   props: {
@@ -119,6 +120,11 @@ export default {
       ssnitloading: false
     }
   },
+  validations: {
+    applicatonIdFile: {
+      required
+    }
+  },
   computed: {
     businessScale () {
       return this.$store.getters['pages/businessScale']
@@ -129,7 +135,16 @@ export default {
   },
   methods: {
     moveNext () {
-      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
+      this.$v.$touch()
+      if (this.$v.$invalid) {
+        this.$toasted.error('Please upload a phonto ID', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
+      }
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
@@ -189,15 +204,15 @@ export default {
     },
     addProofOfPaye (e) {
       const file = e.dataTransfer.files[0]
-      this.loading = true
+      this.payeloading = true
       const data = {
         file, name: 'paye_file'
       }
-      this.$store.commit('api/SET_ID_FILE_NAME', file.name)
+      this.$store.commit('api/SET_PAYE_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
         .then(() => {
-          this.applicatonIdFile = file.name
-          this.loading = false
+          this.payePaymentsFile = file.name
+          this.payeloading = false
           this.$toasted.show('Image uploaded successfully', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -205,7 +220,7 @@ export default {
           })
         })
         .catch(() => {
-          this.loading = false
+          this.payeloading = false
           this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -216,15 +231,15 @@ export default {
     btnAddProofOfPaye (e) {
       const file = e.target.files[0]
 
-      this.loading = true
+      this.payeloading = true
       const data = {
-        file, name: 'id_file'
+        file, name: 'paye_file'
       }
-      this.$store.commit('api/SET_ID_FILE_NAME', file.name)
+      this.$store.commit('api/SET_PAYE_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
         .then(() => {
-          this.applicatonIdFile = file.name
-          this.loading = false
+          this.payePaymentsFile = file.name
+          this.payeloading = false
           this.$toasted.show('Image uploaded successfully', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -232,7 +247,7 @@ export default {
           })
         })
         .catch(() => {
-          this.loading = false
+          this.payeloading = false
           this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -242,15 +257,15 @@ export default {
     },
     ssnitStatement (e) {
       const file = e.dataTransfer.files[0]
-      this.loading = true
+      this.ssnitloading = true
       const data = {
         file, name: 'ssnit_file'
       }
-      this.$store.commit('api/SET_ID_FILE_NAME', file.name)
+      this.$store.commit('api/SET_SSNIT_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
         .then(() => {
-          this.applicatonIdFile = file.name
-          this.loading = false
+          this.ssnitStatementFile = file.name
+          this.ssnitloading = false
           this.$toasted.show('Image uploaded successfully', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -258,7 +273,7 @@ export default {
           })
         })
         .catch(() => {
-          this.loading = false
+          this.ssnitloading = false
           this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -269,15 +284,15 @@ export default {
     btnAddSsnitStatement (e) {
       const file = e.target.files[0]
 
-      this.loading = true
+      this.ssnitloading = true
       const data = {
-        file, name: 'id_file'
+        file, name: 'ssnit_file'
       }
-      this.$store.commit('api/SET_ID_FILE_NAME', file.name)
+      this.$store.commit('api/SET_SSNIT_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
         .then(() => {
-          this.applicatonIdFile = file.name
-          this.loading = false
+          this.ssnitStatementFile = file.name
+          this.ssnitloading = false
           this.$toasted.show('Image uploaded successfully', {
             theme: 'toasted-primary',
             position: 'top-right',
@@ -285,7 +300,7 @@ export default {
           })
         })
         .catch(() => {
-          this.loading = false
+          this.ssnitloading = false
           this.$toasted.error('Could not upload image', {
             theme: 'toasted-primary',
             position: 'top-right',
