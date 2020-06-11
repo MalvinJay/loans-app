@@ -11,7 +11,7 @@
           <p class="font-bold">
             Amount Requested
           </p>
-          <p>GHS {{ general.requested_loan_amount }}</p>
+          <p>GHS {{ requestedLoanAmount }}</p>
           <!-- <p class="font-bold">
             Purpose of Fund
           </p>
@@ -26,7 +26,7 @@
           <p>N/A</p> -->
         </div>
         <div class="mt-10">
-          <p class="uppercase mt-5 edit cursor-pointer">
+          <p class="uppercase mt-5 edit cursor-pointer" @click="editInfo">
             EDIT
           </p>
         </div>
@@ -53,10 +53,15 @@
           <p class="font-bold">
             Email Address
           </p>
-          <p>{{ general.primary_email }}</p>
+          <p v-if="general.primary_email !== undefined">
+            {{ general.primary_email }}
+          </p>
+          <p v-else>
+            N/A
+          </p>
         </div>
         <div class="mt-10">
-          <p class="uppercase mt-5 edit cursor-pointer">
+          <p class="uppercase mt-5 edit cursor-pointer" @click="editPersonal">
             EDIT
           </p>
         </div>
@@ -79,7 +84,12 @@
           <p class="font-bold">
             Business Email
           </p>
-          <p>{{ general.business_email }}</p>
+          <p v-if="general.business_email !== undefined">
+            {{ general.business_email }}
+          </p>
+          <p v-else>
+            N/A
+          </p>
           <p class="font-bold">
             Business Number
           </p>
@@ -90,7 +100,7 @@
           <p>{{ general.years_in_business }}</p>
         </div>
         <div class="mt-10">
-          <p class="uppercase mt-5 edit cursor-pointer">
+          <p class="uppercase mt-5 edit cursor-pointer" @click="editBusiness">
             EDIT
           </p>
         </div>
@@ -109,14 +119,24 @@
           <p class="font-bold">
             Proof of PAYE
           </p>
-          <p>N/A</p>
+          <p v-if="general.paye_file_name !== undefined">
+            {{ general.paye_file_name }}
+          </p>
+          <p v-else>
+            N/A
+          </p>
           <p class="font-bold">
             SSNIT Statement 2019
           </p>
-          <p>N/A</p>
+          <p v-if="general.ssnit_file_name !== undefined">
+            {{ general.ssnit_file_name }}
+          </p>
+          <p v-else>
+            N/A
+          </p>
         </div>
         <div class="mt-10">
-          <p class="uppercase mt-5 edit cursor-pointer">
+          <p class="uppercase mt-5 edit cursor-pointer" @click="editDocs">
             EDIT
           </p>
         </div>
@@ -228,6 +248,9 @@ export default {
     general () {
       return this.$store.state.api.general
     },
+    requestedLoanAmount () {
+      return this.$store.getters['api/requestedLoanAmount']
+    },
     fundRoles () {
       return this.$store.getters['pages/fundRoles']
     }
@@ -257,6 +280,18 @@ export default {
             })
           }
         })
+    },
+    editInfo () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 0)
+    },
+    editPersonal () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
+    },
+    editBusiness () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+    },
+    editDocs () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
     }
   }
 }
