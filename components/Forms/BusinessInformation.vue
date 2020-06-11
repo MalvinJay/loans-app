@@ -222,7 +222,7 @@
         <button class="button-small previous" @click="movePrevious">
           Previous
         </button>
-        <button class="button-small previous small">
+        <button class="button-small previous small" @click="save">
           Save
         </button>
       </div>
@@ -637,8 +637,8 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
-              v-model.number="total_income_statement.net_profit_17"
-              type="number"
+              v-model="total_income_statement.net_profit_17"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -649,7 +649,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="total_income_statement.net_profit_18"
-              type="number"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -660,7 +660,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="total_income_statement.net_profit_19"
-              type="number"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -671,7 +671,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
             <Input
               v-model.number="total_income_statement.net_profit_apr_20"
-              type="number"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -682,7 +682,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="total_income_statement.net_profit_20"
-              type="number"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -2005,7 +2005,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[0].age" type="number" small />
+            <Input v-model.number="directors_list[0].age" type="text" regex="^[1-9][0-9]?$|^100$" small />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2092,7 +2092,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[1].age" type="number" small />
+            <Input v-model.number="directors_list[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2179,7 +2179,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[2].age" type="number" small />
+            <Input v-model.number="directors_list[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2266,7 +2266,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[3].age" type="number" small />
+            <Input v-model.number="directors_list[3].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2353,7 +2353,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[4].age" type="number" small />
+            <Input v-model.number="directors_list[4].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2496,8 +2496,8 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
-              v-model.number="total_micro_statement.profit_18"
-              type="number"
+              v-model="total_micro_statement.profit_18"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -2507,8 +2507,8 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
             <Input
-              v-model.number="total_micro_statement.profit_19"
-              type="number"
+              v-model="total_micro_statement.profit_19"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -2518,8 +2518,8 @@
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
             <Input
-              v-model.number="total_micro_statement.profit_20"
-              type="number"
+              v-model="total_micro_statement.profit_20"
+              type="text"
               placeholder="GHS"
               money
               small
@@ -2564,7 +2564,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="business_owner[0].age" type="number" small />
+            <Input v-model.number="business_owner[0].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2624,7 +2624,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model="business_owner[1].age" small />
+            <Input v-model="business_owner[1].age" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2683,7 +2683,7 @@
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model="business_owner[2].age" small />
+            <Input v-model="business_owner[2].age" small regex="^[1-9][0-9]?$|^100$" />
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
@@ -2869,9 +2869,10 @@ export default {
         const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
         const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-        this.total_income_statement.net_profit_17 = (income.total_revenue - rawMaterials -
+        const data = (income.total_revenue - rawMaterials -
         totalSalaries - totalExpenses - totalLoanRepayment -
         depreciationChargeAssets - totalTaxesCharge)
+        this.total_income_statement.net_profit_17 = this.thousandSeprator(data)
       },
       deep: true
     },
@@ -2885,10 +2886,11 @@ export default {
         const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
         const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-        this.total_micro_statement.profit_18 = income.total_revenue - income.total_expenses
-        this.total_income_statement.net_profit_18 = (income.total_revenue - rawMaterials -
+        this.total_micro_statement.profit_18 = this.thousandSeprator(income.total_revenue - totalExpenses)
+        const data = (income.total_revenue - rawMaterials -
         totalSalaries - totalExpenses - totalLoanRepayment -
         depreciationChargeAssets - totalTaxesCharge)
+        this.total_income_statement.net_profit_18 = this.thousandSeprator(data)
       },
       deep: true
     },
@@ -2902,10 +2904,11 @@ export default {
         const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
         const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-        this.total_micro_statement.profit_19 = income.total_revenue - income.total_expenses
-        this.total_income_statement.net_profit_19 = (income.total_revenue - rawMaterials -
+        this.total_micro_statement.profit_19 = this.thousandSeprator(income.total_revenue - totalExpenses)
+        const data = (income.total_revenue - rawMaterials -
         totalSalaries - totalExpenses - totalLoanRepayment -
         depreciationChargeAssets - totalTaxesCharge)
+        this.total_income_statement.net_profit_19 = this.thousandSeprator(data)
       },
       deep: true
     },
@@ -2919,10 +2922,11 @@ export default {
         const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
         const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-        this.total_micro_statement.profit_20 = income.total_revenue - income.total_expenses
-        this.total_income_statement.net_profit_20 = (income.total_revenue - rawMaterials -
+        this.total_micro_statement.profit_20 = this.thousandSeprator(income.total_revenue - totalExpenses)
+        const data = (income.total_revenue - rawMaterials -
         totalSalaries - totalExpenses - totalLoanRepayment -
         depreciationChargeAssets - totalTaxesCharge)
+        this.total_income_statement.net_profit_20 = this.thousandSeprator(data)
       },
       deep: true
     },
@@ -2936,9 +2940,10 @@ export default {
         const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
         const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
 
-        this.total_income_statement.net_profit_apr_20 = (income.total_revenue - rawMaterials -
+        const data = (income.total_revenue - rawMaterials -
         totalSalaries - totalExpenses - totalLoanRepayment -
         depreciationChargeAssets - totalTaxesCharge)
+        this.total_income_statement.net_profit_apr_20 = this.thousandSeprator(data)
       },
       deep: true
     },
@@ -2946,6 +2951,70 @@ export default {
       this.$store.commit('pages/SET_DISTRICTS', value)
     },
     show (value) {
+      const data = this.aggregate()
+      if (value === false) {
+        this.$store.commit('api/SET_GENERAL_DATA', data)
+      }
+    }
+  },
+  validations: {
+    general: {
+      business_address: {
+        required
+      },
+      business_association: {
+        required
+      },
+      business_district: {
+        required
+      },
+      business_name: {
+        required
+      },
+      business_phone_number: {
+        required
+      },
+      business_services: {
+        required
+      },
+      business_town: {
+        required
+      },
+      covid_products: {
+        required
+      },
+      industry: {
+        required
+      },
+      legal_organization: {
+        required
+      },
+      social_enterprise: {
+        required
+      },
+      tin_number: {
+        required
+      }
+    }
+  },
+  created () {
+    // eslint-disable-next-line no-console
+    if (this.$route.params.amount < 145000) {
+      this.micro = true
+    }
+  },
+  mounted () {
+    this.general.annual_sales = JSON.parse(
+      localStorage.getItem('application_object')
+    ).annual_sales
+    this.annual_sales_display = JSON.parse(
+      localStorage.getItem('application_object')
+    )
+      .annual_sales.toString()
+      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+  },
+  methods: {
+    aggregate () {
       const data = Object.assign({}, this.general)
 
       // TODO: refactor deep cloning using lodash
@@ -3015,68 +3084,8 @@ export default {
           : directorsList
       data.credit_facilities = creditFacilities
       data.business_region = this.region
-      if (value === false) {
-        this.$store.commit('api/SET_GENERAL_DATA', data)
-      }
-    }
-  },
-  validations: {
-    general: {
-      business_address: {
-        required
-      },
-      business_association: {
-        required
-      },
-      business_district: {
-        required
-      },
-      business_name: {
-        required
-      },
-      business_phone_number: {
-        required
-      },
-      business_services: {
-        required
-      },
-      business_town: {
-        required
-      },
-      covid_products: {
-        required
-      },
-      industry: {
-        required
-      },
-      legal_organization: {
-        required
-      },
-      social_enterprise: {
-        required
-      },
-      tin_number: {
-        required
-      }
-    }
-  },
-  created () {
-    // eslint-disable-next-line no-console
-    if (this.$route.params.amount < 145000) {
-      this.micro = true
-    }
-  },
-  mounted () {
-    this.general.annual_sales = JSON.parse(
-      localStorage.getItem('application_object')
-    ).annual_sales
-    this.annual_sales_display = JSON.parse(
-      localStorage.getItem('application_object')
-    )
-      .annual_sales.toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-  },
-  methods: {
+      return data
+    },
     moveNext () {
       this.$v.$touch()
       if (this.$v.$invalid) {
@@ -3152,6 +3161,33 @@ export default {
     doneEmployeesModal () {
       this.checkEmployeesModal = true
       this.employeesModal = false
+    },
+    async save () {
+      this.$toasted.show('Saved', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 7000
+      })
+      await (new Promise((resolve, reject) => {
+        const data = this.aggregate()
+        this.$store.commit('api/SET_GENERAL_DATA', data)
+        resolve(data)
+      }))
+      this.$store.dispatch('api/saveApplication')
+        .then(() => {
+          this.$toasted.show('Saved', {
+            theme: 'toasted-primary',
+            position: 'top-center',
+            duration: 5000
+          })
+        })
+    },
+    thousandSeprator (amount) {
+      if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      } else {
+        return amount
+      }
     }
   }
 }
