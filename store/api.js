@@ -98,12 +98,27 @@ export const actions = {
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)
           resolve(result)
-          // eslint-disable-next-line no-console
-          console.log(result)
         })
         .catch((error) => {
-          // eslint-disable-next-line no-console
-          // console.log(error.request.response)
+          const errors = JSON.parse(error.request.response)
+          commit('SET_ERRORS', errors)
+          reject(errors)
+        })
+    })
+  },
+  saveApplication ({ state, commit }) {
+    return new Promise((resolve, reject) => {
+      const config = {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      }
+      const url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
+      this.$axios.$post(url, state.general, config)
+        .then((result) => {
+          resolve(result)
+        })
+        .catch((error) => {
           const errors = JSON.parse(error.request.response)
           commit('SET_ERRORS', errors)
           reject(errors)

@@ -48,7 +48,8 @@ export default {
       if (this.selected.length === 0) {
         return "Select all that's applicable"
       } else {
-        return this.list[this.selected[0] - 1].name
+        // return this.list[this.selected[0] - 1].name
+        return this.list.find(item => item.val === this.selected[0]).name
       }
     }
   },

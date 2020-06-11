@@ -9,6 +9,7 @@
         :class="{small: small, error:error, textRight:money }"
         :value="value"
         :disabled="disabled"
+        lang="en"
         @input="validateSend"
         @blur="onBlurNumber"
       >
