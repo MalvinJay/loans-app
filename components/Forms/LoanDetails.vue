@@ -314,17 +314,6 @@ export default {
     },
     show (value) {
       // alert('proper')
-      this.$v.$touch()
-      // alert(this.$v.$invalid)
-      if (this.currentTab === 0) {
-        alert(this.currentTab)
-        if (this.$v.$invalid) {
-        // this.show = true
-          this.$store.commit('pages/SET_FORM_ERRORS', 'please fill all fields before moving to next page')
-        } else {
-          this.$store.commit('pages/SET_FORM_ERRORS', 'loandetail')
-        }
-      }
       const data = Object.assign({}, this.general) // create copy general object
 
       // merge general object with necessary data

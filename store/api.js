@@ -10,6 +10,11 @@ export const getters = {
       // eslint-disable-next-line no-console
       return state.errors.errors[i][0]
     }
+  },
+  requestedLoanAmount (state) {
+    if (state.general.requested_loan_amount !== undefined) {
+      return state.general.requested_loan_amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    }
   }
 }
 
@@ -22,6 +27,12 @@ export const mutations = {
   },
   SET_ID_FILE_NAME (state, data) {
     state.general.id_file_name = data
+  },
+  SET_SSNIT_FILE_NAME (state, data) {
+    state.general.ssnit_file_name = data
+  },
+  SET_PAYE_FILE_NAME (state, data) {
+    state.general.paye_file_name = data
   },
   SET_COVID_PROOF_OF_MAY (state, data) {
     state.covidProofOfMay20 = data
