@@ -10,7 +10,7 @@
     </div>
     <div class="relative dropdown-container">
       <!-- hello -->
-      <div v-if="showDropdown" v-click-outside="toggleDropdown" class="dropdown">
+      <div v-if="showDropdown" v-click-outside="toggleDropdown" class="dropdown" :class="{error: error}">
         <div v-for="(item, i) in list" :key="i">
           <input
             :id="item.name"
@@ -21,6 +21,7 @@
           >
           <label for="person">{{ item.name }}</label>
         </div>
+        <small v-if="error" class="text-sm text-red-700 block">Can't choose more than 3</small>
       </div>
     </div>
   </div>
@@ -38,6 +39,7 @@ export default {
   },
   data () {
     return {
+      error: false,
       selected: [],
       showDropdown: false
     }
@@ -56,7 +58,12 @@ export default {
   methods: {
     addValue (e) {
       // this.selected.push(e.target.value)
-      this.$emit('selected', this.selected)
+      if (this.selected.length > 3) {
+        this.error = true
+      } else {
+        this.error = false
+      }
+      this.$emit('selected', this.selected.slice(0, 3))
     },
     toggleDropdown () {
       this.showDropdown = !this.showDropdown
@@ -93,6 +100,9 @@ export default {
   top: 0;
   padding: 10px;
   border-radius: 6px;
+  &.error {
+    border: 1px solid #e41414;
+  }
 }
 .dropdown-container {
   position: absolute;

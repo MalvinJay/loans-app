@@ -6,9 +6,9 @@
         v-if="visible && type==='number'"
         :type="type"
         :placeholder="placeholder"
-        :class="{small: small, error:error, textRight:money }"
+        :class="{small: small, error:error, textRight:money, grey:grey }"
         :value="value"
-        :disabled="disabled"
+        :disabled="disabled || grey"
         lang="en"
         @input="validateSend"
         @blur="onBlurNumber"
@@ -19,8 +19,8 @@
         v-model="amount"
         type="text"
         :placeholder="placeholder"
-        :class="{small: small, error:error, textRight:money }"
-        :disabled="disabled"
+        :class="{small: small, error:error, textRight:money, grey:grey }"
+        :disabled="disabled || grey"
         @input="validateSend"
         @focus="onFocusText"
       >
@@ -29,8 +29,9 @@
       v-else
       :type="type"
       :placeholder="placeholder"
-      :class="{small: small, error:error, textRight:money }"
+      :class="{small: small, error:error, textRight:money, grey:grey }"
       :value="value"
+      :disabled="grey"
       @input="validateSend"
       @blur="checkOptional"
     >
@@ -80,6 +81,11 @@ export default {
       default: ''
     },
     optional: {
+      required: false,
+      default: false,
+      type: Boolean
+    },
+    grey: {
       required: false,
       default: false,
       type: Boolean
@@ -176,6 +182,9 @@ input {
   }
   &.textRight {
     text-align: right;
+  }
+  &.grey {
+    background-color: $color-gray-alt;
   }
 }
 input::-webkit-outer-spin-button,

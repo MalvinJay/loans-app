@@ -1442,12 +1442,13 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Profit Before Interest Tax</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Profit Before Interest and Tax</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
               v-model.number="cash_flow_2017.ebit"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1458,6 +1459,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="cash_flow_2018.ebit"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1468,6 +1470,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.ebit"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1478,6 +1481,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="cash_flow_2020.ebit"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1491,6 +1495,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
               v-model.number="cash_flow_2017.depreciation"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1501,6 +1506,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="cash_flow_2018.depreciation"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1511,6 +1517,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.depreciation"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1521,6 +1528,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="cash_flow_2020.depreciation"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1534,6 +1542,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
               v-model.number="cash_flow_2017.working_capital_change"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1544,6 +1553,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="cash_flow_2018.working_capital_change"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1554,6 +1564,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.working_capital_change"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1564,6 +1575,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="cash_flow_2020.working_capital_change"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1845,6 +1857,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
               v-model.number="cash_flow_2017.beginning_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1855,6 +1868,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="cash_flow_2018.beginning_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1865,6 +1879,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.beginning_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1875,6 +1890,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="cash_flow_2020.beginning_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1931,6 +1947,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
             <Input
               v-model.number="cash_flow_2017.end_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1941,6 +1958,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
             <Input
               v-model.number="cash_flow_2018.end_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1951,6 +1969,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
             <Input
               v-model.number="cash_flow_2019.end_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
@@ -1961,6 +1980,7 @@
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
             <Input
               v-model.number="cash_flow_2020.end_cash"
+              grey
               type="number"
               placeholder="GHS"
               money
