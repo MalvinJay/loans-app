@@ -54,7 +54,7 @@
         <p class="text-xl">
           Application and Documents
         </p>
-        <div class="docs flex text-white gap-10 my-5">
+        <div class="docs grid text-white gap-10 my-5">
           <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/google-docs.png" alt srcset>
             <p class="text-center">
@@ -196,6 +196,7 @@ export default {
   color: $color-secondary;
 }
 .docs {
+  grid-template-columns: 16rem 16rem 16rem 16rem;
   .box {
     img {
       margin-bottom: 3rem;
