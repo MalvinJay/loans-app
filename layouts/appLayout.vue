@@ -44,7 +44,10 @@ main {
   background-color: $color-secondary;
   height: 100vh;
   width: 13rem;
-  // padding-top: 1rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
 }
 .links {
   ul {
@@ -65,14 +68,19 @@ main {
 }
 .right {
   width: 100%;
+  margin-left: 13rem;
 }
 .top-bar {
   background-color: $white;
   width: 100%;
   height: 100px;
   padding: 25px 0;
+  position: fixed;
+  top: 0;
   .logo {
     margin-left: 73px;
+    width: 10rem;
+    height: auto;
   }
   .r-s {
     margin-right: 62px;
@@ -96,7 +104,7 @@ main {
     }
   }
 }
-// .content {
-//   background-color: ;
-// }
+.content {
+  margin-top: 100px;
+}
 </style>
