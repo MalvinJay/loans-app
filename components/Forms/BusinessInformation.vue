@@ -1,232 +1,281 @@
 <template>
   <div v-show="show">
-    <div class="grid form-c py-20">
-      <div class="mb-10">
-        <Input v-model="general.business_name" type="text" name="Business Name" />
-      </div>
-      <div class="mb-10">
-        <Input
-          v-model="general.ssnit_employer_no"
-          type="text"
-          name="SSNIT Employer Number (Optional)"
-          regex="[A-Z]{1}[0-9]{12}$"
-          optional
-        />
-      </div>
-      <div>
-        <label
-          class="block text-gray-700 text-sm font-normal mb-2 font-bold"
-          for="username"
-        >Business Address</label>
-      </div>
-      <div />
-      <div class="mb-12">
-        <div class="mb-6">
-          <Input v-model="general.business_address" type="text" placeholder="Address" />
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(moveNext)">
+        <div class="grid form-c py-20">
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input v-model="general.business_name" type="text" name="Business Name" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-10">
+            <Input
+              v-model="general.ssnit_employer_no"
+              type="text"
+              name="SSNIT Employer Number (Optional)"
+              regex="[A-Z]{1}[0-9]{12}$"
+              optional
+            />
+          </div>
+          <div>
+            <label
+              class="block text-gray-700 text-sm font-normal mb-2 font-bold"
+              for="username"
+            >Business Address</label>
+          </div>
+          <div />
+          <div class="mb-12">
+            <div class="mb-6">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.business_address" type="text" placeholder="Address" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Select v-model="region" first="Region" :items="regions" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="mb-12">
+            <div class="mb-6">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.business_town" type="text" placeholder="Town" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Select v-model="general.business_district" first="District" :items="districts" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="mb-12">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model="general.business_phone_number"
+                type="text"
+                name="Business Phone Number"
+                regex="0[2-5]{1}[0-9]{7,8}$"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model="general.business_email"
+                type="email"
+                name="Business Email Address (Optional)"
+                optional
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12 text">
+            <label class="block text-gray-900 text-sm font-bold mb-2" :disabled="true">Annual Sales</label>
+            <input v-model="annual_sales_display" type="text" :disabled="true" class="text-right">
+          </div>
+          <div class="mb-12">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model="general.tin_number"
+                type="text"
+                name="Tax Identification Number (TIN)"
+                optional
+                regex="([A-Z]{1})([0-9]{10})$"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <Input
+              v-model="general.business_digital_address_code"
+              type="text"
+              name="Business Digital Address Code (Optional)"
+              placeholder="GA-xxx-xxxx"
+              regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
+              optional
+            />
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Industry</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Select v-model="general.industry" :items="industry" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Legal Organization</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Select v-model="general.legal_organization" :items="legalOrganization" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model="general.business_services"
+                type="text"
+                name="Main Product(s) or Service(s)"
+                placeholder="Please type it in"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Business Mission</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <div class="flex mb-3">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="1"
+                    v-model="general.social_enterprise"
+                    type="checkbox"
+                    true-value="1"
+                    false-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="2"
+                    v-model="general.social_enterprise"
+                    type="checkbox"
+                    false-value="1"
+                    true-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <label
+              class="block text-gray-900 text-sm font-normal mb-2"
+            >Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <div class="flex">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="1"
+                    v-model="general.covid_products"
+                    type="checkbox"
+                    true-value="1"
+                    false-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="2"
+                    v-model="general.covid_products"
+                    type="checkbox"
+                    false-value="1"
+                    true-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Select v-model="general.business_association" :items="businessAssociation" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">
+              If other, please provide your Business Association
+            </label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-if="general.business_association === '80'"
+                v-model="general.other_business_association"
+                type="text"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div
+            v-if="general.legal_organization == '1' || general.legal_organization == '2'"
+            class="mb-12"
+          >
+            <label class="block text-gray-900 text-sm font-bold mb-2">Business Owner</label>
+            <button class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
+              Click to Fill in Template
+              <span v-if="checkOwnerModal">&#10003;</span>
+            </button>
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
+            <button class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
+              Click to Fill in Template
+              <span v-if="checkEmployeesModal">&#10003;</span>
+            </button>
+          </div>
+          <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
+            <button class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
+              Click to Fill in Template
+              <span v-if="checkMicroIncomeModal">&#10003;</span>
+            </button>
+          </div>
+          <div v-else class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
+            <button class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
+              Click to Fill in Template
+              <span v-if="checkIncomeModal">&#10003;</span>
+            </button>
+          </div>
+          <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
+            <button class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
+              Click to Fill in Template
+              <span v-if="checkBalanceSheetModal">&#10003;</span>
+            </button>
+          </div>
+          <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
+            <button class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
+              Click to Fill in Template
+              <span v-if="checkCashFlowModal">&#10003;</span>
+            </button>
+          </div>
+          <div
+            v-if="general.legal_organization === '3' || general.legal_organization === '4' || general.legal_organization === '5'"
+            class="mb-12"
+          >
+            <label class="block text-gray-900 text-sm font-bold mb-2">Director and Shareholder List</label>
+            <button class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
+              Click to Fill in Template
+              <span v-if="checkShareHolderModal">&#10003;</span>
+            </button>
+          </div>
         </div>
-        <div>
-          <Select v-model="region" first="Region" :items="regions" />
+        <div class="nav-buttons">
+          <div class="flex flex-wrap gap-8">
+            <button class="next" type="submit">
+              Next
+            </button>
+            <button class="previous" type="button" @click="movePrevious">
+              Previous
+            </button>
+            <button class="previous small" type="button" @click="save">
+              Save
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="mb-12">
-        <div class="mb-6">
-          <Input v-model="general.business_town" type="text" placeholder="Town" />
-        </div>
-        <div>
-          <Select v-model="general.business_district" first="District" :items="districts" />
-        </div>
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="general.business_phone_number"
-          type="text"
-          name="Business Phone Number"
-          regex="0[2-5]{1}[0-9]{7,8}$"
-        />
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="general.business_email"
-          type="email"
-          name="Business Email Address (Optional)"
-          optional
-        />
-      </div>
-      <div class="mb-12 text">
-        <label class="block text-gray-900 text-sm font-bold mb-2" :disabled="true">Annual Sales</label>
-        <input v-model="annual_sales_display" type="text" :disabled="true" class="text-right">
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="general.tin_number"
-          type="text"
-          name="Tax Identification Number (TIN)"
-          optional
-          regex="([A-Z]{1})([0-9]{10})$"
-        />
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="general.business_digital_address_code"
-          type="text"
-          name="Business Digital Address Code (Optional)"
-          placeholder="GA-xxx-xxxx"
-          regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
-          optional
-        />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Industry</label>
-        <Select v-model="general.industry" :items="industry" />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Legal Organization</label>
-        <Select v-model="general.legal_organization" :items="legalOrganization" />
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="general.business_services"
-          type="text"
-          name="Main Product(s) or Service(s)"
-          placeholder="Please type it in"
-        />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Business Mission</label>
-        <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
-        <div class="flex mb-3">
-          <label class="checkbox">
-            Yes
-            <input
-              id="1"
-              v-model="general.social_enterprise"
-              type="checkbox"
-              true-value="1"
-              false-value="0"
-            >
-            <span class="checkmark" />
-          </label>
-          <label class="checkbox">
-            No
-            <input
-              id="2"
-              v-model="general.social_enterprise"
-              type="checkbox"
-              false-value="1"
-              true-value="0"
-            >
-            <span class="checkmark" />
-          </label>
-        </div>
-        <label
-          class="block text-gray-900 text-sm font-normal mb-2"
-        >Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)</label>
-        <div class="flex">
-          <label class="checkbox">
-            Yes
-            <input
-              id="1"
-              v-model="general.covid_products"
-              type="checkbox"
-              true-value="1"
-              false-value="0"
-            >
-            <span class="checkmark" />
-          </label>
-          <label class="checkbox">
-            No
-            <input
-              id="2"
-              v-model="general.covid_products"
-              type="checkbox"
-              false-value="1"
-              true-value="0"
-            >
-            <span class="checkmark" />
-          </label>
-        </div>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
-        <Select v-model="general.business_association" :items="businessAssociation" />
-        <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">
-          If other, please provide your Business Association
-        </label>
-        <Input
-          v-if="general.business_association === '80'"
-          v-model="general.other_business_association"
-          type="text"
-        />
-      </div>
-      <div
-        v-if="general.legal_organization == '1' || general.legal_organization == '2'"
-        class="mb-12"
-      >
-        <label class="block text-gray-900 text-sm font-bold mb-2">Business Owner</label>
-        <button class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
-          Click to Fill in Template
-          <span v-if="checkOwnerModal">&#10003;</span>
-        </button>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
-        <button class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
-          Click to Fill in Template
-          <span v-if="checkEmployeesModal">&#10003;</span>
-        </button>
-      </div>
-      <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-        <button class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
-          Click to Fill in Template
-          <span v-if="checkMicroIncomeModal">&#10003;</span>
-        </button>
-      </div>
-      <div v-else class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-        <button class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
-          Click to Fill in Template
-          <span v-if="checkIncomeModal">&#10003;</span>
-        </button>
-      </div>
-      <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
-        <button class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
-          Click to Fill in Template
-          <span v-if="checkBalanceSheetModal">&#10003;</span>
-        </button>
-      </div>
-      <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
-        <button class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
-          Click to Fill in Template
-          <span v-if="checkCashFlowModal">&#10003;</span>
-        </button>
-      </div>
-      <div
-        v-if="general.legal_organization === '3' || general.legal_organization === '4' || general.legal_organization === '5'"
-        class="mb-12"
-      >
-        <label class="block text-gray-900 text-sm font-bold mb-2">Director and Shareholder List</label>
-        <button class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
-          Click to Fill in Template
-          <span v-if="checkShareHolderModal">&#10003;</span>
-        </button>
-      </div>
-    </div>
-    <div class="nav-buttons flex">
-      <div>
-        <button class="button-small next" @click="moveNext">
-          Next
-        </button>
-        <button class="button-small previous" @click="movePrevious">
-          Previous
-        </button>
-        <button class="button-small previous small" @click="save">
-          Save
-        </button>
-      </div>
-    </div>
+      </form>
+    </ValidationObserver>
     <!-- =============================================================================================================
     ========================================= INCOME MODAL ===================================================-->
 
@@ -2796,12 +2845,15 @@
   </div>
 </template>
 <script>
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { required } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
 export default {
   components: {
+    ValidationProvider,
+    ValidationObserver,
     Input,
     Select,
     Modal

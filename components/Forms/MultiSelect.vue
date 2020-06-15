@@ -63,7 +63,7 @@ export default {
       } else {
         this.error = false
       }
-      this.$emit('selected', this.selected.slice(0, 3))
+      this.$emit('input', this.selected.slice(0, 3))
     },
     toggleDropdown () {
       this.showDropdown = !this.showDropdown
