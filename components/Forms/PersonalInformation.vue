@@ -2,10 +2,10 @@
   <div v-show="show">
     <div class="grid form-b py-20">
       <div class="mb-10">
-        <Input v-model="personalInfo.first_name" type="text" name="First Name" />
+        <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[a-zA-Z ]*$" />
       </div>
       <div class="mb-10">
-        <Input v-model="personalInfo.last_name" type="text" name="Last Name" />
+        <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[a-zA-Z ]*$" />
       </div>
       <div>
         <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
@@ -87,7 +87,7 @@
           type="date"
           name
           min="1920-01-01"
-          max="2010-01-01"
+          max="2004-12-12"
         >
       </div>
     </div>
