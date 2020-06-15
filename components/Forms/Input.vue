@@ -31,7 +31,7 @@
       :placeholder="placeholder"
       :class="{small: small, error:error, textRight:money, grey:grey }"
       :value="value"
-      :disabled="grey"
+      :disabled="grey || disabled"
       @input="validateSend"
       @blur="checkOptional"
     >
