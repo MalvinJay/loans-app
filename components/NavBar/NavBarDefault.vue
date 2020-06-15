@@ -2,9 +2,9 @@
   <div class="navbar" :class="{ pink: alt}">
     <div class="uppercase nav nav-margin text-sm">
       <ul>
-        <li><a href="">Eligibility Criteria</a></li>
-        <li><a href="">Faq</a></li>
-        <li><a href="">Covid-19 business tips</a></li>
+        <li><a href="/eligibility-criteria">Eligibility Criteria</a></li>
+        <li><a href="/faqs">Faq</a></li>
+        <li><a href="/business-tips">Covid-19 business tips</a></li>
         <li><a href="">About the Programme</a></li>
       </ul>
       <a href="/" class="logo mt-4 flex rem-margin">

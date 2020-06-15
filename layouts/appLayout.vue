@@ -3,11 +3,41 @@
     <div class="sidebar pt-32 px-2">
       <div class="links">
         <ul>
-          <li><a> <img src="@/assets/img/app-home.png" alt=""> Overview</a></li>
-          <li><a> <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details</a></li>
-          <li><a> <img src="@/assets/img/app-docs.png" alt=""> Current Applcations</a></li>
-          <li><a> <img src="@/assets/img/app-return.png" alt=""> Previous Applcations</a></li>
-          <li><a> <img src="@/assets/img/app-messages.png" alt=""> Message</a></li>
+          <li>
+            <a>
+              <nuxt-link to="dashboard">
+                <img src="@/assets/img/app-home.png" alt=""> Overview
+              </nuxt-link>
+            </a>
+          </li>
+          <li>
+            <a>
+              <nuxt-link to="loandetails">
+                <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details
+              </nuxt-link>
+            </a>
+          </li>
+          <li>
+            <a>
+              <nuxt-link to="">
+                <img src="@/assets/img/app-docs.png" alt=""> Current Applcations
+              </nuxt-link>
+            </a>
+          </li>
+          <li>
+            <a>
+              <nuxt-link to="">
+                <img src="@/assets/img/app-return.png" alt=""> Previous Applcations
+              </nuxt-link>
+            </a>
+          </li>
+          <li>
+            <a>
+              <nuxt-link to="messages">
+                <img src="@/assets/img/app-messages.png" alt=""> Message
+              </nuxt-link>
+            </a>
+          </li>
         </ul>
       </div>
     </div>
@@ -56,7 +86,7 @@ main {
         display: flex;
         font-size: 0.8rem;
         color: $white;
-        margin-bottom: 1.875rem;
+        margin-bottom: 1rem;
         img {
           margin-right: 10px;
           width: 20px;
@@ -106,5 +136,14 @@ main {
 }
 .content {
   margin-top: 100px;
+}
+@include for-tablet-portrait-only {
+  .sidebar {
+    width: 0;
+    display: none;
+  }
+  .right {
+    margin-left: 0 !important;
+  }
 }
 </style>
