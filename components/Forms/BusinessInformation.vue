@@ -65,15 +65,12 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input
-                v-model="general.business_email"
-                type="email"
-                name="Business Email Address (Optional)"
-                optional
-              />
-              <small class="text-sm text-red-700">{{ errors[0] }}</small>
-            </ValidationProvider>
+            <Input
+              v-model="general.business_email"
+              type="email"
+              name="Business Email Address (Optional)"
+              optional
+            />
           </div>
           <div class="mb-12 text">
             <label class="block text-gray-900 text-sm font-bold mb-2" :disabled="true">Annual Sales</label>
@@ -196,56 +193,53 @@
             <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">
               If other, please provide your Business Association
             </label>
-            <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input
-                v-if="general.business_association === '80'"
-                v-model="general.other_business_association"
-                type="text"
-              />
-              <small class="text-sm text-red-700">{{ errors[0] }}</small>
-            </ValidationProvider>
+            <Input
+              v-if="general.business_association === '80'"
+              v-model="general.other_business_association"
+              type="text"
+            />
           </div>
           <div
             v-if="general.legal_organization == '1' || general.legal_organization == '2'"
             class="mb-12"
           >
             <label class="block text-gray-900 text-sm font-bold mb-2">Business Owner</label>
-            <button class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
               Click to Fill in Template
               <span v-if="checkOwnerModal">&#10003;</span>
             </button>
           </div>
           <div class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
-            <button class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
               Click to Fill in Template
               <span v-if="checkEmployeesModal">&#10003;</span>
             </button>
           </div>
           <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-            <button class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
               Click to Fill in Template
               <span v-if="checkMicroIncomeModal">&#10003;</span>
             </button>
           </div>
           <div v-else class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-            <button class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
               Click to Fill in Template
               <span v-if="checkIncomeModal">&#10003;</span>
             </button>
           </div>
           <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
-            <button class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
               Click to Fill in Template
               <span v-if="checkBalanceSheetModal">&#10003;</span>
             </button>
           </div>
           <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
-            <button class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
               Click to Fill in Template
               <span v-if="checkCashFlowModal">&#10003;</span>
             </button>
@@ -255,7 +249,7 @@
             class="mb-12"
           >
             <label class="block text-gray-900 text-sm font-bold mb-2">Director and Shareholder List</label>
-            <button class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
+            <button type="button" class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
               Click to Fill in Template
               <span v-if="checkShareHolderModal">&#10003;</span>
             </button>
@@ -887,10 +881,10 @@
             </div>
           </div>
           <div class="my-20 flex gap-3 buttons">
-            <button class="button-small" @click="doneIncomeModal">
+            <button type="submit" class="button-small" @click="doneIncomeModal">
               Done
             </button>
-            <button class="button-small" @click="incomeModal= false">
+            <button type="button" class="button-small" @click="incomeModal= false">
               Cancel
             </button>
           </div>
@@ -1457,10 +1451,10 @@
           </div>
         </div>
         <div class="my-20 flex gap-3 buttons">
-          <button class="button-small" @click="doneBalanceSheetModal">
+          <button type="submit" class="button-small" @click="doneBalanceSheetModal">
             Done
           </button>
-          <button class="button-small" @click="balanceSheetModal= false">
+          <button type="button" class="button-small" @click="balanceSheetModal= false">
             Cancel
           </button>
         </div>
@@ -2038,10 +2032,10 @@
           </div>
         </div>
         <div class="my-20 flex gap-3 buttons">
-          <button class="button-small" @click="doneCashFlowModal">
+          <button type="submit" class="button-small" @click="doneCashFlowModal">
             Done
           </button>
-          <button class="button-small" @click="cashFlowModal= false">
+          <button type="button" class="button-small" @click="cashFlowModal= false">
             Cancel
           </button>
         </div>
@@ -2492,10 +2486,10 @@
           </div>
         </div>
         <div class="my-20 flex gap-3 buttons">
-          <button class="button-small" @click="doneShareHolderModal">
+          <button type="submit" class="button-small" @click="doneShareHolderModal">
             Done
           </button>
-          <button class="button-small" @click="shareHolderModal = false">
+          <button type="button" class="button-small" @click="shareHolderModal = false">
             Cancel
           </button>
         </div>
@@ -2619,7 +2613,7 @@
                 <button class="button-small" type="submit">
                   Done
                 </button>
-                <button class="button-small" @click="microIncomeModal= false">
+                <button type="button" class="button-small" @click="microIncomeModal= false">
                   Cancel
                 </button>
               </div>
@@ -2816,10 +2810,10 @@
           </div>
         </div>
         <div class="my-20 flex gap-3 buttons">
-          <button class="button-small" @click="doneOwnerModal">
+          <button type="submit" class="button-small" @click="doneOwnerModal">
             Done
           </button>
-          <button class="button-small" @click="ownerModal = false">
+          <button type="button" class="button-small" @click="ownerModal = false">
             Cancel
           </button>
         </div>
@@ -2873,7 +2867,7 @@
             <button class="button-small" type="submit">
               Done
             </button>
-            <button class="button-small" @click="employeesModal= false">
+            <button type="button" class="button-small" @click="employeesModal= false">
               Cancel
             </button>
           </div>

@@ -4,14 +4,14 @@
       <form @submit.prevent="handleSubmit(moveNext)">
         <div class="grid form-b py-20">
           <div class="mb-10">
-            <ValidationProvider v-slot="{ errors }" rules="required|alpha">
-              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[a-zA-Z ]*$" />
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-10">
-            <ValidationProvider v-slot="{ errors }" rules="required|alpha">
-              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[a-zA-Z ]*$" />
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
