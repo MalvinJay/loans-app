@@ -45,7 +45,8 @@ export default {
     '~/plugins/v-scroll-lock.js',
     '~/plugins/v-click-outside.js',
     '~/plugins/vue-multiselect.js',
-    '~/plugins/Vuelidate.js'
+    '~/plugins/Vuelidate.js',
+    '~/plugins/vee-validate.js'
   ],
   /*
   ** Nuxt.js dev-modules
@@ -93,6 +94,7 @@ export default {
   ** Build configuration
   */
   build: {
+    transpile: ['vee-validate/dist/rules'],
     /*
     ** You can extend webpack config here
     */

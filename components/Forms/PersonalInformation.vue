@@ -1,120 +1,147 @@
 <template>
   <div v-show="show">
-    <div class="grid form-b py-20">
-      <div class="mb-10">
-        <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[a-zA-Z ]*$" />
-      </div>
-      <div class="mb-10">
-        <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[a-zA-Z ]*$" />
-      </div>
-      <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
-        <div class="flex justify-start">
-          <label class="checkbox">
-            Male
-            <input
-              id="yes"
-              v-model="personalInfo.gender"
-              type="checkbox"
-              true-value="male"
-              false-value="female"
-            >
-            <span class="checkmark" />
-          </label>
-          <label class="checkbox">
-            Female
-            <input
-              id="no"
-              v-model="personalInfo.gender"
-              type="checkbox"
-              true-value="female"
-              false-value="male"
-            >
-            <span class="checkmark" />
-          </label>
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(moveNext)">
+        <div class="grid form-b py-20">
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required|alpha">
+              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[a-zA-Z ]*$" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required|alpha">
+              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[a-zA-Z ]*$" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <div class="flex justify-start">
+                <label class="checkbox">
+                  Male
+                  <input
+                    id="yes"
+                    v-model="personalInfo.gender"
+                    type="checkbox"
+                    true-value="male"
+                    false-value="female"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  Female
+                  <input
+                    id="no"
+                    v-model="personalInfo.gender"
+                    type="checkbox"
+                    true-value="female"
+                    false-value="male"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
+          </div>
+          <div>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
+          </div>
+          <div />
+          <div class="mb-12">
+            <div class="mb-6">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input
+                  v-model="personalInfo.residential_address"
+                  type="text"
+                  placeholder="Residential Address"
+                />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Select v-model="region" first="Region" :items="regions" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="mb-12">
+            <div class="mb-6">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="personalInfo.town" type="text" placeholder="Town" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Select v-model="personalInfo.district" first="District" :items="districts" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="mb-12">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model="personalInfo.phone_number"
+                type="text"
+                name="Main Phone Number"
+                regex="0[2-5]{1}[0-9]{7,8}$"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div class="mb-12">
+            <Input
+              v-model="personalInfo.personal_digital_address_code"
+              type="text"
+              name="Nearest Digital Address Code (Optional)"
+              placeholder="GA-xxx-xxxx"
+              regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
+              optional
+            />
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input
+                id="dob"
+                v-model="personalInfo.dob"
+                type="date"
+                name
+                min="1920-01-01"
+                max="2004-12-12"
+              >
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
         </div>
-      </div>
-      <div class="mb-12">
-        <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
-      </div>
-      <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
-      </div>
-      <div />
-      <div class="mb-12">
-        <div class="mb-6">
-          <Input
-            v-model="personalInfo.residential_address"
-            type="text"
-            placeholder="Residential Address"
-          />
+        <div class="nav-buttons">
+          <div class="flex flex-wrap gap-8">
+            <button type="submit" class="next">
+              Next
+            </button>
+            <button type="button" class="previous" @click="movePrevious">
+              Previous
+            </button>
+          </div>
         </div>
-        <div>
-          <Select v-model="region" first="Region" :items="regions" />
-        </div>
-      </div>
-      <div class="mb-12">
-        <div class="mb-6">
-          <Input v-model="personalInfo.town" type="text" placeholder="Town" />
-        </div>
-        <div>
-          <Select v-model="personalInfo.district" first="District" :items="districts" />
-        </div>
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="personalInfo.phone_number"
-          type="text"
-          name="Main Phone Number"
-          regex="0[2-5]{1}[0-9]{7,8}$"
-        />
-      </div>
-      <div class="mb-12">
-        <Input
-          v-model="personalInfo.personal_digital_address_code"
-          type="text"
-          name="Nearest Digital Address Code (Optional)"
-          placeholder="GA-xxx-xxxx"
-          regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
-          optional
-        />
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
-        <input
-          id="dob"
-          v-model="personalInfo.dob"
-          type="date"
-          name
-          min="1920-01-01"
-          max="2004-12-12"
-        >
-      </div>
-    </div>
-    <div class="nav-buttons flex">
-      <div>
-        <button class="button-small next" @click="moveNext">
-          Next
-        </button>
-        <!-- <button class="button-small next" @click="confirmModal=true">
-          Submit
-        </button> -->
-        <button class="button-small previous" @click="movePrevious">
-          Previous
-        </button>
-        <button class="button-small previous small">
-          Save
-        </button>
-      </div>
-    </div>
+      </form>
+    </ValidationObserver>
   </div>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Input from './Input'
 import Select from './Select'
 export default {
   components: {
+    ValidationProvider,
+    ValidationObserver,
     Input,
     Select
   },
@@ -153,38 +180,6 @@ export default {
       return this.$store.state.pages.currentTab
     }
   },
-  validations: {
-    personalInfo: {
-      first_name: {
-        required
-      },
-      last_name: {
-        required
-      },
-      gender: {
-        required
-      },
-      residential_address: {
-        required
-      },
-      town: {
-        required
-      },
-      district: {
-        required
-      },
-      phone_number: {
-        required
-      },
-      dob: {
-        required
-      }
-    },
-    region: {
-      required
-    }
-
-  },
   watch: {
     region (value) {
       this.$store.commit('pages/SET_DISTRICTS', value)
@@ -216,16 +211,17 @@ export default {
       return data
     },
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please fill in all fields', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+      // this.$v.$touch()
+      // if (this.$v.$invalid) {
+      //   this.$toasted.error('Please fill in all fields', {
+      //     theme: 'toasted-primary',
+      //     position: 'top-center',
+      //     duration: 5000
+      //   })
+      // } else {
+      //   this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+      // }
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 0)

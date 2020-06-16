@@ -1,105 +1,143 @@
 <template>
   <div v-show="show">
-    <div class="grid form-a py-20">
-      <div class="mb-10">
-        <Input v-model.number="loanAmount" name="Amount Requested" type="number" money />
-      </div>
-      <div class="mb-10">
-        <Input v-model.number="years" name="Years in Operation" type="number" disabled />
-      </div>
-      <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-          Are you a startup (i.e. between 0 and 2 years' old)?
-        </label>
-        <div class="flex justify-start mb-12">
-          <label class="checkbox">Yes
-            <input id="yes" v-model="startup" type="checkbox" true-value="true" false-value="false">
-            <span class="checkmark" />
-          </label>
-          <label class="checkbox">No
-            <input id="no" v-model="startup" type="checkbox" false-value="true" true-value="false">
-            <span class="checkmark" />
-          </label>
-        </div>
-        <div class="mb-12">
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-            Can you provide proof of COVID-19 impact?
-          </label>
-          <div class="flex justify-start">
-            <label class="checkbox">Yes
-              <input id="yes" v-model="proofOfImpact" type="checkbox" true-value="true" false-value="false">
-              <span class="checkmark" />
-            </label>
-            <label class="checkbox">No
-              <input id="no" v-model="proofOfImpact" type="checkbox" false-value="true" true-value="false">
-              <span class="checkmark" />
-            </label>
+    <ValidationObserver v-slot="{ handleSubmit }">
+      <form @submit.prevent="handleSubmit(moveNext)">
+        <div class="grid form-a py-20">
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input v-model.number="loanAmount" name="Amount Requested" type="number" money />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
           </div>
-        </div>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-          How has COVID-19 impacted your business?
-        </label>
-        <MultiSelect :list="covidImpacts" @selected="selected" />
-        <div v-if="otherSelected" class="mt-5">
-          <textarea v-model="general.other_covid_impact" name="" rows="10" placeholder="Please write down the impact" />
-        </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-          Proof of COVID-19 Impact Template
-        </label>
-        <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
-          Click to Fill in Template
-          <span v-if="checkModal1">&#10003;</span>
-        </button>
-        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
-          What will you use the funds for?
-        </label>
-        <MultiSelect :list="fundRoles" @selected="selectedFunds" />
-        <label v-if="fundOtherSelected" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
-          If other, fill this field
-        </label>
-        <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
-      </div>
-      <div class="mb-4">
-        <div>
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-            Payment Account Details
-          </label>
-          <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
-            <div class="grid grid-cols-2 gap-5">
-              <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
-                <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
-                <span class="checkmark" />
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input v-model.number="years" name="Years in Operation" type="number" disabled />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+          </div>
+          <div>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                Are you a startup (i.e. between 0 and 2 years' old)?
               </label>
+              <div class="flex justify-start ">
+                <label class="checkbox">Yes
+                  <input id="yes" v-model="startup" type="checkbox" true-value="true" false-value="false">
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">No
+                  <input id="no" v-model="startup" type="checkbox" false-value="true" true-value="false">
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div class="mb-12 mt-12">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Can you provide proof of COVID-19 impact?
+                </label>
+                <div class="flex justify-start">
+                  <label class="checkbox">Yes
+                    <input id="yes" v-model="proofOfImpact" type="checkbox" true-value="true" false-value="false">
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">No
+                    <input id="no" v-model="proofOfImpact" type="checkbox" false-value="true" true-value="false">
+                    <span class="checkmark" />
+                  </label>
+                </div>
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+          </div>
+          <div class="mb-12">
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+              How has COVID-19 impacted your business?
+            </label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="covidImpact" :list="covidImpacts" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="otherSelected" class="mt-5">
+              <textarea v-model="general.other_covid_impact" name="" rows="10" placeholder="Please write down the impact" />
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+              Proof of COVID-19 Impact Template
+            </label>
+            <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
+              Click to Fill in Template
+              <span v-if="checkModal1">&#10003;</span>
+            </button>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
+              What will you use the funds for?
+            </label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="fund_purposes" :list="fundRoles" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <label v-if="fundOtherSelected" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
+              If other, fill this field
+            </label>
+            <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
+          </div>
+          <div class="mb-4">
+            <div>
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                Payment Account Details
+              </label>
+              <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="grid grid-cols-2 gap-5">
+                    <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
+                      <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
+                      <span class="checkmark" />
+                    </label>
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </div>
+                </ValidationProvider>
+              </div>
+            </div>
+            <label v-if="loanAmount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
+              Mobile Wallet Number (must use your own mobile wallet)
+            </label>
+            <div v-if="loanAmount<= 2000">
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div v-else>
+              <div class="mb-8">
+                <label class="block text-gray-900 text-sm font-normal mb-2">
+                  Your Selected Bank
+                </label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Select v-model="general.financial_institution_id" :items="bankPartner" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <label class="block text-gray-900 text-sm font-normal mb-2">
+                Bank Account Number
+              </label>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
             </div>
           </div>
         </div>
-        <label v-if="loanAmount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
-          Mobile Wallet Number (must use your own mobile wallet)
-        </label>
-        <Input v-if="loanAmount<= 2000" v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
-        <div v-else>
-          <div class="mb-8">
-            <label class="block text-gray-900 text-sm font-normal mb-2">
-              Your Selected Bank
-            </label>
-            <Select v-model="general.financial_institution_id" :items="bankPartner" />
+        <div class="nav-buttons">
+          <div class="flex">
+            <button type="submit" class="next">
+              Next
+            </button>
           </div>
-          <label class="block text-gray-900 text-sm font-normal mb-2">
-            Bank Account Number
-          </label>
-          <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
         </div>
-      </div>
-    </div>
-    <div class="nav-buttons flex">
-      <button class="button-small next" @click="moveNext">
-        Next
-      </button>
-    </div>
+      </form>
+    </ValidationObserver>
 
     <!-- ===================================================================================
     =================================COVID TEMPLATE MODAL============================== -->
@@ -218,6 +256,7 @@
   </div>
 </template>
 <script>
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import { required, minValue } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
@@ -225,6 +264,8 @@ import Select from './Select'
 import MultiSelect from './MultiSelect'
 export default {
   components: {
+    ValidationProvider,
+    ValidationObserver,
     Input,
     Select,
     Modal,
@@ -478,9 +519,6 @@ export default {
     },
     selected (value) {
       this.covidImpact = value
-    },
-    selectedFunds (value) {
-      this.fund_purposes = value
     },
     parseNumber (value) {
       const val = parseFloat(value)

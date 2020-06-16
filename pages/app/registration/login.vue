@@ -106,6 +106,8 @@ export default {
 .logo {
   img {
     margin: 32px auto;
+    max-width: 15rem;
+    height: auto;
   }
 }
 .r-c {
