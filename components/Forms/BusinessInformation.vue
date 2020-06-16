@@ -2504,107 +2504,129 @@
     <!-- =============================================================================================================
     ========================================= Micro Income Modal ===================================================-->
     <Modal v-if="microIncomeModal" @close="microIncomeModal=false">
-      <div class="d-s">
-        <div class="h-d mb-10">
-          <p class="text-center text-lg font-bold">
-            Income Statement
-          </p>
-        </div>
-        <div class="grid grid-cols-4 gap-8 micro">
-          <div />
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(doneMicroIncomeModal)">
+          <div class="d-s">
+            <div class="h-d mb-10">
+              <p class="text-center text-lg font-bold">
+                Income Statement
+              </p>
+            </div>
+            <div class="grid grid-cols-4 gap-8 micro">
+              <div />
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >Jan 2020 - April 2020</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
+                >Total Revenue</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
+                >Total Expenses</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHS" money small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
+                >Profit Before Tax</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model="total_micro_statement.profit_18"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+                <Input
+                  v-model="total_micro_statement.profit_19"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <Input
+                  v-model="total_micro_statement.profit_20"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div class="my-20 flex gap-3 buttons">
+                <button class="button-small" type="submit">
+                  Done
+                </button>
+                <button class="button-small" @click="microIncomeModal= false">
+                  Cancel
+                </button>
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >Jan 2020 - April 2020</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-            >Total Revenue</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-            >Total Expenses</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHS" money small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-            >Profit Before Tax</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model="total_micro_statement.profit_18"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              v-model="total_micro_statement.profit_19"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
-            <Input
-              v-model="total_micro_statement.profit_20"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div class="my-20 flex gap-3 buttons">
-            <button class="button-small" @click="doneMicroIncomeModal">
-              Done
-            </button>
-            <button class="button-small" @click="microIncomeModal= false">
-              Cancel
-            </button>
-          </div>
-        </div>
-      </div>
+        </form>
+      </ValidationObserver>
     </Modal>
     <!-- =============================================================================================================
     ========================================= Business Owner ===================================================-->
@@ -2806,41 +2828,57 @@
     <!-- =============================================================================================================
     ========================================= Employees Modal ===================================================-->
     <Modal v-if="employeesModal" @close="employeesModal=false">
-      <div class="d-s">
-        <div class="h-d mb-10">
-          <p class="text-center text-lg font-bold">
-            Employees
-          </p>
-        </div>
-      </div>
-      <div class="d-s mt-12">
-        <div class="grid gap-8 b-d">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Number of Employees</label>
-            <Input v-model.number="general.number_of_employees" type="number" small />
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(doneEmployeesModal)">
+          <div class="d-s">
+            <div class="h-d mb-10">
+              <p class="text-center text-lg font-bold">
+                Employees
+              </p>
+            </div>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Permanent Employees</label>
-            <Input v-model.number="general.permanent_employees" type="number" small />
+          <div class="d-s mt-12">
+            <div class="grid gap-8 b-d">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Number of Employees</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="general.number_of_employees" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Permanent Employees</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="general.permanent_employees" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Temporary Employees</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="general.temporary_employees" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Female Employees</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="general.female_employees" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Temporary Employees</label>
-            <Input v-model.number="general.temporary_employees" type="number" small />
+          <div class="my-20 flex gap-3 buttons">
+            <button class="button-small" type="submit">
+              Done
+            </button>
+            <button class="button-small" @click="employeesModal= false">
+              Cancel
+            </button>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Female Employees</label>
-            <Input v-model.number="general.female_employees" type="number" small />
-          </div>
-        </div>
-      </div>
-      <div class="my-20 flex gap-3 buttons">
-        <button class="button-small" @click="doneEmployeesModal">
-          Done
-        </button>
-        <button class="button-small" @click="employeesModal= false">
-          Cancel
-        </button>
-      </div>
+        </form>
+      </ValidationObserver>
     </Modal>
   </div>
 </template>

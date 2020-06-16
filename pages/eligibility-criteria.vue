@@ -5,7 +5,7 @@
         Eligibility Criteria
       </p>
       <div class="mt-32">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -57,7 +57,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -69,7 +69,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -122,7 +122,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -134,7 +134,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -146,7 +146,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -158,7 +158,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -170,7 +170,7 @@
         </div>
       </div>
       <div class="mt-24">
-        <div class="flex gap-10">
+        <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
@@ -341,8 +341,11 @@ export default {
   .priorities {
     grid-template-columns: repeat(2, 1fr);
     .box {
-      width: 15rem;
+      width: 14rem;
     }
+  }
+  .point {
+    gap: 1rem;
   }
   .limitations {
     .img {
