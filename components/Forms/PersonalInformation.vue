@@ -129,6 +129,9 @@
             <button type="button" class="previous" @click="movePrevious">
               Previous
             </button>
+            <!-- <button class="previous small" type="button" @click="save">
+              Save
+            </button> -->
           </div>
         </div>
       </form>
@@ -136,6 +139,7 @@
   </div>
 </template>
 <script>
+import { mapState, mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Input from './Input'
 import Select from './Select'
@@ -162,24 +166,15 @@ export default {
     }
   },
   computed: {
-    idType () {
-      return this.$store.getters['pages/idTypes']
-    },
-    regions () {
-      return this.$store.getters['pages/regions']
-    },
-    districts () {
-      return this.$store.getters['pages/districts']
-    },
-    residenceStatus () {
-      return this.$store.getters['pages/residenceStatus']
-    },
-    applicationObject () {
-      return this.$store.state.pages.application_object
-    },
-    currentTab () {
-      return this.$store.state.pages.currentTab
-    }
+    ...mapGetters({
+      idType: 'pages/idTypes',
+      regions: 'pages/regions',
+      districts: 'pages/districts',
+      residenceStatus: 'pages/residenceStatus'
+    }),
+    ...mapState({
+      applicationObject: state => state.pages.application_object
+    })
   },
   watch: {
     region (value) {
@@ -213,19 +208,13 @@ export default {
     },
     moveNext () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      // this.$v.$touch()
-      // if (this.$v.$invalid) {
-      //   this.$toasted.error('Please fill in all fields', {
-      //     theme: 'toasted-primary',
-      //     position: 'top-center',
-      //     duration: 5000
-      //   })
-      // } else {
-      //   this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      // }
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 0)
+    },
+    save () {
+      this.$store.commit('api/SET_GENERAL_DATA', this.aggregate())
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     }
   }
 }

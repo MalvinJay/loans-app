@@ -21,7 +21,6 @@
                 type="number"
                 placeholder="e.g 1,000"
                 small
-                required
                 money
               />
             </div>
@@ -41,8 +40,8 @@
               <Input v-model.number="years_in_business" type="text" small />
             </div>
           </form>
-          <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
-            <div class="flex-1">
+          <div class="nav-buttons mt-10">
+            <div>
               <button
                 class="button-small"
                 @click="submit"
@@ -158,6 +157,9 @@ form {
 @include for-phone-only {
   form {
     grid-template-columns: 100%;
+    &>div:nth-child(4) {
+      order: 1;
+    }
   }
 .buttons {
   button {

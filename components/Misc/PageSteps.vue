@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <BaseCard :header="false">
       <div class="pb-32 px-8">
         <div class="h-t text-center b-b py-16">

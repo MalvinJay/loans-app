@@ -507,8 +507,8 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { required, minValue } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
@@ -557,42 +557,17 @@ export default {
       fund_purposes: null
     }
   },
-  validations: {
-    general: {
-      account_no: {
-        required
-      },
-      financial_institution_id: {
-        required
-      }
-    },
-    fund_purposes: {
-      required
-    },
-    loanAmount: {
-      required,
-      minValue: minValue(4)
-    }
-  },
   computed: {
-    years () {
-      return this.$store.getters['pages/yearsInBusiness']
-    },
-    bankPartner () {
-      return this.$store.getters['pages/bankPartner']
-    },
-    covidImpacts () {
-      return this.$store.getters['pages/covidImpacts']
-    },
-    fundRoles () {
-      return this.$store.getters['pages/fundRoles']
-    },
-    momo () {
-      return this.$store.getters['pages/momo']
-    },
-    currentTab () {
-      return this.$store.state.pages.currentTab
-    }
+    ...mapGetters({
+      years: 'pages/yearsInBusiness',
+      bankPartner: 'pages/bankPartner',
+      covidImpacts: 'pages/covidImpacts',
+      fundRoles: 'pages/fundRoles',
+      momo: 'pages/momo'
+    }),
+    ...mapState({
+      currentTab: state => state.pages.currentTab
+    })
   },
   watch: {
     fund_purposes: {
@@ -602,7 +577,6 @@ export default {
       deep: true
     },
     show (value) {
-      // alert('proper')
       const data = Object.assign({}, this.general) // create copy general object
 
       // merge general object with necessary data
@@ -779,16 +753,7 @@ export default {
   },
   methods: {
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please fill in all fields', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },
     toggleModal1 () {
       this.modal1 = false

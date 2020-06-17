@@ -12,18 +12,6 @@
             Amount Requested
           </p>
           <p>GHS {{ requestedLoanAmount }}</p>
-          <!-- <p class="font-bold">
-            Purpose of Fund
-          </p>
-          <p>{{ purpose }}</p> -->
-          <!-- <p class="font-bold">
-            Term
-          </p>
-          <p>N/A</p> -->
-          <!-- <p class="font-bold">
-            Fixing Period
-          </p>
-          <p>N/A</p> -->
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer" @click="editInfo">

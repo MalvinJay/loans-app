@@ -1,5 +1,5 @@
 <template>
-  <nav class="navbar relative" :class="{ pink: alt}">
+  <nav class="navbar" :class="{ pink: alt}">
     <div class="uppercase nav nav-margin text-sm">
       <ul class="desktop-links">
         <li><a href="/eligibility-criteria">Eligibility Criteria</a></li>
