@@ -3037,8 +3037,8 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { required } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
@@ -3098,30 +3098,16 @@ export default {
     }
   },
   computed: {
-    businessAssociation () {
-      return this.$store.getters['pages/businessAssociation']
-    },
-    legalOrganization () {
-      return this.$store.getters['pages/legalOrganization']
-    },
-    industry () {
-      return this.$store.getters['pages/industry']
-    },
-    businessScale () {
-      return this.$store.getters['pages/businessScale']
-    },
-    isStartup () {
-      return this.$store.getters['pages/isStartup']
-    },
-    regions () {
-      return this.$store.getters['pages/regions']
-    },
-    districts () {
-      return this.$store.getters['pages/districts']
-    },
-    countries () {
-      return this.$store.getters['pages/countries']
-    }
+    ...mapGetters({
+      businessAssociation: 'pages/businessAssociation',
+      legalOrganization: 'pages/legalOrganization',
+      industry: 'pages/industry',
+      businessScale: 'pages/businessScale',
+      isStartup: 'pages/isStartup',
+      regions: 'pages/regions',
+      districts: 'pages/districts',
+      countries: 'pages/countries'
+    })
   },
   watch: {
     income_statement_2017: {
@@ -3220,46 +3206,6 @@ export default {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
-      }
-    }
-  },
-  validations: {
-    general: {
-      business_address: {
-        required
-      },
-      business_association: {
-        required
-      },
-      business_district: {
-        required
-      },
-      business_name: {
-        required
-      },
-      business_phone_number: {
-        required
-      },
-      business_services: {
-        required
-      },
-      business_town: {
-        required
-      },
-      covid_products: {
-        required
-      },
-      industry: {
-        required
-      },
-      legal_organization: {
-        required
-      },
-      social_enterprise: {
-        required
-      },
-      tin_number: {
-        required
       }
     }
   },
@@ -3428,25 +3374,9 @@ export default {
       this.checkEmployeesModal = true
       this.employeesModal = false
     },
-    async save () {
-      this.$toasted.show('Saved', {
-        theme: 'toasted-primary',
-        position: 'top-center',
-        duration: 7000
-      })
-      await (new Promise((resolve, reject) => {
-        const data = this.aggregate()
-        this.$store.commit('api/SET_GENERAL_DATA', data)
-        resolve(data)
-      }))
-      this.$store.dispatch('api/saveApplication')
-        .then(() => {
-          this.$toasted.show('Saved', {
-            theme: 'toasted-primary',
-            position: 'top-center',
-            duration: 5000
-          })
-        })
+    save () {
+      this.$store.commit('api/SET_GENERAL_DATA', this.aggregate())
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     },
     thousandSeprator (amount) {
       if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {

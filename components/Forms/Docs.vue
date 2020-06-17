@@ -305,25 +305,9 @@ export default {
           })
         })
     },
-    async save () {
-      this.$toasted.show('Saved', {
-        theme: 'toasted-primary',
-        position: 'top-center',
-        duration: 7000
-      })
-      await (new Promise((resolve, reject) => {
-        const data = this.aggregate()
-        this.$store.commit('api/SET_GENERAL_DATA', data)
-        resolve(data)
-      }))
-      this.$store.dispatch('api/saveApplication')
-        .then(() => {
-          this.$toasted.show('Saved', {
-            theme: 'toasted-primary',
-            position: 'top-center',
-            duration: 5000
-          })
-        })
+    save () {
+      this.$store.commit('api/SET_GENERAL_DATA', this.aggregate)
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     }
   }
 }
