@@ -1,7 +1,10 @@
 <template>
   <div>
+    <div :class="[{hidden: !state}, 'loading']">
+      <img src="@/assets/img/loading.svg" class="w-12 h-full" alt="">
+    </div>
     <div class="app">
-      <div class="pt-10 pb-5">
+      <div class="overview pt-10 pb-5">
         <p class="text-xl block font-semibold">
           Overview
         </p>
@@ -16,7 +19,7 @@
         <div class="my-5">
           <ProgressBar :max="50000" :value="20000" />
         </div>
-        <p class="font-semibold">
+        <p class="text-2xl md:text-xl block font-semibold">
           Payment Method
         </p>
         <div class="my-3">
@@ -34,7 +37,7 @@
               One Time
             </p>
           </div>
-          <div class="flex justify-center flex-col px-10">
+          <div class="flex justify-center flex-col px-2 md:px-10">
             <div class="text-xl font-semibold">
               OR
             </div>
@@ -51,7 +54,7 @@
       ==========================DOCUMENTS SECTION====================
       ==============================================================-->
       <section id="docs" class="my-5">
-        <p class="text-xl">
+        <p class="text-2xl md:text-xl">
           Application and Documents
         </p>
         <div class="docs grid text-white gap-10 my-5">
@@ -75,12 +78,12 @@
           </div>
         </div>
         <div>
-          <p class="font-semibold">
+          <p class="text-2xl md:text-xl block font-semibold">
             Documents Upload
           </p>
-          <div class="uploadfiles flex gap-10 my-5">
-            <div class="pr-10">
-              <label class="block text-gray-900 text-sm mb-5 h-10">
+          <div class="uploadfiles md:flex gap-10 my-5">
+            <div class="md:pr-10 py-4">
+              <label class="block text-gray-900 mb-5 h-10 text-lg">
                 Proof of PAYE Payments
                 <br>(last 3 months)
               </label>
@@ -109,8 +112,10 @@
                 </div>
               </div>
             </div>
-            <div class="pr-10">
-              <label class="block text-gray-900 text-sm mb-5 h-10">SSNIT Statement (2019)</label>
+            <div class="md:pr-10 py-4">
+              <label class="block text-gray-900 mb-5 h-10 text-lg">
+                SSNIT Statement (2019)
+              </label>
               <div class="box d-i border border-gray-900 py-5 bg-white">
                 <div class="img">
                   <img src="@/assets/img/docs.png" alt>
@@ -166,6 +171,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 import Accordion from '@/components/Misc/Accordion.vue'
 export default {
@@ -174,16 +180,64 @@ export default {
     ProgressBar,
     Accordion
   },
-  middleware: 'auth',
+  // middleware: 'auth',
   data () {
     return {
       applicatonIdFile: null,
       loading: false
     }
+  },
+  mounted () {
+    // console.log('loanDetailsState', this.loansState)
+    this.$store.dispatch('loan/fetchLoanDetails')
+    // .then((response) => {
+    //   console.log('LoanDetails', this.loanDetails)
+    // })
+    // .catch(() => {
+    // })
+  },
+  computed: {
+    ...mapGetters({
+      loanDetails: 'loan/loanDetails',
+      loansState: 'loan/loanDetailState'
+    }),
+    state () {
+      return this.loansState === 'LOADING'
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
+.hidden {
+  display: none!important;
+}
+.loading {
+  position: absolute;
+  z-index: 2000;
+  background-color: hsla(0,0%,100%,.9);
+  margin: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: opacity .3s;
+  display: flex;
+  justify-content: center;
+  img {
+    animation-name: spin;
+    animation-duration: 1000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+}
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
@@ -258,6 +312,35 @@ export default {
   .table-cell {
     vertical-align: middle;
     color: $color-secondary;
+  }
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
   }
 }
 </style>

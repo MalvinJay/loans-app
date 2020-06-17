@@ -1,44 +1,55 @@
 <template>
   <main>
-    <div class="sidebar pt-32 pl-4">
-      <div class="links">
-        <ul>
-          <li>
-            <nuxt-link to="dashboard">
-              <img src="@/assets/img/app-home.png" alt=""> Home
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="loandetails">
-              <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="loanapplication">
-              <img src="@/assets/img/app-docs.png" alt=""> Loan Applcation
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="messages">
-              <img src="@/assets/img/app-messages.png" alt=""> Message
-            </nuxt-link>
-          </li>
-          <li>
-            <nuxt-link to="notifications">
-              <img src="@/assets/img/app-notifications.svg" alt=""> Notifications
-            </nuxt-link>
-          </li>
-        </ul>
+    <div :class="{ 'overlay': side }">
+      <div :class="[{ 'block': side }, 'sidebar', 'pt-32', 'pl-4']">
+        <div class="close hidden" @click="toggleSide">
+          <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt="">
+        </div>
+        <div class="links">
+          <ul>
+          <!--<li v-for="(link, index) in links" :key="index">
+              <nuxt-link :to="link.to">
+              <img :src="link.img" :alt="link.name"> {{link.name}}
+              </nuxt-link>
+          </li>-->
+            <li @click="toggleSide">
+              <nuxt-link to="dashboard">
+                <img src="@/assets/img/app-home.png" alt=""> Home
+              </nuxt-link>
+            </li>
+            <li @click="toggleSide">
+              <nuxt-link to="loandetails">
+                <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details
+              </nuxt-link>
+            </li>
+            <li @click="toggleSide">
+              <nuxt-link to="loanapplication">
+                <img src="@/assets/img/app-docs.png" alt=""> Loan Application
+              </nuxt-link>
+            </li>
+            <li @click="toggleSide">
+              <nuxt-link to="messages">
+                <img src="@/assets/img/app-messages.png" alt=""> Message
+              </nuxt-link>
+            </li>
+            <li @click="toggleSide">
+              <nuxt-link to="notifications">
+                <img src="@/assets/img/app-notifications.svg" alt=""> Notifications
+              </nuxt-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
     <div class="right">
       <div class="top-bar flex justify-between">
         <div class="logo">
+          <img src="@/assets/img/menu.png" alt="logo" @click="toggleSide">
           <img src="@/assets/img/logo.png" alt="">
         </div>
-        <div class="r-s flex">
-          <div class="profile">
-            Ni
+        <div class="r-s flex items-center">
+          <div class="profile flex justify-center items-center">
+            <span>NT</span>
           </div>
           <button class="button-small" @click="logout">
             <nuxt-link to="registration/login">
@@ -55,16 +66,47 @@
 </template>
 <script>
 export default {
-  middleware: 'auth',
+  // middleware: 'auth',
   data () {
     return {
-      data: null
+      side: false,
+      links: [
+        {
+          name: 'Home',
+          to: 'dashboard',
+          img: '../assets/img/app-home.png'
+        },
+        {
+          name: 'Loan Details',
+          to: 'dashboard',
+          img: '../assets/img/app-loan-details.png'
+        },
+        {
+          name: 'Loan Applcation',
+          to: 'dashboard',
+          img: '../assets/img/app-docs.png'
+        },
+        {
+          name: 'Message',
+          to: 'dashboard',
+          img: '../assets/img/app-messages.png'
+        },
+        {
+          name: 'Notifications',
+          to: 'dashboard',
+          img: '../assets/img/app-notifications.svg'
+        }
+      ]
     }
   },
   methods: {
     logout () {
       this.$store.commit('auth/SET_LOGOUT')
       this.$router.push('/app/registration/login')
+    },
+    toggleSide () {
+      console.log('Closing Side Menu')
+      this.side = !this.side
     }
   }
 }
@@ -123,6 +165,11 @@ main {
     margin-left: 73px;
     width: 10rem;
     height: auto;
+    img {
+      &:nth-child(1) {
+        display: none;
+      }
+    }
   }
   .r-s {
     margin-right: 62px;
@@ -156,6 +203,95 @@ main {
   }
   .right {
     margin-left: 0 !important;
+  }
+}
+@include for-phone-only {
+  .overlay {
+    background-attachment: fixed;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+  }
+  .sidebar {
+    z-index: 1000;
+    margin-left: -14rem;
+    transition: transform 0.3s ease;
+    padding-left: 16px;
+    .links {
+      ul {
+        li {
+          font-size: 12px;
+          a {
+            img {
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .block {
+    transform: translateX(14rem);
+    width: 20rem;
+    z-index: 1000;
+    .close {
+      display: block;
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 21px;
+      top: 7%;
+    }
+  }
+  .right {
+    width: 100%;
+    margin-left: 0 !important;
+    .top-bar {
+      padding: 10px 20px;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      // position: absolute;
+      .logo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-left: 0;
+        img {
+          width: 100px;
+          padding-left: 10px;
+          &:nth-child(1) {
+            padding: 0;
+            display: block;
+            height: 30px;
+            width: auto;
+          }
+        }
+      }
+      .r-s, .r-s button, .r-s .profile {
+        margin: 0 auto;
+
+        .button-small {
+          width: 80px;
+          height: 30px;
+          padding: 7px 18px;
+          margin-left: 10px;
+        }
+      }
+      .profile {
+        width: 30px;
+        height: 30px;
+      }
+    }
+    .content {
+      margin-top: 70px;
+    }
   }
 }
 </style>

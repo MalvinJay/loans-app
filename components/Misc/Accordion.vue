@@ -1,5 +1,5 @@
 <template>
-  <div class="accordion px-10 py-6 my-4">
+  <div class="accordion pl-16 md:px-10 py-6 my-4">
     <div class="indicator status"></div>
     <div class="title font-semibold">
       Name of Message

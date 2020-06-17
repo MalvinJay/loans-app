@@ -2,10 +2,10 @@
   <div>
     <div class="app">
       <div class="pt-10 mb-5 flex justify-between w-full">
-        <p class="text-xl font-semibold">
+        <p class="text-2xl md:text-xl font-semibold">
           Messages
         </p>
-        <div class="flex gap-3">
+        <div class="inquiry flex gap-3">
           <button @click="modal = true">
             Submit an inquiry
           </button>
@@ -25,7 +25,7 @@
             <div v-scroll-lock="open" class="modal-body">
               <form class="px-6" @submit.prevent="handleInquiry()">
                 <div class="relative text-center">
-                  <img src="@/assets/img/close.svg" class="absolut left-0 top-0 w-4 h-4 cursor-pointer" @click="modal = false" alt="">
+                  <img src="@/assets/img/close.svg" class="absolut left-0 top-0 w-4 h-4 cursor-pointer" alt="" @click="modal = false" >
                   <h1 class="head">
                     Inquiry
                   </h1>
@@ -51,7 +51,7 @@ import Accordion from '@/components/Misc/Accordion.vue'
 // import Modal from '@/components/Misc/Modal'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
   components: {
     Accordion
     // Modal
@@ -163,5 +163,50 @@ form {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+    div {
+      p {
+        line-height: 40px;
+      }
+      .inquiry {
+        button {
+          width: 100px;
+          height: 30px;
+        }
+      }
+    }
+  }
+  .accordion {
+    .indicator {
+      top: 2%;
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
+  }
 }
 </style>

@@ -77,8 +77,8 @@
 </template>
 <script>
 export default {
-  layout: 'appLayout',
-  middleware: 'auth'
+  layout: 'appLayout'
+  // middleware: 'auth'
 }
 </script>
 <style lang="scss" scoped>
@@ -113,5 +113,108 @@ table {
 }
 .button-small {
   background-color: $color-secondary;
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px;
+    .app {
+      padding: 0!important;
+    }
+    .overview p {
+      font-size: 25px;
+    }
+
+    table {
+      thead {
+        background: none;
+        tr {
+          th {
+            padding-left: 0px!important;
+          }
+        }
+      }
+      tbody {
+        tr {
+          td {
+            padding-left: 0px!important;
+            button {
+              width: 70px;
+              padding: 5px;
+              height: 25px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
+  }
+  .box {
+    padding: 12px;
+    .button-sec {
+      width: 100%;
+      height: 34px;
+      font-size: 10px;
+    }
+    &:nth-child(2) {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+  }
+  #agreement {
+    .c-grid {
+      grid-template-columns: 1fr 1fr!important;
+      grid-template: "file_area buttons_area"
+      "info_area info_area";
+    }
+    .box {
+      width: 100%;
+    }
+    .buttons_area {
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+
+      button {
+        margin: 0;
+        width: 80%;
+      }
+    }
+    .info_area {
+      div {
+        padding-top: 5px;
+        p {
+          &:nth-child(1) {
+            width: 60%;
+          }
+          &:nth-child(2) {
+            width: auto;
+          }
+        }
+      }
+    }
+  }
 }
 </style>

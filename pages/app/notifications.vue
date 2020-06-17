@@ -22,8 +22,8 @@
 </template>
 <script>
 export default {
-  layout: 'appLayout',
-  middleware: 'auth'
+  layout: 'appLayout'
+  // middleware: 'auth'
 }
 </script>
 <style lang="scss" scoped>
@@ -41,5 +41,24 @@ button {
   width: 162px;
   height: 40px;
   font-size: 0.8rem;
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+    div {
+      p {
+        line-height: 40px;
+      }
+      .inquiry {
+        button {
+          width: 100px;
+          height: 30px;
+        }
+      }
+    }
+  }
 }
 </style>
