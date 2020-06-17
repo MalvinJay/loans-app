@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="app">
-      <div class="mt-10 mb-5">
+      <div class="pt-10 pb-5">
         <p class="text-xl block font-semibold">
           Overview
         </p>
@@ -35,7 +35,7 @@
             </p>
           </div>
           <div class="flex justify-center flex-col px-10">
-            <div class="text-xl">
+            <div class="text-xl font-semibold">
               OR
             </div>
           </div>
@@ -78,8 +78,8 @@
           <p class="font-semibold">
             Documents Upload
           </p>
-          <div class="flex gap-10 my-5">
-            <div>
+          <div class="uploadfiles flex gap-10 my-5">
+            <div class="pr-10">
               <label class="block text-gray-900 text-sm mb-5 h-10">
                 Proof of PAYE Payments
                 <br>(last 3 months)
@@ -109,7 +109,7 @@
                 </div>
               </div>
             </div>
-            <div>
+            <div class="pr-10">
               <label class="block text-gray-900 text-sm mb-5 h-10">SSNIT Statement (2019)</label>
               <div class="box d-i border border-gray-900 py-5 bg-white">
                 <div class="img">
@@ -150,8 +150,10 @@
           <div class="flex gap-3">
             <button>Submit an inquiry</button>
             <div class="table h-full">
-              <p class="table-cell font-semibold text-sm">
-                View All
+              <p class="table-cell font-semibold text-sm pl-8">
+                <nuxt-link to="messages">
+                  View All
+                </nuxt-link>
               </p>
             </div>
           </div>
@@ -167,11 +169,12 @@
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 import Accordion from '@/components/Misc/Accordion.vue'
 export default {
+  layout: 'appLayout',
   components: {
     ProgressBar,
     Accordion
   },
-  layout: 'appLayout',
+  middleware: 'auth',
   data () {
     return {
       applicatonIdFile: null,
@@ -188,6 +191,7 @@ export default {
 .box {
   width: 16rem;
   height: 12.65rem;
+  border-radius: 5px;
   img {
     margin: 2rem auto;
   }
@@ -217,8 +221,7 @@ export default {
   }
 }
 .d-i {
-  // width: 100%;
-  border: 1px solid black;
+  border: 1px solid #848484;
   border-radius: 5px;
   img {
     margin: 0 auto;
@@ -238,6 +241,8 @@ export default {
     padding: 6px 15px;
     font-size: 14px;
   }
+}
+.uploadfiles {
 }
 #messaging {
   button {

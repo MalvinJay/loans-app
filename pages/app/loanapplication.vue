@@ -77,7 +77,8 @@
 </template>
 <script>
 export default {
-  layout: 'appLayout'
+  layout: 'appLayout',
+  middleware: 'auth'
 }
 </script>
 <style lang="scss" scoped>

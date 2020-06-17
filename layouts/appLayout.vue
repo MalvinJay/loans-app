@@ -1,42 +1,32 @@
 <template>
   <main>
-    <div class="sidebar pt-32 px-2">
+    <div class="sidebar pt-32 pl-4">
       <div class="links">
         <ul>
           <li>
-            <a>
-              <nuxt-link to="dashboard">
-                <img src="@/assets/img/app-home.png" alt=""> Overview
-              </nuxt-link>
-            </a>
+            <nuxt-link to="dashboard">
+              <img src="@/assets/img/app-home.png" alt=""> Home
+            </nuxt-link>
           </li>
           <li>
-            <a>
-              <nuxt-link to="loandetails">
-                <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details
-              </nuxt-link>
-            </a>
+            <nuxt-link to="loandetails">
+              <img src="@/assets/img/app-loan-details.png" alt=""> Loan Details
+            </nuxt-link>
           </li>
           <li>
-            <a>
-              <nuxt-link to="">
-                <img src="@/assets/img/app-docs.png" alt=""> Current Applcations
-              </nuxt-link>
-            </a>
+            <nuxt-link to="loanapplication">
+              <img src="@/assets/img/app-docs.png" alt=""> Loan Applcation
+            </nuxt-link>
           </li>
           <li>
-            <a>
-              <nuxt-link to="">
-                <img src="@/assets/img/app-return.png" alt=""> Previous Applcations
-              </nuxt-link>
-            </a>
+            <nuxt-link to="messages">
+              <img src="@/assets/img/app-messages.png" alt=""> Message
+            </nuxt-link>
           </li>
           <li>
-            <a>
-              <nuxt-link to="messages">
-                <img src="@/assets/img/app-messages.png" alt=""> Message
-              </nuxt-link>
-            </a>
+            <nuxt-link to="notifications">
+              <img src="@/assets/img/app-notifications.svg" alt=""> Notifications
+            </nuxt-link>
           </li>
         </ul>
       </div>
@@ -50,8 +40,10 @@
           <div class="profile">
             Ni
           </div>
-          <button class="button-small">
-            SIGN OUT
+          <button class="button-small" @click="logout">
+            <nuxt-link to="registration/login">
+              SIGN OUT
+            </nuxt-link>
           </button>
         </div>
       </div>
@@ -63,12 +55,24 @@
 </template>
 <script>
 export default {
-
+  middleware: 'auth',
+  data () {
+    return {
+      data: null
+    }
+  },
+  methods: {
+    logout () {
+      this.$store.commit('auth/SET_LOGOUT')
+      this.$router.push('/app/registration/login')
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
 main {
   display: flex;
+  // width: 100vw;
 }
 .sidebar {
   background-color: $color-secondary;
@@ -82,31 +86,39 @@ main {
 .links {
   ul {
     li {
+      padding-bottom: 2.0rem;
       a {
         display: flex;
-        font-size: 0.8rem;
+        align-items: center;
+        padding: 0.5rem 0;
+        // font-size: 0.8rem;
         color: $white;
-        margin-bottom: 1rem;
+        width: 100%;
+        font-style: normal;
+        font-weight: 300;
+        font-size: 16px;
+        line-height: 22px;
         img {
-          margin-right: 10px;
-          width: 20px;
-          height: 20px;
+          margin-right: 14px;
+          width: 30px;
+          height: auto;
         }
       }
     }
   }
 }
 .right {
-  width: 100%;
+  width: calc(100% - 13rem);
   margin-left: 13rem;
 }
 .top-bar {
   background-color: $white;
-  width: 100%;
+  width: inherit;
   height: 100px;
   padding: 25px 0;
   position: fixed;
   top: 0;
+  z-index: 100;
   .logo {
     margin-left: 73px;
     width: 10rem;

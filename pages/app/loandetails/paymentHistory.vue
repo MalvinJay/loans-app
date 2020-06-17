@@ -101,6 +101,7 @@ table {
     height: 4rem;
     padding-left: 2rem;
     th {
+      padding: 14px 0;
       &:first-child {
         padding-left: 2rem;
       }
