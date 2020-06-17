@@ -9,7 +9,7 @@
         <div class="mt-10">
           <form class="grid">
             <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Applicant ID Type</label>
+              <label class="block text-gray-900 text-sm mb-2">Please select one</label>
               <Select v-model="id_type" :items="idType" small />
             </div>
             <div class="mb-4">
@@ -26,7 +26,7 @@
               />
             </div>
             <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Applicant's ID (passport, driver's license, Voters Id)</label>
+              <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id)</label>
               <Input
                 v-model="id_number"
                 type="text"

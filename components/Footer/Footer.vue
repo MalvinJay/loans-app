@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div class="banner flex py-16 justify-between px-16">
+      <p class="text-3xl b-b">
+        Are you ready to fund your business?
+      </p>
+      <div class="h-full flex flex-col justify-center">
+        <a href="/apply">
+          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
+        </a>
+      </div>
+    </div>
     <footer class="flex py-24 justify-center">
       <div class="l-s h-t">
         <div class="logo mb-10">
@@ -48,17 +58,9 @@
           <img src="@/assets/img/timer.png" alt="" srcset=""> Mon - Sat: 7:00am - 6:00pm
         </p>
       </div>
-      <div class="banner flex py-16 justify-between px-16">
-        <p class="text-3xl b-b">
-          Are you ready to fund your business?
-        </p>
-        <a href="/apply">
-          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
-        </a>
-      </div>
     </footer>
     <div class="copyright flex justify-center py-10 text-white">
-      <p>Tagline we dey for you. Abi you barb</p>
+      <p>Powered by Plendify</p>
       <p class="font-light">
         &copy; 2020 Company. <span class="font-bold">Privacy Policy</span> | <span class="font-bold">Terms & Conditions</span>
       </p>
@@ -71,20 +73,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.banner {
-  width: 70%;
-  margin: 0 auto;
-  background-color: $color-mild-pink;
-  border-radius: $card-border-radius;
-  position: absolute;
-  margin-top: -200px;
-  left: 50%;
-  margin-left: -35%;
-  button {
-    padding-right: 50px;
-    padding-left: 50px;
-  }
-}
 .logo {
   img {
       max-width: 13rem;
@@ -107,6 +95,19 @@ ul {
   li {
     margin-right: 4rem;
   }
+}
+.banner {
+  width: 68%;
+  // margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  background-color: $color-mild-pink;
+  margin-top: -75px;
+  z-index: 99999;
 }
 .icons {
   img {
@@ -135,8 +136,6 @@ ul {
 @include for-tablet-portrait-only {
   .banner {
     width: 100%;
-    left: 0%;
-    margin-left: 0px;
   }
   ul {
     display: flex;
@@ -155,20 +154,18 @@ ul {
     }
   }
 }
+
+@include for-tablet-landscape-only {
+  .banner {
+    width: 90%;
+  }
+}
 @include for-phone-only {
   .banner {
     width: 100%;
-    margin-left: 0%;
-    margin-top: -800px;
-    left: 0%;
-    flex-direction: column;
-    padding: 1rem;
-    text-align: center;
+    height: 111px;
     p {
       font-size: 1.2rem;
-    }
-    input[type="button"] {
-      margin:  2rem auto;
     }
   }
   footer {

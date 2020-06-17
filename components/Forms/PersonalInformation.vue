@@ -5,18 +5,18 @@
         <div class="grid form-b py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
+              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
+              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex justify-start">
                 <label class="checkbox">
@@ -49,7 +49,7 @@
             <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address <span class="text-red-600">*</span></label>
           </div>
           <div />
           <div class="mb-12">
@@ -79,7 +79,7 @@
             </div>
             <div>
               <ValidationProvider v-slot="{ errors }" rules="required">
-                <Select v-model="personalInfo.district" first="District" :items="districts" />
+                <Select v-model="personalInfo.district" required first="District" :items="districts" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
               </ValidationProvider>
             </div>
@@ -91,6 +91,7 @@
                 type="text"
                 name="Main Phone Number"
                 regex="0[2-5]{1}[0-9]{7,8}$"
+                required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -106,7 +107,7 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <input
                 id="dob"
