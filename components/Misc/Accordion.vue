@@ -1,5 +1,6 @@
 <template>
-  <div class="accordion p-5 my-4">
+  <div class="accordion px-10 py-6 my-4">
+    <div class="indicator status"></div>
     <div class="title font-semibold">
       Name of Message
     </div>
@@ -30,6 +31,17 @@ export default {
 <style lang="scss" scoped>
 .accordion {
   background-color: white;
+  border-radius: 5px;
+  position: relative;
+  .indicator {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background: #6A1B9A;
+    border-radius: 100%;
+    left: 18px;
+    top: 32px;
+}
   .body {
     height: 1.2rem;
     width: 100%;

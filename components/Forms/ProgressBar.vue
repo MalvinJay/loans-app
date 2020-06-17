@@ -59,6 +59,7 @@ export default {
     rgba(39, 125, 247, 0.8) 100%
   );
   padding: 2rem 1.25rem;
+  border-radius: 5px;
 }
 progress {
   height: 1.75rem;
