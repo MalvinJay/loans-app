@@ -1,6 +1,6 @@
 <template>
   <div>
-    <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }}</label>
+    <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }} <span v-if="required" class="text-red-600">*</span> </label>
     <div v-if="type === 'number'">
       <input
         v-if="visible && type==='number'"
@@ -89,6 +89,11 @@ export default {
       required: false,
       default: false,
       type: Boolean
+    },
+    required: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -100,15 +105,7 @@ export default {
       errorMessage: ''
     }
   },
-  // watch: {
-  // temp (val) {
-  //   if (val === '' && this.optional === true) {
-  //     this.error = false
-  //   }
-  // }
-  // },
   methods: {
-    // ([A-Z]{1})([0-9]{10})
     validateSend (e) {
       const val = e.target.value
       this.temp = val

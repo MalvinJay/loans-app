@@ -4,7 +4,9 @@
     <Banner />
     <Counter />
     <About />
-    <Info />
+    <div id="about-the-programme">
+      <Info />
+    </div>
     <SecurityBanner />
     <Footer />
   </div>
