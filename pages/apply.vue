@@ -7,49 +7,65 @@
           Welcome to the  Mastercard Foundation COVID-19 Recovery and Resilience Program in partnership with NBSSI. Please provide the requested pre-application information below and also thoroughly complete the funding application to the best of your ability.  We will use the information from the submitted funding application to assess your business and provide you with a funding decision.
         </p>
         <div class="mt-10">
-          <form class="grid">
-            <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Please select one</label>
-              <Select v-model="id_type" :items="idType" small />
-            </div>
-            <div class="mb-4">
-              <label
-                class="block text-gray-700 text-sm font-normal mb-2"
-              >2019 Annual Sales or 2019 Annual Turnover</label>
-              <Input
-                v-model.number="annual_sales"
-                type="number"
-                placeholder="e.g 1,000"
-                small
-                money
-              />
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id)</label>
-              <Input
-                v-model="id_number"
-                type="text"
-                :regex="regex"
-                small
-              />
-            </div>
-            <div class="mb-4">
-              <label
-                class="block text-gray-700 text-sm font-normal mb-2"
-              >Years in Business</label>
-              <Input v-model.number="years_in_business" type="text" small />
-            </div>
-          </form>
-          <div class="nav-buttons mt-10">
-            <div>
-              <button
-                class="button-small"
-                @click="submit"
-              >
-                Submit
-              </button>
-            </div>
-          </div>
+          <validation-observer v-slot="{ handleSubmit }">
+            <form @submit.prevent="handleSubmit(submit)">
+              <div class="grid">
+                <div class="mb-4">
+                  <label class="block text-gray-900 text-sm mb-2">Please select one <span class="text-red-600">*</span></label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="id_type" :items="idType" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-normal mb-2"
+                  >2019 Annual Sales or 2019 Annual Turnover <span class="text-red-600">*</span></label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input
+                      v-model.number="annual_sales"
+                      type="text"
+                      placeholder="e.g 1,000"
+                      small
+                      money
+                    />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+                <div class="mb-4">
+                  <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span></label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input
+                      v-model="id_number"
+                      type="text"
+                      :regex="regex"
+                      small
+                    />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+                <div class="mb-4">
+                  <label
+                    class="block text-gray-700 text-sm font-normal mb-2"
+                  >Years in Business <span class="text-red-600">*</span></label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input v-model.number="years_in_business" type="text" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div class="nav-buttons mt-10">
+                <div>
+                  <button
+                    class="button-small"
+                    type="submit"
+                  >
+                    Submit
+                  </button>
+                </div>
+              </div>
+            </form>
+          </validation-observer>
         </div>
       </div>
     </BaseCard>
@@ -57,7 +73,7 @@
   </div>
 </template>
 <script>
-import { required, minValue } from 'vuelidate/lib/validators'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 import Input from '@/components/Forms/Input.vue'
@@ -70,7 +86,9 @@ export default {
     BaseCard,
     Input,
     Select,
-    Footer
+    Footer,
+    ValidationProvider,
+    ValidationObserver
   },
   data () {
     return {
@@ -78,27 +96,24 @@ export default {
       id_type: null,
       id_number: null,
       years_in_business: null,
-      showSubmit: true
-    }
-  },
-  validations: {
-    annual_sales: {
-      required,
-      minValue: minValue(10)
-    },
-    id_type: {
-      required
-    },
-    years_in_business: {
-      required
-    },
-    id_number: {
-      required
+      showSubmit: true,
+      regex: ''
     }
   },
   computed: {
     idType () {
       return this.$store.getters['pages/idTypes']
+    }
+  },
+  watch: {
+    id_type (value) {
+      if (value === '3') {
+        this.regex = '[A-Z]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
+      } else if (value === '1') {
+        this.regex = '[0-9]{10}$'
+      } else if (value === '2') {
+        this.regex = '[A-Z]{1}[0-9]{9}$'
+      }
     }
   },
   beforeCreate () {
@@ -139,7 +154,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-form {
+.grid {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3%;
 }
@@ -155,7 +170,7 @@ form {
   padding-right: 10%;
 }
 @include for-phone-only {
-  form {
+  .grid {
     grid-template-columns: 100%;
     &>div:nth-child(4) {
       order: 1;
