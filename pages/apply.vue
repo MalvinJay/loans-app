@@ -9,7 +9,7 @@
         <div class="mt-10">
           <form class="grid">
             <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Applicant ID Type</label>
+              <label class="block text-gray-900 text-sm mb-2">Please select one</label>
               <Select v-model="id_type" :items="idType" small />
             </div>
             <div class="mb-4">
@@ -21,12 +21,11 @@
                 type="number"
                 placeholder="e.g 1,000"
                 small
-                required
                 money
               />
             </div>
             <div class="mb-4">
-              <label class="block text-gray-900 text-sm mb-2">Applicant's ID (passport, driver's license, Voters Id)</label>
+              <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id)</label>
               <Input
                 v-model="id_number"
                 type="text"
@@ -41,8 +40,8 @@
               <Input v-model.number="years_in_business" type="text" small />
             </div>
           </form>
-          <div class="grid grid-cols-2 mt-4 buttons mt-20 mb-20">
-            <div class="flex-1">
+          <div class="nav-buttons mt-10">
+            <div>
               <button
                 class="button-small"
                 @click="submit"
@@ -158,6 +157,9 @@ form {
 @include for-phone-only {
   form {
     grid-template-columns: 100%;
+    &>div:nth-child(4) {
+      order: 1;
+    }
   }
 .buttons {
   button {

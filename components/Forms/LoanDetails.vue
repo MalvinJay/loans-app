@@ -5,7 +5,13 @@
         <div class="grid form-a py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model.number="loanAmount" name="Amount Requested" type="number" money />
+              <Input
+                v-model.number="loanAmount"
+                name="Amount Requested"
+                type="number"
+                money
+                required
+              />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -19,14 +25,29 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                 Are you a startup (i.e. between 0 and 2 years' old)?
+                <span class="text-red-600">*</span>
               </label>
-              <div class="flex justify-start ">
-                <label class="checkbox">Yes
-                  <input id="yes" v-model="startup" type="checkbox" true-value="true" false-value="false">
+              <div class="flex justify-start">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="yes"
+                    v-model="startup"
+                    type="checkbox"
+                    true-value="true"
+                    false-value="false"
+                  >
                   <span class="checkmark" />
                 </label>
-                <label class="checkbox">No
-                  <input id="no" v-model="startup" type="checkbox" false-value="true" true-value="false">
+                <label class="checkbox">
+                  No
+                  <input
+                    id="no"
+                    v-model="startup"
+                    type="checkbox"
+                    false-value="true"
+                    true-value="false"
+                  >
                   <span class="checkmark" />
                 </label>
               </div>
@@ -36,14 +57,29 @@
               <ValidationProvider v-slot="{ errors }" rules="required">
                 <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                   Can you provide proof of COVID-19 impact?
+                  <span class="text-red-600">*</span>
                 </label>
                 <div class="flex justify-start">
-                  <label class="checkbox">Yes
-                    <input id="yes" v-model="proofOfImpact" type="checkbox" true-value="true" false-value="false">
+                  <label class="checkbox">
+                    Yes
+                    <input
+                      id="yes"
+                      v-model="proofOfImpact"
+                      type="checkbox"
+                      true-value="true"
+                      false-value="false"
+                    >
                     <span class="checkmark" />
                   </label>
-                  <label class="checkbox">No
-                    <input id="no" v-model="proofOfImpact" type="checkbox" false-value="true" true-value="false">
+                  <label class="checkbox">
+                    No
+                    <input
+                      id="no"
+                      v-model="proofOfImpact"
+                      type="checkbox"
+                      false-value="true"
+                      true-value="false"
+                    >
                     <span class="checkmark" />
                   </label>
                 </div>
@@ -54,32 +90,43 @@
           <div class="mb-12">
             <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
               How has COVID-19 impacted your business?
+              <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <MultiSelect v-model="covidImpact" :list="covidImpacts" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
             <div v-if="otherSelected" class="mt-5">
-              <textarea v-model="general.other_covid_impact" name="" rows="10" placeholder="Please write down the impact" />
+              <textarea
+                v-model="general.other_covid_impact"
+                name
+                rows="10"
+                placeholder="Please write down the impact"
+              />
             </div>
           </div>
           <div class="mb-4">
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-              Proof of COVID-19 Impact Template
-            </label>
+            <label
+              class="block text-gray-700 text-sm font-normal mb-2 font-bold"
+            >Proof of COVID-19 Impact Template</label>
             <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
             <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
               What will you use the funds for?
+              <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <MultiSelect v-model="fund_purposes" :list="fundRoles" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
-            <label v-if="fundOtherSelected" class="block text-gray-900 text-sm font-normal mb-2 mt-8">
+            <label
+              v-if="fundOtherSelected"
+              class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+            >
               If other, fill this field
+              <span class="text-red-600">*</span>
             </label>
             <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
           </div>
@@ -87,12 +134,19 @@
             <div>
               <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                 Payment Account Details
+                <span class="text-red-600">*</span>
               </label>
               <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="grid grid-cols-2 gap-5">
-                    <label v-for="(item, i) in momo" :key="i" class="checkbox momo">{{ item.bank_name.split(' ')[0] }}
-                      <input :id="item.name" v-model="general.financial_institution_id" type="checkbox" :true-value="item.id">
+                    <label v-for="(item, i) in momo" :key="i" class="checkbox momo">
+                      {{ item.bank_name.split(' ')[0] }}
+                      <input
+                        :id="item.name"
+                        v-model="general.financial_institution_id"
+                        type="checkbox"
+                        :true-value="item.id"
+                      >
                       <span class="checkmark" />
                     </label>
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -102,6 +156,9 @@
             </div>
             <label v-if="loanAmount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
               Mobile Wallet Number (must use your own mobile wallet)
+              <span
+                class="text-red-600 font-bold"
+              >*</span>
             </label>
             <div v-if="loanAmount<= 2000">
               <ValidationProvider v-slot="{ errors }" rules="required">
@@ -111,17 +168,13 @@
             </div>
             <div v-else>
               <div class="mb-8">
-                <label class="block text-gray-900 text-sm font-normal mb-2">
-                  Your Selected Bank
-                </label>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Your Selected Bank</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Select v-model="general.financial_institution_id" :items="bankPartner" />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <label class="block text-gray-900 text-sm font-normal mb-2">
-                Bank Account Number
-              </label>
+              <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
               <ValidationProvider v-slot="{ errors }" rules="required">
                 <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -140,30 +193,78 @@
     </ValidationObserver>
 
     <!-- ===================================================================================
-    =================================COVID TEMPLATE MODAL============================== -->
+    =================================COVID TEMPLATE MODAL==============================-->
     <Modal v-if="modal1" @close="modal1 = false">
       <div class="income-info">
         <div class="h-d">
           <p class="text-center text-lg">
             Proof of Covid-19 Impact (2020)
           </p>
-          <p class="text-center text-sm">
+          <p
+            class="text-center text-sm"
+          >
             (Please provide proof of COVID-19 impact on your business, enter amounts as applicable )
           </p>
         </div>
         <!--   Other (add field for applicant to type in what item)  -->
         <div class="grid grid-cols-5 gap-8 b-d">
           <div />
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">March 2020</label> </div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">April 2020</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">May 2020</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed to Company from Customers </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March 2020</label><Input v-model.number="covid_proof_of_march_20.outstanding_invoice" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.outstanding_invoice" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.outstanding_invoice" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >March 2020</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >April 2020</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >May 2020</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold mb-2"
+            >Amount owed to Company from Customers</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March 2020</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.outstanding_invoice"
               type="text"
               placeholder="GHS"
@@ -172,12 +273,42 @@
               disabled
             />
           </div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.demand_notice" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.demand_notice" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.demand_notice" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.demand_notice"
               type="text"
               placeholder="GHS"
@@ -186,12 +317,42 @@
               disabled
             />
           </div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.outstanding_rent" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.outstanding_rent" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.outstanding_rent" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.outstanding_rent"
               type="text"
               placeholder="GHS"
@@ -200,12 +361,42 @@
               disabled
             />
           </div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.unpaid_salaries" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.unpaid_salaries" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.unpaid_salaries" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.unpaid_salaries"
               type="text"
               placeholder="GHS"
@@ -214,12 +405,42 @@
               disabled
             />
           </div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.unpaid_utility_bills" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.unpaid_utility_bills" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.unpaid_utility_bills" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.unpaid_utility_bills"
               type="text"
               placeholder="GHS"
@@ -228,12 +449,42 @@
               disabled
             />
           </div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Other</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model.number="covid_proof_of_march_20.reduced_productivity" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label><Input v-model.number="covid_proof_of_april_20.reduced_productivity" type="number" placeholder="GHS" money small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label><Input v-model.number="covid_proof_of_may_20.reduced_productivity" type="number" placeholder="GHS" money small /></div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input
+            <label class="block text-gray-900 text-sm font-bold mb-2">Other</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
               v-model="total.reduced_productivity"
               type="text"
               placeholder="GHS"
@@ -256,8 +507,8 @@
   </div>
 </template>
 <script>
+import { mapGetters, mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { required, minValue } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
@@ -306,42 +557,17 @@ export default {
       fund_purposes: null
     }
   },
-  validations: {
-    general: {
-      account_no: {
-        required
-      },
-      financial_institution_id: {
-        required
-      }
-    },
-    fund_purposes: {
-      required
-    },
-    loanAmount: {
-      required,
-      minValue: minValue(4)
-    }
-  },
   computed: {
-    years () {
-      return this.$store.getters['pages/yearsInBusiness']
-    },
-    bankPartner () {
-      return this.$store.getters['pages/bankPartner']
-    },
-    covidImpacts () {
-      return this.$store.getters['pages/covidImpacts']
-    },
-    fundRoles () {
-      return this.$store.getters['pages/fundRoles']
-    },
-    momo () {
-      return this.$store.getters['pages/momo']
-    },
-    currentTab () {
-      return this.$store.state.pages.currentTab
-    }
+    ...mapGetters({
+      years: 'pages/yearsInBusiness',
+      bankPartner: 'pages/bankPartner',
+      covidImpacts: 'pages/covidImpacts',
+      fundRoles: 'pages/fundRoles',
+      momo: 'pages/momo'
+    }),
+    ...mapState({
+      currentTab: state => state.pages.currentTab
+    })
   },
   watch: {
     fund_purposes: {
@@ -351,7 +577,6 @@ export default {
       deep: true
     },
     show (value) {
-      // alert('proper')
       const data = Object.assign({}, this.general) // create copy general object
 
       // merge general object with necessary data
@@ -369,7 +594,9 @@ export default {
       data.covid_proof_may_20 = covidProofOfMay
       data.years_in_business = this.years
       data.requested_loan_amount = this.loanAmount
-      this.startup === 'true' ? data.is_startup = '1' : data.is_startup = '0'
+      this.startup === 'true'
+        ? (data.is_startup = '1')
+        : (data.is_startup = '0')
       // Once show value changes, commit to store
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
@@ -384,35 +611,43 @@ export default {
     covid_proof_of_may_20: {
       handler (value) {
         // calculate total outstanding invoie
-        const data = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        const data =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
         this.total.outstanding_invoice = this.thousandSeprator(data)
 
-        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
         this.total.demand_notice = this.thousandSeprator(demandData)
 
-        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
         this.total.outstanding_rent = this.thousandSeprator(rentData)
 
-        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
         this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
-        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
         this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
-        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
-        this.total.reduced_productivity = this.thousandSeprator(productivityData)
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
 
         // calculate total demand notce
       },
@@ -421,35 +656,43 @@ export default {
     covid_proof_of_april_20: {
       handler (value) {
         // calculate total outstanding invoie
-        const invoiceData = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        const invoiceData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
         this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
 
-        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
         this.total.demand_notice = this.thousandSeprator(demandData)
 
-        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
         this.total.outstanding_rent = this.thousandSeprator(rentData)
 
-        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
         this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
-        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
         this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
-        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
-        this.total.reduced_productivity = this.thousandSeprator(productivityData)
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
         // calculate total demand notce
       },
       deep: true
@@ -457,44 +700,51 @@ export default {
     covid_proof_of_march_20: {
       handler (value) {
         // calculate total outstanding invoice
-        const invoiceData = this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        const invoiceData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
         this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
 
         // calculate total demand notice
-        const demandData = this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
-        this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
         this.total.demand_notice = this.thousandSeprator(demandData)
 
         // calculate total outstanding rent
-        const rentData = this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
-        this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
         this.total.outstanding_rent = this.thousandSeprator(rentData)
 
         // calculate total unpaid salaries
-        const salariesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
         this.total.unpaid_salaries = this.thousandSeprator(salariesData)
 
         // calculate total unpaid utility bills
-        const utilitiesData = this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
-        this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
         this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
 
         // calculate total reduced productivity
-        const productivityData = this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
-        this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
-        this.total.reduced_productivity = this.thousandSeprator(productivityData)
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
       },
       deep: true
     }
-
   },
   created () {
     if (this.$route.params.amount < 145000) {
@@ -503,16 +753,7 @@ export default {
   },
   methods: {
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please fill in all fields', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },
     toggleModal1 () {
       this.modal1 = false
@@ -533,7 +774,13 @@ export default {
       this.modal1 = false
     },
     thousandSeprator (amount) {
-      if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
+      if (
+        amount !== '' ||
+        amount !== undefined ||
+        amount !== 0 ||
+        amount !== '0' ||
+        amount !== null
+      ) {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount
@@ -548,7 +795,7 @@ export default {
   width: 73%;
   column-gap: 3rem;
   .ac-dc {
-    >label {
+    > label {
       margin-right: 30px;
     }
   }

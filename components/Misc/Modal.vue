@@ -2,7 +2,7 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div v-click-outside="closeModal" class="modal-container">
+        <div v-click-outside="closeModal" class="modal-container" :class="{flex}">
           <div v-scroll-lock="open" class="modal-body">
             <slot />
           </div>
@@ -14,6 +14,11 @@
 <script>
 export default {
   props: {
+    flex: {
+      type: Boolean,
+      required: false,
+      default: false
+    }
   },
   data () {
     return {
@@ -47,9 +52,6 @@ export default {
 }
 
 .modal-container {
-  // width: -webkit-max-content;
-  // width: -moz-max-content;
-  // width: max-content;
   width: 90%;
   margin: 0px auto;
   padding: 20px 30px;
@@ -57,6 +59,12 @@ export default {
   border-radius: 2px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
+  &.flex {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+    // width: 50rem;
+  }
 }
 
 .modal-body {
@@ -68,15 +76,6 @@ export default {
     display: none;
   }
 }
-
-/*
- * The following styles are auto-applied to elements with
- * transition="modal" when their visibility is toggled
- * by Vue.js.
- *
- * You can easily play with the modal transition by editing
- * these styles.
- */
 
 .modal-enter {
   opacity: 0;
@@ -90,6 +89,14 @@ export default {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+
+@include for-phone-only {
+  .modal-container {
+    &.flex {
+      width: 90%;
+    }
+  }
 }
 
 </style>

@@ -8,7 +8,8 @@ export const state = () => ({
   formErrors: '',
   application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null,
   currentTab: 0,
-  countries: null
+  countries: null,
+  showSaveModal: false
 })
 
 export const getters = {
@@ -163,6 +164,9 @@ export const mutations = {
   SET_DISTRICTS (state, data) {
     const districts = state.dropdowns.districts.filter(item => item.region_id === parseInt(data))
     state.districts = districts
+  },
+  SET_SAVE_MODAL (state, data) {
+    state.showSaveModal = data
   }
 }
 export const actions = {

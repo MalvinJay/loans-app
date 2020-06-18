@@ -5,18 +5,18 @@
         <div class="grid form-b py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
+              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
+              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender</label>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex justify-start">
                 <label class="checkbox">
@@ -49,7 +49,7 @@
             <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address</label>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address <span class="text-red-600">*</span></label>
           </div>
           <div />
           <div class="mb-12">
@@ -79,7 +79,7 @@
             </div>
             <div>
               <ValidationProvider v-slot="{ errors }" rules="required">
-                <Select v-model="personalInfo.district" first="District" :items="districts" />
+                <Select v-model="personalInfo.district" required first="District" :items="districts" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
               </ValidationProvider>
             </div>
@@ -91,6 +91,7 @@
                 type="text"
                 name="Main Phone Number"
                 regex="0[2-5]{1}[0-9]{7,8}$"
+                required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -106,7 +107,7 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <input
                 id="dob"
@@ -128,6 +129,9 @@
             <button type="button" class="previous" @click="movePrevious">
               Previous
             </button>
+            <!-- <button class="previous small" type="button" @click="save">
+              Save
+            </button> -->
           </div>
         </div>
       </form>
@@ -135,6 +139,7 @@
   </div>
 </template>
 <script>
+import { mapState, mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Input from './Input'
 import Select from './Select'
@@ -161,24 +166,15 @@ export default {
     }
   },
   computed: {
-    idType () {
-      return this.$store.getters['pages/idTypes']
-    },
-    regions () {
-      return this.$store.getters['pages/regions']
-    },
-    districts () {
-      return this.$store.getters['pages/districts']
-    },
-    residenceStatus () {
-      return this.$store.getters['pages/residenceStatus']
-    },
-    applicationObject () {
-      return this.$store.state.pages.application_object
-    },
-    currentTab () {
-      return this.$store.state.pages.currentTab
-    }
+    ...mapGetters({
+      idType: 'pages/idTypes',
+      regions: 'pages/regions',
+      districts: 'pages/districts',
+      residenceStatus: 'pages/residenceStatus'
+    }),
+    ...mapState({
+      applicationObject: state => state.pages.application_object
+    })
   },
   watch: {
     region (value) {
@@ -212,19 +208,13 @@ export default {
     },
     moveNext () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      // this.$v.$touch()
-      // if (this.$v.$invalid) {
-      //   this.$toasted.error('Please fill in all fields', {
-      //     theme: 'toasted-primary',
-      //     position: 'top-center',
-      //     duration: 5000
-      //   })
-      // } else {
-      //   this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      // }
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 0)
+    },
+    save () {
+      this.$store.commit('api/SET_GENERAL_DATA', this.aggregate())
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     }
   }
 }

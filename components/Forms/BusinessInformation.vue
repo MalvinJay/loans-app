@@ -5,7 +5,7 @@
         <div class="grid form-c py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="general.business_name" type="text" name="Business Name" />
+              <Input v-model="general.business_name" type="text" required name="Business Name" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -22,7 +22,7 @@
             <label
               class="block text-gray-700 text-sm font-normal mb-2 font-bold"
               for="username"
-            >Business Address</label>
+            >Business Address <span class="text-red-600">*</span></label>
           </div>
           <div />
           <div class="mb-12">
@@ -60,6 +60,7 @@
                 type="text"
                 name="Business Phone Number"
                 regex="0[2-5]{1}[0-9]{7,8}$"
+                required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -84,6 +85,7 @@
                 name="Tax Identification Number (TIN)"
                 optional
                 regex="([A-Z]{1})([0-9]{10})$"
+                required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -99,14 +101,14 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Industry</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Industry <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.industry" :items="industry" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Legal Organization</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Legal Organization <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.legal_organization" :items="legalOrganization" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -119,12 +121,13 @@
                 type="text"
                 name="Main Product(s) or Service(s)"
                 placeholder="Please type it in"
+                required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Business Mission</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Business Mission <span class="text-red-600">*</span></label>
             <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex mb-3">
@@ -185,7 +188,7 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Business Association</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Business Association <span class="text-red-600">*</span></label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.business_association" :items="businessAssociation" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -1493,7 +1496,7 @@
               v-model.number="cash_flow_2017.ebit"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1504,7 +1507,7 @@
               v-model.number="cash_flow_2018.ebit"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1515,7 +1518,7 @@
               v-model.number="cash_flow_2019.ebit"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1526,7 +1529,7 @@
               v-model.number="cash_flow_2020.ebit"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1540,7 +1543,7 @@
               v-model.number="cash_flow_2017.depreciation"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1551,7 +1554,7 @@
               v-model.number="cash_flow_2018.depreciation"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1562,7 +1565,7 @@
               v-model.number="cash_flow_2019.depreciation"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1573,7 +1576,7 @@
               v-model.number="cash_flow_2020.depreciation"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1587,7 +1590,7 @@
               v-model.number="cash_flow_2017.working_capital_change"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1598,7 +1601,7 @@
               v-model.number="cash_flow_2018.working_capital_change"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1609,7 +1612,7 @@
               v-model.number="cash_flow_2019.working_capital_change"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1620,7 +1623,7 @@
               v-model.number="cash_flow_2020.working_capital_change"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1902,7 +1905,7 @@
               v-model.number="cash_flow_2017.beginning_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1913,7 +1916,7 @@
               v-model.number="cash_flow_2018.beginning_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1924,7 +1927,7 @@
               v-model.number="cash_flow_2019.beginning_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1935,7 +1938,7 @@
               v-model.number="cash_flow_2020.beginning_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -1992,7 +1995,7 @@
               v-model.number="cash_flow_2017.end_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -2003,7 +2006,7 @@
               v-model.number="cash_flow_2018.end_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -2014,7 +2017,7 @@
               v-model.number="cash_flow_2019.end_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -2025,7 +2028,7 @@
               v-model.number="cash_flow_2020.end_cash"
               grey
               type="number"
-              placeholder="GHS"
+              placeholder="CALCULATED"
               money
               small
             />
@@ -2044,456 +2047,555 @@
     <!-- =============================================================================================================
     ========================================= DIRECTOR AND SHAREHOLDER MODAL ===================================================-->
     <Modal v-if="shareHolderModal" @close="shareHolderModal=false">
-      <div class="d-s">
-        <div class="h-d mb-10">
-          <p class="text-center text-lg font-bold">
-            Director and Shareholder List
-          </p>
-        </div>
-        <div class="grid gap-8 b-d">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="directors_list[0].name" type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model.trim="directors_list[0].tin_number"
-              regex="([P]{1})([0-9]{10})$"
-              type="text"
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[0].age" type="text" regex="^[1-9][0-9]?$|^100$" small />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="directors_list[0].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="directors_list[0].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(doneShareHolderModal)">
+          <div class="d-s">
+            <div class="h-d mb-10">
+              <p class="text-center text-lg font-bold">
+                Director and Shareholder List
+              </p>
             </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+            <div v-if="shareHolders >= 1" class="grid gap-8 b-d">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="directors_list[0].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.trim="directors_list[0].tin_number"
+                    regex="([P]{1})([0-9]{10})$"
+                    type="text"
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[0].age" type="text" regex="^[1-9][0-9]?$|^100$" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="directors_list[0].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="directors_list[0].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="directors_list[0].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Status (select all that's applicable)</label>
+                <div class="flex">
+                  <label class="checkbox mr-5">
+                    Director
+                    <input
+                      id="director"
+                      v-model="directors_list[0].is_director"
+                      type="checkbox"
+                      true-value="1"
+                      false-value="0"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">
+                    Shareholder
+                    <input
+                      id="shareholder"
+                      v-model="directors_list[0].is_shareholder"
+                      type="checkbox"
+                      false-value="0"
+                      true-value="1"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[0].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div v-if="shareHolders >= 2" class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="directors_list[1].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="directors_list[1].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="directors_list[1].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="directors_list[1].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="directors_list[1].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Status (select all that's applicable)</label>
+                <div class="flex">
+                  <label class="checkbox mr-5">
+                    Director
+                    <input
+                      id="director"
+                      v-model="directors_list[1].is_director"
+                      type="checkbox"
+                      true-value="1"
+                      false-value="0"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">
+                    Shareholder
+                    <input
+                      id="shareholder"
+                      v-model="directors_list[1].is_shareholder"
+                      type="checkbox"
+                      false-value="0"
+                      true-value="1"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[1].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div v-if="shareHolders >= 3" class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="directors_list[2].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="directors_list[2].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="directors_list[2].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="directors_list[2].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="directors_list[2].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Status (select all that's applicable)</label>
+                <div class="flex">
+                  <label class="checkbox mr-5">
+                    Director
+                    <input
+                      id="director"
+                      v-model="directors_list[2].is_director"
+                      type="checkbox"
+                      true-value="1"
+                      false-value="0"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">
+                    Shareholder
+                    <input
+                      id="shareholder"
+                      v-model="directors_list[2].is_shareholder"
+                      type="checkbox"
+                      false-value="0"
+                      true-value="1"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[2].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div v-if="shareHolders >= 4" class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="directors_list[3].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="directors_list[3].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[3].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="directors_list[3].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="directors_list[3].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="directors_list[3].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Status (select all that's applicable)</label>
+                <div class="flex">
+                  <label class="checkbox mr-5">
+                    Director
+                    <input
+                      id="director"
+                      v-model="directors_list[3].is_director"
+                      type="checkbox"
+                      true-value="1"
+                      false-value="0"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">
+                    Shareholder
+                    <input
+                      id="shareholder"
+                      v-model="directors_list[3].is_shareholder"
+                      type="checkbox"
+                      false-value="0"
+                      true-value="1"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[3].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div v-if="shareHolders >= 5" class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="directors_list[4].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="directors_list[4].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[4].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="directors_list[4].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="directors_list[4].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="directors_list[4].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Status (select all that's applicable)</label>
+                <div class="flex">
+                  <label class="checkbox mr-5">
+                    Director
+                    <input
+                      id="director"
+                      v-model="directors_list[4].is_director"
+                      type="checkbox"
+                      true-value="1"
+                      false-value="0"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                  <label class="checkbox">
+                    Shareholder
+                    <input
+                      id="shareholder"
+                      v-model="directors_list[4].is_shareholder"
+                      type="checkbox"
+                      false-value="0"
+                      true-value="1"
+                    >
+                    <span class="checkmark" />
+                  </label>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="directors_list[4].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
             <div>
-              <Select v-model="directors_list[0].nationality" first="Country" :items="countries" small />
+              <small class=" text-blue-600 cursor-pointer" @click="shareHolders +=1">
+                Add another owner
+              </small>
+            </div>
+            <div class="my-20 flex gap-3 buttons">
+              <button type="submit" class="button-small">
+                Done
+              </button>
+              <button type="button" class="button-small" @click="shareHolderModal = false">
+                Cancel
+              </button>
             </div>
           </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Status (select all that's applicable)</label>
-            <div class="flex">
-              <label class="checkbox mr-5">
-                Director
-                <input
-                  id="director"
-                  v-model="directors_list[0].is_director"
-                  type="checkbox"
-                  true-value="1"
-                  false-value="0"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Shareholder
-                <input
-                  id="shareholder"
-                  v-model="directors_list[0].is_shareholder"
-                  type="checkbox"
-                  false-value="0"
-                  true-value="1"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="directors_list[0].share" type="number" small />
-          </div>
-        </div>
-        <div class="grid gap-8 b-d mt-12">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="directors_list[1].name" type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="directors_list[1].tin_number"
-              type="text"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="directors_list[1].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="directors_list[1].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="directors_list[1].nationality" first="Country" :items="countries" small />
-            </div>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Status (select all that's applicable)</label>
-            <div class="flex">
-              <label class="checkbox mr-5">
-                Director
-                <input
-                  id="director"
-                  v-model="directors_list[1].is_director"
-                  type="checkbox"
-                  true-value="1"
-                  false-value="0"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Shareholder
-                <input
-                  id="shareholder"
-                  v-model="directors_list[1].is_shareholder"
-                  type="checkbox"
-                  false-value="0"
-                  true-value="1"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="directors_list[1].share" type="number" small />
-          </div>
-        </div>
-        <div class="grid gap-8 b-d mt-12">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="directors_list[2].name" type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="directors_list[2].tin_number"
-              type="text"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="directors_list[2].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="directors_list[2].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="directors_list[2].nationality" first="Country" :items="countries" small />
-            </div>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Status (select all that's applicable)</label>
-            <div class="flex">
-              <label class="checkbox mr-5">
-                Director
-                <input
-                  id="director"
-                  v-model="directors_list[2].is_director"
-                  type="checkbox"
-                  true-value="1"
-                  false-value="0"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Shareholder
-                <input
-                  id="shareholder"
-                  v-model="directors_list[2].is_shareholder"
-                  type="checkbox"
-                  false-value="0"
-                  true-value="1"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="directors_list[2].share" type="number" small />
-          </div>
-        </div>
-        <div class="grid gap-8 b-d mt-12">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="directors_list[3].name" type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="directors_list[3].tin_number"
-              type="text"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[3].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="directors_list[3].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="directors_list[3].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="directors_list[3].nationality" first="Country" :items="countries" small />
-            </div>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Status (select all that's applicable)</label>
-            <div class="flex">
-              <label class="checkbox mr-5">
-                Director
-                <input
-                  id="director"
-                  v-model="directors_list[3].is_director"
-                  type="checkbox"
-                  true-value="1"
-                  false-value="0"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Shareholder
-                <input
-                  id="shareholder"
-                  v-model="directors_list[3].is_shareholder"
-                  type="checkbox"
-                  false-value="0"
-                  true-value="1"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="directors_list[3].share" type="number" small />
-          </div>
-        </div>
-        <div class="grid gap-8 b-d mt-12">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="directors_list[4].name" type="text" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="directors_list[4].tin_number"
-              type="text"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="directors_list[4].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="directors_list[4].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="directors_list[4].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="directors_list[4].nationality" first="Country" :items="countries" small />
-            </div>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Status (select all that's applicable)</label>
-            <div class="flex">
-              <label class="checkbox mr-5">
-                Director
-                <input
-                  id="director"
-                  v-model="directors_list[4].is_director"
-                  type="checkbox"
-                  true-value="1"
-                  false-value="0"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Shareholder
-                <input
-                  id="shareholder"
-                  v-model="directors_list[4].is_shareholder"
-                  type="checkbox"
-                  false-value="0"
-                  true-value="1"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="directors_list[4].share" type="number" small />
-          </div>
-        </div>
-        <div class="my-20 flex gap-3 buttons">
-          <button type="submit" class="button-small" @click="doneShareHolderModal">
-            Done
-          </button>
-          <button type="button" class="button-small" @click="shareHolderModal = false">
-            Cancel
-          </button>
-        </div>
-      </div>
+        </form>
+      </ValidationObserver>
     </Modal>
     <!-- =============================================================================================================
     ========================================= Micro Income Modal ===================================================-->
@@ -2625,199 +2727,257 @@
     <!-- =============================================================================================================
     ========================================= Business Owner ===================================================-->
     <Modal v-if="ownerModal" @close="ownerModal=false">
-      <div class="d-s">
-        <div class="h-d mb-10">
-          <p class="text-center text-lg font-bold">
-            Business Owner(s)
-          </p>
-        </div>
-        <div class="grid gap-8 b-d">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="business_owner[0].name" type="text" small />
+      <ValidationObserver v-slot="{ handleSubmit }">
+        <form @submit.prevent="handleSubmit(doneOwnerModal)">
+          <div v-if="businessOwners >= 1" class="d-s">
+            <div class="grid gap-8 b-d">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="business_owner[0].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="business_owner[0].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[0].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="business_owner[0].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="business_owner[0].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="business_owner[0].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[0].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
           </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="business_owner[0].tin_number"
-              type="text"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
+          <div v-if="businessOwners >= 2" class="d-s">
+            <div class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="business_owner[1].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="business_owner[1].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="business_owner[1].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="business_owner[1].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="business_owner[1].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[1].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+            </div>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model.number="business_owner[0].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="business_owner[0].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="business_owner[0].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
+          <div v-if="businessOwners >= 3" class="d-s">
+            <div class="grid gap-8 b-d mt-12">
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="business_owner[2].name" type="text" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2"
+                >Tax Identification Number(TIN)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model="business_owner[2].tin_number"
+                    type="text"
+                    small
+                    regex="([P]{1})([0-9]{10})$"
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="flex">
+                    <label class="checkbox">
+                      Male
+                      <input
+                        id="male"
+                        v-model="business_owner[2].gender"
+                        type="checkbox"
+                        true-value="Male"
+                        false-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <label class="checkbox">
+                      Female
+                      <input
+                        id="female"
+                        v-model="business_owner[2].gender"
+                        type="checkbox"
+                        false-value="Male"
+                        true-value="Female"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                  </div>
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="business_owner[2].nationality" first="Country" :items="countries" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model.number="business_owner[2].share" type="number" small />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
             </div>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="business_owner[0].nationality" first="Country" :items="countries" small />
-            </div>
+            <small class=" text-blue-600 cursor-pointer" @click="businessOwners +=1">
+              Add another owner
+            </small>
           </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="business_owner[0].share" type="number" small />
+          <div class="my-20 flex gap-3 buttons">
+            <button type="submit" class="button-small">
+              Done
+            </button>
+            <button type="button" class="button-small" @click="ownerModal = false">
+              Cancel
+            </button>
           </div>
-        </div>
-      </div>
-
-      <div class="d-s mt-12">
-        <div class="grid gap-8 b-d">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="business_owner[1].name" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="business_owner[1].tin_number"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model="business_owner[1].age" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="business_owner[1].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="business_owner[1].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="business_owner[1].nationality" first="Country" :items="countries" small />
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="business_owner[1].share" small />
-          </div>
-        </div>
-      </div>
-      <div class="d-s mt-12">
-        <div class="grid gap-8 b-d">
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
-            <Input v-model="business_owner[2].name" small />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Tax Identification Number(TIN)</label>
-            <Input
-              v-model="business_owner[2].tin_number"
-              small
-              regex="([P]{1})([0-9]{10})$"
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
-            <Input v-model="business_owner[2].age" small regex="^[1-9][0-9]?$|^100$" />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
-            <div class="flex">
-              <label class="checkbox">
-                Male
-                <input
-                  id="male"
-                  v-model="business_owner[2].gender"
-                  type="checkbox"
-                  true-value="Male"
-                  false-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-              <label class="checkbox">
-                Female
-                <input
-                  id="female"
-                  v-model="business_owner[2].gender"
-                  type="checkbox"
-                  false-value="Male"
-                  true-value="Female"
-                >
-                <span class="checkmark" />
-              </label>
-            </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
-            <div>
-              <Select v-model="business_owner[2].nationality" first="Country" :items="countries" small />
-            </div>
-            <!-- <Input v-model="business_owner[2].nationality" small /> -->
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
-            <Input v-model.number="business_owner[2].share" small />
-          </div>
-        </div>
-        <div class="my-20 flex gap-3 buttons">
-          <button type="submit" class="button-small" @click="doneOwnerModal">
-            Done
-          </button>
-          <button type="button" class="button-small" @click="ownerModal = false">
-            Cancel
-          </button>
-        </div>
-      </div>
+        </form>
+      </ValidationObserver>
     </Modal>
     <!-- =============================================================================================================
     ========================================= Employees Modal ===================================================-->
@@ -2877,8 +3037,8 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { required } from 'vuelidate/lib/validators'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
@@ -2932,34 +3092,22 @@ export default {
       directors_list: [{}, {}, {}, {}, {}],
       credit_facilities: [{}, {}, {}],
       region: null,
-      annual_sales_display: null
+      annual_sales_display: null,
+      businessOwners: 1,
+      shareHolders: 1
     }
   },
   computed: {
-    businessAssociation () {
-      return this.$store.getters['pages/businessAssociation']
-    },
-    legalOrganization () {
-      return this.$store.getters['pages/legalOrganization']
-    },
-    industry () {
-      return this.$store.getters['pages/industry']
-    },
-    businessScale () {
-      return this.$store.getters['pages/businessScale']
-    },
-    isStartup () {
-      return this.$store.getters['pages/isStartup']
-    },
-    regions () {
-      return this.$store.getters['pages/regions']
-    },
-    districts () {
-      return this.$store.getters['pages/districts']
-    },
-    countries () {
-      return this.$store.getters['pages/countries']
-    }
+    ...mapGetters({
+      businessAssociation: 'pages/businessAssociation',
+      legalOrganization: 'pages/legalOrganization',
+      industry: 'pages/industry',
+      businessScale: 'pages/businessScale',
+      isStartup: 'pages/isStartup',
+      regions: 'pages/regions',
+      districts: 'pages/districts',
+      countries: 'pages/countries'
+    })
   },
   watch: {
     income_statement_2017: {
@@ -3058,46 +3206,6 @@ export default {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
-      }
-    }
-  },
-  validations: {
-    general: {
-      business_address: {
-        required
-      },
-      business_association: {
-        required
-      },
-      business_district: {
-        required
-      },
-      business_name: {
-        required
-      },
-      business_phone_number: {
-        required
-      },
-      business_services: {
-        required
-      },
-      business_town: {
-        required
-      },
-      covid_products: {
-        required
-      },
-      industry: {
-        required
-      },
-      legal_organization: {
-        required
-      },
-      social_enterprise: {
-        required
-      },
-      tin_number: {
-        required
       }
     }
   },
@@ -3266,25 +3374,9 @@ export default {
       this.checkEmployeesModal = true
       this.employeesModal = false
     },
-    async save () {
-      this.$toasted.show('Saved', {
-        theme: 'toasted-primary',
-        position: 'top-center',
-        duration: 7000
-      })
-      await (new Promise((resolve, reject) => {
-        const data = this.aggregate()
-        this.$store.commit('api/SET_GENERAL_DATA', data)
-        resolve(data)
-      }))
-      this.$store.dispatch('api/saveApplication')
-        .then(() => {
-          this.$toasted.show('Saved', {
-            theme: 'toasted-primary',
-            position: 'top-center',
-            duration: 5000
-          })
-        })
+    save () {
+      this.$store.commit('api/SET_GENERAL_DATA', this.aggregate())
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     },
     thousandSeprator (amount) {
       if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
