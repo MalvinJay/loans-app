@@ -3657,16 +3657,7 @@ export default {
       return data
     },
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please fill in all fields', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)

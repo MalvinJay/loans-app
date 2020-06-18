@@ -130,16 +130,18 @@
         </div>
       </div>
     </div>
-    <div class="nav-buttons flex">
-      <button class="button-small next" @click="confirmModal=true">
-        Submit
-      </button>
-      <button class="button-small previous" @click="movePrevious">
-        Previous
-      </button>
-      <button class="button-small previous small">
-        Save
-      </button>
+    <div class="nav-buttons">
+      <div class="flex flex-wrap gap-8">
+        <button class="next" @click="confirmModal=true">
+          Submit
+        </button>
+        <button class="previous" type="button" @click="movePrevious">
+          Previous
+        </button>
+        <button class="previous small" type="button" @click="save">
+          Save
+        </button>
+      </div>
     </div>
     <Modal v-if="confirmModal" @close="confirmModal=false">
       <div>
@@ -280,6 +282,9 @@ export default {
     },
     editDocs () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+    },
+    save () {
+      this.$store.commit('pages/SET_SAVE_MODAL', true)
     }
   }
 }
