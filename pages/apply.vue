@@ -112,7 +112,7 @@ export default {
       } else if (value === '1') {
         this.regex = '[0-9]{10}$'
       } else if (value === '2') {
-        this.regex = '[A-Z]{1}[0-9]{9}$'
+        this.regex = '[A-Z]{1}[0-9]{7}$'
       }
     }
   },
