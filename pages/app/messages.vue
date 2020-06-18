@@ -13,8 +13,8 @@
       </div>
       <div>
         <Accordion />
-        <Accordion />
-        <Accordion />
+        <!-- <Accordion /> -->
+        <!-- <Accordion /> -->
       </div>
     </div>
     <!-- Inquiry Modal -->
@@ -25,7 +25,7 @@
             <div v-scroll-lock="open" class="modal-body">
               <form class="px-6" @submit.prevent="handleInquiry()">
                 <div class="relative text-center">
-                  <img src="@/assets/img/close.svg" class="absolut left-0 top-0 w-4 h-4 cursor-pointer" alt="" @click="modal = false" >
+                  <img src="@/assets/img/close.svg" class="absolut left-0 top-0 w-4 h-4 cursor-pointer" alt="" @click="modal = false">
                   <h1 class="head">
                     Inquiry
                   </h1>
@@ -51,7 +51,7 @@ import Accordion from '@/components/Misc/Accordion.vue'
 // import Modal from '@/components/Misc/Modal'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   components: {
     Accordion
     // Modal
@@ -76,6 +76,7 @@ export default {
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
+  height: calc(100vh - 70px);
 }
 button {
   background: #ffffff;

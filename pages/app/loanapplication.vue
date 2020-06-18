@@ -23,45 +23,13 @@
           <tbody>
             <tr>
               <td>
-                Name of Application
+                {{ loanDetails.first_name || 'N/A' }} {{ loanDetails.last_name || 'N/A' }}
               </td>
               <td>
                 11 July 2020
               </td>
               <td class="text text-blue-700">
-                In Progress
-              </td>
-              <td>
-                <button class="button-small">
-                  Complete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Name of Application
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td class="text text-blue-700">
-                In Progress
-              </td>
-              <td>
-                <button class="button-small">
-                  Complete
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                Name of Application
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td class="text text-blue-700">
-                In Progress
+                {{loanDetails.status}}
               </td>
               <td>
                 <button class="button-small">
@@ -71,20 +39,85 @@
             </tr>
           </tbody>
         </table>
+        <div :class="[{hidden: status}, 'overlay']">
+          <div class="redirect py-28 rounded-sm">
+            <div class="h-12 flex flex-col md:items-center">
+              <div class="text-3xl font-bold">
+                REGISTRATION NOT COMPLETE!
+              </div>
+              <span class="py-2">
+                KINDLY GO BACK AND FINISH THE PROCESS
+              </span>
+              <div class="shadow-2xl p-4 cursor-pointer flex justify-center">
+                <a href="/apply">
+                  <img src="@/assets/img/go-back_resigtration.svg" class="w-10" alt="">
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
-  layout: 'appLayout'
-  // middleware: 'auth'
+  layout: 'appLayout',
+  middleware: 'auth',
+  computed: {
+    ...mapGetters({
+      loanDetails: 'loan/loanDetails',
+      loansState: 'loan/loanDetailState',
+      loansErrors: 'loan/loanStatusErrors',
+      loanStatus: 'loan/loanStatus'
+    }),
+    state () {
+      return this.loansState === 'LOADING'
+    },
+    status () {
+      return this.loanStatus === 'complete'
+    }
+  },
+  mounted () {
+    this.$store.dispatch('loan/fetchLoanDetails')
+  }
 }
 </script>
 <style lang="scss" scoped>
+.hidden {
+  display: none!important;
+}
+.overlay {
+  background-attachment: fixed;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .redirect {
+    position: relative;
+    background: white;
+    padding: 20px 30px;
+    height: 25vh;
+    h1 {
+      font-size: 20px;
+    }
+    p {
+      font-weight: 400;
+    }
+  }
+}
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
+  height: calc(100vh - 70px);
 }
 table {
   table-layout: fixed;
@@ -95,6 +128,11 @@ table {
     text-align: left;
     height: 4rem;
     padding-left: 2rem;
+    tr {
+      th {
+        padding: 10px
+      }
+    }
     th {
       &:first-child {
         padding-left: 2rem;

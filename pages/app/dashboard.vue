@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div :class="[{hidden: !state}, 'loading']">
+    <div :class="[{hidden: mybool}, 'loading']">
       <img src="@/assets/img/loading.svg" class="w-12 h-full" alt="">
     </div>
     <div class="app">
@@ -180,21 +180,28 @@ export default {
     ProgressBar,
     Accordion
   },
-  // middleware: 'auth',
+  middleware: 'auth',
   data () {
     return {
       applicatonIdFile: null,
-      loading: false
+      loading: false,
+      mybool: true
     }
   },
   mounted () {
-    // console.log('loanDetailsState', this.loansState)
     this.$store.dispatch('loan/fetchLoanDetails')
-    // .then((response) => {
-    //   console.log('LoanDetails', this.loanDetails)
-    // })
-    // .catch(() => {
-    // })
+      .then((response) => {
+        return response
+      })
+      .catch((error) => {
+        this.$toasted.error(error.error)
+        if (error.error.includes('Token')) {
+          this.$router.push('/app/registration/login')
+        }
+        if (error.error.includes('unfinished')) {
+          this.$router.push('/app/loanapplication')
+        }
+      })
   },
   computed: {
     ...mapGetters({

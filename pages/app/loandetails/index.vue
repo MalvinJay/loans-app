@@ -111,11 +111,12 @@
   </div>
 </template>
 <script>
+import EventBus from '../../../event-bus'
 import PaymentHistory from './paymentHistory.vue'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   components: {
     ProgressBar,
     PaymentHistory
@@ -127,7 +128,7 @@ export default {
   },
   mounted () {
     this.tabView = 'details'
-    this.$on('goBack', () => {
+    EventBus.$on('goBack', () => {
       this.tabView = 'details'
     })
   },

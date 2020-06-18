@@ -16,6 +16,7 @@ export const mutations = {
     state.token = payload
   },
   SET_LOGOUT (state) {
+    localStorage.clear()
     state.token = ''
   }
 }

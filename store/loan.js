@@ -1,13 +1,16 @@
 export const state = () => ({
   loandetails: {
     data: {},
+    status: localStorage.getItem('loanStatus'),
     state: 'DATA'
   },
   errors: {}
 })
 export const getters = {
   loanDetails: state => state.loandetails.data,
-  loanDetailState: state => state.loandetails.state
+  loanDetailState: state => state.loandetails.state,
+  loanStatusErrors: state => state.errors,
+  loanStatus: state => state.loandetails.status
 }
 export const mutations = {
   SET_LOANDETAILS (state, payload) {
@@ -33,12 +36,20 @@ export const actions = {
       }
       this.$axios.$get(url, config)
         .then((response) => {
+          // console.log('Response:', response)
           commit('SET_LOANDETAILS', response.data)
+          if (response.data.loan_identifier != null) {
+            localStorage.setItem('loanStatus', 'complete')
+          } else {
+            localStorage.setItem('loanStatus', 'incomplete')
+          }
+          commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
-          // console.log('Error from VUEX', error.error)
-          commit('SET_ERROR', error)
-          reject(error)
+          // console.log('Error from VUEX', error.response.data)
+          commit('SET_STATE', 'ERROR')
+          commit('SET_ERROR', error.response.data)
+          reject(error.response.data)
         })
     })
   }

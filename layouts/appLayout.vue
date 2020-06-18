@@ -7,11 +7,6 @@
         </div>
         <div class="links">
           <ul>
-          <!--<li v-for="(link, index) in links" :key="index">
-              <nuxt-link :to="link.to">
-              <img :src="link.img" :alt="link.name"> {{link.name}}
-              </nuxt-link>
-          </li>-->
             <li @click="toggleSide">
               <nuxt-link to="dashboard">
                 <img src="@/assets/img/app-home.png" alt=""> Home
@@ -98,6 +93,18 @@ export default {
         }
       ]
     }
+  },
+  mounted () {
+  // this.$store.dispatch('applicant/fetchApplicant')
+  //   .then((response) => {
+  //     this.$toasted.success(response)
+  //   })
+  //   .catch((error) => {
+  //     this.$toasted.error(error.error)
+  //     if (error.error.includes('Token')) {
+  //       this.$router.push('/app/registration/login')
+  //     }
+  //   })
   },
   methods: {
     logout () {

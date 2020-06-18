@@ -22,8 +22,8 @@
 </template>
 <script>
 export default {
-  layout: 'appLayout'
-  // middleware: 'auth'
+  layout: 'appLayout',
+  middleware: 'auth'
 }
 </script>
 <style lang="scss" scoped>

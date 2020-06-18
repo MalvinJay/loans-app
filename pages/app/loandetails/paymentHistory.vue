@@ -85,16 +85,17 @@
   </div>
 </template>
 <script>
+import EventBus from '../../../event-bus'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   data () {
     return {
     }
   },
   methods: {
     goback () {
-      this.$emit('goBack')
+      EventBus.$emit('goBack')
     }
   }
 }
