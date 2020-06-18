@@ -103,7 +103,12 @@
           <p class="font-bold">
             Photo ID
           </p>
-          <p>{{ general.id_file_name }}</p>
+          <p v-if="general.paye_file_name !== undefined">
+            {{ general.id_file_name }}
+          </p>
+          <p v-else>
+            N/A
+          </p>
           <p class="font-bold">
             Proof of PAYE
           </p>
@@ -198,11 +203,11 @@
           </p>
         </div>
         <div class="sig">
-          <label class="block text-gray-900 text-sm font-bold mb-2">Input your initials here</label>
+          <label class="block text-gray-900 text-sm font-bold mb-2">Input your Yes/No to accept or decline</label>
           <Input v-model="signature" small type="text" />
         </div>
         <div class="nav-buttons c-b flex gap-5">
-          <button v-if="signature !== null && signature !== '' && liquidation=='false' && crime=='false'" class="button-small next" @click="submitAll">
+          <button v-if="signature.toLowerCase() === 'yes' && liquidation=='false' && crime=='false'" class="button-small next" @click="submitAll">
             Finish
           </button>
           <button class="button-small previous" @click="confirmModal=false">

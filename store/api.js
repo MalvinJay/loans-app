@@ -113,7 +113,7 @@ export const actions = {
           'Content-Type': 'application/json'
         }
       }
-      const url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
+      const url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications'
       this.$axios.$post(url, state.general, config)
         .then((result) => {
           resolve(result)

@@ -12,44 +12,181 @@
           1. Who is eligible to apply for funding?
         </template>
         <template v-slot:body>
-          All Ghanaian businesses, registered or unregistered are eligible to apply for funding
+          All Ghanaian-owned businesses, registered or unregistered are eligible to apply for funding.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          2. When does the period of application commence?
+          2. Can I apply if I am not Ghanaian?
         </template>
         <template v-slot:body>
-          The period of application commences in 1st week of July 2020
+          Non-Ghanaians are not qualified to apply. However, if your company has a Ghanaianshareholder with over 50% ownership of the company, it may apply.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          3. When will the programme application window be closed?
+          3. Can I apply if I have no audited financial statements?
         </template>
         <template v-slot:body>
-          The programme closing will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the application process to be closed by the end of September 2020
+          Yes. You will be required to provide basic information on your business such as total revenue/sales and total expenses, but do not need to have documents prepared by an accountant
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          4. Can applicants stop and resume application at any time?
+          4. When can businesses apply?
         </template>
         <template v-slot:body>
-          YES! You can save your application and resume at any time you areready to continue.
+          Businesses can start applying now. Applications were opened to the public in the 1stweek of July 2020 and will continue for 2 months or until the funds run out
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          5. Is the online platform the sole means of application?
+          5. When will the programme application window be closed?
         </template>
         <template v-slot:body>
-          YES! It is the only place you can apply at the moment.
+          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the applicationprocess to be closed by the end of September 2020
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          6. How long does the approval & disbursement process take?
+          6. Can I apply for funding twice?
+        </template>
+        <template v-slot:body>
+          No. You cannot apply twice.
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          7. Do I need collateral/security to apply?
+        </template>
+        <template v-slot:body>
+          No. You do not need any collateral to apply.
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          8. Must I have a TIN to apply?
+        </template>
+        <template v-slot:body>
+          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit https://gra.gov.gh/tin/get-a-in/ to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN          <div class="w-full text-left" />
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          9. How can I apply for the fund?
+        </template>
+        <template v-slot:body>
+          There are several avenues to apply for the fund: visit our website www.nbssi.gov.gh/capsupport; or dial *718*555# on any mobile network; or call the NBSSI Helpline on 030 274 7777; or visit the nearest NBSSI district office (Business Advisory Centre) for help
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          10. Which documents do I need to provide with my application?
+        </template>
+        <template v-slot:body>
+          The only document required during the application process is a copy of your ID. However, you will also need a Tax Payer Identification Number (TIN). If your businessis a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your business.
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          11. How much (amount) am I eligible to apply for?
+        </template>
+        <template v-slot:body>
+          The amount for which a business is eligible will depend on its size and how much revenue it generates. Businesses will be categorized as Micro, Small, Medium Enterprise or a Start-Up
+          <table class="w-full">
+            <thead>
+              <tr class="text-left">
+                <th>
+                  Entity
+                </th>
+                <th>Number of Employees</th>
+                <th>
+                  Revenue Range <br>
+                  <span>
+                    (GHS)
+                  </span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  LOWER MICRO
+                </td>
+                <td>
+                  1-5
+                </td>
+                <td>
+                  0 – 20,000
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  UPPER MICRO
+                </td>
+                <td>
+                  1-5
+                </td>
+                <td>
+                  25,001 - 135,000
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  LOWER SMALL
+                </td>
+                <td>
+                  6-16
+                </td>
+                <td>
+                  135,001 – 1,500,000
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  UPPER SMALL
+                </td>
+                <td>
+                  17-29
+                </td>
+                <td>
+                  1,500,001 – 3,000,000
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  MEDIUM
+                </td>
+                <td>
+                  30 - 99
+                </td>
+                <td>
+                  3,000,001 – 5,000,000
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          12. Can applicants stop and resume application at any time?
+        </template>
+        <template v-slot:body>
+          Yes. You can save your application and resume at any time you are ready to continue.
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          13. How do I check my application status?
+        </template>
+        <template v-slot:body>
+          The application system has a secure Client Portal that allows applicants to view the status of their applications
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          14. How long does the approval & disbursement process take?
         </template>
         <template v-slot:body>
           The approval and disbursement process should take two weeks but may extend further if there are any irregularities with an application
@@ -57,210 +194,111 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          7. I am not Ghanaian; do I qualify to apply?
+          15. How will I be notified if my application is approved?
         </template>
         <template v-slot:body>
-          Non-Ghanaian sole proprietors and unregistered companies are notqualified to apply. However, if your company has a Ghanaian shareholder with a 51% share of the company, the company may apply
+          Applicants will be notified via SMS, email or a phone call. Please don’t pay money toanyone while you wait to hear from us.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          8. How much (amount) am I eligible to apply for?
+          16. Do I have to pay any money for NBSSI/Mastercard Foundation COVID-19 Resilience and Recovery Program?
         </template>
         <template v-slot:body>
-          Amount eligibility will depend on the size of your business and how much revenue it generates. Businesses can be categorized as Micro, Small, Medium Enterprise or a Start-Up
-          <div class="w-full text-left">
-            <table class="w-full">
-              <thead>
-                <tr>
-                  <th>
-                    Entity
-                  </th>
-                  <th>Number of Employees</th>
-                  <th>
-                    Revenue Range
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>
-                    Micro
-                  </td>
-                  <td>
-                    1-5
-                  </td>
-                  <td>
-                    0 – 145,000
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    LOWER SMALL
-                  </td>
-                  <td>
-                    6-29
-                  </td>
-                  <td>
-                    145,001 – 250,000
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    UPPER SMALL
-                  </td>
-                  <td>
-                    6-29
-                  </td>
-                  <td>
-                    250,001 – 1,000,000
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    MEDIUM
-                  </td>
-                  <td>
-                    30 - 99
-                  </td>
-                  <td>
-                    1,000,001 – 5,000,000
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+          No. NBSSI does not charge any fees for this program.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          9. What interest rates will be charged for the funds disbursed?
+          17. Can two or more businesses with the same owner apply for funding from this fund?
         </template>
         <template v-slot:body>
-          Interest rates for this fund will not exceed 5% p.a.
+          No. If two or more businesses have the same owner only one of those businesses may apply under this fund.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          10. What is the loan repayment period?
+          18. Can I access a loan to start a new business venture?
         </template>
         <template v-slot:body>
-          A borrower can have up to 1-year holiday during which they do not have to make repayments of the loan, but interest will be charged. The loan repayment period is 24 months, starting from the 13th month after disbursement. Early repayment is encouraged, provided business operations can support it.
+          No. This fund seeks to provide relief to business that have been in operation for at least 6 months before date of application.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          11. Does this fund give grants?
+          19. Is this fund the same as the Government of Ghana CAP Business Support Scheme?
         </template>
         <template v-slot:body>
-          Yes
+          No. This program is funded by the Mastercard Foundation.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          12. Who is eligible for grant funding?
+          20. Will a business be eligible for this fund if they have already accessed funding from the Government of Ghana CAP Business Support Scheme?
         </template>
         <template v-slot:body>
-          All businesses in the micro and start-up categories are eligible for grants
+          Yes. A beneficiary of the Government of Ghana CAP Business Support Scheme can apply for funding from the NBSSI Mastercard Foundation COVID-19 Resilience and Recovery Program.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          13. Which documents do I need to provide in my application process?
+          21. Can I apply twice?
         </template>
         <template v-slot:body>
-          The only document required during the application process is a copy of your identification.  However, you will be required to provide  a Tax Payer Identification Number (TIN) for your business (corporate TIN starts with a C) or a personal TIN of the owner of the business if your business is a sole proprietorship or unregistered. If your business is a small or medium sized enterprise you may also be
-          asked to provide a SSNIT Employer registration Number, and additional financial information on your business.
+          No. You cannot apply twice.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          14. Do I need collateral security to apply?
+          22. How do I make an official complaint about my problem?
         </template>
         <template v-slot:body>
-          NO!
+          If you have any issue with the system or process, please call the Helpline at 0302 747 777. If your problem is not resolved by the Call Center or none of the Help Deskarticles deals with your specific problem, please visit https://nbssi.gov.gh/capsupport/create-new-complaint/ to open a support ticket. Theticket assigns you a code you can quote to our technical team when they reach out to you.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          15. Is this fund the same as the Government of Ghana CAP fund?
+          23. Can I apply for funding if I am not a part of an association?
         </template>
         <template v-slot:body>
-          NO!
+          Yes. You do not have to be a member of an association to apply.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          16. Will a business be eligible for this fund if they have already accessed funding from the Government of Ghana (GoG) CAP fund?
+          24. Can associations apply on behalf of their members?
         </template>
         <template v-slot:body>
-          YES!
+          No. However, we encourage associations to inform their members about this fund.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          17. Which sectors are covered under this fund?
+          25. Where can I register as a client of NBSSI?
         </template>
         <template v-slot:body>
-          All sectors, as outlined by the Government of Ghana, are covered under this fund. A full list can be found <a href="">HERE</a>
+          You can register as a client of NBSSI at our Business Advisory Centres (BACs) located within the districts across Ghana.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          18. Can I apply if I have no formal system of record-keeping?
+          26. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
-          YES! You will be required to provide basic information on your business such as total revenue/sales and total expenses but do not need to have documents prepared by an accountant
+          Note, effective 24th May 2020, all NBSSI client registration fees have been waived until 31st July, 2020 to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at https://nbssi.crisp.help/en/ or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
         </template>
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          19. Can I apply if I do not have some of the required documents?
+          27. How can I contact NBSSI for further details?
         </template>
         <template v-slot:body>
-          YES!
+          Applicants seeking further clarification can call the NBSSI Call Centre on 0302 747 777.
         </template>
       </Accordion>
-      <Accordion>
-        <template v-slot:header>
-          20. Can I apply for funding from this fund twice?
-        </template>
-        <template v-slot:body>
-          YES!
-        </template>
-      </Accordion>
-      <Accordion>
-        <template v-slot:header>
-          21. Can two or more businesses with the same owner apply for funding from this fund?
-        </template>
-        <template v-slot:body>
-          NO! If two or more businesses have the same owner only one of those businesses can apply under this fund
-        </template>
-      </Accordion>
-      <Accordion>
-        <template v-slot:header>
-          22. Can I access a loan to start a new business venture?
-        </template>
-        <template v-slot:body>
-          NO. This fund seeks to provide relief to business that have been in operation for at least 6 months before date of application.
-        </template>
-      </Accordion>
-      <Accordion>
-        <template v-slot:header>
-          23. Can I apply for funding if I am not a part of my sector association?
-        </template>
-        <template v-slot:body>
-          YES! You do not have to be a member of an association to apply.
-        </template>
-      </Accordion>
-      <Accordion>
-        <template v-slot:header>
-          24. Can sector associations apply on behalf of their members?
-        </template>
-        <template v-slot:body>
-          NO! However, we encourage sector associations to inform their members about this fund.
-        </template>
-      </Accordion>
+    </div>
+    <div class="mt-24 font-semibold">
+      CAUTION: APPLICATION FOR THE MASTERCARD FOUNDATION COVID-19 RESILIENCE AND RECOVERY PROGRAM SUPPORT SCHEME IS FREE. APPLICANTS ARE TO BE MINDFUL OF FRAUDSTERS PURPORTING TO ASSIST APPLICANTS FOR A FEE.
     </div>
   </section>
 </template>

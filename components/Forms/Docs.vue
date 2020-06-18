@@ -100,7 +100,6 @@
   </div>
 </template>
 <script>
-import { required } from 'vuelidate/lib/validators'
 export default {
   components: {},
   props: {
@@ -117,11 +116,6 @@ export default {
       ssnitloading: false
     }
   },
-  validations: {
-    applicatonIdFile: {
-      required
-    }
-  },
   computed: {
     businessScale () {
       return this.$store.getters['pages/businessScale']
@@ -132,16 +126,7 @@ export default {
   },
   methods: {
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please upload a phonto ID', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
