@@ -186,18 +186,6 @@ export default {
         this.$store.commit('api/SET_GENERAL_DATA', data)
         this.$store.commit('api/SET_ID', this.applicationObject)
       }
-    },
-    personalInfo: {
-      handler (value) {
-        if (value.id_type === '3') {
-          this.regex = '[A-Z]{3}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
-        } else if (value.id_type === '1') {
-          this.regex = '[0-9]{10}$'
-        } else if (value.id_type === '2') {
-          this.regex = '[A-Z]{1}[0-9]{9}$'
-        }
-      },
-      deep: true
     }
   },
   methods: {
