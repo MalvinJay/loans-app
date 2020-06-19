@@ -1,3 +1,4 @@
+import Utils from '../utils/services'
 export const state = () => ({
   loandetails: {
     data: {},
@@ -36,9 +37,8 @@ export const actions = {
       }
       this.$axios.$get(url, config)
         .then((response) => {
-          // console.log('Response:', response)
           commit('SET_LOANDETAILS', response.data)
-          if (response.data.loan_identifier != null) {
+          if (Utils.present(response.data)) {
             localStorage.setItem('loanStatus', 'complete')
           } else {
             localStorage.setItem('loanStatus', 'incomplete')
@@ -46,8 +46,6 @@ export const actions = {
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
-          // console.log('Error from VUEX', error.response.data)
-          commit('SET_STATE', 'ERROR')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)
         })

@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loading :show="!state" />
     <div class="app">
       <div class="pt-10 mb-5">
         <p class="text-xl block font-semibold">
@@ -28,12 +29,12 @@
               <td>
                 11 July 2020
               </td>
-              <td class="text text-blue-700">
+              <td class="text blue">
                 {{loanDetails.status}}
               </td>
               <td>
                 <button class="button-small">
-                  Complete
+                  {{ loanStatus }}
                 </button>
               </td>
             </tr>
@@ -43,7 +44,7 @@
           <div class="redirect py-28 rounded-sm">
             <div class="h-12 flex flex-col md:items-center">
               <div class="text-3xl font-bold">
-                REGISTRATION NOT COMPLETE!
+                LOAN APPLICATION NOT COMPLETE
               </div>
               <span class="py-2">
                 KINDLY GO BACK AND FINISH THE PROCESS
@@ -62,14 +63,17 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
+  components: {
+    Loading
+  },
   computed: {
     ...mapGetters({
       loanDetails: 'loan/loanDetails',
       loansState: 'loan/loanDetailState',
-      loansErrors: 'loan/loanStatusErrors',
       loanStatus: 'loan/loanStatus'
     }),
     state () {
@@ -85,6 +89,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.blue {
+  color: #1A49DD;
+}
 .hidden {
   display: none!important;
 }
@@ -130,7 +137,7 @@ table {
     padding-left: 2rem;
     tr {
       th {
-        padding: 10px
+        padding: 10px 0;
       }
     }
     th {

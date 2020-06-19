@@ -1,8 +1,6 @@
 <template>
   <div>
-    <div :class="[{hidden: mybool}, 'loading']">
-      <img src="@/assets/img/loading.svg" class="w-12 h-full" alt="">
-    </div>
+    <Loading :show="!state" />
     <div class="app">
       <div class="overview pt-10 pb-5">
         <p class="text-xl block font-semibold">
@@ -14,10 +12,10 @@
       ==============================================================-->
       <section id="payment">
         <p class="text-xl">
-          Loan #123 Payments
+          Loan # {{ loanDetails.loan_identifier }} Payments
         </p>
         <div class="my-5">
-          <ProgressBar :max="50000" :value="20000" />
+          <ProgressBar :max="loanDetails.requested_loan_amount" :value="0" />
         </div>
         <p class="text-2xl md:text-xl block font-semibold">
           Payment Method
@@ -57,12 +55,14 @@
         <p class="text-2xl md:text-xl">
           Application and Documents
         </p>
-        <div class="docs grid text-white gap-10 my-5">
+        <div class="docs flex flex-wrap text-white gap-10 my-5">
           <div class="box bg-white cursor-pointer">
-            <img src="@/assets/img/google-docs.png" alt srcset>
-            <p class="text-center">
-              One Time
-            </p>
+            <a href="@/assets/img/onetime.png" download>
+              <img src="@/assets/img/google-docs.png" alt srcset>
+              <p class="text-center">
+                One Time
+              </p>
+            </a>
           </div>
           <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/pdf.png" alt srcset>
@@ -98,7 +98,7 @@
                 </div>
                 <div class="u-b">
                   <label>
-                    <input type="file">
+                    <input @change="handleFile" type="file">
                     <span>Browse Files</span>
                   </label>
                 </div>
@@ -153,7 +153,7 @@
             Messages
           </p>
           <div class="flex gap-3">
-            <button>Submit an inquiry</button>
+            <!-- <button>Submit an inquiry</button> -->
             <div class="table h-full">
               <p class="table-cell font-semibold text-sm pl-8">
                 <nuxt-link to="messages">
@@ -163,9 +163,10 @@
             </div>
           </div>
         </div>
-        <Accordion />
-        <Accordion />
-        <Accordion />
+        <template v-for="(message, index) in messages.slice(0,2)" >
+          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages[0].body" :key="index">
+          </Accordion>
+        </template>
       </section>
     </div>
   </div>
@@ -174,42 +175,39 @@
 import { mapGetters } from 'vuex'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 import Accordion from '@/components/Misc/Accordion.vue'
+import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
+  // middleware: 'auth',
   components: {
     ProgressBar,
-    Accordion
+    Accordion,
+    Loading
   },
-  middleware: 'auth',
   data () {
     return {
       applicatonIdFile: null,
       loading: false,
-      mybool: true
+      mybool: false
     }
-  },
-  mounted () {
-    this.$store.dispatch('loan/fetchLoanDetails')
-      .then((response) => {
-        return response
-      })
-      .catch((error) => {
-        this.$toasted.error(error.error)
-        if (error.error.includes('Token')) {
-          this.$router.push('/app/registration/login')
-        }
-        if (error.error.includes('unfinished')) {
-          this.$router.push('/app/loanapplication')
-        }
-      })
   },
   computed: {
     ...mapGetters({
       loanDetails: 'loan/loanDetails',
-      loansState: 'loan/loanDetailState'
+      loansState: 'loan/loanDetailState',
+      messages: 'queries/queries'
     }),
     state () {
       return this.loansState === 'LOADING'
+    }
+  },
+  mounted () {
+    this.$store.dispatch('loan/fetchLoanDetails')
+  },
+  methods: {
+    handleFile (e) {
+      const file = e.target.files[0]
+      console.log('What is this?', file)
     }
   }
 }
@@ -217,33 +215,6 @@ export default {
 <style lang="scss" scoped>
 .hidden {
   display: none!important;
-}
-.loading {
-  position: absolute;
-  z-index: 2000;
-  background-color: hsla(0,0%,100%,.9);
-  margin: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  transition: opacity .3s;
-  display: flex;
-  justify-content: center;
-  img {
-    animation-name: spin;
-    animation-duration: 1000ms;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-  }
-}
-@keyframes spin {
-  from {
-    transform:rotate(0deg);
-  }
-  to {
-    transform:rotate(360deg);
-  }
 }
 .app {
   background-color: $color-white-alt;
@@ -261,8 +232,9 @@ export default {
   color: $color-secondary;
 }
 .docs {
-  grid-template-columns: 16rem 16rem 16rem 16rem;
+  // grid-template-columns: 16rem 16rem 16rem 16rem;
   .box {
+    margin: 10px 40px 10px 0px;
     img {
       margin-bottom: 3rem;
     }

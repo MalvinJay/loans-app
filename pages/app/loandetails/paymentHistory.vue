@@ -2,7 +2,7 @@
   <div>
     <div class="app">
       <div class="md:hidden pt-4 pb-2" @click="goBack">
-        <img src="@/assets/img/go_back_b.svg" class="w-6 h-6"  alt="">
+        <img src="@/assets/img/go_back_b.svg" class="w-6 h-6" alt="">
       </div>
       <div class="pt-2 pb-4 md:pt-10 mb-5">
         <p class="text-xl block font-semibold">
@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
+            <!-- <tr>
               <td>
                 100
               </td>
@@ -33,51 +33,8 @@
               <td>
                 Mobile Payment (0203339949))
               </td>
-            </tr>
-            <tr>
-              <td>
-                100
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td>
-                Mobile Payment (0203339949))
-              </td>
-            </tr>
-            <tr>
-              <td>
-                100
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td>
-                Mobile Payment (0203339949))
-              </td>
-            </tr>
-            <tr>
-              <td>
-                100
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td>
-                Mobile Payment (0203339949))
-              </td>
-            </tr>
-            <tr>
-              <td>
-                100
-              </td>
-              <td>
-                11 July 2020
-              </td>
-              <td>
-                Mobile Payment (0203339949))
-              </td>
-            </tr>
+            </tr> -->
+            <div class="flex justify-center items-center py-8 w-full">No Payment History Found</div>
           </tbody>
         </table>
       </div>
@@ -88,7 +45,7 @@
 import EventBus from '../../../event-bus'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
   data () {
     return {
     }
@@ -104,6 +61,7 @@ export default {
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
+  height: calc(100vh - 70px);
 }
 table {
   table-layout: fixed;

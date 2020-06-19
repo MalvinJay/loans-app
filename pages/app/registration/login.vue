@@ -12,7 +12,7 @@
             </div>
             <div v-if="!pinSent" class="r-c">
               <div class="mb-3">
-                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16">
+                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
                   Sign In with Phone Number
                 </p>
               </div>
@@ -39,7 +39,7 @@
             </div>
             <div v-else class="r-c">
               <div class="mb-3">
-                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16">
+                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
                   One Time Password
                 </p>
               </div>
@@ -93,7 +93,7 @@ export default {
         .then((res) => {
           this.$toasted.show('Login Success', {
             theme: 'outline',
-            position: 'top-right',
+            position: 'top-center',
             duration: 5000
           })
           this.$router.push('/app/dashboard')
@@ -115,18 +115,12 @@ export default {
           // this.$toast.success(res.success)
           this.$toasted.show(res.success, {
             theme: 'outline',
-            position: 'top-right',
+            position: 'top-center',
             duration: 5000
           })
           this.pinSent = true
         })
         .catch((error) => {
-          // this.$toasted.error('Phone Number is Incorrect')
-          // this.$toasted.show('Phone Number is Incorrect', {
-          //   theme: 'bubble',
-          //   position: 'top-right',
-          //   duration: 5000
-          // })
           switch (error.response.data.status) {
             case 400:
               this.$toasted.error(error.response.data.error)
@@ -187,13 +181,13 @@ export default {
 }
 .logo {
   img {
-    margin: 32px auto;
+    margin: 6rem auto 0;
     max-width: 15rem;
-    height: 65px;
+    // height: 65px;
   }
 }
 .r-c {
-  margin: 230px 88px 0 88px;
+  margin: 200px 88px 0 88px;
   text-align: center;
   input {
     background-color: transparent;

@@ -46,7 +46,8 @@ export default {
     '~/plugins/v-click-outside.js',
     '~/plugins/vue-multiselect.js',
     '~/plugins/Vuelidate.js',
-    '~/plugins/vee-validate.js'
+    '~/plugins/vee-validate.js',
+    '~/plugins/directives.js'
   ],
   /*
   ** Nuxt.js dev-modules

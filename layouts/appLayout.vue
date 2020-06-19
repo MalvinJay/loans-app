@@ -5,7 +5,10 @@
         <div class="close hidden" @click="toggleSide">
           <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt="">
         </div>
-        <div class="links">
+        <div :class="[{hidden: status},'w-full h-full absolute top-0 left-0 bg-gray-100 bg-opacity-50 flex justify-center items-center']">
+          <img src="@/assets/img/lock.png" class="lock w-10" alt="">
+        </div>
+        <div :class="[{'opacity-50': !status},'links']">
           <ul>
             <li @click="toggleSide">
               <nuxt-link to="dashboard">
@@ -44,7 +47,7 @@
         </div>
         <div class="r-s flex items-center">
           <div class="profile flex justify-center items-center">
-            <span>NT</span>
+            <span>Hi, <span class="font-bold">{{ Details.first_name }}</span></span>
           </div>
           <button class="button-small" @click="logout">
             <nuxt-link to="registration/login">
@@ -60,6 +63,7 @@
   </main>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   // middleware: 'auth',
   data () {
@@ -94,17 +98,38 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters({
+      Details: 'applicant/applicantDetails',
+      sState: 'applicant/applicantState',
+      loanStatus: 'loan/loanStatus'
+    }),
+    state () {
+      return this.sState === 'LOADING'
+    },
+    status () {
+      return this.loanStatus === 'complete'
+    }
+  },
   mounted () {
-  // this.$store.dispatch('applicant/fetchApplicant')
-  //   .then((response) => {
-  //     this.$toasted.success(response)
-  //   })
-  //   .catch((error) => {
-  //     this.$toasted.error(error.error)
-  //     if (error.error.includes('Token')) {
-  //       this.$router.push('/app/registration/login')
-  //     }
-  //   })
+    this.$store.dispatch('applicant/fetchApplicant')
+    this.$store.dispatch('loan/fetchLoanDetails')
+      .then((response) => {
+        return response
+      })
+      .catch((error) => {
+        this.$toasted.error(error.error)
+        if (error.error.includes('Token')) {
+          this.$router.push('/app/registration/login')
+        }
+        if (error.error.includes('unfinished')) {
+          this.$router.push('/app/loanapplication')
+        }
+      })
+    this.$store.dispatch('queries/fetchQueries')
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
   },
   methods: {
     logout () {
@@ -112,13 +137,15 @@ export default {
       this.$router.push('/app/registration/login')
     },
     toggleSide () {
-      console.log('Closing Side Menu')
       this.side = !this.side
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.lock {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(82deg) brightness(102%) contrast(103%);
+}
 main {
   display: flex;
   // width: 100vw;
@@ -147,6 +174,9 @@ main {
         font-weight: 300;
         font-size: 16px;
         line-height: 22px;
+        &.nuxt-link-active {
+          font-weight: 500;
+        }
         img {
           margin-right: 14px;
           width: 30px;
@@ -181,16 +211,9 @@ main {
   .r-s {
     margin-right: 62px;
     .profile {
-      border-radius: 9999px;
       background-color: transparent;
       color: $color-secondary;
-      border: 1px solid $color-secondary;
-      height: 40px;
-      width: 40px;
       padding: 10px;
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
       margin: 10px;
     }
     button {
@@ -211,6 +234,23 @@ main {
   .right {
     margin-left: 0 !important;
   }
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 4px;
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+  border-radius: 10px;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: grey;
 }
 @include for-phone-only {
   .overlay {
@@ -292,8 +332,7 @@ main {
         }
       }
       .profile {
-        width: 30px;
-        height: 30px;
+        display: flex;
       }
     }
     .content {

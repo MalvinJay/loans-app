@@ -12,7 +12,7 @@
         ==============================================================-->
         <section id="payment">
           <div class="my-6">
-            <ProgressBar :max="50000" :value="20000" />
+            <ProgressBar :max="loanDetails.requested_loan_amount" :value="0" />
           </div>
           <div class="schedule flex gap-10">
             <div class="box p-6 pl-12 bg-white cursor-pointer text-left">
@@ -28,7 +28,7 @@
               </div>
               <div>
                 <p>
-                  /week
+                  / week
                 </p>
               </div>
               <div class="mt-3">
@@ -111,12 +111,13 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import EventBus from '../../../event-bus'
 import PaymentHistory from './paymentHistory.vue'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
   components: {
     ProgressBar,
     PaymentHistory
@@ -124,6 +125,15 @@ export default {
   data () {
     return {
       tabView: 'details'
+    }
+  },
+  computed: {
+    ...mapGetters({
+      loanDetails: 'loan/loanDetails',
+      loansState: 'loan/loanDetailState'
+    }),
+    state () {
+      return this.loansState === 'LOADING'
     }
   },
   mounted () {
