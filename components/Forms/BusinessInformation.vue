@@ -3275,7 +3275,7 @@
 </template>
 <script>
 /* eslint-disable no-console */
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Modal from '../Misc/Modal'
 import Input from './Input'
@@ -3330,7 +3330,7 @@ export default {
       directors_list: [{}, {}, {}, {}, {}],
       credit_facilities: [{}, {}, {}],
       region: null,
-      annual_sales_display: null,
+      // annual_sales_display: null,
       businessOwners: 1,
       shareHolders: 1
     }
@@ -3344,10 +3344,38 @@ export default {
       isStartup: 'pages/isStartup',
       regions: 'pages/regions',
       districts: 'pages/districts',
-      countries: 'pages/countries'
-    })
+      countries: 'pages/countries',
+      token: 'auth/token'
+    }),
+    ...mapState({
+      pendingApplication: state => state.api.pendingApplication
+    }),
+    details: {
+      get () {
+        if (this.pendingApplication) {
+          return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
+    },
+    annual_sales_display () {
+      if (!this.token) {
+        const amount = JSON.parse(localStorage.getItem('application_object')).annual_sales
+        return this.thousandSeprator(amount)
+      } else {
+        // console.log(this.details.annual_sales)
+        return this.details.annual_sales ? this.thousandSeprator(this.details.annual_sales) : ''
+      }
+    }
   },
   watch: {
+    details: {
+      handler (value) {
+        this.general = value
+      },
+      deep: true
+    },
     businessOwners (value) {
       this.business_owner.forEach((item, key) => {
         if (key > value - 1) {
@@ -3564,21 +3592,12 @@ export default {
       }
     }
   },
-  created () {
-    // eslint-disable-next-line no-console
-    if (this.$route.params.amount < 145000) {
-      this.micro = true
-    }
-  },
   mounted () {
-    this.general.annual_sales = JSON.parse(
-      localStorage.getItem('application_object')
-    ).annual_sales
-    this.annual_sales_display = JSON.parse(
-      localStorage.getItem('application_object')
-    )
-      .annual_sales.toString()
-      .replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    if (!this.token) {
+      this.general.annual_sales = JSON.parse(
+        localStorage.getItem('application_object')
+      ).annual_sales
+    }
   },
   methods: {
     aggregate () {
@@ -3633,7 +3652,6 @@ export default {
         JSON.stringify(this.credit_facilities)
       ).filter(value => JSON.stringify(value) !== '{}')
 
-      const taxClearance = JSON.parse(JSON.stringify(this.tax_clearance))
       data.income_statement_2017 = incomeStatement2017
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019
@@ -3643,7 +3661,6 @@ export default {
       data.balance_sheet_2018 = balanceSheet2018
       data.balance_sheet_2019 = balanceSheet2019
       data.balance_sheet_2020 = balanceSheet2020
-      data.tax_clearance = taxClearance
       data.cash_flow_2017 = cashFlow2017
       data.cash_flow_2018 = cashFlow2018
       data.cash_flow_2019 = cashFlow2019

@@ -6,7 +6,7 @@ export const state = () => ({
   districts: null,
   mediaResponse: null,
   formErrors: '',
-  application_object: process.browser ? JSON.parse(localStorage.getItem('application_object')) : null || null,
+  application_object: JSON.parse(localStorage.getItem('application_object')) || null,
   currentTab: 0,
   countries: null,
   showSaveModal: false
@@ -84,13 +84,21 @@ export const getters = {
     }
   },
   businessScale (state) {
-    return state.application_object.business_scale
+    if (state.application_object) {
+      return state.application_object.business_scale
+    }
   },
   isStartup (state) {
-    return state.application_object.is_startup
+    if (state.application_object) {
+      return state.application_object.is_startup
+    }
   },
-  yearsInBusiness (state) {
-    return state.application_object.years_in_business
+  yearsInBusiness (state, getters, rootState) {
+    if (state.application_object) {
+      return state.application_object.years_in_business
+    } if (rootState.api.pendingApplication) {
+      return rootState.api.pendingApplication.loan_application.years_in_business
+    }
   },
   legalOrganization (state) {
     if (state.dropdowns !== null) {

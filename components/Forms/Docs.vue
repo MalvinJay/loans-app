@@ -188,7 +188,7 @@ export default {
       const file = e.dataTransfer.files[0]
       this.payeloading = true
       const data = {
-        file, name: 'paye_file'
+        file, name: 'proof_of_paye'
       }
       this.$store.commit('api/SET_PAYE_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
@@ -215,7 +215,7 @@ export default {
 
       this.payeloading = true
       const data = {
-        file, name: 'paye_file'
+        file, name: 'proof_of_paye'
       }
       this.$store.commit('api/SET_PAYE_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
@@ -241,7 +241,7 @@ export default {
       const file = e.dataTransfer.files[0]
       this.ssnitloading = true
       const data = {
-        file, name: 'ssnit_file'
+        file, name: 'ssnit_statement'
       }
       this.$store.commit('api/SET_SSNIT_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
@@ -268,7 +268,7 @@ export default {
 
       this.ssnitloading = true
       const data = {
-        file, name: 'ssnit_file'
+        file, name: 'ssnit_statement'
       }
       this.$store.commit('api/SET_SSNIT_FILE_NAME', file.name)
       this.$store.dispatch('api/uploadMedia', data)
