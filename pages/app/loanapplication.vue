@@ -49,10 +49,10 @@
               <span class="py-2">
                 KINDLY GO BACK AND FINISH THE PROCESS
               </span>
-              <div class="shadow-2xl p-4 cursor-pointer flex justify-center">
-                <a href="/apply">
+              <div class="p-4 mt-4 cursor-pointer flex justify-center rounded-full shadow">
+                <div @click="continueApplication">
                   <img src="@/assets/img/go-back_resigtration.svg" class="w-10" alt="">
-                </a>
+                </div>
               </div>
             </div>
           </div>
@@ -85,10 +85,19 @@ export default {
   },
   mounted () {
     this.$store.dispatch('loan/fetchLoanDetails')
+  },
+  methods: {
+    continueApplication () {
+      localStorage.removeItem('loanStatus')
+      this.$router.push('/apply')
+    }
   }
 }
 </script>
 <style lang="scss" scoped>
+.shadow {
+  box-shadow: 1px 0px 50px -12px rgba(0, 0, 0, 0.25);
+}
 .blue {
   color: #1A49DD;
 }

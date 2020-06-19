@@ -1,4 +1,4 @@
-import Utils from '../utils/services'
+// import Utils from '../utils/services'
 export const state = () => ({
   queries: {
     data: [],
@@ -35,11 +35,6 @@ export const actions = {
       this.$axios.$get(url, config)
         .then((response) => {
           commit('SET_QUERIES', response.data)
-          if (Utils.present(response.data)) {
-            localStorage.setItem('loanStatus', 'complete')
-          } else {
-            localStorage.setItem('loanStatus', 'incomplete')
-          }
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
@@ -50,7 +45,6 @@ export const actions = {
     })
   },
   makeInquiry ({ commit, rootState }, body) {
-    commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/queries'
       const config = {
@@ -64,11 +58,8 @@ export const actions = {
       }
       this.$axios.$post(url, data, config)
         .then((response) => {
-          commit('SET_QUERIES', response.data)
-          commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
-          commit('SET_ERROR', error.response.data)
           reject(error.response.data)
         })
     })

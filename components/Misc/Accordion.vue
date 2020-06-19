@@ -2,7 +2,7 @@
   <div class="accordion pl-4 md:pl-16 md:px-10 py-6 my-4">
     <div class="flex justify-between cursor-pointer" @click="active = !active">
       <div class="flex items-center">
-        <div class="indicator status mr-4"></div>
+        <div class="indicator status mr-4" />
         <div class="title text-xl">
           <span class="capitalize">
             {{ head }} - {{ id_prop }}
@@ -14,8 +14,32 @@
       </div>
     </div>
     <div class="body w-full mt-3 overflow-y" :class="{ hidden: active }">
-      <div class="text">
-        {{body}}
+      <div class="text border-t border-gray-400">
+        <div v-for="(message, index) in body" :key="index" class="flex flex-col ">
+          <template v-if="message.sender === 'admin'">
+            <div class="flex justify-start py-4 font-semibold">
+              {{ message.body }}
+            </div>
+          </template>
+          <template>
+            <div class="flex justify-end py-4">
+              <i>{{ message.body }}</i>
+            </div>
+          </template>
+        </div>
+      </div>
+      <div class="response flex flex-col items-end py-4">
+        <textarea name="Query Response" id="" cols="30" rows="10" class="w-full"></textarea>
+          <button class="button-small query mt-4" @click="respondQuery">
+            <template v-if="loading">
+              <div class="login-spinner flex justify-center w-full">
+                <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+              </div>
+            </template>
+            <template v-else>
+              Submit Inquiry
+            </template>
+          </button>
       </div>
     </div>
     <!-- <div class="title font-semibold">
@@ -39,12 +63,24 @@ export default {
   props: ['body', 'head', 'id_prop'],
   data () {
     return {
-      active: true
+      active: true,
+      loading: false
+    }
+  },
+  methods: {
+    respondQuery () {
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.response {
+  textarea {
+    width: 100%!important;
+    border-color: #eee;
+    padding: 10px;
+  }
+}
 .accordion {
   background-color: white;
   border-radius: 5px;

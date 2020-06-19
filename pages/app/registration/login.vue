@@ -59,7 +59,7 @@
                     </div>
                   </template>
                   <template v-else>
-                    SIGNIN
+                    SIGN IN
                   </template>
                 </button>
               </div>
@@ -81,6 +81,9 @@ export default {
       OTP: null,
       phone: ''
     }
+  },
+  mounted () {
+    this.$store.commit('auth/SET_LOGOUT')
   },
   methods: {
     login () {

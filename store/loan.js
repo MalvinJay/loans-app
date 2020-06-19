@@ -22,6 +22,9 @@ export const mutations = {
   },
   SET_STATE (state, payload) {
     state.loandetails.state = payload
+  },
+  SET_LOAN_STATUS (state, payload) {
+    state.loandetails.status = payload
   }
 }
 export const actions = {
@@ -40,12 +43,16 @@ export const actions = {
           commit('SET_LOANDETAILS', response.data)
           if (Utils.present(response.data)) {
             localStorage.setItem('loanStatus', 'complete')
+            commit('SET_LOAN_STATUS', 'complete')
+            console.log('Anything Here for me?', response.data)
           } else {
             localStorage.setItem('loanStatus', 'incomplete')
           }
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
+          console.log('Catch Error Here', error.response.data)
+          localStorage.setItem('loanStatus', 'incomplete')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)
         })

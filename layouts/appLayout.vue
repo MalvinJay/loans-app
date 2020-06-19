@@ -6,7 +6,7 @@
           <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt="">
         </div>
         <div :class="[{hidden: status},'w-full h-full absolute top-0 left-0 bg-gray-100 bg-opacity-50 flex justify-center items-center']">
-          <img src="@/assets/img/lock.png" class="lock w-10" alt="">
+          <img src="@/assets/img/lock.png" class="lock w-10 mt-24" alt="">
         </div>
         <div :class="[{'opacity-50': !status},'links']">
           <ul>
