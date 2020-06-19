@@ -4,13 +4,13 @@
       <div class="flex mr-16">
         <p class="text-xl table">
           {{ value }}
-          <span class="table-cell text-sm">Repayments Made</span>
+          <span class="table-cell text-sm">Repayment Made</span>
         </p>
       </div>
       <div class="flex">
         <p class="text-xl table">
           {{ max - value }}
-          <span class="table-cell text-sm">Repayments Left</span>
+          <span class="table-cell text-sm">Repayment Left</span>
         </p>
       </div>
     </div>

@@ -1,7 +1,8 @@
 <template>
   <div>
+    <Loading :show="!state" />
     <div class="app">
-      <div class="pt-10 pb-5">
+      <div class="overview pt-10 pb-5">
         <p class="text-xl block font-semibold">
           Overview
         </p>
@@ -11,12 +12,12 @@
       ==============================================================-->
       <section id="payment">
         <p class="text-xl">
-          Loan #123 Payments
+          Loan # {{ loanDetails.loan_identifier }} Payments
         </p>
         <div class="my-5">
-          <ProgressBar :max="50000" :value="20000" />
+          <ProgressBar :max="loanDetails.requested_loan_amount" :value="0" />
         </div>
-        <p class="font-semibold">
+        <p class="text-2xl md:text-xl block font-semibold">
           Payment Method
         </p>
         <div class="my-3">
@@ -34,7 +35,7 @@
               One Time
             </p>
           </div>
-          <div class="flex justify-center flex-col px-10">
+          <div class="flex justify-center flex-col px-2 md:px-10">
             <div class="text-xl font-semibold">
               OR
             </div>
@@ -51,15 +52,17 @@
       ==========================DOCUMENTS SECTION====================
       ==============================================================-->
       <section id="docs" class="my-5">
-        <p class="text-xl">
+        <p class="text-2xl md:text-xl">
           Application and Documents
         </p>
-        <div class="docs grid text-white gap-10 my-5">
+        <div class="docs flex flex-wrap text-white gap-10 my-5">
           <div class="box bg-white cursor-pointer">
-            <img src="@/assets/img/google-docs.png" alt srcset>
-            <p class="text-center">
-              One Time
-            </p>
+            <a href="@/assets/img/onetime.png" download>
+              <img src="@/assets/img/google-docs.png" alt srcset>
+              <p class="text-center">
+                One Time
+              </p>
+            </a>
           </div>
           <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/pdf.png" alt srcset>
@@ -75,12 +78,12 @@
           </div>
         </div>
         <div>
-          <p class="font-semibold">
+          <p class="text-2xl md:text-xl block font-semibold">
             Documents Upload
           </p>
-          <div class="uploadfiles flex gap-10 my-5">
-            <div class="pr-10">
-              <label class="block text-gray-900 text-sm mb-5 h-10">
+          <div class="uploadfiles md:flex gap-10 my-5">
+            <div class="md:pr-10 py-4">
+              <label class="block text-gray-900 mb-5 h-10 text-lg">
                 Proof of PAYE Payments
                 <br>(last 3 months)
               </label>
@@ -95,7 +98,7 @@
                 </div>
                 <div class="u-b">
                   <label>
-                    <input type="file">
+                    <input @change="handleFile" type="file">
                     <span>Browse Files</span>
                   </label>
                 </div>
@@ -109,8 +112,10 @@
                 </div>
               </div>
             </div>
-            <div class="pr-10">
-              <label class="block text-gray-900 text-sm mb-5 h-10">SSNIT Statement (2019)</label>
+            <div class="md:pr-10 py-4">
+              <label class="block text-gray-900 mb-5 h-10 text-lg">
+                SSNIT Statement (2019)
+              </label>
               <div class="box d-i border border-gray-900 py-5 bg-white">
                 <div class="img">
                   <img src="@/assets/img/docs.png" alt>
@@ -148,7 +153,7 @@
             Messages
           </p>
           <div class="flex gap-3">
-            <button>Submit an inquiry</button>
+            <!-- <button>Submit an inquiry</button> -->
             <div class="table h-full">
               <p class="table-cell font-semibold text-sm pl-8">
                 <nuxt-link to="messages">
@@ -158,32 +163,59 @@
             </div>
           </div>
         </div>
-        <Accordion />
-        <Accordion />
-        <Accordion />
+        <template v-for="(message, index) in messages.slice(0,2)" >
+          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages[0].body" :key="index">
+          </Accordion>
+        </template>
       </section>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 import Accordion from '@/components/Misc/Accordion.vue'
+import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
+  // middleware: 'auth',
   components: {
     ProgressBar,
-    Accordion
+    Accordion,
+    Loading
   },
-  middleware: 'auth',
   data () {
     return {
       applicatonIdFile: null,
-      loading: false
+      loading: false,
+      mybool: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      loanDetails: 'loan/loanDetails',
+      loansState: 'loan/loanDetailState',
+      messages: 'queries/queries'
+    }),
+    state () {
+      return this.loansState === 'LOADING'
+    }
+  },
+  mounted () {
+    this.$store.dispatch('loan/fetchLoanDetails')
+  },
+  methods: {
+    handleFile (e) {
+      const file = e.target.files[0]
+      console.log('What is this?', file)
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.hidden {
+  display: none!important;
+}
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
@@ -200,8 +232,9 @@ export default {
   color: $color-secondary;
 }
 .docs {
-  grid-template-columns: 16rem 16rem 16rem 16rem;
+  // grid-template-columns: 16rem 16rem 16rem 16rem;
   .box {
+    margin: 10px 40px 10px 0px;
     img {
       margin-bottom: 3rem;
     }
@@ -258,6 +291,35 @@ export default {
   .table-cell {
     vertical-align: middle;
     color: $color-secondary;
+  }
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
   }
 }
 </style>

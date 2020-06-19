@@ -1,44 +1,63 @@
 <template>
   <div>
+    <Loading :show="!state" />
     <div class="app">
       <div class="pt-10 mb-5 flex justify-between w-full">
-        <p class="text-xl font-semibold">
+        <p class="text-2xl md:text-xl font-semibold">
           Messages
         </p>
-        <div class="flex gap-3">
+        <div class="inquiry flex gap-3">
           <button @click="modal = true">
             Submit an inquiry
           </button>
         </div>
       </div>
-      <div>
-        <Accordion />
-        <Accordion />
-        <Accordion />
+      <div v-if="messages.length > 0">
+        <template v-for="(message, index) in messages">
+          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages[0].body" :key="index">
+          </Accordion>
+        </template>
+      </div>
+      <div v-else class="flex items-center justify-center w-full pt-6 md:pt-56">
+        <div class="font-bold text-2xl">
+          No Messages Found
+        </div>
       </div>
     </div>
     <!-- Inquiry Modal -->
     <transition name="modal">
-      <div v-if="modal" class="modal-mask" @close="modal = false">
+      <div v-if="modal" class="modal-mask">
         <div class="modal-wrapper">
-          <div v-click-outside="closeModal" class="modal-container">
-            <div v-scroll-lock="open" class="modal-body">
-              <form class="px-6" @submit.prevent="handleInquiry()">
+          <div v-click-outside="closeModal" class="modal-container flex justify-center">
+            <div v-scroll-lock="open" class="modal-body w-full">
+              <div class="form px-2">
                 <div class="relative text-center">
-                  <img src="@/assets/img/close.svg" class="absolut left-0 top-0 w-4 h-4 cursor-pointer" @click="modal = false" alt="">
+                  <img src="@/assets/img/close.svg" class="absolute top-0 left-0 w-4 h-4 cursor-pointer" alt="" @click="modal = false">
                   <h1 class="head">
                     Inquiry
                   </h1>
                 </div>
                 <div class="py-4">
-                  <label class="block text-gray-900 text-sm font-normal mb-4 mobile">Reference Number</label>
-                  <Input type="text" placeholder="" small />
+                  <label class="block text-gray-900 text-sm font-semibold mb-4 mobile">Reference Number</label>
+                  <Input v-model="inquiry.reference" type="text" placeholder="" small />
+                </div>
+                <div class="py-4 ">
+                  <label class="block text-gray-900 text-sm font-semibold mb-4 mobile">Message</label>
+                  <textarea v-model="inquiry.body" name="message" class="p-4" rows="20" placeholder="" />
                 </div>
                 <div class="py-4">
-                  <label class="block text-gray-900 text-sm font-normal mb-4 mobile">Message</label>
-                  <textarea name="message" rows="20" placeholder="" />
+                  <button class="button-small query" @click="handleInquiry">
+                    <template v-if="loading">
+                      <div class="login-spinner flex justify-center w-full">
+                        <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                      </div>
+                    </template>
+                    <template v-else>
+                      Submit Inquiry
+                    </template>
+                  </button>
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </div>
@@ -47,24 +66,53 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Accordion from '@/components/Misc/Accordion.vue'
-// import Modal from '@/components/Misc/Modal'
+import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
   components: {
-    Accordion
-    // Modal
+    Accordion,
+    Loading
   },
   data () {
     return {
       modal: false,
-      open: true
+      open: true,
+      loading: false,
+      inquiry: {
+        reference: null,
+        body: null
+      }
     }
+  },
+  computed: {
+    ...mapGetters({
+      messages: 'queries/queries',
+      messagesState: 'queries/queriestate'
+    }),
+    state () {
+      return this.messagesState === 'LOADING'
+    }
+  },
+  mounted () {
+    this.$store.dispatch('queries/fetchQueries')
   },
   methods: {
     handleInquiry () {
-      // Logic goes here
+      this.loading = true
+      this.$store.dispatch('queries/makeInquiry', this.inquiry.body)
+        .then((res) => {
+          this.$toasted.success('Query Sent')
+          this.modal = false
+        })
+        .catch((error) => {
+          this.$toasted.error(error.error)
+        })
+        .finally(() => {
+          this.loading = false
+        })
     },
     closeModal () {
       this.$emit('close')
@@ -76,6 +124,7 @@ export default {
 .app {
   background-color: $color-white-alt;
   padding: 0 73px;
+  height: calc(100vh - 70px);
 }
 button {
   background: #ffffff;
@@ -87,12 +136,23 @@ button {
   height: 40px;
   font-size: 0.8rem;
 }
+.button-small {
+  width: 100%;
+  background-color: $color-secondary;
+}
 .modal-container {
-  width: 35%!important;
+  width: 30%;
   margin: 0 auto;
   margin-top: 5%;
 }
-form {
+.form {
+  input, textarea {
+    width: 100%!important;
+    padding: 10px!important;
+  }
+  textarea {
+    height: 10rem;
+  }
   .head {
     margin-bottom: 3rem;
     font-style: normal;
@@ -120,10 +180,7 @@ form {
 }
 
 .modal-container {
-  // width: -webkit-max-content;
-  // width: -moz-max-content;
-  // width: max-content;
-  width: 90%;
+  // width: 30%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -163,5 +220,32 @@ form {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+    div {
+      p {
+        line-height: 40px;
+      }
+      .inquiry {
+        button {
+          width: 100px;
+          height: 30px;
+        }
+      }
+    }
+  }
+  .accordion {
+    .indicator {
+      top: 2%;
+    }
+  }
+  .modal-container {
+    width: 95%;
+  }
 }
 </style>

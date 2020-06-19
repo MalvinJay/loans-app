@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Loading :show="!state" />
     <div class="app">
       <div class="pt-10 mb-5 flex justify-between w-full">
         <p class="text-xl font-semibold">
@@ -7,23 +8,41 @@
         </p>
       </div>
       <div class="notifications">
-        <h1 class="pb-4">
-          00/00/00
-        </h1>
-        <p class="pb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit,
-        </p>
-        <p class="pb-4">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit ut aliquam, purus sit,
-        </p>
+        <template v-if="notifications.length > 0">
+          <template v-for="(notification, index) in notifications">
+            <p class="pb-4" :key="index">
+              {{notification}}
+            </p>
+          </template>
+        </template>
+        <div v-else class="flex items-center justify-center h-64">
+            <div class="flex flex-col items-center">
+              <img src="@/assets/img/bell.svg" class="w-20 opacity-50" alt="">
+              <span class="pt-8">No Notifications</span>
+            </div>
+        </div>
       </div>
     </div>
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   layout: 'appLayout',
-  middleware: 'auth'
+  // middleware: 'auth'
+  data () {
+    return {
+    }
+  },
+  computed: {
+    ...mapGetters({
+      notifications: 'notifications/notifications',
+      nofifState: 'notifications/notificationsState'
+    }),
+    state () {
+      return this.nofifState === 'LOADING'
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -41,5 +60,24 @@ button {
   width: 162px;
   height: 40px;
   font-size: 0.8rem;
+}
+@include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+    div {
+      p {
+        line-height: 40px;
+      }
+      .inquiry {
+        button {
+          width: 100px;
+          height: 30px;
+        }
+      }
+    }
+  }
 }
 </style>

@@ -1,9 +1,9 @@
 export const state = () => ({
-  token: '',
+  token: localStorage.getItem('token'),
   errors: {}
 })
 export const getters = {
-
+  token: state => state.token
 }
 export const mutations = {
   SET_SUCCESS (state, payload) {
@@ -16,6 +16,7 @@ export const mutations = {
     state.token = payload
   },
   SET_LOGOUT (state) {
+    localStorage.clear()
     state.token = ''
   }
 }
@@ -53,12 +54,14 @@ export const actions = {
       const url = 'https://mcftest.plendifyloans.com/api/login'
       this.$axios.$post(url, data, config)
         .then((response) => {
-          // console.log('Response:', response)
-          commit('SET_TOKEN', response.response.data.data.access_token)
+          console.log('Response:', response)
+          localStorage.setItem('token', response.data.access_token)
+          localStorage.setItem('isAuthenticated', true)
+          commit('SET_TOKEN', response.data.access_token)
           resolve(response)
         }).catch((error) => {
-          // console.log('Error from VUEX', error.response.data.error)
-          reject(error)
+          // console.log('Error from VUEX', error.response.data)
+          reject(error.response.data)
         })
     })
   }

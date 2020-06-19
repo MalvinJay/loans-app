@@ -12,12 +12,14 @@
             </div>
             <div v-if="!pinSent" class="r-c">
               <div class="mb-3">
-                <p class="text-xl mb-16">
+                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
                   Sign In with Phone Number
                 </p>
               </div>
               <div>
-                <p>For security reasons, please enter your mobile number and we will send you a One Time Password</p>
+                <p class="texl-sm md:text-base pb-4 md:p-0">
+                  For security reasons, please enter your mobile number and we will send you a One Time Password
+                </p>
               </div>
               <div class="mb-5">
                 <input v-model="phone" type="text" placeholder="Phone Number">
@@ -37,12 +39,14 @@
             </div>
             <div v-else class="r-c">
               <div class="mb-3">
-                <p class="text-xl mb-16">
+                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
                   One Time Password
                 </p>
               </div>
               <div>
-                <p>Please enter the password that was sent to your number</p>
+                <p class="texl-sm md:text-base pb-4 md:p-0">
+                  Please enter the password that was sent to your number
+                </p>
               </div>
               <div class="mb-5">
                 <input v-model="OTP" type="password" class="text-xl" placeholder="OTP">
@@ -59,6 +63,7 @@
                   </template>
                 </button>
               </div>
+              <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">Resend Password</div>
             </div>
           </div>
         </div>
@@ -74,7 +79,7 @@ export default {
       pinSent: false,
       loading: false,
       OTP: null,
-      phone: null
+      phone: ''
     }
   },
   methods: {
@@ -86,25 +91,17 @@ export default {
       }
       this.$store.dispatch('auth/login', data)
         .then((res) => {
-          // console.log('OTP Verification', res)
-          // this.$toast.success(res.success)
           this.$toasted.show('Login Success', {
             theme: 'outline',
-            position: 'top-right',
+            position: 'top-center',
             duration: 5000
           })
-          // Perform extra checks to confirm validity of client before redirecting him/her
           this.$router.push('/app/dashboard')
         })
         .catch((error) => {
-          // console.log('Error:', error.response.data.error)
-          switch (error.response.data.status) {
-            case 400:
-              this.$toasted.error(error.response.data.error)
-              break
-            default:
-              break
-          }
+          // console.log('Error:', error)
+          // this.$toasted.error(error)
+          this.$toasted.error(error.error)
         })
         .finally(() => {
           this.loading = false
@@ -118,18 +115,12 @@ export default {
           // this.$toast.success(res.success)
           this.$toasted.show(res.success, {
             theme: 'outline',
-            position: 'top-right',
+            position: 'top-center',
             duration: 5000
           })
           this.pinSent = true
         })
         .catch((error) => {
-          // this.$toasted.error('Phone Number is Incorrect')
-          // this.$toasted.show('Phone Number is Incorrect', {
-          //   theme: 'bubble',
-          //   position: 'top-right',
-          //   duration: 5000
-          // })
           switch (error.response.data.status) {
             case 400:
               this.$toasted.error(error.response.data.error)
@@ -146,6 +137,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+// @tailwind base;
+// @tailwind components;
+// @tailwind utilities;
 .signin {
   background: linear-gradient(90deg, #5E1B9A 0%, #C49000 100%);
   position: fixed;
@@ -187,13 +181,13 @@ export default {
 }
 .logo {
   img {
-    margin: 32px auto;
+    margin: 6rem auto 0;
     max-width: 15rem;
-    height: 40px;
+    // height: 65px;
   }
 }
 .r-c {
-  margin: 230px 88px 0 88px;
+  margin: 200px 88px 0 88px;
   text-align: center;
   input {
     background-color: transparent;
@@ -204,6 +198,9 @@ export default {
     background-color: $color-secondary;
     min-height: 45px;
     font-size: 16px;
+  }
+  .resend {
+    color: $color-secondary-alt;
   }
 }
 .login-spinner {
@@ -218,6 +215,66 @@ export default {
   }
   to {
     transform:rotate(360deg);
+  }
+}
+@include for-tablet-portrait-only {
+}
+@include for-phone-only {
+  .signin {
+    display: block;
+    background: $color-secondary-alt!important;
+    .main {
+      display: block;
+      .signin-container {
+        margin: 0;
+        .body {
+          flex-direction: column;
+          align-items: flex-start;
+          height: 100vh;
+          .left {
+            position: relative;
+            left: 0px;
+            // top: -68px;
+            width: 100%;
+            // height: 381.39px;
+            height: 50%;
+            background: url('../../../assets/img/signin-image.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            img {
+              display: none;
+            }
+          }
+          .right {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 50%;
+            padding: 20px 20px;
+            background-color: $color-mild-pink;
+            .logo {
+              img {
+                margin: 0 auto 18px;
+                height: 30px;
+              }
+            }
+            .r-c {
+              margin: 0;
+              p {
+                line-height: 22px;
+              }
+              .button-small {
+                width: 100%;
+              }
+              input {
+                margin-top: 10px;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 </style>
