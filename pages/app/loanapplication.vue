@@ -30,7 +30,7 @@
                 11 July 2020
               </td>
               <td class="text blue">
-                {{loanDetails.status}}
+                {{ loanDetails.status }}
               </td>
               <td>
                 <button class="button-small">
@@ -66,7 +66,6 @@ import { mapGetters } from 'vuex'
 import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
   components: {
     Loading
   },

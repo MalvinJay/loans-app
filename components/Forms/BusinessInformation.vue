@@ -3633,7 +3633,6 @@ export default {
         JSON.stringify(this.credit_facilities)
       ).filter(value => JSON.stringify(value) !== '{}')
 
-      const taxClearance = JSON.parse(JSON.stringify(this.tax_clearance))
       data.income_statement_2017 = incomeStatement2017
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019
@@ -3643,7 +3642,6 @@ export default {
       data.balance_sheet_2018 = balanceSheet2018
       data.balance_sheet_2019 = balanceSheet2019
       data.balance_sheet_2020 = balanceSheet2020
-      data.tax_clearance = taxClearance
       data.cash_flow_2017 = cashFlow2017
       data.cash_flow_2018 = cashFlow2018
       data.cash_flow_2019 = cashFlow2019
