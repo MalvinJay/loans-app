@@ -19,10 +19,10 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-700 text-sm font-normal mb-2 font-bold"
-              for="username"
-            >Business Address <span class="text-red-600">*</span></label>
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+              Business Address
+              <span class="text-red-600">*</span>
+            </label>
           </div>
           <div />
           <div class="mb-12">
@@ -101,14 +101,20 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Industry <span class="text-red-600">*</span></label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">
+              Industry
+              <span class="text-red-600">*</span>
+            </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.industry" :items="industry" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Legal Organization <span class="text-red-600">*</span></label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">
+              Legal Organization
+              <span class="text-red-600">*</span>
+            </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.legal_organization" :items="legalOrganization" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -127,7 +133,10 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Business Mission <span class="text-red-600">*</span></label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">
+              Business Mission
+              <span class="text-red-600">*</span>
+            </label>
             <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex mb-3">
@@ -188,14 +197,18 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Business Association <span class="text-red-600">*</span></label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">
+              Business Association
+              <span class="text-red-600">*</span>
+            </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.business_association" :items="businessAssociation" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
-            <label v-if="general.business_association === '80'" class="block text-gray-900 text-sm mt-2">
-              If other, please provide your Business Association
-            </label>
+            <label
+              v-if="general.business_association === '80'"
+              class="block text-gray-900 text-sm mt-2"
+            >If other, please provide your Business Association</label>
             <Input
               v-if="general.business_association === '80'"
               v-model="general.other_business_association"
@@ -207,42 +220,81 @@
             class="mb-12"
           >
             <label class="block text-gray-900 text-sm font-bold mb-2">Business Owner</label>
-            <button type="button" class="i-t-b" :class="{done: checkOwnerModal}" @click="ownerModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkOwnerModal}"
+              @click="ownerModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkOwnerModal">&#10003;</span>
             </button>
           </div>
           <div class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
-            <button type="button" class="i-t-b" :class="{done: checkEmployeesModal}" @click="employeesModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkEmployeesModal}"
+              @click="employeesModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkEmployeesModal">&#10003;</span>
             </button>
           </div>
-          <div v-if="(businessScale === '1' || businessScale === '2') && isStartup === false" class="mb-12">
+          <div
+            v-if="(businessScale === '1' || businessScale === '2') && isStartup === false"
+            class="mb-12"
+          >
             <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-            <button type="button" class="i-t-b" :class="{done: checkMicroIncomeModal}" @click="microIncomeModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkMicroIncomeModal}"
+              @click="microIncomeModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkMicroIncomeModal">&#10003;</span>
             </button>
           </div>
           <div v-else class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
-            <button type="button" class="i-t-b" :class="{done: checkIncomeModal}" @click="incomeModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkIncomeModal}"
+              @click="incomeModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkIncomeModal">&#10003;</span>
             </button>
           </div>
-          <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
+          <div
+            v-if="(businessScale === '4' || businessScale === '5') && isStartup === false"
+            class="mb-12"
+          >
             <label class="block text-gray-900 text-sm font-bold mb-2">Balance Sheet</label>
-            <button type="button" class="i-t-b" :class="{done: checkBalanceSheetModal}" @click="balanceSheetModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkBalanceSheetModal}"
+              @click="balanceSheetModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkBalanceSheetModal">&#10003;</span>
             </button>
           </div>
-          <div v-if="(businessScale === '4' || businessScale === '5') && isStartup === false" class="mb-12">
+          <div
+            v-if="(businessScale === '4' || businessScale === '5') && isStartup === false"
+            class="mb-12"
+          >
             <label class="block text-gray-900 text-sm font-bold mb-2">Cash Flow</label>
-            <button type="button" class="i-t-b" :class="{done: checkCashFlowModal}" @click="cashFlowModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkCashFlowModal}"
+              @click="cashFlowModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkCashFlowModal">&#10003;</span>
             </button>
@@ -252,7 +304,12 @@
             class="mb-12"
           >
             <label class="block text-gray-900 text-sm font-bold mb-2">Director and Shareholder List</label>
-            <button type="button" class="i-t-b" :class="{done: checkShareHolderModal}" @click="shareHolderModal=true">
+            <button
+              type="button"
+              class="i-t-b"
+              :class="{done: checkShareHolderModal}"
+              @click="shareHolderModal=true"
+            >
               Click to Fill in Template
               <span v-if="checkShareHolderModal">&#10003;</span>
             </button>
@@ -292,7 +349,9 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >2019 (required)</label>
           </div>
           <div>
             <label
@@ -913,7 +972,9 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >2019 (required)</label>
           </div>
           <div>
             <label
@@ -1275,9 +1336,7 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Loans Outstanding</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Total Loans Outstanding</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1320,9 +1379,7 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Value of Equity</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Value of Equity</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1408,9 +1465,7 @@
             />
           </div>
           <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Any Other Equity</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Equity</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -1482,7 +1537,9 @@
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019 (required)</label>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >2019 (required)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
@@ -1762,7 +1819,9 @@
             />
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Value of Equity Sold (if shares have been issued)</label>
+            <label
+              class="block text-gray-900 text-sm font-bold mb-2"
+            >Total Value of Equity Sold (if shares have been issued)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -2059,7 +2118,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="directors_list[0].name" type="text" small />
+                  <Input
+                    v-model="directors_list[0].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2080,7 +2144,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="directors_list[0].age" type="text" regex="^[1-9][0-9]?$|^100$" small />
+                  <Input
+                    v-model.number="directors_list[0].age"
+                    type="text"
+                    regex="^[1-9][0-9]?$|^100$"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2118,7 +2187,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="directors_list[0].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="directors_list[0].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2164,7 +2238,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="directors_list[1].name" type="text" small />
+                  <Input
+                    v-model="directors_list[1].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2185,7 +2264,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="directors_list[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="directors_list[1].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2223,7 +2307,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="directors_list[1].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="directors_list[1].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2269,7 +2358,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="directors_list[2].name" type="text" small />
+                  <Input
+                    v-model="directors_list[2].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2290,7 +2384,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="directors_list[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="directors_list[2].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2328,7 +2427,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="directors_list[2].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="directors_list[2].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2374,7 +2478,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="directors_list[3].name" type="text" small />
+                  <Input
+                    v-model="directors_list[3].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2395,7 +2504,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="directors_list[3].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="directors_list[3].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2433,7 +2547,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="directors_list[3].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="directors_list[3].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2479,7 +2598,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="directors_list[4].name" type="text" small />
+                  <Input
+                    v-model="directors_list[4].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2500,7 +2624,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="directors_list[4].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="directors_list[4].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2538,7 +2667,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="directors_list[4].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="directors_list[4].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2580,10 +2714,16 @@
                 </ValidationProvider>
               </div>
             </div>
-            <div>
-              <small class=" text-blue-600 cursor-pointer" @click="shareHolders +=1">
-                Add another owner
-              </small>
+            <div class="flex gap-6">
+              <small
+                class="text-blue-600 cursor-pointer"
+                @click="shareHolders +=1"
+              >Add another Director/Shareholder</small>
+              <small
+                v-if="shareHolders > 1"
+                class="text-red-600 cursor-pointer"
+                @click="shareHolders -=1"
+              >Remove Director/Shareholder</small>
             </div>
             <div class="my-20 flex gap-3 buttons">
               <button type="submit" class="button-small">
@@ -2611,10 +2751,14 @@
             <div class="grid grid-cols-4 gap-8 micro">
               <div />
               <div>
-                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2018</label>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2019</label>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2019</label>
               </div>
               <div>
                 <label
@@ -2629,21 +2773,41 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2018.total_revenue" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2018.total_revenue"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2019.total_revenue" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2019.total_revenue"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2 mobile"
+                >Jan 2020 - April 2020</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2020.total_revenue" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2020.total_revenue"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2655,21 +2819,41 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2018.total_expenses" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2018.total_expenses"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2019.total_expenses" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2019.total_expenses"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2 mobile"
+                >Jan 2020 - April 2020</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="income_statement_2020.total_expenses" type="number" placeholder="GHS" money small />
+                  <Input
+                    v-model.number="income_statement_2020.total_expenses"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2701,7 +2885,9 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020 - April 2020</label>
+                <label
+                  class="block text-gray-900 text-sm font-normal mb-2 mobile"
+                >Jan 2020 - April 2020</label>
                 <Input
                   v-model="total_micro_statement.profit_20"
                   type="text"
@@ -2734,7 +2920,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="business_owner[0].name" type="text" small />
+                  <Input
+                    v-model="business_owner[0].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2755,7 +2946,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="business_owner[0].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="business_owner[0].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2793,7 +2989,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="business_owner[0].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="business_owner[0].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2812,7 +3013,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="business_owner[1].name" type="text" small />
+                  <Input
+                    v-model="business_owner[1].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2833,7 +3039,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="business_owner[1].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="business_owner[1].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2871,7 +3082,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="business_owner[1].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="business_owner[1].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2890,7 +3106,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="business_owner[2].name" type="text" small />
+                  <Input
+                    v-model="business_owner[2].name"
+                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                    type="text"
+                    small
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2911,7 +3132,12 @@
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model.number="business_owner[2].age" type="text" small regex="^[1-9][0-9]?$|^100$" />
+                  <Input
+                    v-model.number="business_owner[2].age"
+                    type="text"
+                    small
+                    regex="^[1-9][0-9]?$|^100$"
+                  />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2949,7 +3175,12 @@
                 <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="business_owner[2].nationality" first="Country" :items="countries" small />
+                    <Select
+                      v-model="business_owner[2].nationality"
+                      first="Country"
+                      :items="countries"
+                      small
+                    />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -2963,10 +3194,16 @@
               </div>
             </div>
           </div>
-          <div>
-            <small class=" text-blue-600 cursor-pointer" @click="businessOwners +=1">
-              Add another owner
-            </small>
+          <div class="flex gap-6">
+            <small
+              class="text-blue-600 cursor-pointer"
+              @click="businessOwners +=1"
+            >Add another Owner</small>
+            <small
+              v-if="businessOwners > 1"
+              class="text-red-600 cursor-pointer"
+              @click="businessOwners -=1"
+            >Remove Owner</small>
           </div>
           <div class="my-20 flex gap-3 buttons">
             <button type="submit" class="button-small">
@@ -3037,6 +3274,7 @@
   </div>
 </template>
 <script>
+/* eslint-disable no-console */
 import { mapGetters } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Modal from '../Misc/Modal'
@@ -3110,20 +3348,53 @@ export default {
     })
   },
   watch: {
+    businessOwners (value) {
+      this.business_owner.forEach((item, key) => {
+        if (key > value - 1) {
+          this.business_owner[key] = {}
+        }
+      })
+    },
+    shareHolders (value) {
+      this.business_owner.forEach((item, key) => {
+        if (key > value - 1) {
+          this.business_owner[key] = {}
+        }
+      })
+    },
     income_statement_2017: {
       handler (value) {
         const income = this.income_statement_2017
         // eslint-disable-next-line no-console
-        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
-        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
-        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
-        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
-        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
-        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+        const rawMaterials =
+          income.total_raw_materials === undefined
+            ? 0
+            : income.total_raw_materials
+        const totalSalaries =
+          income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge =
+          income.total_taxes_charge === undefined
+            ? 0
+            : income.total_taxes_charge
+        const depreciationChargeAssets =
+          income.depreciation_charge_assets === undefined
+            ? 0
+            : income.depreciation_charge_assets
+        const totalExpenses =
+          income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment =
+          income.total_loan_repayment === undefined
+            ? 0
+            : income.total_loan_repayment
 
-        const data = (income.total_revenue - rawMaterials -
-        totalSalaries - totalExpenses - totalLoanRepayment -
-        depreciationChargeAssets - totalTaxesCharge)
+        const data =
+          income.total_revenue -
+          rawMaterials -
+          totalSalaries -
+          totalExpenses -
+          totalLoanRepayment -
+          depreciationChargeAssets -
+          totalTaxesCharge
         this.total_income_statement.net_profit_17 = this.thousandSeprator(data)
       },
       deep: true
@@ -3131,17 +3402,38 @@ export default {
     income_statement_2018: {
       handler (value) {
         const income = this.income_statement_2018
-        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
-        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
-        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
-        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
-        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
-        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+        const rawMaterials =
+          income.total_raw_materials === undefined
+            ? 0
+            : income.total_raw_materials
+        const totalSalaries =
+          income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge =
+          income.total_taxes_charge === undefined
+            ? 0
+            : income.total_taxes_charge
+        const depreciationChargeAssets =
+          income.depreciation_charge_assets === undefined
+            ? 0
+            : income.depreciation_charge_assets
+        const totalExpenses =
+          income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment =
+          income.total_loan_repayment === undefined
+            ? 0
+            : income.total_loan_repayment
 
-        this.total_micro_statement.profit_18 = this.thousandSeprator(income.total_revenue - totalExpenses)
-        const data = (income.total_revenue - rawMaterials -
-        totalSalaries - totalExpenses - totalLoanRepayment -
-        depreciationChargeAssets - totalTaxesCharge)
+        this.total_micro_statement.profit_18 = this.thousandSeprator(
+          income.total_revenue - totalExpenses
+        )
+        const data =
+          income.total_revenue -
+          rawMaterials -
+          totalSalaries -
+          totalExpenses -
+          totalLoanRepayment -
+          depreciationChargeAssets -
+          totalTaxesCharge
         this.total_income_statement.net_profit_18 = this.thousandSeprator(data)
       },
       deep: true
@@ -3149,17 +3441,38 @@ export default {
     income_statement_2019: {
       handler (value) {
         const income = this.income_statement_2019
-        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
-        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
-        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
-        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
-        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
-        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+        const rawMaterials =
+          income.total_raw_materials === undefined
+            ? 0
+            : income.total_raw_materials
+        const totalSalaries =
+          income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge =
+          income.total_taxes_charge === undefined
+            ? 0
+            : income.total_taxes_charge
+        const depreciationChargeAssets =
+          income.depreciation_charge_assets === undefined
+            ? 0
+            : income.depreciation_charge_assets
+        const totalExpenses =
+          income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment =
+          income.total_loan_repayment === undefined
+            ? 0
+            : income.total_loan_repayment
 
-        this.total_micro_statement.profit_19 = this.thousandSeprator(income.total_revenue - totalExpenses)
-        const data = (income.total_revenue - rawMaterials -
-        totalSalaries - totalExpenses - totalLoanRepayment -
-        depreciationChargeAssets - totalTaxesCharge)
+        this.total_micro_statement.profit_19 = this.thousandSeprator(
+          income.total_revenue - totalExpenses
+        )
+        const data =
+          income.total_revenue -
+          rawMaterials -
+          totalSalaries -
+          totalExpenses -
+          totalLoanRepayment -
+          depreciationChargeAssets -
+          totalTaxesCharge
         this.total_income_statement.net_profit_19 = this.thousandSeprator(data)
       },
       deep: true
@@ -3167,17 +3480,38 @@ export default {
     income_statement_2020: {
       handler (value) {
         const income = this.income_statement_2020
-        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
-        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
-        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
-        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
-        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
-        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+        const rawMaterials =
+          income.total_raw_materials === undefined
+            ? 0
+            : income.total_raw_materials
+        const totalSalaries =
+          income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge =
+          income.total_taxes_charge === undefined
+            ? 0
+            : income.total_taxes_charge
+        const depreciationChargeAssets =
+          income.depreciation_charge_assets === undefined
+            ? 0
+            : income.depreciation_charge_assets
+        const totalExpenses =
+          income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment =
+          income.total_loan_repayment === undefined
+            ? 0
+            : income.total_loan_repayment
 
-        this.total_micro_statement.profit_20 = this.thousandSeprator(income.total_revenue - totalExpenses)
-        const data = (income.total_revenue - rawMaterials -
-        totalSalaries - totalExpenses - totalLoanRepayment -
-        depreciationChargeAssets - totalTaxesCharge)
+        this.total_micro_statement.profit_20 = this.thousandSeprator(
+          income.total_revenue - totalExpenses
+        )
+        const data =
+          income.total_revenue -
+          rawMaterials -
+          totalSalaries -
+          totalExpenses -
+          totalLoanRepayment -
+          depreciationChargeAssets -
+          totalTaxesCharge
         this.total_income_statement.net_profit_20 = this.thousandSeprator(data)
       },
       deep: true
@@ -3185,17 +3519,38 @@ export default {
     income_statement_apr_2020: {
       handler (value) {
         const income = this.income_statement_apr_2020
-        const rawMaterials = income.total_raw_materials === undefined ? 0 : income.total_raw_materials
-        const totalSalaries = income.total_salaries === undefined ? 0 : income.total_salaries
-        const totalTaxesCharge = income.total_taxes_charge === undefined ? 0 : income.total_taxes_charge
-        const depreciationChargeAssets = income.depreciation_charge_assets === undefined ? 0 : income.depreciation_charge_assets
-        const totalExpenses = income.total_expenses === undefined ? 0 : income.total_expenses
-        const totalLoanRepayment = income.total_loan_repayment === undefined ? 0 : income.total_loan_repayment
+        const rawMaterials =
+          income.total_raw_materials === undefined
+            ? 0
+            : income.total_raw_materials
+        const totalSalaries =
+          income.total_salaries === undefined ? 0 : income.total_salaries
+        const totalTaxesCharge =
+          income.total_taxes_charge === undefined
+            ? 0
+            : income.total_taxes_charge
+        const depreciationChargeAssets =
+          income.depreciation_charge_assets === undefined
+            ? 0
+            : income.depreciation_charge_assets
+        const totalExpenses =
+          income.total_expenses === undefined ? 0 : income.total_expenses
+        const totalLoanRepayment =
+          income.total_loan_repayment === undefined
+            ? 0
+            : income.total_loan_repayment
 
-        const data = (income.total_revenue - rawMaterials -
-        totalSalaries - totalExpenses - totalLoanRepayment -
-        depreciationChargeAssets - totalTaxesCharge)
-        this.total_income_statement.net_profit_apr_20 = this.thousandSeprator(data)
+        const data =
+          income.total_revenue -
+          rawMaterials -
+          totalSalaries -
+          totalExpenses -
+          totalLoanRepayment -
+          depreciationChargeAssets -
+          totalTaxesCharge
+        this.total_income_statement.net_profit_apr_20 = this.thousandSeprator(
+          data
+        )
       },
       deep: true
     },
@@ -3242,7 +3597,10 @@ export default {
       const incomeStatement2018 = Object.assign({}, this.income_statement_2018)
       const incomeStatement2019 = Object.assign({}, this.income_statement_2019)
       const incomeStatement2020 = Object.assign({}, this.income_statement_2020)
-      const incomeStatementApr2020 = Object.assign({}, this.income_statement_apr_2020)
+      const incomeStatementApr2020 = Object.assign(
+        {},
+        this.income_statement_apr_2020
+      )
 
       // Clone all balance Sheet objects
       const balanceSheet2017 = Object.assign({}, this.balance_sheet_2017)
@@ -3299,16 +3657,7 @@ export default {
       return data
     },
     moveNext () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Please fill in all fields', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
@@ -3379,7 +3728,13 @@ export default {
       this.$store.commit('pages/SET_SAVE_MODAL', true)
     },
     thousandSeprator (amount) {
-      if (amount !== '' || amount !== undefined || amount !== 0 || amount !== '0' || amount !== null) {
+      if (
+        amount !== '' ||
+        amount !== undefined ||
+        amount !== 0 ||
+        amount !== '0' ||
+        amount !== null
+      ) {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount

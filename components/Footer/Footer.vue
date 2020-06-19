@@ -10,7 +10,7 @@
         </a>
       </div>
     </div>
-    <footer class="flex py-24 justify-center">
+    <footer class="flex py-24 justify-between px-64">
       <div class="l-s h-t">
         <div class="logo mb-10">
           <img src="@/assets/img/logo.png" alt="" srcset="">
@@ -21,22 +21,16 @@
           adipisicing elit. Dolorem itaque, cupiditate <br>
         </p>
         <div class="icons flex justify mt-10">
-          <img src="@/assets/img/facebook.png" alt="" srcset="">
-          <img src="@/assets/img/twitter.png" alt="" srcset="">
-          <img src="@/assets/img/instagram.png" alt="" srcset="">
+          <a target="_blank" href="https://www.facebook.com/nbssighana/">
+            <img src="@/assets/img/facebook.png" alt="" srcset="">
+          </a>
+          <a target="_blank" href="https://twitter.com/NBSSIGhana?s=09">
+            <img src="@/assets/img/twitter.png" alt="" srcset="">
+          </a>
+          <a target="_blank" href="https://instagram.com/nbssighana?igshid=1lbc3e98woz2d">
+            <img src="@/assets/img/instagram.png" alt="" srcset="">
+          </a>
         </div>
-      </div>
-      <div class="m-s h-t">
-        <div class="r-s mb-10">
-          <p class="text-sm b-b font-bold uppercase">
-            Explore Links
-          </p>
-        </div>
-        <ul class="text-sm b-b font-bold flex justify-center">
-          <li><a href="">About</a></li>
-          <li><a href="">Services</a></li>
-          <li><a href="">FAQs</a></li>
-        </ul>
       </div>
       <div class="r-s h-t">
         <div class="mb-10">
@@ -45,24 +39,20 @@
           </p>
         </div>
         <p class="flex">
-          <img src="@/assets/img/location.png" alt="" srcset=""> Lorem Ipsum dolor sit amet, <br>
-          consectetur adipisicing elit ut
+          <img src="@/assets/img/location.png" alt="" srcset=""> visit the nearest NBSSI Business <br> Advisory Centre (BAC) across Ghana
         </p>
         <p class="flex">
-          <img src="@/assets/img/smartphone.png" alt="" srcset=""> (000) 100-100 <br>
+          <img src="@/assets/img/smartphone.png" alt="" srcset=""> <a href="tel:0302747777">0302 747 777</a> <br>
         </p>
         <p class="flex">
-          <img src="@/assets/img/mail.png" alt="" srcset=""> info@company.com
-        </p>
-        <p class="flex">
-          <img src="@/assets/img/timer.png" alt="" srcset=""> Mon - Sat: 7:00am - 6:00pm
+          <img src="@/assets/img/timer.png" alt="" srcset=""> Mon - Sat: 8:00am - 5:00pm
         </p>
       </div>
     </footer>
-    <div class="copyright flex justify-center py-10 text-white">
-      <p>Powered by Plendify</p>
+    <div class="copyright flex justify-between py-10 text-white px-10 gap-10">
+      <p>Recovery and Resilience Program for MSMEs Against Impacts of Coronavirus.</p>
       <p class="font-light">
-        &copy; 2020 Company. <span class="font-bold">Privacy Policy</span> | <span class="font-bold">Terms & Conditions</span>
+        &copy; National Board for Small Scale Industries. All rights reserved    <span class="font-bold">Privacy Policy</span> | <span class="font-bold">Terms & Conditions</span>
       </p>
     </div>
   </div>
@@ -126,11 +116,11 @@ ul {
 }
 .copyright {
   background-color: $color-secondary-alt;
-  p {
-    &:first-child {
-      margin-right: 40%;
-    }
-  }
+  // p {
+  //   &:first-child {
+  //     margin-right: 40%;
+  //   }
+  // }
 }
 
 @include for-tablet-portrait-only {
