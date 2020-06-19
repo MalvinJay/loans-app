@@ -121,34 +121,25 @@ export default {
   },
   methods: {
     submit () {
-      this.$v.$touch()
-      if (this.$v.$invalid) {
-        this.$toasted.error('Some fields are empty', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        const applyObject = {
-          annual_sales: this.annual_sales,
-          id_type: this.id_type,
-          id_number: this.id_number,
-          years_in_business: this.years_in_business
-        }
-        // this.$toast.show('Logging in...')
-        this.$toasted.show('Please wait...', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 10000
-        })
-
-        this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
-          window.location = '/loans/0/form'
-        })
-          .catch(() => {
-            this.$toast.error('Wrong Id number provided')
-          })
+      const applyObject = {
+        annual_sales: this.annual_sales,
+        id_type: this.id_type,
+        id_number: this.id_number,
+        years_in_business: this.years_in_business
       }
+      // this.$toast.show('Logging in...')
+      this.$toasted.show('Please wait...', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 10000
+      })
+
+      this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
+        window.location = '/loans/0/form'
+      })
+        .catch(() => {
+          this.$toast.error('Wrong Id number provided')
+        })
     }
   }
 }

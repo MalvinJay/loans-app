@@ -119,7 +119,7 @@ export default {
         this.$toasted.show('Please wait...', {
           theme: 'toasted-primary',
           position: 'top-center',
-          duration: 7000
+          duration: 5000
         })
         this.$store.dispatch('api/saveApplication')
           .then(() => {
@@ -128,6 +128,7 @@ export default {
               position: 'top-center',
               duration: 5000
             })
+            this.$store.commit('pages/SET_SAVE_MODAL', false)
           })
       }
     },
