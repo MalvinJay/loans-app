@@ -173,10 +173,25 @@ export default {
       residenceStatus: 'pages/residenceStatus'
     }),
     ...mapState({
-      applicationObject: state => state.pages.application_object
-    })
+      pendingApplication: state => state.api.pendingApplication
+    }),
+    details: {
+      get () {
+        if (this.pendingApplication) {
+          return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
+    }
   },
   watch: {
+    details: {
+      handler (value) {
+        this.personalInfo = value
+      },
+      deep: true
+    },
     region (value) {
       this.$store.commit('pages/SET_DISTRICTS', value)
     },
@@ -184,7 +199,6 @@ export default {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
-        this.$store.commit('api/SET_ID', this.applicationObject)
       }
     }
   },

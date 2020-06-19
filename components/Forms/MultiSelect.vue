@@ -35,6 +35,11 @@ export default {
       type: Array,
       required: false,
       default: () => []
+    },
+    value: {
+      required: false,
+      default: () => [],
+      type: Array
     }
   },
   data () {
@@ -47,11 +52,18 @@ export default {
   computed: {
     // eslint-disable-next-line vue/return-in-computed-property
     displayText () {
-      if (this.selected.length === 0) {
+      if (this.selected.length === 0 || this.list.length === 0) {
         return "Select all that's applicable"
       } else {
         // return this.list[this.selected[0] - 1].name
         return this.list.find(item => item.val === this.selected[0]).name
+      }
+    }
+  },
+  watch: {
+    value (value) {
+      if (value.length !== 0) {
+        this.selected = value
       }
     }
   },
