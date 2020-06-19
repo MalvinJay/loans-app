@@ -14,7 +14,7 @@
       </div>
       <div v-if="messages.length > 0">
         <template v-for="(message, index) in messages">
-          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages[0].body" :key="index">
+          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages" :key="index">
           </Accordion>
         </template>
       </div>
@@ -37,10 +37,10 @@
                     Inquiry
                   </h1>
                 </div>
-                <div class="py-4">
+                <!-- <div class="py-4">
                   <label class="block text-gray-900 text-sm font-semibold mb-4 mobile">Reference Number</label>
                   <Input v-model="inquiry.reference" type="text" placeholder="" small />
-                </div>
+                </div> -->
                 <div class="py-4 ">
                   <label class="block text-gray-900 text-sm font-semibold mb-4 mobile">Message</label>
                   <textarea v-model="inquiry.body" name="message" class="p-4" rows="20" placeholder="" />
@@ -105,6 +105,7 @@ export default {
       this.$store.dispatch('queries/makeInquiry', this.inquiry.body)
         .then((res) => {
           this.$toasted.success('Query Sent')
+          this.$store.dispatch('queries/fetchQueries')
           this.modal = false
         })
         .catch((error) => {
