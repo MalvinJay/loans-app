@@ -7,7 +7,7 @@
       <div class="mt-32">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div>
             <p class="text-2xl">
@@ -59,7 +59,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div>
             <p class="text-2xl">
@@ -71,7 +71,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div>
             <div>
@@ -124,7 +124,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div class="links">
             <p class="text-2xl">
@@ -136,7 +136,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div class="links">
             <p class="text-2xl">
@@ -148,7 +148,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div class="links">
             <p class="text-2xl">
@@ -160,7 +160,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div class="links">
             <p class="text-2xl">
@@ -172,7 +172,7 @@
       <div class="mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
-            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+            <div class="mt-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div class="links">
             <p class="text-2xl">
@@ -188,7 +188,7 @@
       </p>
       <div class="mt-32 limitations">
         <div class="flex gap-10 my-10">
-          <div class="img pr-2">
+          <div class="img">
             <img src="@/assets/img/cancel.png" alt="">
           </div>
           <div>
@@ -198,7 +198,7 @@
           </div>
         </div>
         <div class="flex gap-10 my-10">
-          <div class="img pr-2">
+          <div class="img">
             <img src="@/assets/img/cancel.png" alt="">
           </div>
           <div>
@@ -208,7 +208,7 @@
           </div>
         </div>
         <div class="flex gap-10 my-10">
-          <div class="img pr-2">
+          <div class="img">
             <img src="@/assets/img/cancel.png" alt="">
           </div>
           <div class="w-full">

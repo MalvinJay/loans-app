@@ -111,7 +111,7 @@ export default {
       return this.loanStatus === 'complete'
     }
   },
-  beforeCreate () {
+  mounted () {
     this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('loan/fetchLoanDetails')
       .then((response) => {
@@ -127,8 +127,6 @@ export default {
         }
       })
     this.$store.dispatch('queries/fetchQueries')
-  },
-  mounted () {
     if (this.$store.state.loan.loandetails.status !== 'complete') {
       this.$router.push('/app/loanapplication')
     }

@@ -225,7 +225,7 @@ export default {
 @include for-phone-only {
   .signin {
     display: block;
-    background: $white!important;
+    background: $color-secondary-alt!important;
     .main {
       display: block;
       .signin-container {
@@ -253,7 +253,7 @@ export default {
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: auto;
+            height: 50%;
             padding: 20px 20px;
             background-color: $color-mild-pink;
             .logo {
