@@ -46,10 +46,12 @@ export const actions = {
             commit('SET_LOAN_STATUS', 'complete')
           } else {
             localStorage.setItem('loanStatus', 'incomplete')
+            commit('SET_LOAN_STATUS', 'incomplete')
           }
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
+          commit('SET_LOAN_STATUS', 'incomplete')
           localStorage.setItem('loanStatus', 'incomplete')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)

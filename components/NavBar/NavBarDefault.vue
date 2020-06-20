@@ -15,7 +15,7 @@
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
         <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
-        <a href="/app/registration/login"><span>Sign in</span></a>
+        <a href="/app/registration/login"><span class="pl-2">Sign in</span></a>
       </p>
     </div>
     <div class="mobile-nav" :class="{open}">
