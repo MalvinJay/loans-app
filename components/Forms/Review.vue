@@ -103,7 +103,7 @@
           <p class="font-bold">
             Photo ID
           </p>
-          <p v-if="general.paye_file_name !== undefined">
+          <p v-if="general.id_file_name !== undefined">
             {{ general.id_file_name }}
           </p>
           <p v-else>

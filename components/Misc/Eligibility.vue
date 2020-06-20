@@ -6,7 +6,7 @@
       </p>
     </div>
     <div class="text-white">
-      <p class="text-xl">The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:</p>
+      <p class="md:text-2xl">The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:</p>
       <div class="points">
         <ol class="list-disc">
           <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Production and supply chain disruptions, shortages and delays.</li>
@@ -15,9 +15,10 @@
           <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Labor shortages due to social distancing regulations</li>
         </ol>
       </div>
-      <p class="mt-10">
+      <p class="mt-10 md:text-2xl pb-4">
         The NBSSI Mastercard Foundation Recovery and Resilience Program for MSMEs has been set up to provide financial and business advisory support to MSMEs and start-ups weather the economic downturn caused by the COVID-19 pandemic. Particularly, the Programme will focus on:
       </p>
+      <!-- <hr class="pb-4"> -->
       <div class="points sec">
         <ol class="list-disc">
           <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> MSMEs who need support to survive the COVID-19 pandemic.</li>

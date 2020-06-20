@@ -2,7 +2,7 @@ import Utils from '../utils/services'
 export const state = () => ({
   loandetails: {
     data: {},
-    status: localStorage.getItem('loanStatus'),
+    status: localStorage.getItem('loanStatus') || null,
     state: 'DATA'
   },
   errors: {}

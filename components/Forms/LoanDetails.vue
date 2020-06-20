@@ -6,7 +6,7 @@
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
-                v-model.number="loanAmount"
+                v-model.number="general.requested_loan_amount"
                 name="Amount Requested"
                 type="number"
                 money
@@ -16,10 +16,7 @@
             </ValidationProvider>
           </div>
           <div class="mb-10">
-            <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model.number="years" name="Years in Operation" type="number" disabled />
-              <small class="text-sm text-red-700">{{ errors[0] }}</small>
-            </ValidationProvider>
+            <Input v-model.number="years" name="Years in Operation" type="number" disabled />
           </div>
           <div>
             <ValidationProvider v-slot="{ errors }" rules="required">
@@ -32,10 +29,10 @@
                   Yes
                   <input
                     id="yes"
-                    v-model="startup"
+                    v-model="general.is_startup"
                     type="checkbox"
-                    true-value="true"
-                    false-value="false"
+                    true-value="1"
+                    false-value="0"
                   >
                   <span class="checkmark" />
                 </label>
@@ -43,10 +40,10 @@
                   No
                   <input
                     id="no"
-                    v-model="startup"
+                    v-model="general.is_startup"
                     type="checkbox"
-                    false-value="true"
-                    true-value="false"
+                    false-value="1"
+                    true-value="0"
                   >
                   <span class="checkmark" />
                 </label>
@@ -93,7 +90,7 @@
               <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <MultiSelect v-model="covidImpact" :list="covidImpacts" />
+              <MultiSelect v-model="general.covid_impact" :list="covidImpacts" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
             <div v-if="otherSelected" class="mt-5">
@@ -118,7 +115,7 @@
               <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <MultiSelect v-model="fund_purposes" :list="fundRoles" />
+              <MultiSelect v-model="general.fund_purposes" :list="fundRoles" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
             <label
@@ -136,7 +133,7 @@
                 Payment Account Details
                 <span class="text-red-600">*</span>
               </label>
-              <div v-if="loanAmount<=2000" class="grid justify-start ac-dc">
+              <div v-if="general.requested_loan_amount<=2000" class="grid justify-start ac-dc">
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="grid grid-cols-2 gap-5">
                     <label v-for="(item, i) in momo" :key="i" class="checkbox momo">
@@ -154,13 +151,13 @@
                 </ValidationProvider>
               </div>
             </div>
-            <label v-if="loanAmount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
+            <label v-if="general.requested_loan_amount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
               Mobile Wallet Number (must use your own mobile wallet)
               <span
                 class="text-red-600 font-bold"
               >*</span>
             </label>
-            <div v-if="loanAmount<= 2000">
+            <div v-if="general.requested_loan_amount<= 2000">
               <ValidationProvider v-slot="{ errors }" rules="required">
                 <Input v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -541,8 +538,7 @@ export default {
       modal1: false,
       checkModal1: false,
       micro: false,
-      loanAmount: null,
-      startup: null,
+      // startup: null,
       covidImpact: [],
       proofOfImpact: null,
       covid_proof_of_march_20: {},
@@ -553,8 +549,8 @@ export default {
       },
       general: {},
       otherSelected: false,
-      fundOtherSelected: false,
-      fund_purposes: null
+      fundOtherSelected: false
+      // details: {}
     }
   },
   computed: {
@@ -563,41 +559,57 @@ export default {
       bankPartner: 'pages/bankPartner',
       covidImpacts: 'pages/covidImpacts',
       fundRoles: 'pages/fundRoles',
-      momo: 'pages/momo'
+      momo: 'pages/momo',
+      token: 'auth/token'
     }),
     ...mapState({
-      currentTab: state => state.pages.currentTab
-    })
+      currentTab: state => state.pages.currentTab,
+      pendingApplication: state => state.api.pendingApplication
+    }),
+    details: {
+      get () {
+        if (this.pendingApplication) {
+          return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
+    }
   },
   watch: {
-    fund_purposes: {
+    details: {
       handler (value) {
-        this.fundOtherSelected = value.includes(9)
+        this.general = value
+      },
+      deep: true
+    },
+    general: {
+      handler (value) {
+        // eslint-disable-next-line no-console
+        if (value.covid_impact) {
+          this.otherSelected = value.covid_impact.includes('11')
+        }
+
+        if (value.fund_purposes) {
+          this.fundOtherSelected = value.fund_purposes.includes(9)
+        }
       },
       deep: true
     },
     show (value) {
       const data = Object.assign({}, this.general) // create copy general object
 
-      // merge general object with necessary data
-      data.covid_impact = this.covidImpact
-      // clone all neccessary data
       const covidProofOfMarch = Object.assign({}, this.covid_proof_of_march_20)
       const covidProofOfApril = Object.assign({}, this.covid_proof_of_april_20)
       const covidProofOfMay = Object.assign({}, this.covid_proof_of_may_20)
-      const fundPurposes = JSON.parse(JSON.stringify(this.fund_purposes))
 
       // merge data
-      data.fund_purposes = fundPurposes
       data.covid_proof_mar_20 = covidProofOfMarch
       data.covid_proof_apr_20 = covidProofOfApril
       data.covid_proof_may_20 = covidProofOfMay
       data.years_in_business = this.years
-      data.requested_loan_amount = this.loanAmount
-      this.startup === 'true'
-        ? (data.is_startup = '1')
-        : (data.is_startup = '0')
-      // Once show value changes, commit to store
+      data.requested_loan_amount = this.general.requested_loan_amount
+
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
       }
@@ -749,6 +761,11 @@ export default {
   created () {
     if (this.$route.params.amount < 145000) {
       this.micro = true
+    }
+  },
+  mounted () {
+    if (this.token && this.pendingApplication) {
+      // this.general = this.pendingApplication.loan_application
     }
   },
   methods: {

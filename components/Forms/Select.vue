@@ -3,7 +3,7 @@
     class="flex relative w-64 container"
     :class="{small: small}"
   >
-    <select @change="selected">
+    <select :value="value" @change="selected">
       <option disabled value="" selected="true">
         {{ first }}
       </option>
@@ -35,6 +35,10 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    // eslint-disable-next-line vue/require-prop-types
+    value: {
+      required: true
     }
   },
   methods: {

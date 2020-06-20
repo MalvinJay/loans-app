@@ -102,8 +102,12 @@ export default {
     showModal: state => state.pages.showSaveModal,
     general: state => state.api.general
   }),
+  beforeCreate () {
+    this.$store.dispatch('api/getPendingApplications')
+  },
   created () {
     this.$store.dispatch('pages/getDropDowns')
+    this.$store.dispatch('api/setApplicationObject')
   },
   methods: {
     viewCurrent (value) {

@@ -30,7 +30,7 @@
                 11 July 2020
               </td>
               <td class="text blue">
-                {{loanDetails.status}}
+                {{ loanDetails.status }}
               </td>
               <td>
                 <button class="button-small">

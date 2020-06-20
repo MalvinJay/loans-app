@@ -17,7 +17,7 @@ export const mutations = {
   },
   SET_LOGOUT (state) {
     localStorage.clear()
-    state.token = ''
+    state.token = null
   }
 }
 export const actions = {
