@@ -14,8 +14,7 @@
       </div>
       <div v-if="messages.length > 0">
         <template v-for="(message, index) in messages">
-          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages" :key="index">
-          </Accordion>
+          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id_prop="message.id" :body="message.messages" />
         </template>
       </div>
       <div v-else class="flex items-center justify-center w-full pt-6 md:pt-56">
@@ -71,7 +70,7 @@ import Accordion from '@/components/Misc/Accordion.vue'
 import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   components: {
     Accordion,
     Loading

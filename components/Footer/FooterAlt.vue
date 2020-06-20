@@ -11,7 +11,7 @@
       </div>
       <div>
         <p class="text-sm font-normal flex qs-tc">
-          Questions? <img src="@/assets/img/smartphone.png" alt="" srcset=""> <span class="font-bold">Call us (000) 100-100</span>
+          Questions? <img src="@/assets/img/smartphone.png" alt="" srcset=""> <span class="font-bold">Call us (030) 274 7777</span>
         </p>
       </div>
       <div class="desktop">
