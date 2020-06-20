@@ -10,16 +10,16 @@
       <div class="notifications">
         <template v-if="notifications.length > 0">
           <template v-for="(notification, index) in notifications">
-            <p :key="index" class="pb-4">
-              {{ notification }}
+            <p class="pb-4" :key="index">
+              {{notification}}
             </p>
           </template>
         </template>
         <div v-else class="flex items-center justify-center h-64">
-          <div class="flex flex-col items-center">
-            <img src="@/assets/img/bell.svg" class="w-20 opacity-50" alt="">
-            <span class="pt-8">No Notifications</span>
-          </div>
+            <div class="flex flex-col items-center">
+              <img src="@/assets/img/bell.svg" class="w-20 opacity-50" alt="">
+              <span class="pt-8">No Notifications</span>
+            </div>
         </div>
       </div>
     </div>
@@ -29,7 +29,7 @@
 import { mapGetters } from 'vuex'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth'
   data () {
     return {
     }

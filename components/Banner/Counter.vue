@@ -5,7 +5,7 @@
         Funding Ranging From
       </p>
       <p class="text-center font-normal text-xl">
-        GHS800 - GHS500,000
+        GHC250-GHC5,000,000
       </p>
     </div>
     <div class="m-s">
@@ -18,7 +18,7 @@
     </div>
     <div class="r-s">
       <p class="text-md">
-      Get Funds Approved Within
+        Get Funds Approved In
       </p>
       <p class="text-center font-normal text-xl">
         2 weeks

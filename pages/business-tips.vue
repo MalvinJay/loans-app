@@ -24,10 +24,10 @@
           </div>
           <div class="mt-5">
             <p class="text-2xl font-medium">
-              Accept all forms of payments to boost sales
+              Adopt multiple forms of payments to boost sales
             </p>
             <p>
-              Register for mobile money and other forms of electronic and online payments
+              Encourage mobile money payments from clients towards your business account if transactions are within their allowable limits. Alternatively, you can encourage other forms of direct card payments
             </p>
           </div>
         </div>
@@ -40,7 +40,7 @@
               Go digital with your business and accept online payments
             </p>
             <p>
-              Your clients may already be online, either on Facebook, Instagram or Twitter or Pinterest. It’s essential to increase visibility by selecting a channel where you can attract new clients. One way to start this process is to do a quick survey among your top 5 clients. Get interactive with customers virtually using tools such as Wechat to drive sales.
+              Your clients may already be online, either on Facebook, Instagram or Twitter or Pinterest. It’s essential to increase visibility by selecting a channel where you can attract new clients. One way to start this process is to do a quick survey among your top 5 clients
             </p>
           </div>
         </div>
@@ -53,59 +53,7 @@
               Communicate with your clients, staff  and suppliers
             </p>
             <p>
-              Prepare a communication plan: you will need to regularly communicate with your clients about how youare prioritizing and serving them safely. Include a message reassuring them of the safety measure you are taking for your employees and business. You can post this message on your website and social media pages. If you have employees, you may want to prepare a separate internal message to share with them
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
-          </div>
-          <div class="mt-5">
-            <p class="text-2xl font-medium">
-              Focus on fast selling products
-            </p>
-            <p>
-              Identify products and services within multiple lines that generate the most cash and channel more resources to selected products or services.
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
-          </div>
-          <div class="mt-5">
-            <p class="text-2xl font-medium">
-              Leveraging on existing infrastructure but offering different products and services.
-            </p>
-            <p>
-              Consider business opportunities that allow your business to deploy existing infrastructure to produce different products or offer new services.
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="icon">
-            <img src="@/assets/img/delivery.png" alt="">
-          </div>
-          <div class="mt-5">
-            <p class="text-2xl font-medium">
-              Networking opportunities
-            </p>
-            <p>
-              Search for opportunities to join business or trade groups for increased visibility and use webinars and email marketing to reach their clients.
-            </p>
-          </div>
-        </div>
-        <div>
-          <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
-          </div>
-          <div class="mt-5">
-            <p class="text-2xl font-medium">
-              Ensure job security and boost employee morale
-            </p>
-            <p>
-              Digitization should augment not replace people. Determine ways of integrating technological tools into work systems to improve productivity. Explore non-monetary motivational strategies for employees.
+              Prepare a communication plan: you will need to regularly communicate with your clients about how youare prioritizing and serving them safely. Include a message reassuring them of the safety measure you aretaking for your employees and business. You can post this message on your website and social media pages. Ifyou have employees, you may want to prepare a separate internal message to share with them
             </p>
           </div>
         </div>
@@ -142,7 +90,7 @@
               Entrepreneurship: Mental Health, the Key to Founder Success
             </p>
             <a href="https://medium.com/the-gps/entrepreneurship-mental-health-the-key-to-founder-success-923b5769ddad" class="text-blue-600">
-              https://medium.com/the-gps/entrepreneurship-...
+              https://medium.com/the-gps/entrepreneurship-mental-health-the-key-to-founder-success-923b5769ddad
             </a>
           </div>
         </div>
@@ -157,7 +105,7 @@
               Google quick help videos
             </p>
             <a href="https://www.youtube.com/playlist?list=PLioTR_jPKuQ4ijJKksNBOYqDxYViI4CV9" class="text-blue-600">
-              https://www.youtube.com/playlist?list=PLioTR_...
+              https://www.youtube.com/playlist?list=PLioTR_jPKuQ4ijJKksNBOYqDxYViI4CV9
             </a>
           </div>
         </div>
@@ -172,7 +120,7 @@
               Digital skills with Google
             </p>
             <a href="https://www.youtube.com/playlist?list=PLioTR_jPKuQ4ijJKksNBOYqDxYViI4CV9" class="text-blue-600">
-              https://applieddigitalskills.withgoogle.com/en/dig..
+              https://applieddigitalskills.withgoogle.com/en/digital-training?utm_source=partners&utm_medium=website&utm_campaign=2020318-SMB-DistanceLearning--cce-all-&src=partners-website-2020318-SMB-DistanceLearning--cce-all-
             </a>
           </div>
         </div>

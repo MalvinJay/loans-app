@@ -98,7 +98,7 @@
                 </div>
                 <div class="u-b">
                   <label>
-                    <input type="file" @change="handleFile">
+                    <input @change="handleFile" type="file">
                     <span>Browse Files</span>
                   </label>
                 </div>
@@ -163,8 +163,9 @@
             </div>
           </div>
         </div>
-        <template v-for="(message, index) in messages.slice(0,2)">
-          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id_prop="message.id" :body="message.messages" />
+        <template v-for="(message, index) in messages.slice(0,2)" >
+          <Accordion :head="message.messages[0].sender" :id_prop="message.identifier" :body="message.messages[0].body" :key="index">
+          </Accordion>
         </template>
       </section>
     </div>
@@ -177,7 +178,7 @@ import Accordion from '@/components/Misc/Accordion.vue'
 import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
-  middleware: 'auth',
+  // middleware: 'auth',
   components: {
     ProgressBar,
     Accordion,

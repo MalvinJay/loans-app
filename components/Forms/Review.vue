@@ -199,17 +199,15 @@
           <p
             class="text-center text-sm"
           >
-            By signing this application, I certify that all of the information in this application form is true to the best of my knowledge. Further, I understand that this information and other information held by NBSSI may be reported to Mastercard Foundation and its partner institutions, and be used for evaluation and other program purposes. I understand that the information may be stored both in Canada and Ghana. I also understand that NBSSI and Mastercard Foundation will keep all of my information in strict confidence and will not release it in any way that would permit individual identification without my permission. I authorize release and use of this information, as described above, to Mastercard Foundation.
-            I understand that by signing this declaration, I permit NBSSI to: release to any project sponsor, participating financial institutions, and/or vendors, my name, address, email address, and telephone number; release to participating financial institutions, the information provided in this application; use all such information to prepare presentations, publications, and marketing  and promotional materials.
-            I declare that I have read thoroughly and understood the terms and conditions of this application, and hereby give my consent to the foregoing by signing below.
+            I hereby declare that all the information submitted by me in this form is correct, true and valid. I also declare that I have read thoroughly and understood the terms and conditions of this application and have given my consent by virtue of my signature on this form.
           </p>
         </div>
         <div class="sig">
-          <label class="block text-gray-900 text-sm font-bold mb-2">Input your Agree/Disagree to accept or decline</label>
+          <label class="block text-gray-900 text-sm font-bold mb-2">Input your Yes/No to accept or decline</label>
           <Input v-model="signature" small type="text" />
         </div>
         <div class="nav-buttons c-b flex gap-5">
-          <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="submitAll">
+          <button v-if="signature.toLowerCase() === 'yes' && liquidation=='false' && crime=='false'" class="button-small next" @click="submitAll">
             Finish
           </button>
           <button class="button-small previous" @click="confirmModal=false">

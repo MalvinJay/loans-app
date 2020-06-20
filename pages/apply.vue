@@ -1,30 +1,5 @@
 <template>
   <div>
-    <Modal v-if="showModal" :flex="true">
-      <div class="flex flex-col">
-        <div class="text-3xl text-center">
-          <i>** <span class="font-bold">Tip</span> **</i>
-        </div>
-        <div class="flex justify-between items-center pt-8">
-          <p class="flex flex-col pr-6">
-            <span>Have you read the eligibility Criteria section?</span>
-            <nuxt-link to="eligibility-criteria">
-              <span class="font-bold text-xs text-blue"><i>Get info here -></i></span>
-            </nuxt-link>
-          </p>
-          <input v-model="initialChecks.eligibility" name="eligibility" type="checkbox" @change="confirmKnowledge">
-        </div>
-        <div class="flex justify-between items-center pt-8">
-          <p class="flex flex-col pr-6">
-            <span>Have you read the FAQs section?</span>
-            <nuxt-link to="faqs">
-              <span class="font-bold text-xs text-blue"><i>Get info here -></i></span>
-            </nuxt-link>
-          </p>
-          <input v-model="initialChecks.faqs" name="eligibility" type="checkbox" @change="confirmKnowledge">
-        </div>
-      </div>
-    </Modal>
     <NavBar alt />
     <BaseCard>
       <div class="main py-12">
@@ -36,7 +11,7 @@
             <form @submit.prevent="handleSubmit(submit)">
               <div class="grid">
                 <div class="mb-4">
-                  <label class="block text-gray-900 text-sm mb-2">Applicant ID Type <span class="text-red-600">*</span></label>
+                  <label class="block text-gray-900 text-sm mb-2">Please select one <span class="text-red-600">*</span></label>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select v-model="id_type" :items="idType" small />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -99,13 +74,11 @@
 </template>
 <script>
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
-import { mapState } from 'vuex'
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 import Input from '@/components/Forms/Input.vue'
 import Select from '@/components/Forms/Select.vue'
 import Footer from '@/components/Footer/FooterAlt.vue'
-import Modal from '@/components/Misc/Modal.vue'
 export default {
   layout: 'homeLayout',
   components: {
@@ -115,8 +88,7 @@ export default {
     Select,
     Footer,
     ValidationProvider,
-    ValidationObserver,
-    Modal
+    ValidationObserver
   },
   data () {
     return {
@@ -125,21 +97,13 @@ export default {
       id_number: null,
       years_in_business: null,
       showSubmit: true,
-      regex: '',
-      initialChecks: {
-        eligibility: null,
-        faqs: null
-      },
-      ApplicantReader: JSON.parse(localStorage.getItem('userReader')) || false
+      regex: ''
     }
   },
   computed: {
     idType () {
       return this.$store.getters['pages/idTypes']
-    },
-    ...mapState({
-      showModal: state => state.pages.applicantReadiness
-    })
+    }
   },
   watch: {
     id_type (value) {
@@ -156,12 +120,6 @@ export default {
     this.$store.dispatch('pages/getDropDowns')
   },
   methods: {
-    confirmKnowledge () {
-      if (this.initialChecks.eligibility && this.initialChecks.faqs) {
-        localStorage.setItem('userReader', true)
-        this.$store.commit('pages/SET_APPLICANT_READINESS', false)
-      }
-    },
     submit () {
       const applyObject = {
         annual_sales: this.annual_sales,
@@ -187,9 +145,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-input[type=checkbox] {
-  zoom: 2;
-}
 .grid {
   grid-template-columns: repeat(2, 1fr);
   column-gap: 3%;

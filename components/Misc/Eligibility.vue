@@ -9,10 +9,10 @@
       <p class="md:text-2xl">The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:</p>
       <div class="points">
         <ol class="list-disc">
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Production and supply chain disruptions, shortages and delays.</li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Reduced consumer demand for products and services</li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Reduced capital and investment flows</li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Labor shortages due to social distancing regulations</li>
+          <li>Production and supply chain disruptions, shortages and delays.</li>
+          <li>Reduced consumer demand for products and services</li>
+          <li>Reduced capital and investment flows</li>
+          <li>Labor shortages due to social distancing regulations</li>
         </ol>
       </div>
       <p class="mt-10 md:text-2xl pb-4">
@@ -21,10 +21,10 @@
       <!-- <hr class="pb-4"> -->
       <div class="points sec">
         <ol class="list-disc">
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> MSMEs who need support to survive the COVID-19 pandemic.</li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures. </li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</li>
-          <li class="text-xl flex py-1"> <img src="@/assets/img/linkshows.svg" class="w-6 pr-2" alt=""> Businesses that will focus on digitization to support MSMEs.</li>
+          <li>MSMEs who need support to survive the COVID-19 pandemic.</li>
+          <li>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures. </li>
+          <li>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</li>
+          <li>Businesses that will focus on digitization to support MSMEs.</li>
         </ol>
       </div>
     </div>
@@ -84,8 +84,7 @@ export default {}
   margin: 1rem auto;
   text-align: left;
   ol {
-    list-style-type: none;
-    // list-style-image: url('../../assets/img/linkshows.svg');
+    list-style-type: disc;
   }
 }
 

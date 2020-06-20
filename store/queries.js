@@ -63,25 +63,5 @@ export const actions = {
           reject(error.response.data)
         })
     })
-  },
-  respondToInquiry ({ commit, rootState }, request) {
-    return new Promise((resolve, reject) => {
-      const url = `https://mcftest.plendifyloans.com/api/queries/${request.reference}`
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
-      const data = {
-        body: request.body
-      }
-      this.$axios.$post(url, data, config)
-        .then((response) => {
-          resolve(response)
-        }).catch((error) => {
-          reject(error.response.data)
-        })
-    })
   }
 }

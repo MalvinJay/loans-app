@@ -16,8 +16,9 @@
           <img src="@/assets/img/logo.png" alt="" srcset="">
         </div>
         <p class="b-b text-sm">
-          Recovery and Resilience Program <br>
-          for MSMEs Against Impacts of Coronavirus.
+          This is a blurb about the company <br>
+          Lorem, ipsum dolor sit amet consectetur <br>
+          adipisicing elit. Dolorem itaque, cupiditate <br>
         </p>
         <div class="icons flex justify mt-10">
           <a target="_blank" href="https://www.facebook.com/nbssighana/">
