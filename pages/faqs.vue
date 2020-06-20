@@ -44,7 +44,7 @@
           5. When will the programme application window be closed?
         </template>
         <template v-slot:body>
-          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the applicationprocess to be closed by the end of September 2020
+          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the application process to be closed by the end of September 2020
         </template>
       </Accordion>
       <Accordion>
@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit https://gra.gov.gh/tin/get-a-in/ to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN          <div class="w-full text-left" />
+          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit <a href="https://gra.gov.gh/tin/get-a-in/">https://gra.gov.gh/tin/get-a-in/</a> to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN          <div class="w-full text-left" />
         </template>
       </Accordion>
       <Accordion>
@@ -76,7 +76,7 @@
           9. How can I apply for the fund?
         </template>
         <template v-slot:body>
-          There are several avenues to apply for the fund: visit our website www.nbssi.gov.gh/capsupport; or dial *718*555# on any mobile network; or call the NBSSI Helpline on 030 274 7777; or visit the nearest NBSSI district office (Business Advisory Centre) for help
+          There are several avenues to apply for the fund: visit our website: www.mcfrelief.nbssi.gov.gh; or call the NBSSI Helpline on 030 274 7777; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
         </template>
       </Accordion>
       <Accordion>
@@ -92,7 +92,7 @@
           11. How much (amount) am I eligible to apply for?
         </template>
         <template v-slot:body>
-          The amount for which a business is eligible will depend on its size and how much revenue it generates. Businesses will be categorized as Micro, Small, Medium Enterprise or a Start-Up
+          The amount for which a business is eligible will depend on its size and how much revenue it generates. Businesses will be categorized as Micro, Small, Medium Enterprise or a Start-Up.
           <table class="w-full">
             <thead>
               <tr class="text-left">
@@ -173,7 +173,7 @@
           12. Can applicants stop and resume application at any time?
         </template>
         <template v-slot:body>
-          Yes. You can save your application and resume at any time you are ready to continue.
+          Yes. You can save your application and resume at any time you are ready to continue by visiting <a href="https://www.mcfrelief.nbssi.gov.gh">https://www.mcfrelief.nbssi.gov.gh</a> and clicking on SIGN IN. You will need to use the phone number you used when  you started the application process to sign in.
         </template>
       </Accordion>
       <Accordion>
@@ -181,7 +181,7 @@
           13. How do I check my application status?
         </template>
         <template v-slot:body>
-          The application system has a secure Client Portal that allows applicants to view the status of their applications
+          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://www.mcfrelief.nbssi.gov.gh">https://www.mcfrelief.nbssi.gov.gh</a>
         </template>
       </Accordion>
       <Accordion>
@@ -189,7 +189,7 @@
           14. How long does the approval & disbursement process take?
         </template>
         <template v-slot:body>
-          The approval and disbursement process should take two weeks but may extend further if there are any irregularities with an application
+          The approval and disbursement process should take two weeks but may extend further if there are any irregularities with an application.
         </template>
       </Accordion>
       <Accordion>
@@ -197,7 +197,7 @@
           15. How will I be notified if my application is approved?
         </template>
         <template v-slot:body>
-          Applicants will be notified via SMS, email or a phone call. Please don’t pay money toanyone while you wait to hear from us.
+          Applicants will be notified via SMS, email or a phone call. Please don’t pay money to anyone while you wait to hear from us.
         </template>
       </Accordion>
       <Accordion>
@@ -253,7 +253,8 @@
           22. How do I make an official complaint about my problem?
         </template>
         <template v-slot:body>
-          If you have any issue with the system or process, please call the Helpline at 0302 747 777. If your problem is not resolved by the Call Center or none of the Help Deskarticles deals with your specific problem, please visit https://nbssi.gov.gh/capsupport/create-new-complaint/ to open a support ticket. Theticket assigns you a code you can quote to our technical team when they reach out to you.
+          If you have any issue with the system or process, please visit the Client Portal via this website -  https://www.mcfrelief.nbssi.gov.gh
+          and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at 0302 747 777 if you would like to speak to someone.
         </template>
       </Accordion>
       <Accordion>

@@ -117,7 +117,7 @@ import PaymentHistory from './paymentHistory.vue'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   components: {
     ProgressBar,
     PaymentHistory

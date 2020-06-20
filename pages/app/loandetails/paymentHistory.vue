@@ -45,7 +45,7 @@
 import EventBus from '../../../event-bus'
 export default {
   layout: 'appLayout',
-  // middleware: 'auth',
+  middleware: 'auth',
   data () {
     return {
     }

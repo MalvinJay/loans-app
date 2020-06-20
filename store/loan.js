@@ -44,14 +44,12 @@ export const actions = {
           if (Utils.present(response.data)) {
             localStorage.setItem('loanStatus', 'complete')
             commit('SET_LOAN_STATUS', 'complete')
-            console.log('Anything Here for me?', response.data)
           } else {
             localStorage.setItem('loanStatus', 'incomplete')
           }
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
-          console.log('Catch Error Here', error.response.data)
           localStorage.setItem('loanStatus', 'incomplete')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)

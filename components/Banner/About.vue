@@ -46,7 +46,7 @@
           03
         </p>
         <p class="font-extrabold text-2xl mb-6">
-          Receive Loan
+          Receive Funds
         </p>
         <p>
           Upon submission, our team will review your application.<br>

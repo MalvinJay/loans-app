@@ -138,6 +138,9 @@
               <span class="text-red-600">*</span>
             </label>
             <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
+            <label class="block text-gray-900 text-sm font-normal mb-2 text-sm">
+              An enterprise that has a pre-defined primary social purpose, environmental or other public benefit, and reinvests the majority of its annual profits towards achieving the social purpose
+            </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex mb-3">
                 <label class="checkbox">
