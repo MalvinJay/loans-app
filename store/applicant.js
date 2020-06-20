@@ -33,12 +33,10 @@ export const actions = {
       }
       this.$axios.$get(url, config)
         .then((response) => {
-          console.log('Response:', response)
           commit('SET_APPLICANT', response.data)
           commit('SET_STATE', 'DATA')
           resolve(response)
         }).catch((error) => {
-          console.log('Error from VUEX', error.response.data)
           commit('SET_STATE', 'ERROR')
           commit('SET_ERROR', error)
           reject(error.response.data)

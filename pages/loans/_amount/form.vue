@@ -137,7 +137,8 @@ export default {
       }
     },
     closeModal () {
-      this.$store.commit('pages/SET_SAVE_MODAL', false)
+      // this.$store.commit('pages/SET_SAVE_MODAL', false)
+      return true
     }
   }
 }

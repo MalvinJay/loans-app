@@ -5,7 +5,7 @@
         <div class="indicator status mr-4" />
         <div class="title text-xl">
           <span class="capitalize">
-            {{ head }} - {{ id_prop }}
+            {{ head }} - {{ identifier }}
           </span>
         </div>
       </div>
@@ -14,32 +14,38 @@
       </div>
     </div>
     <div class="body w-full mt-3 overflow-y" :class="{ hidden: active }">
-      <div class="text border-t border-gray-400">
+      <div class="chat border-t border-gray-400">
         <div v-for="(message, index) in body" :key="index" class="flex flex-col ">
           <template v-if="message.sender === 'admin'">
             <div class="flex justify-start py-4 font-semibold">
-              {{ message.body }}
+              <div class="bg-orange-200 rounded-lg p-4">
+                {{ message.body }}
+              </div>
             </div>
           </template>
           <template>
             <div class="flex justify-end py-4">
-              <i>{{ message.body }}</i>
+              <div class="bg-blue-100 rounded-lg p-4">
+                <i>{{ message.body }}</i>
+              </div>
             </div>
           </template>
         </div>
       </div>
       <div class="response flex flex-col items-end py-4">
-        <textarea name="Query Response" id="" cols="30" rows="10" class="w-full"></textarea>
-          <button class="button-small query mt-4" @click="respondQuery">
+        <textarea v-model="response" name="Query Response" cols="30" rows="10" class="w-full border border-1 border-gray-600" />
+        <div class="my-4">
+          <button class="button-small" @click="respondQuery">
             <template v-if="loading">
               <div class="login-spinner flex justify-center w-full">
                 <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
               </div>
             </template>
             <template v-else>
-              Submit Inquiry
+              Reply
             </template>
           </button>
+        </div>
       </div>
     </div>
     <!-- <div class="title font-semibold">
@@ -60,24 +66,70 @@
 <script>
 export default {
   name: 'Accordion',
-  props: ['body', 'head', 'id_prop'],
+  props: ['body', 'head', 'id_prop', 'identifier', 'chat'],
   data () {
     return {
       active: true,
-      loading: false
+      loading: false,
+      response: ''
     }
   },
   methods: {
     respondQuery () {
+      this.loading = true
+      const data = {
+        body: this.response,
+        reference: this.id_prop
+      }
+      this.$store.dispatch('queries/respondToInquiry', data)
+        .then((res) => {
+          this.$toasted.success('Query Sent')
+          this.$store.dispatch('queries/fetchQueries')
+        })
+        .catch((error) => {
+          this.$toasted.error(error.error)
+        })
+        .finally(() => {
+          this.loading = false
+          this.response = null
+        })
     }
   }
 }
 </script>
 <style lang="scss" scoped>
+.login-spinner {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
+}
+button {
+  background: #ffffff;
+  border: 1px solid $color-secondary;
+  box-sizing: border-box;
+  border-radius: 5px;
+  color: $color-secondary;
+  width: 162px;
+  height: 40px;
+  font-size: 0.8rem;
+}
+.button-small {
+  width: 100%;
+  background-color: $color-secondary;
+}
 .response {
   textarea {
     width: 100%!important;
-    border-color: #eee;
+    border-color: #d4bcbc;
     padding: 10px;
   }
 }
@@ -95,11 +147,15 @@ export default {
     // top: 32px;
 }
   .body {
-    height: 1.2rem;
+    height: auto;
     width: 100%;
     &.show {
       height: auto;
       transition: height 0.5s;
+    }
+    .chat {
+      border-top-width: 1px!important;
+      // border-bottom-width: 1px!important;
     }
   }
 }

@@ -4,11 +4,13 @@
       <div class="signin-container">
         <div class="body flex justify-center">
           <div class="left">
-            <img src="@/assets/img/signin-image.png" alt="">
+            <img src="@/assets/img/sign_in.png" alt="">
           </div>
           <div class="right">
             <div class="logo">
-              <img src="@/assets/img/logo.png" alt="" srcset="">
+              <nuxt-link to="/">
+                <img src="@/assets/img/logo.png" alt="" srcset="">
+              </nuxt-link>
             </div>
             <div v-if="!pinSent" class="r-c">
               <div class="mb-3">
@@ -225,7 +227,7 @@ export default {
 @include for-phone-only {
   .signin {
     display: block;
-    background: $color-secondary-alt!important;
+    background: $white!important;
     .main {
       display: block;
       .signin-container {
@@ -241,7 +243,7 @@ export default {
             width: 100%;
             // height: 381.39px;
             height: 50%;
-            background: url('../../../assets/img/signin-image.png');
+            background: url('../../../assets/img/sign_in.png');
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
@@ -253,7 +255,7 @@ export default {
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: 50%;
+            height: auto;
             padding: 20px 20px;
             background-color: $color-mild-pink;
             .logo {

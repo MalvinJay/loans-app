@@ -15,7 +15,7 @@
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
         <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
-        <a href="/app/registration/login"><span>Sign in</span></a>
+        <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
     </div>
     <div class="mobile-nav" :class="{open}">
@@ -26,19 +26,19 @@
           </div>
           <div class="mt-8">
             <ul>
-              <li class="my-3">
+              <li class="my-4">
                 <a href="">Home</a>
               </li>
-              <li class="my-3">
+              <li class="my-4">
                 <a href="/eligibility-criteria">Eligibility Criteria</a>
               </li>
-              <li class="my-3">
+              <li class="my-4">
                 <a href="/faqs">FAQ</a>
               </li>
-              <li class="my-3">
+              <li class="my-4">
                 <a href="/business-tips">COVID-19 Business tips</a>
               </li>
-              <li class="my-3">
+              <li class="my-4">
                 <a href="/#about-the-programme">About the Programme</a>
               </li>
             </ul>
@@ -139,6 +139,9 @@ export default {
   .logo {
     left: 5rem;
     margin-top: 2rem;
+    img {
+      height: 30px;
+    }
   }
   .r-s {
     margin-top: 2.5rem;
@@ -175,6 +178,7 @@ export default {
     height: auto;
     // margin-left: 3rem;
     img {
+      height: 30px;
       max-width: 8rem !important;
     }
   }
@@ -191,6 +195,13 @@ export default {
   }
   .rem-margin {
     margin-top: 20px;
+  }
+}
+@media (max-width: 320px) {
+  .logo {
+    img {
+      height: 20px;
+    }
   }
 }
 </style>
