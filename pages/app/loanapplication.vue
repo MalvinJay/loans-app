@@ -41,7 +41,7 @@
           </tbody>
         </table>
         <div :class="[{hidden: status}, 'overlay']">
-          <div class="redirect py-28 rounded-sm">
+          <div class="redirect py-2 md:py-28 rounded-sm text-center">
             <div class="h-12 flex flex-col md:items-center">
               <div class="text-3xl font-bold">
                 LOAN APPLICATION NOT COMPLETE
@@ -49,7 +49,7 @@
               <span class="py-2">
                 KINDLY GO BACK AND FINISH THE PROCESS
               </span>
-              <div class="p-4 mt-4 cursor-pointer flex justify-center rounded-full shadow">
+              <div class="md:p-4 mt-4 cursor-pointer flex justify-center rounded-full shadow">
                 <div @click="continueApplication">
                   <img src="@/assets/img/go-back_resigtration.svg" class="w-10" alt="">
                 </div>
@@ -66,6 +66,7 @@ import { mapGetters } from 'vuex'
 import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
+  middleware: 'auth',
   components: {
     Loading
   },
@@ -267,6 +268,11 @@ table {
           }
         }
       }
+    }
+  }
+  .overlay {
+    .redirect {
+      padding: 5px;
     }
   }
 }

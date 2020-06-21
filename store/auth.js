@@ -17,7 +17,7 @@ export const mutations = {
   },
   SET_LOGOUT (state) {
     localStorage.clear()
-    state.token = ''
+    state.token = null
   }
 }
 export const actions = {
@@ -34,11 +34,9 @@ export const actions = {
       }
       this.$axios.$post(url, data, config)
         .then((response) => {
-          // console.log('Success', response)
           commit('SET_SUCCESS', response)
           resolve(response)
         }).catch((error) => {
-          // console.log('Error from VUEX', error.error)
           commit('SET_ERROR', error)
           reject(error)
         })
@@ -54,13 +52,11 @@ export const actions = {
       const url = 'https://mcftest.plendifyloans.com/api/login'
       this.$axios.$post(url, data, config)
         .then((response) => {
-          console.log('Response:', response)
           localStorage.setItem('token', response.data.access_token)
           localStorage.setItem('isAuthenticated', true)
           commit('SET_TOKEN', response.data.access_token)
           resolve(response)
         }).catch((error) => {
-          // console.log('Error from VUEX', error.response.data)
           reject(error.response.data)
         })
     })

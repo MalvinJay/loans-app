@@ -16,9 +16,8 @@
           <img src="@/assets/img/logo.png" alt="" srcset="">
         </div>
         <p class="b-b text-sm">
-          This is a blurb about the company <br>
-          Lorem, ipsum dolor sit amet consectetur <br>
-          adipisicing elit. Dolorem itaque, cupiditate <br>
+          Recovery and Resilience Program <br>
+          for MSMEs Against Impacts of Coronavirus.
         </p>
         <div class="icons flex justify mt-10">
           <a target="_blank" href="https://www.facebook.com/nbssighana/">
@@ -49,10 +48,9 @@
         </p>
       </div>
     </footer>
-    <div class="copyright flex justify-between py-10 text-white px-10 gap-10">
-      <p>Recovery and Resilience Program for MSMEs Against Impacts of Coronavirus.</p>
+    <div class="copyright flex justify-center py-10 text-white px-10 gap-10">
       <p class="font-light">
-        &copy; National Board for Small Scale Industries. All rights reserved    <span class="font-bold">Privacy Policy</span> | <span class="font-bold">Terms & Conditions</span>
+        &copy; National Board for Small Scale Industries. All rights reserved.
       </p>
     </div>
   </div>

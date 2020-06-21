@@ -22,7 +22,7 @@
       </div>
     </div>
     <div class="r-s">
-      <img src="@/assets/img/banner-img.png" alt srcset>
+      <img src="@/assets/img/1_2.png" alt srcset>
     </div>
   </div>
 </template>

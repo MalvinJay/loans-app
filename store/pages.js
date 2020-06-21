@@ -10,7 +10,8 @@ export const state = () => ({
   application_object: JSON.parse(localStorage.getItem('application_object')) || null,
   currentTab: 0,
   countries: null,
-  showSaveModal: false
+  showSaveModal: false,
+  applicantReadiness: true
 })
 
 export const getters = {
@@ -194,6 +195,9 @@ export const mutations = {
   },
   SET_SAVE_MODAL (state, data) {
     state.showSaveModal = data
+  },
+  SET_APPLICANT_READINESS (state, data) {
+    state.applicantReadiness = data
   }
 }
 export const actions = {
