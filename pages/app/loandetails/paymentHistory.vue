@@ -34,7 +34,9 @@
                 Mobile Payment (0203339949))
               </td>
             </tr> -->
-            <div class="flex justify-center items-center py-8 w-full">No Payment History Found</div>
+            <div class="flex justify-center items-center py-8 w-full">
+              No Payment History Found
+            </div>
           </tbody>
         </table>
       </div>

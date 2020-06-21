@@ -1,3 +1,4 @@
+/* eslint-disable vue/require-valid-default-prop */
 <template>
   <div class="accordion pl-4 md:pl-16 md:px-10 py-6 my-4">
     <div class="flex justify-between cursor-pointer" @click="active = !active">
@@ -15,7 +16,7 @@
     </div>
     <div class="body w-full mt-3 overflow-y" :class="{ hidden: active }">
       <div class="chat border-t border-gray-400">
-        <div v-for="(message, index) in body" :key="index" class="flex flex-col ">
+        <div v-for="(message, index) in body" :key="index" class="flex flex-col px-2">
           <template v-if="message.sender === 'admin'">
             <div class="flex justify-start py-4 font-semibold">
               <div class="bg-orange-200 rounded-lg p-4">
@@ -32,13 +33,13 @@
           </template>
         </div>
       </div>
-      <div class="response flex flex-col items-end py-4">
+      <div class="response flex flex-col items-end py-4 px-2">
         <textarea v-model="response" name="Query Response" cols="30" rows="10" class="w-full border border-1 border-gray-600" />
         <div class="my-4">
           <button class="button-small" @click="respondQuery">
             <template v-if="loading">
               <div class="login-spinner flex justify-center w-full">
-                <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                <img src="@/assets/img/refresh.svg" class="w-5 h-full" alt="">
               </div>
             </template>
             <template v-else>
@@ -66,7 +67,33 @@
 <script>
 export default {
   name: 'Accordion',
-  props: ['body', 'head', 'id_prop', 'identifier', 'chat'],
+  props: {
+    body: {
+      type: Array,
+      required: false,
+      default: () => []
+    },
+    head: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    idProp: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    identifier: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    chat: {
+      type: String,
+      required: false,
+      default: ''
+    }
+  },
   data () {
     return {
       active: true,
@@ -79,7 +106,7 @@ export default {
       this.loading = true
       const data = {
         body: this.response,
-        reference: this.id_prop
+        reference: this.idProp
       }
       this.$store.dispatch('queries/respondToInquiry', data)
         .then((res) => {

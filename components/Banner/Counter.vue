@@ -18,7 +18,7 @@
     </div>
     <div class="r-s">
       <p class="text-md">
-      Get Funds Approved Within
+        Get Funds Approved Within
       </p>
       <p class="text-center font-normal text-xl">
         2 weeks

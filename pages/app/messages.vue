@@ -14,7 +14,7 @@
       </div>
       <div v-if="messages.length > 0">
         <template v-for="(message, index) in messages">
-          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id_prop="message.id" :body="message.messages" />
+          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id-prop="message.id" :body="message.messages" />
         </template>
       </div>
       <div v-else class="flex items-center justify-center w-full pt-6 md:pt-56">
@@ -48,7 +48,7 @@
                   <button class="button-small query" @click="handleInquiry">
                     <template v-if="loading">
                       <div class="login-spinner flex justify-center w-full">
-                        <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                        <img src="@/assets/img/refresh.svg" class="w-5 h-full" alt="">
                       </div>
                     </template>
                     <template v-else>
@@ -220,6 +220,20 @@ button {
 .modal-leave-active .modal-container {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
+}
+.login-spinner {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
+  }
 }
 @include for-phone-only {
   .app {

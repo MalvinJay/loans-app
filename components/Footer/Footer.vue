@@ -49,7 +49,9 @@
       </div>
     </footer>
     <div class="copyright flex justify-center py-10 text-white px-10 gap-10">
-      <p class="font-light">&copy; National Board for Small Scale Industries. All rights reserved</p>
+      <p class="font-light">
+        &copy; National Board for Small Scale Industries. All rights reserved.
+      </p>
     </div>
   </div>
 </template>

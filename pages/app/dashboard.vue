@@ -164,7 +164,7 @@
           </div>
         </div>
         <template v-for="(message, index) in messages.slice(0,2)">
-          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id_prop="message.id" :body="message.messages" />
+          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id-prop="message.id" :body="message.messages" />
         </template>
       </section>
     </div>
@@ -205,8 +205,8 @@ export default {
   },
   methods: {
     handleFile (e) {
+      // eslint-disable-next-line no-unused-vars
       const file = e.target.files[0]
-      console.log('What is this?', file)
     }
   }
 }
@@ -290,6 +290,20 @@ export default {
   .table-cell {
     vertical-align: middle;
     color: $color-secondary;
+  }
+}
+.login-spinner {
+  animation-name: spin;
+  animation-duration: 1000ms;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+@keyframes spin {
+  from {
+    transform:rotate(0deg);
+  }
+  to {
+    transform:rotate(360deg);
   }
 }
 @include for-phone-only {
