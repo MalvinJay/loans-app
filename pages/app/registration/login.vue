@@ -65,7 +65,9 @@
                   </template>
                 </button>
               </div>
-              <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">Resend Password</div>
+              <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">
+                Resend Password
+              </div>
             </div>
           </div>
         </div>
