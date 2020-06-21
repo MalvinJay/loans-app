@@ -263,6 +263,7 @@ export default {
       })
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
+          localStorage.removeItem('application_object')
           window.location = '/loans/submitted'
         })
         .catch((errors) => {

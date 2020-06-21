@@ -59,7 +59,7 @@
                 v-model="general.business_phone_number"
                 type="text"
                 name="Business Phone Number"
-                regex="0[2-5]{1}[0-9]{7,8}$"
+                regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3343,12 +3343,13 @@ export default {
       businessScale: 'pages/businessScale',
       isStartup: 'pages/isStartup',
       regions: 'pages/regions',
-      districts: 'pages/districts',
+      districts: 'pages/businessDistricts',
       countries: 'pages/countries',
       token: 'auth/token'
     }),
     ...mapState({
-      pendingApplication: state => state.api.pendingApplication
+      pendingApplication: state => state.api.pendingApplication,
+      applicationObject: state => state.pages.application_object
     }),
     details: {
       get () {
@@ -3360,11 +3361,11 @@ export default {
       }
     },
     annual_sales_display () {
-      if (!this.token) {
-        const amount = JSON.parse(localStorage.getItem('application_object')).annual_sales
+      if (!this.token && this.applicationObject) {
+        const amount = this.applicationObject.annual_sales
         return this.thousandSeprator(amount)
       } else {
-        // console.log(this.details.annual_sales)
+        // eslint-disable-next-line no-debugger
         return this.details.annual_sales ? this.thousandSeprator(this.details.annual_sales) : ''
       }
     }
@@ -3373,6 +3374,21 @@ export default {
     details: {
       handler (value) {
         this.general = value
+        this.region = value.business_region
+        if (value.directors_list.length !== 0) {
+          if (value.legal_organization === '3' || value.legal_organization === '4' || value.legal_organization === '5') {
+            this.directors_list = Object.assign(this.directors_list, value.directors_list)
+            this.shareHolders = value.directors_list.length
+          } else {
+            this.business_owner = Object.assign(this.business_owner, value.directors_list)
+            this.businessOwners = value.directors_list.length
+          }
+        }
+        this.income_statement_2017 = value.income_statement_2017
+        this.income_statement_2018 = value.income_statement_2018
+        this.income_statement_2019 = value.income_statement_2019
+        this.income_statement_2020 = value.income_statement_2020
+        this.income_statement_apr_2020 = value.income_statement_apr_2020
       },
       deep: true
     },
@@ -3583,7 +3599,13 @@ export default {
       deep: true
     },
     region (value) {
-      this.$store.commit('pages/SET_DISTRICTS', value)
+      this.$store.commit('pages/SET_BUSINESS_DISTRICTS', value)
+    },
+    regions (value) {
+      // for continuing applications: if region exists get districts
+      if (this.region) {
+        this.$store.commit('pages/SET_BUSINESS_DISTRICTS', this.region)
+      }
     },
     show (value) {
       const data = this.aggregate()
@@ -3593,10 +3615,8 @@ export default {
     }
   },
   mounted () {
-    if (!this.token) {
-      this.general.annual_sales = JSON.parse(
-        localStorage.getItem('application_object')
-      ).annual_sales
+    if (!this.token && this.applicationObject) {
+      this.general.annual_sales = this.applicationObject.annual_sales
     }
   },
   methods: {

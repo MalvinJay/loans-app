@@ -106,7 +106,7 @@
             <label
               class="block text-gray-700 text-sm font-normal mb-2 font-bold"
             >Proof of COVID-19 Impact Template</label>
-            <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
+            <button class="i-t-b" type="button" :class="{done: checkModal1}" @click="modal1 = true">
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
@@ -580,6 +580,9 @@ export default {
     details: {
       handler (value) {
         this.general = value
+        this.covid_proof_of_march_20 = value.covid_proof_mar_20
+        this.covid_proof_of_april_20 = value.covid_proof_apr_20
+        this.covid_proof_of_may_20 = value.covid_proof_may_20
       },
       deep: true
     },

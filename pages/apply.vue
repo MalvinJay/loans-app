@@ -24,7 +24,7 @@
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Input
                       v-model.number="annual_sales"
-                      type="text"
+                      type="number"
                       placeholder="e.g 1,000"
                       small
                       money

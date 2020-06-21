@@ -3,7 +3,8 @@ export const state = () => ({
   years: null,
   startup: null,
   dropdowns: null,
-  districts: null,
+  personalDistricts: null,
+  businessDistricts: null,
   mediaResponse: null,
   formErrors: '',
   application_object: JSON.parse(localStorage.getItem('application_object')) || null,
@@ -43,9 +44,19 @@ export const getters = {
       })
     }
   },
-  districts (state) {
-    if (state.districts !== null) {
-      return state.districts.map((item) => {
+  personalDistricts (state) {
+    if (state.personalDistricts !== null) {
+      return state.personalDistricts.map((item) => {
+        return {
+          name: item.name,
+          val: item.id
+        }
+      })
+    }
+  },
+  businessDistricts (state) {
+    if (state.businessDistricts !== null) {
+      return state.businessDistricts.map((item) => {
         return {
           name: item.name,
           val: item.id
@@ -169,9 +180,17 @@ export const mutations = {
   SET_COUNTRIES (state, data) {
     state.countries = data
   },
-  SET_DISTRICTS (state, data) {
-    const districts = state.dropdowns.districts.filter(item => item.region_id === parseInt(data))
-    state.districts = districts
+  SET_BUSINESS_DISTRICTS (state, data) {
+    if (state.dropdowns) {
+      const districts = state.dropdowns.districts.filter(item => item.region_id === parseInt(data))
+      state.businessDistricts = districts
+    }
+  },
+  SET_PERSONAL_DISTRICTS (state, data) {
+    if (state.dropdowns) {
+      const districts = state.dropdowns.districts.filter(item => item.region_id === parseInt(data))
+      state.personalDistricts = districts
+    }
   },
   SET_SAVE_MODAL (state, data) {
     state.showSaveModal = data

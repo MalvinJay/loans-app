@@ -8,7 +8,6 @@ export const state = () => ({
 export const getters = {
   GET_ERRORS (state) {
     for (const i in state.errors.errors) {
-      // eslint-disable-next-line no-console
       return state.errors.errors[i][0]
     }
   },
@@ -101,14 +100,20 @@ export const actions = {
         })
     })
   },
-  submitApplication ({ state, commit }) {
+  submitApplication ({ rootState, state, commit }) {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
+          Authorization: 'Bearer ' + rootState.auth.token,
           'Content-Type': 'application/json'
         }
       }
-      const url = 'https://mcftest.plendifyloans.com/api/loan-applications'
+      let url
+      if (state.pendingApplication) {
+        url = 'https://mcftest.plendifyloans.com/api/auth/loan-applications'
+      } else {
+        url = 'https://mcftest.plendifyloans.com/api/loan-applications'
+      }
       this.$axios.$post(url, state.general, config)
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)
@@ -129,6 +134,7 @@ export const actions = {
           'Content-Type': 'application/json'
         }
       }
+      // if pending application exists, use a different url
       let url
       if (rootState.auth.token) {
         url = `https://mcftest.plendifyloans.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
