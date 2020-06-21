@@ -200,7 +200,7 @@ export default {
       return this.loansState === 'LOADING'
     }
   },
-  mounted () {
+  created () {
     this.$store.dispatch('loan/fetchLoanDetails')
   },
   methods: {

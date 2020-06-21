@@ -111,7 +111,7 @@ export default {
       return this.loanStatus === 'complete'
     }
   },
-  mounted () {
+  created () {
     this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('loan/fetchLoanDetails')
       .then((response) => {

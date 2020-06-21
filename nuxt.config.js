@@ -68,7 +68,8 @@ export default {
     // Doc: https://github.com/nuxt-community/dotenv-module
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
-    '@nuxtjs/toast'
+    '@nuxtjs/toast',
+    '@nuxtjs/auth'
   ],
   /*
   ** Axios module configuration
