@@ -3378,20 +3378,31 @@ export default {
       handler (value) {
         this.general = value
         this.region = value.business_region
-        if (value.directors_list.length !== 0) {
+        if (value.directors_list.length !== 0 && this.show === true) {
           if (value.legal_organization === '3' || value.legal_organization === '4' || value.legal_organization === '5') {
-            this.directors_list = Object.assign(this.directors_list, value.directors_list)
+            this.directors_list = JSON.parse(JSON.stringify([...value.directors_list, ...this.directors_list]))
             this.shareHolders = value.directors_list.length
           } else {
-            this.business_owner = Object.assign(this.business_owner, value.directors_list)
+            this.business_owner = JSON.parse(JSON.stringify([...value.directors_list, ...this.business_owner]))
             this.businessOwners = value.directors_list.length
           }
         }
-        this.income_statement_2017 = value.income_statement_2017
-        this.income_statement_2018 = value.income_statement_2018
-        this.income_statement_2019 = value.income_statement_2019
-        this.income_statement_2020 = value.income_statement_2020
-        this.income_statement_apr_2020 = value.income_statement_apr_2020
+        this.income_statement_2017 = { ...this.income_statement_2017, ...value.income_statement_2017 }
+        this.income_statement_2018 = { ...this.income_statement_2018, ...value.income_statement_2018 }
+        this.income_statement_2019 = { ...this.income_statement_2019, ...value.income_statement_2019 }
+        this.income_statement_2020 = { ...this.income_statement_2020, ...value.income_statement_2020 }
+        this.income_statement_apr_2020 = { ...this.income_statement_apr_2020, ...value.income_statement_apr_2020 }
+        this.cash_flow_2017 = { ...this.cash_flow_2017, ...value.cash_flow_2017 }
+        this.cash_flow_2018 = { ...this.cash_flow_2018, ...value.cash_flow_2018 }
+        this.cash_flow_2019 = { ...this.cash_flow_2019, ...value.cash_flow_2019 }
+        this.cash_flow_2020 = { ...this.cash_flow_2020, ...value.cash_flow_2020 }
+        this.balance_sheet_2017 = { ...this.balance_sheet_2017, ...value.balance_sheet_2017 }
+        this.balance_sheet_2018 = { ...this.balance_sheet_2018, ...value.balance_sheet_2018 }
+        this.balance_sheet_2019 = { ...this.balance_sheet_2019, ...value.balance_sheet_2019 }
+        this.balance_sheet_2020 = { ...this.balance_sheet_2020, ...value.balance_sheet_2020 }
+        if (this.show === true) {
+          this.credit_facilities = JSON.parse(JSON.stringify([...value.credit_facilities, ...this.credit_facilities]))
+        }
       },
       deep: true
     },
@@ -3614,6 +3625,10 @@ export default {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        // Update existing application
+        if (this.details) {
+          this.$store.commit('api/MERGE_DATA', data)
+        }
       }
     }
   },
@@ -3649,6 +3664,7 @@ export default {
       const balanceSheet2018 = Object.assign({}, this.balance_sheet_2018)
       const balanceSheet2019 = Object.assign({}, this.balance_sheet_2019)
       const balanceSheet2020 = Object.assign({}, this.balance_sheet_2020)
+
       // filter out empty directors
       const directorsList = JSON.parse(
         JSON.stringify(this.directors_list)
@@ -3674,7 +3690,6 @@ export default {
       const creditFacilities = JSON.parse(
         JSON.stringify(this.credit_facilities)
       ).filter(value => JSON.stringify(value) !== '{}')
-
       data.income_statement_2017 = incomeStatement2017
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019

@@ -149,7 +149,7 @@
       </div>
     </div>
     <Modal v-if="confirmModal" @close="confirmModal=false">
-      <div>
+      <div class="mb-32">
         <div class="h-d mb-10">
           <p class="text-center text-lg font-bold">
             Declaration Section of Application
@@ -263,6 +263,7 @@ export default {
         position: 'top-center',
         duration: 5000
       })
+      // Submit application
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
           localStorage.removeItem('application_object')

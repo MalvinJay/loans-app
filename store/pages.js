@@ -95,14 +95,23 @@ export const getters = {
       })
     }
   },
-  businessScale (state) {
+  businessScale (state, getters, rootState) {
+    // eslint-disable-next-line no-debugger
     if (state.application_object) {
       return state.application_object.business_scale
+    } else if (rootState.api.pendingApplication) {
+      return rootState.api.pendingApplication.loan_application.business_scale
     }
   },
-  isStartup (state) {
+  isStartup (state, getters, rootState) {
     if (state.application_object) {
       return state.application_object.is_startup
+    } else if (rootState.api.pendingApplication) {
+      if (rootState.api.pendingApplication.loan_application.is_startup === '1') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   yearsInBusiness (state, getters, rootState) {

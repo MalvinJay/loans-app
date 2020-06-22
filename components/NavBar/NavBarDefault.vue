@@ -13,7 +13,7 @@
       <a href="/" class="logo mt-4 flex rem-margin">
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
-      <p class="r-s uppercase logo-margin text-sm rem-margin">
+      <p v-if="!token" class="r-s uppercase logo-margin text-sm rem-margin">
         <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
@@ -27,7 +27,7 @@
           <div class="mt-8">
             <ul>
               <li class="my-4">
-                <a href="">Home</a>
+                <a href="/">Home</a>
               </li>
               <li class="my-4">
                 <a href="/eligibility-criteria">Eligibility Criteria</a>
@@ -60,6 +60,11 @@ export default {
   data () {
     return {
       open: false
+    }
+  },
+  computed: {
+    token () {
+      return this.$store.state.local.token
     }
   }
 }
@@ -184,13 +189,15 @@ export default {
   }
   .menu {
     display: block;
-    margin-top: 1.3rem;
+    margin-top: 1.5rem;
+    width: 2rem;
   }
   .r-s {
     right: 1.5rem;
     input {
       height: 2rem;
       padding-top: 7px;
+      display: none;
     }
   }
   .rem-margin {

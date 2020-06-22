@@ -2,7 +2,8 @@
   <transition name="modal">
     <div class="modal-mask">
       <div class="modal-wrapper">
-        <div v-click-outside="closeModal" class="modal-container" :class="{flex}">
+        <!-- v-click-outside="closeModal" -->
+        <div class="modal-container" :class="{flex}">
           <div v-scroll-lock="open" class="modal-body">
             <slot />
           </div>

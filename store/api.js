@@ -24,6 +24,9 @@ export const getters = {
 }
 
 export const mutations = {
+  MERGE_DATA (state, data) {
+    state.pendingApplication.loan_application = { ...state.pendingApplication.loan_application, ...data }
+  },
   SET_GENERAL_DATA (state, data) {
     state.general = { ...state.general, ...data }
   },
@@ -104,7 +107,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
+          Authorization: 'Bearer ' + rootState.local.token,
           'Content-Type': 'application/json'
         }
       }
@@ -130,13 +133,13 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
+          Authorization: 'Bearer ' + rootState.local.token,
           'Content-Type': 'application/json'
         }
       }
       // if pending application exists, use a different url
       let url
-      if (rootState.auth.token) {
+      if (rootState.local.token) {
         url = `https://mcftest.plendifyloans.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
       } else {
         url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
@@ -156,7 +159,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
+          Authorization: 'Bearer ' + rootState.local.token,
           'Content-Type': 'application/json'
         }
       }

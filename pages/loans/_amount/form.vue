@@ -76,7 +76,7 @@ import Input from '@/components/Forms/Input.vue'
 export default {
   middleware ({ store, redirect }) {
     if (Utils.present(store.state.pages.application_object) ||
-    Utils.present(store.state.auth.token)) {
+    Utils.present(store.state.local.token)) {
       return true
     } else {
       return redirect('/apply')
@@ -143,11 +143,20 @@ export default {
             })
             this.$store.commit('pages/SET_SAVE_MODAL', false)
           })
+          .catch((errors) => {
+          // get errors from api if any
+            for (const error in errors.errors) {
+              this.$toasted.show(`${errors.errors[error][0]}`, {
+                theme: 'toasted-primary',
+                position: 'top-right',
+                duration: 5000
+              })
+            }
+          })
       }
     },
     closeModal () {
-      // this.$store.commit('pages/SET_SAVE_MODAL', false)
-      return true
+      this.$store.commit('pages/SET_SAVE_MODAL', false)
     }
   }
 }
