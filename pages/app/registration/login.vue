@@ -107,7 +107,8 @@ export default {
             position: 'top-center',
             duration: 5000
           })
-          this.$router.push('/app/dashboard')
+          // this.$router.push('/app/dashboard')
+          window.location = '/app/dashboard'
         })
         .catch((error) => {
           // console.log('Error:', error)

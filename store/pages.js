@@ -1,3 +1,4 @@
+import axios from 'axios'
 export const state = () => ({
   loanAmount: null,
   years: null,
@@ -210,10 +211,16 @@ export const mutations = {
   }
 }
 export const actions = {
-  async getDropDowns ({ commit }) {
-    const dropdowns = await this.$axios.$get('https://mcftest.plendifyloans.com/api/dropdowns')
-    const countries = await this.$axios.$get('https://restcountries.eu/rest/v2/all')
-    commit('SET_DROPDOWNS', dropdowns.data)
-    commit('SET_COUNTRIES', countries)
+  getDropDowns ({ commit }) {
+    this.$axios.$get('https://mcftest.plendifyloans.com/api/dropdowns')
+      .then((response) => {
+        commit('SET_DROPDOWNS', response.data)
+      })
+  },
+  getCountries ({ commit }) {
+    axios.get('https://restcountries.eu/rest/v2/all')
+      .then((response) => {
+        commit('SET_COUNTRIES', response.data)
+      })
   }
 }

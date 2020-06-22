@@ -76,7 +76,7 @@ import Input from '@/components/Forms/Input.vue'
 export default {
   middleware ({ store, redirect }) {
     if (Utils.present(store.state.pages.application_object) ||
-    Utils.present(store.state.local.token)) {
+    store.state.auth.loggedIn) {
       return true
     } else {
       return redirect('/apply')
@@ -112,6 +112,7 @@ export default {
     general: state => state.api.general
   }),
   beforeCreate () {
+    this.$store.dispatch('pages/getCountries')
     this.$store.dispatch('pages/getDropDowns')
   },
   created () {

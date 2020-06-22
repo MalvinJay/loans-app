@@ -270,6 +270,11 @@ export default {
           window.location = '/loans/submitted'
         })
         .catch((errors) => {
+          this.$toasted.show('Error submitting application', {
+            theme: 'toasted-primary',
+            position: 'top-right',
+            duration: 5000
+          })
           // get errors from api if any
           for (const error in errors.errors) {
             this.$toasted.show(`${errors.errors[error][0]}`, {
