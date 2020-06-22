@@ -15,7 +15,7 @@
             </p>
             <div class="flex gap-10 my-10">
               <div class="arrow mt-2">
-                <img src="@/assets/img/arrow.png" alt="">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
               </div>
               <div>
                 <p class="text-xl">
@@ -25,7 +25,7 @@
             </div>
             <div class="flex gap-10 my-10">
               <div class="arrow mt-2">
-                <img src="@/assets/img/arrow.png" alt="">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
               </div>
               <div>
                 <p class="text-xl">
@@ -35,7 +35,7 @@
             </div>
             <div class="flex gap-10 my-10">
               <div class="arrow mt-2">
-                <img src="@/assets/img/arrow.png" alt="">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
               </div>
               <div>
                 <p class="text-xl">
@@ -45,7 +45,7 @@
             </div>
             <div class="flex gap-10 my-10">
               <div class="arrow mt-2">
-                <img src="@/assets/img/arrow.png" alt="">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
               </div>
               <div>
                 <p class="text-xl">
@@ -70,7 +70,7 @@
       </div>
       <div class="mt-24">
         <div class="point flex gap-10">
-          <div class="bullet">
+          <div class="bullet anormaly">
             <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
           </div>
           <div>
@@ -152,7 +152,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Female-owned businesses should be prioritised
+              Female-owned businesses encouraged to apply
             </p>
           </div>
         </div>
@@ -164,7 +164,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Youth-owned or youth-led businesses (ages 18-35) should be prioritised
+              Youth-owned or youth-led businesses (age 18-35) are encouraged to apply
             </p>
           </div>
         </div>
@@ -334,6 +334,9 @@ export default {
   }
 }
 @include for-phone-only {
+  .anormaly {
+    display: none;
+  }
   section {
     padding-left: 2rem;
     padding-right: 2rem;

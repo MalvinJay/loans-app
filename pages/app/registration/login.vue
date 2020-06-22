@@ -103,7 +103,7 @@ export default {
       this.$store.dispatch('local/login', data)
         .then((res) => {
           this.$toasted.show('Login Success', {
-            theme: 'outline',
+            theme: 'toasted-primary',
             position: 'top-center',
             duration: 5000
           })
@@ -125,7 +125,7 @@ export default {
           // console.log('OTP Verification', res)
           // this.$toast.success(res.success)
           this.$toasted.show(res.success, {
-            theme: 'outline',
+            theme: 'toasted-primary',
             position: 'top-center',
             duration: 5000
           })

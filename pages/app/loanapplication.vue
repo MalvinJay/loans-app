@@ -27,7 +27,7 @@
                 {{ loanDetails.first_name || 'N/A' }} {{ loanDetails.last_name || 'N/A' }}
               </td>
               <td>
-                11 July 2020
+                N/A
               </td>
               <td class="text blue">
                 {{ loanDetails.status }}

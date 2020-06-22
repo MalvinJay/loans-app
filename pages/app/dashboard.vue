@@ -11,11 +11,11 @@
       ==========================PAYMENTS SECTION====================
       ==============================================================-->
       <section id="payment">
-        <p class="text-xl">
-          Loan # {{ loanDetails.loan_identifier }} Payments
+        <p class="text-xl font-semibold">
+          Loan # {{ loanDetails.loan_identifier }}
         </p>
         <div class="my-5">
-          <ProgressBar :max="loanDetails.requested_loan_amount" :value="0" />
+          <ProgressBar :max="0" :value="0" />
         </div>
         <p class="text-2xl md:text-xl block font-semibold">
           Payment Method

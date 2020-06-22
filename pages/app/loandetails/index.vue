@@ -4,7 +4,7 @@
       <template v-if="tabView==='details'">
         <div class="pt-10 mb-5">
           <p class="text-xl block font-semibold">
-            Loan #123 Payments
+            Loan # {{ loanDetails.loan_identifier }}
           </p>
         </div>
         <!-- ==============================================================
@@ -12,7 +12,7 @@
         ==============================================================-->
         <section id="payment">
           <div class="my-6">
-            <ProgressBar :max="loanDetails.requested_loan_amount" :value="0" />
+            <ProgressBar :max="0" :value="0" />
           </div>
           <div class="schedule flex gap-10">
             <div class="box p-6 pl-12 bg-white cursor-pointer text-left">
@@ -23,7 +23,7 @@
               </div>
               <div class="mt-3">
                 <p class="amount">
-                  50 GHC
+                  0 GHC
                 </p>
               </div>
               <div>
@@ -45,7 +45,7 @@
               </div>
               <div class="mt-3">
                 <p>
-                  July 27th, 2020
+                  TBD
                 </p>
               </div>
               <div class="mt-5">
@@ -76,19 +76,19 @@
               <div class="md:ml-10 flex flex-row items-center md:items-start md:flex-col">
                 <p>Total Repayment Amount</p>
                 <p class="text-3xl font-semibold">
-                  500 GHC
+                  0 GHC
                 </p>
               </div>
               <div class="md:ml-16 flex flex-row items-center md:items-start md:flex-col">
                 <p>Interest Rate</p>
                 <p class="text-3xl font-semibold">
-                  10%
+                  0%
                 </p>
               </div>
               <div class="md:ml-16 flex flex-row items-center md:items-start md:flex-col">
                 <p>Start Date</p>
                 <p class="text-3xl font-semibold">
-                  11/05/2020
+                  TBD
                 </p>
               </div>
             </div>
