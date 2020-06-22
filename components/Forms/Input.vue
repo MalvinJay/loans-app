@@ -10,6 +10,7 @@
         :value="value"
         :disabled="disabled || grey"
         lang="en"
+        max="1000000000"
         @input="validateSend"
         @blur="onBlurNumber"
       >
@@ -115,6 +116,9 @@ export default {
           this.$emit('input', val)
         } if (isNaN(parseFloat(val))) {
           this.errorMessage = 'please enter a valid number'
+          this.error = true
+        } if (parseFloat(val) > 1000000000) {
+          this.errorMessage = 'Number too big'
           this.error = true
         }
       } else if (this.type === 'text' && this.regex !== '' && val !== '') {
