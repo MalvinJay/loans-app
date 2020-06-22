@@ -43,7 +43,7 @@
           <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/calender.png" alt srcset>
             <p class="text-center">
-              One Time
+              Scheduled
             </p>
           </div>
         </div>
@@ -60,7 +60,7 @@
             <a href="@/assets/img/onetime.png" download>
               <img src="@/assets/img/google-docs.png" alt srcset>
               <p class="text-center">
-                One Time
+                Current Application
               </p>
             </a>
           </div>
