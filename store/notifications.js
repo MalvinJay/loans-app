@@ -21,17 +21,17 @@ export const mutations = {
   }
 }
 export const actions = {
-  getNotifications ({ commit, rootState }) {
+  getNotifications ({ commit }) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/notifications'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
-      this.$axios.$get(url, config)
+      const url = '/notifications'
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
+      this.$axios.$get(url)
         .then((response) => {
           commit('SET_NOTIFICATIONS', response.data.notifications)
           commit('SET_STATE', 'DATA')
@@ -46,16 +46,16 @@ export const actions = {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/queries'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
       const data = {
         body
       }
-      this.$axios.$post(url, data, config)
+      this.$axios.$post(url, data)
         .then((response) => {
           commit('SET_NOTIFICATIONS', response.data)
           commit('SET_STATE', 'DATA')

@@ -31,14 +31,14 @@ export const actions = {
   fetchLoanDetails ({ commit, rootState }) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/loan-applications'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
-      this.$axios.$get(url, config)
+      const url = '/loan-applications'
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
+      this.$axios.$get(url)
         .then((response) => {
           commit('SET_LOANDETAILS', response.data)
           if (Utils.present(response.data)) {

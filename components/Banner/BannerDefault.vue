@@ -7,9 +7,8 @@
           Emergency Relief Funding Application
         </p>
         <p class="text-white">
-          Welcome to the MasterCard Foundation and Young
-          Africa Works partnership with National Board for
-          Small Scale Industries (NBSSI) applcation portal.
+          Welcome to the Mastercard Foundation and National Board for
+          Small Scale Industries (NBSSI) application portal.
           Thank you for visiting
         </p>
       </div>

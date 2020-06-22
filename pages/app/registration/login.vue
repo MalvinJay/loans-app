@@ -91,7 +91,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.commit('auth/SET_LOGOUT')
+    this.$store.commit('local/SET_LOGOUT')
   },
   methods: {
     login () {
@@ -100,7 +100,7 @@ export default {
         phone_number: this.phone,
         otp: this.OTP
       }
-      this.$store.dispatch('auth/login', data)
+      this.$store.dispatch('local/login', data)
         .then((res) => {
           this.$toasted.show('Login Success', {
             theme: 'outline',
@@ -120,7 +120,7 @@ export default {
     },
     getOTP () {
       this.loading = true
-      this.$store.dispatch('auth/verifyOTP', this.phone)
+      this.$store.dispatch('local/verifyOTP', this.phone)
         .then((res) => {
           // console.log('OTP Verification', res)
           // this.$toast.success(res.success)

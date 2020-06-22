@@ -26,13 +26,13 @@ export const actions = {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/queries'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
-      this.$axios.$get(url, config)
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
+      this.$axios.$get(url)
         .then((response) => {
           commit('SET_QUERIES', response.data)
           commit('SET_STATE', 'DATA')
@@ -47,16 +47,16 @@ export const actions = {
   makeInquiry ({ commit, rootState }, body) {
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/queries'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
       const data = {
         body
       }
-      this.$axios.$post(url, data, config)
+      this.$axios.$post(url, data)
         .then((response) => {
           resolve(response)
         }).catch((error) => {
@@ -67,16 +67,16 @@ export const actions = {
   respondToInquiry ({ commit, rootState }, request) {
     return new Promise((resolve, reject) => {
       const url = `https://mcftest.plendifyloans.com/api/queries/${request.reference}`
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
       const data = {
         body: request.body
       }
-      this.$axios.$post(url, data, config)
+      this.$axios.$post(url, data)
         .then((response) => {
           resolve(response)
         }).catch((error) => {

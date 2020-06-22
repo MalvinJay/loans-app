@@ -46,6 +46,9 @@ export default {
     state () {
       return this.nofifState === 'LOADING'
     }
+  },
+  created () {
+    this.$store.dispatch('notifications/getNotifications')
   }
 }
 </script>

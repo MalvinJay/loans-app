@@ -91,12 +91,40 @@ export default {
     ]
   },
   axios: {
+    baseURL: 'https://mcftest.plendifyloans.com/api'
+  },
+  auth: {
+    localStorage: false,
+    cookie: {
+      options: {
+        expires: 1
+      }
+    },
+    strategies: {
+      local: {
+        endpoints: {
+          login: { url: '/login', method: 'post', propertyName: 'token' },
+          logout: false,
+          user: { url: '/applicant-details', method: 'get', propertyName: false }
+        }
+      }
+    },
+    redirect: {
+      callback: '/app/registration/login',
+      login: '/app/registration/login',
+      logout: '/app/registration/login',
+      home: '/app/dashboard'
+    },
+    plugins: ['~/plugins/axios.js', { src: '~/plugins/auth.js', mode: 'client' }]
+  },
+  env: {
+    baseUrl: process.env.BASE_URL || 'https://mcftest.plendifyloans.com/api'
   },
   /*
   ** Build configuration
   */
   build: {
-    transpile: ['vee-validate/dist/rules'],
+    transpile: ['vee-validate/dist/rules', '@nuxtjs/auth'],
     /*
     ** You can extend webpack config here
     */
