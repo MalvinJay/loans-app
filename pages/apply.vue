@@ -7,7 +7,7 @@
         </div>
         <div class="flex justify-between items-center pt-8">
           <p class="flex flex-col pr-6">
-            <span>Have you read the eligibility Criteria section?</span>
+            <span>Have you read the Eligibility Criteria section?</span>
             <nuxt-link to="eligibility-criteria">
               <span class="font-bold text-xs text-blue"><i>Get info here -></i></span>
             </nuxt-link>

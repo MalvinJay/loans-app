@@ -3348,7 +3348,7 @@ export default {
       regions: 'pages/regions',
       districts: 'pages/businessDistricts',
       countries: 'pages/countries',
-      token: 'auth/token'
+      token: 'local/token'
     }),
     ...mapState({
       pendingApplication: state => state.api.pendingApplication,

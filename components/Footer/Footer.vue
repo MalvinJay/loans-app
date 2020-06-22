@@ -48,7 +48,10 @@
         </p>
       </div>
     </footer>
-    <div class="copyright flex justify-center py-10 text-white px-10 gap-10">
+    <div class="copyright flex justify-between py-10 text-white px-10 gap-10">
+      <p class="text-sm italic font-bold plendify pr-4">
+        Powered by Plendify
+      </p>
       <p class="font-light">
         &copy; National Board for Small Scale Industries. All rights reserved.
       </p>
