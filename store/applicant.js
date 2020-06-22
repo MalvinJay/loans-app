@@ -27,7 +27,7 @@ export const actions = {
       const url = 'https://mcftest.plendifyloans.com/api/applicant-details'
       // const config = {
       //   headers: {
-      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     Authorization: 'Bearer ' + rootState.local.token,
       //     'Content-Type': 'application/json'
       //   }
       // }

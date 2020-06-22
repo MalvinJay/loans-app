@@ -62,7 +62,6 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
-import Utils from '../utils/services'
 export default {
   middleware: 'auth',
   data () {
@@ -111,9 +110,6 @@ export default {
     }
   },
   created () {
-    if (!Utils.present(this.$store.state.local.token)) {
-      this.$router.push('/app/registration/login')
-    }
     this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('loan/fetchLoanDetails')
       .then((response) => {

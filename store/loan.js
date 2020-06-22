@@ -34,7 +34,7 @@ export const actions = {
       const url = '/loan-applications'
       // const config = {
       //   headers: {
-      //     Authorization: 'Bearer ' + rootState.auth.token,
+      //     Authorization: 'Bearer ' + rootState.local.token,
       //     'Content-Type': 'application/json'
       //   }
       // }
