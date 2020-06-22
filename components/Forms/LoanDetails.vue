@@ -634,7 +634,7 @@ export default {
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
         // Update pendingApplication
-        if (this.details) {
+        if (this.pendingApplication) {
           this.$store.commit('api/MERGE_DATA', data)
         }
       }

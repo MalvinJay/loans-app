@@ -3626,7 +3626,7 @@ export default {
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
         // Update existing application
-        if (this.details) {
+        if (this.pendingApplication) {
           this.$store.commit('api/MERGE_DATA', data)
         }
       }
@@ -3712,7 +3712,11 @@ export default {
       return data
     },
     moveNext () {
-      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      if (this.businessScale !== '1' && this.businessScale !== '2' && this.isStartup === false) {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
+      }
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
