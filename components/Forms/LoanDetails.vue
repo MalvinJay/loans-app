@@ -51,37 +51,37 @@
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
             <div class="mb-12 mt-12">
-              <ValidationProvider v-slot="{ errors }" rules="required">
-                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-                  Can you provide proof of COVID-19 impact?
-                  <span class="text-red-600">*</span>
+              <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                Can you provide proof of COVID-19 impact?
+                <span class="text-red-600">*</span>
+              </label>
+              <div class="flex justify-start">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="yes"
+                    v-model="proofOfImpact"
+                    type="checkbox"
+                    true-value="true"
+                    false-value="false"
+                  >
+                  <span class="checkmark" />
                 </label>
-                <div class="flex justify-start">
-                  <label class="checkbox">
-                    Yes
-                    <input
-                      id="yes"
-                      v-model="proofOfImpact"
-                      type="checkbox"
-                      true-value="true"
-                      false-value="false"
-                    >
-                    <span class="checkmark" />
-                  </label>
-                  <label class="checkbox">
-                    No
-                    <input
-                      id="no"
-                      v-model="proofOfImpact"
-                      type="checkbox"
-                      false-value="true"
-                      true-value="false"
-                    >
-                    <span class="checkmark" />
-                  </label>
-                </div>
-                <small class="text-sm text-red-700">{{ errors[0] }}</small>
-              </ValidationProvider>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="no"
+                    v-model="proofOfImpact"
+                    type="checkbox"
+                    false-value="true"
+                    true-value="false"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider> -->
             </div>
           </div>
           <div class="mb-12">
@@ -106,7 +106,7 @@
             <label
               class="block text-gray-700 text-sm font-normal mb-2 font-bold"
             >Proof of COVID-19 Impact Template</label>
-            <button class="i-t-b" :class="{done: checkModal1}" @click="modal1 = true">
+            <button class="i-t-b" type="button" :class="{done: checkModal1}" @click="modal1 = true">
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
@@ -579,7 +579,10 @@ export default {
   watch: {
     details: {
       handler (value) {
-        this.general = value
+        this.general = { ...this.general, ...value }
+        this.covid_proof_of_march_20 = { ...this.covid_proof_of_march_20, ...value.covid_proof_mar_20 }
+        this.covid_proof_of_april_20 = { ...this.covid_proof_of_april_20, ...value.covid_proof_apr_20 }
+        this.covid_proof_of_may_20 = { ...this.covid_proof_of_may_20, ...value.covid_proof_may_20 }
       },
       deep: true
     },
@@ -612,6 +615,10 @@ export default {
 
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        // Update pendingApplication
+        if (this.details) {
+          this.$store.commit('api/MERGE_DATA', data)
+        }
       }
     },
     covidImpact: {

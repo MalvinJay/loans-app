@@ -293,8 +293,6 @@ export default {
     font-size: 14px;
   }
 }
-.uploadfiles {
-}
 #messaging {
   button {
     background: #ffffff;

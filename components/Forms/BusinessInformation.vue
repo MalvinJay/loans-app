@@ -59,7 +59,7 @@
                 v-model="general.business_phone_number"
                 type="text"
                 name="Business Phone Number"
-                regex="0[2-5]{1}[0-9]{7,8}$"
+                regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3346,12 +3346,13 @@ export default {
       businessScale: 'pages/businessScale',
       isStartup: 'pages/isStartup',
       regions: 'pages/regions',
-      districts: 'pages/districts',
+      districts: 'pages/businessDistricts',
       countries: 'pages/countries',
       token: 'local/token'
     }),
     ...mapState({
-      pendingApplication: state => state.api.pendingApplication
+      pendingApplication: state => state.api.pendingApplication,
+      applicationObject: state => state.pages.application_object
     }),
     details: {
       get () {
@@ -3363,11 +3364,11 @@ export default {
       }
     },
     annual_sales_display () {
-      if (!this.token) {
-        const amount = JSON.parse(localStorage.getItem('application_object')).annual_sales
+      if (!this.token && this.applicationObject) {
+        const amount = this.applicationObject.annual_sales
         return this.thousandSeprator(amount)
       } else {
-        // console.log(this.details.annual_sales)
+        // eslint-disable-next-line no-debugger
         return this.details.annual_sales ? this.thousandSeprator(this.details.annual_sales) : ''
       }
     }
@@ -3376,6 +3377,32 @@ export default {
     details: {
       handler (value) {
         this.general = value
+        this.region = value.business_region
+        if (value.directors_list.length !== 0 && this.show === true) {
+          if (value.legal_organization === '3' || value.legal_organization === '4' || value.legal_organization === '5') {
+            this.directors_list = JSON.parse(JSON.stringify([...value.directors_list, ...this.directors_list]))
+            this.shareHolders = value.directors_list.length
+          } else {
+            this.business_owner = JSON.parse(JSON.stringify([...value.directors_list, ...this.business_owner]))
+            this.businessOwners = value.directors_list.length
+          }
+        }
+        this.income_statement_2017 = { ...this.income_statement_2017, ...value.income_statement_2017 }
+        this.income_statement_2018 = { ...this.income_statement_2018, ...value.income_statement_2018 }
+        this.income_statement_2019 = { ...this.income_statement_2019, ...value.income_statement_2019 }
+        this.income_statement_2020 = { ...this.income_statement_2020, ...value.income_statement_2020 }
+        this.income_statement_apr_2020 = { ...this.income_statement_apr_2020, ...value.income_statement_apr_2020 }
+        this.cash_flow_2017 = { ...this.cash_flow_2017, ...value.cash_flow_2017 }
+        this.cash_flow_2018 = { ...this.cash_flow_2018, ...value.cash_flow_2018 }
+        this.cash_flow_2019 = { ...this.cash_flow_2019, ...value.cash_flow_2019 }
+        this.cash_flow_2020 = { ...this.cash_flow_2020, ...value.cash_flow_2020 }
+        this.balance_sheet_2017 = { ...this.balance_sheet_2017, ...value.balance_sheet_2017 }
+        this.balance_sheet_2018 = { ...this.balance_sheet_2018, ...value.balance_sheet_2018 }
+        this.balance_sheet_2019 = { ...this.balance_sheet_2019, ...value.balance_sheet_2019 }
+        this.balance_sheet_2020 = { ...this.balance_sheet_2020, ...value.balance_sheet_2020 }
+        if (this.show === true) {
+          this.credit_facilities = JSON.parse(JSON.stringify([...value.credit_facilities, ...this.credit_facilities]))
+        }
       },
       deep: true
     },
@@ -3586,20 +3613,28 @@ export default {
       deep: true
     },
     region (value) {
-      this.$store.commit('pages/SET_DISTRICTS', value)
+      this.$store.commit('pages/SET_BUSINESS_DISTRICTS', value)
+    },
+    regions (value) {
+      // for continuing applications: if region exists get districts
+      if (this.region) {
+        this.$store.commit('pages/SET_BUSINESS_DISTRICTS', this.region)
+      }
     },
     show (value) {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        // Update existing application
+        if (this.details) {
+          this.$store.commit('api/MERGE_DATA', data)
+        }
       }
     }
   },
   mounted () {
-    if (!this.token) {
-      this.general.annual_sales = JSON.parse(
-        localStorage.getItem('application_object')
-      ).annual_sales
+    if (!this.token && this.applicationObject) {
+      this.general.annual_sales = this.applicationObject.annual_sales
     }
   },
   methods: {
@@ -3629,6 +3664,7 @@ export default {
       const balanceSheet2018 = Object.assign({}, this.balance_sheet_2018)
       const balanceSheet2019 = Object.assign({}, this.balance_sheet_2019)
       const balanceSheet2020 = Object.assign({}, this.balance_sheet_2020)
+
       // filter out empty directors
       const directorsList = JSON.parse(
         JSON.stringify(this.directors_list)
@@ -3654,7 +3690,6 @@ export default {
       const creditFacilities = JSON.parse(
         JSON.stringify(this.credit_facilities)
       ).filter(value => JSON.stringify(value) !== '{}')
-
       data.income_statement_2017 = incomeStatement2017
       data.income_statement_2018 = incomeStatement2018
       data.income_statement_2019 = incomeStatement2019

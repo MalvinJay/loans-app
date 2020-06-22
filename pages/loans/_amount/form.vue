@@ -38,7 +38,7 @@
                   v-model="phoneNumber"
                   placeholder="Phone Number"
                   type="text"
-                  regex="0[2-5]{1}[0-9]{7,8}$"
+                  regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 <small v-if="error" class="text-sm text-red-700">Phone numbers do not match</small>
@@ -61,6 +61,7 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
+import Utils from '@/utils/services'
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import Steps from '@/components/Misc/PageSteps.vue'
 import Content from '@/components/Misc/Content.vue'
@@ -73,6 +74,14 @@ import Footer from '@/components/Footer/FooterAlt.vue'
 import Modal from '@/components/Misc/Modal'
 import Input from '@/components/Forms/Input.vue'
 export default {
+  middleware ({ store, redirect }) {
+    if (Utils.present(store.state.pages.application_object) ||
+    store.state.auth.loggedIn) {
+      return true
+    } else {
+      return redirect('/apply')
+    }
+  },
   layout: 'homeLayout',
   components: {
     NavBar,
@@ -103,10 +112,11 @@ export default {
     general: state => state.api.general
   }),
   beforeCreate () {
-    this.$store.dispatch('api/getPendingApplications')
+    this.$store.dispatch('pages/getCountries')
+    this.$store.dispatch('pages/getDropDowns')
   },
   created () {
-    this.$store.dispatch('pages/getDropDowns')
+    this.$store.dispatch('api/getPendingApplications')
     this.$store.dispatch('api/setApplicationObject')
   },
   methods: {
@@ -134,11 +144,20 @@ export default {
             })
             this.$store.commit('pages/SET_SAVE_MODAL', false)
           })
+          .catch((errors) => {
+          // get errors from api if any
+            for (const error in errors.errors) {
+              this.$toasted.show(`${errors.errors[error][0]}`, {
+                theme: 'toasted-primary',
+                position: 'top-right',
+                duration: 5000
+              })
+            }
+          })
       }
     },
     closeModal () {
-      // this.$store.commit('pages/SET_SAVE_MODAL', false)
-      return true
+      this.$store.commit('pages/SET_SAVE_MODAL', false)
     }
   }
 }

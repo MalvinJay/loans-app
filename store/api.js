@@ -8,7 +8,6 @@ export const state = () => ({
 export const getters = {
   GET_ERRORS (state) {
     for (const i in state.errors.errors) {
-      // eslint-disable-next-line no-console
       return state.errors.errors[i][0]
     }
   },
@@ -25,6 +24,9 @@ export const getters = {
 }
 
 export const mutations = {
+  MERGE_DATA (state, data) {
+    state.pendingApplication.loan_application = { ...state.pendingApplication.loan_application, ...data }
+  },
   SET_GENERAL_DATA (state, data) {
     state.general = { ...state.general, ...data }
   },
@@ -67,12 +69,7 @@ export const actions = {
   verifyApplication ({ commit }, data) {
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/verify-id'
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      this.$axios.$post(url, data, config)
+      this.$axios.$post(url, data)
         .then((result) => {
           localStorage.setItem('application_object', JSON.stringify(result.data))
           resolve(result.data)
@@ -86,13 +83,8 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const formData = new FormData()
       formData.append('file', data.file)
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
       const url = 'https://mcftest.plendifyloans.com/api/upload-media'
-      this.$axios.$post(url, formData, config)
+      this.$axios.$post(url, formData)
         .then((result) => {
           commit('SET_MEDIA_PATH', { path: result.data.path, name: data.name })
           resolve(true)
@@ -103,13 +95,13 @@ export const actions = {
   },
   submitApplication ({ state, commit }) {
     return new Promise((resolve, reject) => {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
+      let url
+      if (state.pendingApplication) {
+        url = 'https://mcftest.plendifyloans.com/api/auth/loan-applications'
+      } else {
+        url = 'https://mcftest.plendifyloans.com/api/loan-applications'
       }
-      const url = 'https://mcftest.plendifyloans.com/api/loan-applications'
-      this.$axios.$post(url, state.general, config)
+      this.$axios.$post(url, state.general)
         .then((result) => {
           commit('SET_APPLICATION_RESPONSE', result.data)
           resolve(result)
@@ -121,21 +113,15 @@ export const actions = {
         })
     })
   },
-  saveApplication ({ rootState, state, commit }) {
+  saveApplication ({ state, commit }) {
     return new Promise((resolve, reject) => {
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.local.token,
-          'Content-Type': 'application/json'
-        }
-      }
       let url
-      if (rootState.local.token) {
+      if (state.pendingApplication) {
         url = `https://mcftest.plendifyloans.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
       } else {
         url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
       }
-      this.$axios.$post(url, state.general, config)
+      this.$axios.$post(url, state.general)
         .then((result) => {
           resolve(result)
         })
@@ -148,14 +134,8 @@ export const actions = {
   },
   getPendingApplications ({ rootState, state, commit }) {
     return new Promise((resolve, reject) => {
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.local.token,
-          'Content-Type': 'application/json'
-        }
-      }
       const url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications'
-      this.$axios.$get(url, config)
+      this.$axios.$get(url)
         .then((result) => {
           commit('SET_PENDING_APPLICATION', result.data)
         })

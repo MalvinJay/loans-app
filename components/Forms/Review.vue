@@ -149,7 +149,7 @@
       </div>
     </div>
     <Modal v-if="confirmModal" @close="confirmModal=false">
-      <div>
+      <div class="mb-32">
         <div class="h-d mb-10">
           <p class="text-center text-lg font-bold">
             Declaration Section of Application
@@ -263,11 +263,18 @@ export default {
         position: 'top-center',
         duration: 5000
       })
+      // Submit application
       this.$store.dispatch('api/submitApplication')
         .then((result) => {
+          localStorage.removeItem('application_object')
           window.location = '/loans/submitted'
         })
         .catch((errors) => {
+          this.$toasted.show('Error submitting application', {
+            theme: 'toasted-primary',
+            position: 'top-right',
+            duration: 5000
+          })
           // get errors from api if any
           for (const error in errors.errors) {
             this.$toasted.show(`${errors.errors[error][0]}`, {

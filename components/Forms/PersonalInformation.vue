@@ -90,7 +90,7 @@
                 v-model="personalInfo.phone_number"
                 type="text"
                 name="Main Phone Number"
-                regex="0[2-5]{1}[0-9]{7,8}$"
+                regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -169,7 +169,7 @@ export default {
     ...mapGetters({
       idType: 'pages/idTypes',
       regions: 'pages/regions',
-      districts: 'pages/districts',
+      districts: 'pages/personalDistricts',
       residenceStatus: 'pages/residenceStatus'
     }),
     ...mapState({
@@ -189,16 +189,30 @@ export default {
     details: {
       handler (value) {
         this.personalInfo = value
+        if (value.region) {
+          this.region = value.region
+        }
       },
       deep: true
     },
     region (value) {
-      this.$store.commit('pages/SET_DISTRICTS', value)
+      // eslint-disable-next-line no-console
+      this.$store.commit('pages/SET_PERSONAL_DISTRICTS', value)
+    },
+    regions (value) {
+      // for continuing applications: if region exists get districts
+      if (this.region) {
+        this.$store.commit('pages/SET_PERSONAL_DISTRICTS', this.region)
+      }
     },
     show (value) {
       const data = this.aggregate()
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        // Update existing application
+        if (this.details) {
+          this.$store.commit('api/MERGE_DATA', data)
+        }
       }
     }
   },
