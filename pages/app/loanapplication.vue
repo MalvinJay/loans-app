@@ -88,7 +88,7 @@ export default {
   },
   methods: {
     continueApplication () {
-      localStorage.removeItem('loanStatus')
+      localStorage.clear()
       this.$router.push('/loans/0/form')
     }
   }

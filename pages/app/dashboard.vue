@@ -201,7 +201,26 @@ export default {
     }
   },
   mounted () {
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
+  },
+  created () {
     this.$store.dispatch('loan/fetchLoanDetails')
+      .then(() => {
+        if (this.$store.state.loan.loandetails.status !== 'complete') {
+          this.$router.push('/app/loanapplication')
+        }
+      })
+      .catch((error) => {
+        this.$toasted.error(error.error)
+        if (error.error.includes('Token')) {
+          this.$router.push('/app/registration/login')
+        }
+        if (error.error.includes('unfinished')) {
+          this.$router.push('/app/loanapplication')
+        }
+      })
   },
   methods: {
     handleFile (e) {

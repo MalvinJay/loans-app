@@ -2,7 +2,7 @@
   <div class="signin">
     <div class="main">
       <div class="signin-container">
-        <div class="body flex justify-center">
+        <div class="body md:flex md:justify-center">
           <div class="left">
             <img src="@/assets/img/sign_in.png" alt="">
           </div>
@@ -23,21 +23,23 @@
                   For security reasons, please enter your mobile number and we will send you a One Time Password
                 </p>
               </div>
-              <div class="mb-5">
-                <input v-model="phone" type="text" placeholder="Phone Number">
-              </div>
-              <div>
-                <button class="button-small" @click="getOTP">
-                  <template v-if="loading">
-                    <div class="login-spinner flex justify-center w-full">
-                      <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
-                    </div>
-                  </template>
-                  <template v-else>
-                    CONTINUE
-                  </template>
-                </button>
-              </div>
+              <form @submit.prevent="getOTP">
+                <div class="mb-5">
+                  <input v-model="phone" type="text" placeholder="Phone Number">
+                </div>
+                <div>
+                  <button class="button-small" type="submit">
+                    <template v-if="loading">
+                      <div class="login-spinner flex justify-center w-full">
+                        <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                      </div>
+                    </template>
+                    <template v-else>
+                      CONTINUE
+                    </template>
+                  </button>
+                </div>
+              </form>
             </div>
             <div v-else class="r-c">
               <div class="mb-3">
@@ -50,21 +52,23 @@
                   Please enter the password that was sent to your number
                 </p>
               </div>
-              <div class="mb-5">
-                <input v-model="OTP" type="password" class="text-xl" placeholder="OTP">
-              </div>
-              <div>
-                <button class="button-small" @click="login">
-                  <template v-if="loading">
-                    <div class="login-spinner flex justify-center w-full">
-                      <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
-                    </div>
-                  </template>
-                  <template v-else>
-                    SIGN IN
-                  </template>
-                </button>
-              </div>
+              <form @submit.prevent="login">
+                <div class="mb-5">
+                  <input v-model="OTP" type="password" class="text-xl" placeholder="OTP">
+                </div>
+                <div>
+                  <button class="button-small" type="submit">
+                    <template v-if="loading">
+                      <div class="login-spinner flex justify-center w-full">
+                        <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                      </div>
+                    </template>
+                    <template v-else>
+                      SIGN IN
+                    </template>
+                  </button>
+                </div>
+              </form>
               <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">
                 Resend Password
               </div>
@@ -87,7 +91,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.commit('auth/SET_LOGOUT')
+    this.$store.commit('local/SET_LOGOUT')
   },
   methods: {
     login () {
@@ -96,7 +100,7 @@ export default {
         phone_number: this.phone,
         otp: this.OTP
       }
-      this.$store.dispatch('auth/login', data)
+      this.$store.dispatch('local/login', data)
         .then((res) => {
           this.$toasted.show('Login Success', {
             theme: 'outline',
@@ -116,7 +120,7 @@ export default {
     },
     getOTP () {
       this.loading = true
-      this.$store.dispatch('auth/verifyOTP', this.phone)
+      this.$store.dispatch('local/verifyOTP', this.phone)
         .then((res) => {
           // console.log('OTP Verification', res)
           // this.$toast.success(res.success)
