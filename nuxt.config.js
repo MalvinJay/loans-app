@@ -110,7 +110,7 @@ export default {
       }
     },
     redirect: {
-      callback: '/app/registration/login',
+      callback: '/app/dashboard',
       login: '/app/registration/login',
       logout: '/app/registration/login',
       home: '/app/dashboard'

@@ -24,10 +24,10 @@
               </div>
             </div>
           </template>
-          <template>
-            <div class="flex justify-end py-4">
+          <template v-else>
+            <div class="flex justify-end py-4 font-semibold">
               <div class="bg-blue-100 rounded-lg p-4">
-                <i>{{ message.body }}</i>
+                {{ message.body }}
               </div>
             </div>
           </template>
