@@ -13,7 +13,7 @@
       <a href="/" class="logo mt-4 flex rem-margin">
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
-      <p v-if="!token" class="r-s uppercase logo-margin text-sm rem-margin">
+      <p class="r-s uppercase logo-margin text-sm rem-margin">
         <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>

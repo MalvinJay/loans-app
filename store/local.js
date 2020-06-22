@@ -52,11 +52,11 @@ export const actions = {
       const url = '/login'
       this.$axios.$post(url, data)
         .then((response) => {
+          commit('SET_TOKEN', response.data.access_token)
           this.$auth.setToken('local', 'Bearer ' + response.data.access_token)
           this.$auth.setRefreshToken('local', response.data.refresh_token)
           this.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
           this.$auth.ctx.app.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
-          commit('SET_TOKEN', response.data.access_token)
           resolve(response)
         }).catch((error) => {
           reject(error.response.data)
