@@ -102,6 +102,24 @@
               />
             </div>
           </div>
+          <div class="mb-12">
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+              Do you require any non-financial support?
+              <span class="text-red-600">*</span>
+            </label>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="general.covid_impact" :list="covidImpacts" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="otherSelected" class="mt-5">
+              <textarea
+                v-model="general.other_covid_impact"
+                name
+                rows="10"
+                placeholder="Please write down the impact"
+              />
+            </div>
+          </div>
           <div class="mb-4">
             <label
               class="block text-gray-700 text-sm font-normal mb-2 font-bold"
