@@ -64,7 +64,7 @@ export default {
   },
   computed: {
     token () {
-      return this.$store.state.local.token
+      return this.$store.state.auth.loggedIn
     }
   }
 }
