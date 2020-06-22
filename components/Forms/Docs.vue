@@ -1,7 +1,7 @@
 <template>
   <div v-show="show">
     <div class="grid docs border-blue-100">
-      <div @drop.prevent="addApplicationId" @dragover.prevent>
+      <!-- <div @drop.prevent="addApplicationId" @dragover.prevent>
         <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>
         <div class="d-i border border-gray-900 py-12">
           <div class="img">
@@ -27,7 +27,7 @@
             </p>
           </div>
         </div>
-      </div>
+      </div> -->
       <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
         <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
         <div class="d-i border border-gray-900 py-12">

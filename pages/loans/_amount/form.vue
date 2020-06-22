@@ -76,7 +76,7 @@ import Input from '@/components/Forms/Input.vue'
 export default {
   middleware ({ store, redirect }) {
     if (Utils.present(store.state.pages.application_object) ||
-    store.state.auth) {
+    store.state.auth.loggedIn) {
       return true
     } else {
       return redirect('/apply')

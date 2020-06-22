@@ -93,22 +93,13 @@
           </p>
         </div>
       </div>
-      <div class="card">
+      <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="card">
         <div class="mb-5">
           <p class="text-lg">
             Document Upload
           </p>
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
-          <p class="font-bold">
-            Photo ID
-          </p>
-          <p v-if="general.id_file_name !== undefined">
-            {{ general.id_file_name }}
-          </p>
-          <p v-else>
-            N/A
-          </p>
           <p class="font-bold">
             Proof of PAYE
           </p>
@@ -221,6 +212,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Modal from '../Misc/Modal.vue'
 import Input from '../Forms/Input.vue'
 export default {
@@ -245,16 +237,26 @@ export default {
     general () {
       return this.$store.state.api.general
     },
-    requestedLoanAmount () {
-      return this.$store.getters['api/requestedLoanAmount']
-    },
-    fundRoles () {
-      return this.$store.getters['pages/fundRoles']
-    }
+    // requestedLoanAmount () {
+    //   return this.$store.getters['api/requestedLoanAmount']
+    // },
+    // fundRoles () {
+    //   return this.$store.getters['pages/fundRoles']
+    // },
+    ...mapGetters({
+      requestedLoanAmount: 'api/requestedLoanAmout',
+      fundRoles: 'pages/fundRoles',
+      businessScale: 'pages/businessScale',
+      isStartup: 'pages/isStartup'
+    })
   },
   methods: {
     movePrevious () {
-      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      if (this.businessScale !== '1' && this.businessScale !== '2' && this.isStartup === false) {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      } else {
+        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
+      }
     },
     submitAll () {
       this.$emit('submitted', true)
