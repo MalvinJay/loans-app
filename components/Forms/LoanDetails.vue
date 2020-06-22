@@ -560,7 +560,7 @@ export default {
       covidImpacts: 'pages/covidImpacts',
       fundRoles: 'pages/fundRoles',
       momo: 'pages/momo',
-      token: 'auth/token'
+      token: 'local/token'
     }),
     ...mapState({
       currentTab: state => state.pages.currentTab,

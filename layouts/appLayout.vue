@@ -50,9 +50,7 @@
             <span>Hi, <span class="font-bold">{{ Details.first_name }}</span></span>
           </div>
           <button class="button-small" @click="logout">
-            <nuxt-link to="registration/login">
-              SIGN OUT
-            </nuxt-link>
+            SIGN OUT
           </button>
         </div>
       </div>
@@ -65,7 +63,7 @@
 <script>
 import { mapGetters } from 'vuex'
 export default {
-  // middleware: 'auth',
+  middleware: 'auth',
   data () {
     return {
       side: false,
@@ -111,11 +109,13 @@ export default {
       return this.loanStatus === 'complete'
     }
   },
-  mounted () {
+  created () {
     this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('loan/fetchLoanDetails')
       .then((response) => {
-        return response
+        if (this.$store.state.loan.loandetails.status !== 'complete') {
+          this.$router.push('/app/loanapplication')
+        }
       })
       .catch((error) => {
         this.$toasted.error(error.error)
@@ -127,13 +127,11 @@ export default {
         }
       })
     this.$store.dispatch('queries/fetchQueries')
-    if (this.$store.state.loan.loandetails.status !== 'complete') {
-      this.$router.push('/app/loanapplication')
-    }
   },
   methods: {
     logout () {
-      this.$store.commit('auth/SET_LOGOUT')
+      this.$store.commit('local/SET_LOGOUT')
+      this.$auth.logout()
       this.$router.push('/app/registration/login')
     },
     toggleSide () {

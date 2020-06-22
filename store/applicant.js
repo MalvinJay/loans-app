@@ -25,14 +25,15 @@ export const actions = {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
       const url = 'https://mcftest.plendifyloans.com/api/applicant-details'
-      const config = {
-        headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
-          'Content-Type': 'application/json'
-        }
-      }
-      this.$axios.$get(url, config)
+      // const config = {
+      //   headers: {
+      //     Authorization: 'Bearer ' + rootState.local.token,
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
+      this.$axios.$get(url)
         .then((response) => {
+          this.$auth.setUser(response.data)
           commit('SET_APPLICANT', response.data)
           commit('SET_STATE', 'DATA')
           resolve(response)

@@ -125,12 +125,12 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
+          Authorization: 'Bearer ' + rootState.local.token,
           'Content-Type': 'application/json'
         }
       }
       let url
-      if (rootState.auth.token) {
+      if (rootState.local.token) {
         url = `https://mcftest.plendifyloans.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
       } else {
         url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
@@ -150,7 +150,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const config = {
         headers: {
-          Authorization: 'Bearer ' + rootState.auth.token,
+          Authorization: 'Bearer ' + rootState.local.token,
           'Content-Type': 'application/json'
         }
       }

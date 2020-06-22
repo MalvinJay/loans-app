@@ -27,9 +27,13 @@
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Loading from '@/components/Misc/Loading.vue'
 export default {
   layout: 'appLayout',
   middleware: 'auth',
+  components: {
+    Loading
+  },
   data () {
     return {
     }
@@ -42,6 +46,9 @@ export default {
     state () {
       return this.nofifState === 'LOADING'
     }
+  },
+  created () {
+    this.$store.dispatch('notifications/getNotifications')
   }
 }
 </script>

@@ -1,5 +1,5 @@
 export const state = () => ({
-  token: localStorage.getItem('token'),
+  token: null,
   errors: {}
 })
 export const getters = {
@@ -23,16 +23,16 @@ export const mutations = {
 export const actions = {
   verifyOTP ({ commit }, phone) {
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/generate-otp'
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
+      const url = '/generate-otp'
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
       const data = {
         phone_number: phone
       }
-      this.$axios.$post(url, data, config)
+      this.$axios.$post(url, data)
         .then((response) => {
           commit('SET_SUCCESS', response)
           resolve(response)
@@ -44,21 +44,26 @@ export const actions = {
   },
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {
-      const config = {
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      }
-      const url = 'https://mcftest.plendifyloans.com/api/login'
-      this.$axios.$post(url, data, config)
+      // const config = {
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   }
+      // }
+      const url = '/login'
+      this.$axios.$post(url, data)
         .then((response) => {
-          localStorage.setItem('token', response.data.access_token)
-          localStorage.setItem('isAuthenticated', true)
+          this.$auth.setToken('local', 'Bearer ' + response.data.access_token)
+          this.$auth.setRefreshToken('local', response.data.refresh_token)
+          this.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
+          this.$auth.ctx.app.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
           commit('SET_TOKEN', response.data.access_token)
           resolve(response)
         }).catch((error) => {
           reject(error.response.data)
         })
     })
+  },
+  logout ({ commit }) {
+    commit('SET_LOGOUT')
   }
 }
