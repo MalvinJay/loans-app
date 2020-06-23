@@ -11,6 +11,68 @@
           </div>
           <div>
             <p class="text-2xl">
+              Applicant's Requirements:
+            </p>
+            <div class="flex gap-10 my-10">
+              <div class="arrow mt-2">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
+              </div>
+              <div>
+                <p class="text-xl">
+                  Proof of business operations
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-10 my-10">
+              <div class="arrow mt-2">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
+              </div>
+              <div>
+                <p class="text-xl">
+                  Description of Business (i.e type personnel, customer, suppliers etc.)
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-10 my-10">
+              <div class="arrow mt-2">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
+              </div>
+              <div>
+                <p class="text-xl">
+                  Financial details (i.e Sales, cash flow statement, profit & loss extract)
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-10 my-10">
+              <div class="arrow mt-2">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
+              </div>
+              <div>
+                <p class="text-xl">
+                  Detail of product and services.
+                </p>
+              </div>
+            </div>
+            <div class="flex gap-10 my-10">
+              <div class="arrow mt-2">
+                <img src="@/assets/img/arrow.png" class="md:w-6" alt="">
+              </div>
+              <div>
+                <p class="text-xl">
+                  Demonstrate that COVID-19 had had negative impact on your business.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mt-32">
+        <div class="point flex gap-10">
+          <div class="bullet">
+            <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
+          </div>
+          <div>
+            <p class="text-2xl">
               Micro, Small and Medium Enterprises (MSMEs) with activities drastically slowed by the COVID-19 pandemic in many ways including:
             </p>
             <div class="flex gap-10 my-10">

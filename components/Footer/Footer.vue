@@ -50,7 +50,7 @@
     </footer>
     <div class="copyright flex justify-between py-10 text-white px-10 gap-10">
       <p class="text-sm italic font-bold plendify pr-4">
-        Powered by Plendify
+        <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">Powered by Plendify</a>
       </p>
       <p class="font-light">
         &copy; National Board for Small Scale Industries. All rights reserved.
