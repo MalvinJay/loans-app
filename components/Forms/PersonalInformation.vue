@@ -98,6 +98,14 @@
           </div>
           <div class="mb-12">
             <Input
+              v-model="personalInfo.other_phone_number"
+              type="text"
+              name="Other Phone Number (Optional)"
+              regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
+            />
+          </div>
+          <div class="mb-12">
+            <Input
               v-model="personalInfo.personal_digital_address_code"
               type="text"
               name="Nearest Digital Address Code (Optional)"
