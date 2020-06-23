@@ -87,7 +87,11 @@ export default {
       pinSent: false,
       loading: false,
       OTP: null,
-      phone: ''
+      phone: '',
+      image_url: '/icon.png',
+      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      title: 'Sign In',
+      description: 'Already submitted a funding request? Sign in now to check your progress'
     }
   },
   mounted () {
@@ -152,6 +156,26 @@ export default {
         .finally(() => {
           this.loading = false
         })
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: this.title },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: this.title },
+        { property: 'twitter:description', content: this.description },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
     }
   }
 }

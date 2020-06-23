@@ -182,7 +182,35 @@
 </template>
 <script>
 export default {
-  layout: 'default'
+  layout: 'default',
+  data () {
+    return {
+      image_url: '/icon.png',
+      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      title: 'Business Tips',
+      description: 'Business Tips to help you through and adapt to the our new environment'
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: this.title },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: this.title },
+        { property: 'twitter:description', content: this.description },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
