@@ -69,7 +69,7 @@ export default {
     }
   },
   mounted () {
-    if (this.businessScale === '1' || this.businessScale === '2' || this.isStartup === false) {
+    if (this.businessScale === '1' || this.businessScale === '2' || this.isStartup === true) {
       this.status = this.status.filter(item => item.name !== 'Documents Upload')
     }
   }

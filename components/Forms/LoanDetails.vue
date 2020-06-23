@@ -108,14 +108,20 @@
               <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <MultiSelect v-model="general.covid_impact" :list="covidImpacts" />
+              <MultiSelect v-model="general.non_financial_supports" :list="nonFinancialSupport" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
-            <div v-if="otherSelected" class="mt-5">
-              <textarea
-                v-model="general.other_covid_impact"
-                name
-                rows="10"
+            <div v-if="nonFinancialOtherSelected" class="mt-5">
+              <label
+                v-if="nonFinancialOtherSelected"
+                class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+              >
+                If other, fill this field
+                <span class="text-red-600">*</span>
+              </label>
+              <Input
+                v-model="general.other_non_financial_support"
+                type="text"
                 placeholder="Please write down the impact"
               />
             </div>
@@ -567,7 +573,8 @@ export default {
       },
       general: {},
       otherSelected: false,
-      fundOtherSelected: false
+      fundOtherSelected: false,
+      nonFinancialOtherSelected: false
       // details: {}
     }
   },
@@ -578,7 +585,8 @@ export default {
       covidImpacts: 'pages/covidImpacts',
       fundRoles: 'pages/fundRoles',
       momo: 'pages/momo',
-      token: 'local/token'
+      token: 'local/token',
+      nonFinancialSupport: 'pages/nonFinancialSupport'
     }),
     ...mapState({
       currentTab: state => state.pages.currentTab,
@@ -613,6 +621,10 @@ export default {
 
         if (value.fund_purposes) {
           this.fundOtherSelected = value.fund_purposes.includes(9)
+        }
+
+        if (value.non_financial_supports) {
+          this.nonFinancialOtherSelected = value.non_financial_supports.includes(12)
         }
       },
       deep: true

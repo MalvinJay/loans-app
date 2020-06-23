@@ -238,7 +238,7 @@ export default {
       return this.$store.state.api.general
     },
     ...mapGetters({
-      requestedLoanAmount: 'api/requestedLoanAmout',
+      requestedLoanAmount: 'api/requestedLoanAmount',
       fundRoles: 'pages/fundRoles',
       businessScale: 'pages/businessScale',
       isStartup: 'pages/isStartup'

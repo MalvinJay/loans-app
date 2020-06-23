@@ -2745,7 +2745,7 @@
     <Modal v-if="microIncomeModal" @close="microIncomeModal=false">
       <ValidationObserver v-slot="{ handleSubmit }">
         <form @submit.prevent="handleSubmit(doneMicroIncomeModal)">
-          <div class="d-s">
+          <div class="d-s micro">
             <div class="h-d mb-10">
               <p class="text-center text-lg font-bold">
                 Income Statement
@@ -2773,8 +2773,11 @@
                   class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
                 >Total Revenue</label>
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+              <div class="first">
+                <label
+                  class="mb-5 block text-gray-900 text-sm font-bold text-center mt-10 mobile"
+                >2018</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total Revenue 2018</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2018.total_revenue"
@@ -2786,8 +2789,11 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+              <div class="second">
+                <label
+                  class="mb-5 block text-gray-900 text-sm font-bold text-center mt-10 mobile"
+                >2019</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total Revenue 2019</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2019.total_revenue"
@@ -2799,10 +2805,13 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <div>
+              <div class="third">
+                <label
+                  class="mb-5 block text-gray-900 text-sm font-bold text-center mt-10 mobile"
+                >Jan 2020 - April 2020</label>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2 mobile"
-                >Jan 2020 - April 2020</label>
+                >Total Revenue Jan 2020 - April 2020</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2020.total_revenue"
@@ -2819,8 +2828,8 @@
                   class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
                 >Total Expenses</label>
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+              <div class="fourth">
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Income Statement 2018</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2018.total_expenses"
@@ -2832,8 +2841,8 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+              <div class="fifth">
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Income Statement 2019</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2019.total_expenses"
@@ -2845,10 +2854,10 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <div>
+              <div class="sixth">
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2 mobile"
-                >Jan 2020 - April 2020</label>
+                >Income Statement Jan 2020 - April 2020</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2020.total_expenses"
@@ -2865,8 +2874,8 @@
                   class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
                 >Profit Before Tax</label>
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+              <div class="seventh">
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2018</label>
                 <Input
                   v-model="total_micro_statement.profit_18"
                   type="text"
@@ -2876,8 +2885,8 @@
                   disabled
                 />
               </div>
-              <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+              <div class="eighth">
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2019</label>
                 <Input
                   v-model="total_micro_statement.profit_19"
                   type="text"
@@ -2887,10 +2896,10 @@
                   disabled
                 />
               </div>
-              <div>
+              <div class="ninth">
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2 mobile"
-                >Jan 2020 - April 2020</label>
+                >Net Profit Jan 2020 - April 2020</label>
                 <Input
                   v-model="total_micro_statement.profit_20"
                   type="text"
@@ -3875,6 +3884,44 @@ label.mobile {
   .button-small {
     margin-bottom: 70px;
   }
+ .d-s {
+    .grid {
+      grid-template-columns: 100%;
+    }
+  // move nav buttons up after grid rearrangement
+    .button-small {
+      margin-top: -17rem;
+    }
+  }
+  .first {
+    order: -99999;
+  }
+  .fourth {
+    order: -88888;
+  }
+  .seventh {
+    order: -77777;
+  }
+  .second {
+    margin-top: 3rem;
+    order: -66666;
+  }
+  .fifth {
+    order: -55555;
+  }
+  .eighth {
+    order: -44444;
+  }
+  .third {
+    margin-top: 3rem;
+    order: -33333;
+  }
+  .sixth {
+    order: -22222;
+  }
+  .ninth {
+    order: -11111
+  }
 }
 input[type="date"] {
   width: 100%;
@@ -3882,6 +3929,11 @@ input[type="date"] {
 }
 @include for-tablet-portrait-only {
   .d-s {
+    &.micro {
+      .grid {
+        grid-template-columns: 20% 20% 20% 20%;
+      }
+    }
     .grid {
       grid-template-columns: 40% 40%;
     }
@@ -3897,13 +3949,6 @@ input[type="date"] {
   .form-c {
     .i-t-b {
       width: 100%;
-    }
-  }
-}
-@include for-phone-only {
-  .d-s {
-    .grid {
-      grid-template-columns: 100%;
     }
   }
 }

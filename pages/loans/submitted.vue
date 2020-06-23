@@ -51,4 +51,16 @@ export default {
     }
   }
 }
+@include for-phone-only {
+  .main {
+    img {
+      max-width: 15rem;
+    }
+  }
+  .check {
+    img {
+      height: 4rem !important;
+    }
+  }
+}
 </style>
