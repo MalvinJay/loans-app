@@ -130,7 +130,12 @@ export default {
         eligibility: null,
         faqs: null
       },
-      ApplicantReader: JSON.parse(localStorage.getItem('userReader')) || false
+      ApplicantReader: JSON.parse(localStorage.getItem('userReader')) || false,
+      image_url: '/icon.png',
+      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      title: 'Apply For Funding',
+      description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.'
+
     }
   },
   computed: {
@@ -184,6 +189,26 @@ export default {
           this.$toast.error('Could not verify ID')
           this.$toast.error('Please make sure you enter a valid ID')
         })
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: this.title },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: this.title },
+        { property: 'twitter:description', content: this.description },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
     }
   }
 }
