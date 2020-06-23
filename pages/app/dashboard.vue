@@ -21,15 +21,13 @@
           Payment Method
         </p>
         <div class="my-3">
-          <p
-            class
-          >
+          <p>
             Repayment isn't due until 13-11-2020 but you can choose to start repaying at anytime
           </p>
         </div>
 
         <div class="payment-structure flex">
-          <div class="box bg-white cursor-pointer">
+          <!-- <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/onetime.png" alt srcset>
             <p class="text-center">
               One Time
@@ -39,7 +37,7 @@
             <div class="text-xl font-semibold">
               OR
             </div>
-          </div>
+          </div> -->
           <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/calender.png" alt srcset>
             <p class="text-center">
@@ -56,24 +54,15 @@
           Application and Documents
         </p>
         <div class="docs flex flex-wrap text-white gap-10 my-5">
-          <div class="box bg-white cursor-pointer">
-            <a href="@/assets/img/onetime.png" download>
+          <div v-for="(document, index) in loanDocuments" :key="index" class="box bg-white cursor-pointer" @click="getPDF()">
+            <template v-if="document.type === 'Primary Identity'">
               <img src="@/assets/img/google-docs.png" alt srcset>
-              <p class="text-center">
-                Current Application
-              </p>
-            </a>
-          </div>
-          <div class="box bg-white cursor-pointer">
-            <img src="@/assets/img/pdf.png" alt srcset>
+            </template>
+            <template v-else>
+              <img src="@/assets/img/pdf.png" alt srcset>
+            </template>
             <p class="text-center">
-              Loan Agreement
-            </p>
-          </div>
-          <div class="box bg-white cursor-pointer">
-            <img src="@/assets/img/pdf.png" alt srcset>
-            <p class="text-center">
-              Application ID
+              {{ document.type }}
             </p>
           </div>
         </div>
@@ -82,65 +71,45 @@
             Documents Upload
           </p>
           <div class="uploadfiles md:flex gap-10 my-5">
-            <div class="md:pr-10 py-4">
-              <label class="block text-gray-900 mb-5 h-10 text-lg">
-                Proof of PAYE Payments
-                <br>(last 3 months)
-              </label>
-              <div class="box d-i border border-gray-900 py-5 bg-white">
-                <div class="img">
-                  <img src="@/assets/img/docs.png" alt>
-                </div>
-                <div class="my-6">
-                  <p class="text-center text-sm">
-                    Drag & Drop file here (max: 5MB)
-                  </p>
-                </div>
-                <div class="u-b">
-                  <label>
-                    <input type="file" @change="handleFile">
-                    <span>Browse Files</span>
-                  </label>
-                </div>
-                <div class="mt-6">
-                  <p class="text-center text-sm">
-                    {{ applicatonIdFile }}
-                  </p>
-                  <p v-if="loading" class="text-center text-sm">
-                    Please wait....
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div class="md:pr-10 py-4">
-              <label class="block text-gray-900 mb-5 h-10 text-lg">
-                SSNIT Statement (2019)
-              </label>
-              <div class="box d-i border border-gray-900 py-5 bg-white">
-                <div class="img">
-                  <img src="@/assets/img/docs.png" alt>
-                </div>
-                <div class="my-6">
-                  <p class="text-center text-sm">
-                    Drag & Drop file here (max: 5MB)
-                  </p>
-                </div>
-                <div class="u-b">
-                  <label>
-                    <input type="file">
-                    <span>Browse Files</span>
-                  </label>
-                </div>
-                <div class="mt-6">
-                  <p class="text-center text-sm">
-                    {{ applicatonIdFile }}
-                  </p>
-                  <p v-if="loading" class="text-center text-sm">
-                    Please wait....
-                  </p>
+            <template>
+              <div v-for="(upload, index) in possibleUploads" :key="index" class="md:pr-10 py-4">
+                <label class="block text-gray-900 mb-5 h-10 text-lg sentence">
+                  {{ upload.name }}
+                  <br v-if="upload.period">{{ upload.period }}
+                </label>
+                <div class="box d-i border border-gray-900 py-5 bg-white">
+                  <div class="img">
+                    <img src="@/assets/img/docs.png" alt>
+                  </div>
+                  <div class="my-6">
+                    <p class="text-center text-sm">
+                      Drag & Drop file here (max: 5MB)
+                    </p>
+                  </div>
+                  <div class="u-b">
+                    <label>
+                      <input :id="upload.id" :name="upload.name" type="file" @change="handleFile">
+                      <span>Browse Files</span>
+                    </label>
+                  </div>
+                  <div class="mt-6">
+                    <p class="text-center text-sm">
+                      {{ applicatonIdFile }}
+                    </p>
+                    <p v-if="loading" class="text-center text-sm">
+                      Please wait....
+                    </p>
+                  </div>
                 </div>
               </div>
-            </div>
+            </template>
+            <!-- <template v-else>
+              <div class="md:pr-10 py-4">
+                <p class="text-2xl md:text-xl block">
+                  All Documents Uploaded!
+                </p>
+              </div>
+            </template> -->
           </div>
         </div>
       </section>
@@ -187,17 +156,46 @@ export default {
     return {
       applicatonIdFile: null,
       loading: false,
-      mybool: false
+      mybool: false,
+      possibleUploads: [
+        {
+          id: 1,
+          name: 'Primary Identity',
+          period: ''
+        },
+        {
+          id: 2,
+          name: 'Proof of PAYE Payments',
+          period: '(last 3 months)'
+        },
+        {
+          id: 3,
+          name: 'SSNIT Payment',
+          period: '(2019)'
+        }
+      ]
     }
   },
   computed: {
     ...mapGetters({
       loanDetails: 'loan/loanDetails',
       loansState: 'loan/loanDetailState',
-      messages: 'queries/queries'
+      messages: 'queries/queries',
+      loanDocuments: 'loan/loanDocuments'
     }),
     state () {
       return this.loansState === 'LOADING'
+    },
+    availableUpload () {
+      const notUploaded = []
+      this.loanDocuments.map((document, index) => {
+        this.possibleUploads.filter((upload) => {
+          if (document.type.toLowerCase().indexOf(upload.name.toLowerCase() === -1)) {
+            notUploaded.push(upload)
+          }
+        })
+      })
+      return notUploaded
     }
   },
   mounted () {
@@ -224,8 +222,46 @@ export default {
   },
   methods: {
     handleFile (e) {
-      // eslint-disable-next-line no-unused-vars
+      const type = parseInt(e.target.id)
+      const name = e.target.name
       const file = e.target.files[0]
+      const data = {
+        loanID: this.loanDetails.id,
+        file,
+        file_type: type
+      }
+      this.$store.dispatch('loan/uploadDocument', data)
+        .then((response) => {
+          this.$toasted.show(`${name} upload successfully`, {
+            theme: 'toasted-primary',
+            position: 'top-center',
+            duration: 5000
+          })
+        })
+        .catch((error) => {
+          this.$toasted.error(error.error)
+        })
+    },
+    getPDF () {
+      // this.$store.dispatch('dashboard/getPDF')
+      //   .then((response) => {
+      //     // this.openModal()
+      //     // const blob = new Blob([response.data], { type: 'application/pdf' })
+      //     // const link = document.createElement('a')
+      //     // link.href = window.URL.createObjectURL(blob)
+      //     // link.download = 'currentApplication.pdf'
+      //     // link.click()
+      //     // this.closeModal()
+      //   })
+      //   .catch((err) => {
+      //     // eslint-disable-next-line no-console
+      //     this.$toasted.error(err.response.data)
+      //   })
+      this.$toasted.show('Downloading document ....', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 5000
+      })
     }
   }
 }

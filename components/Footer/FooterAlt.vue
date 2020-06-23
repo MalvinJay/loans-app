@@ -3,7 +3,7 @@
     <div class="flex justify-between footer">
       <div class="flex justify-between flex-row-reverse">
         <p class="text-sm italic font-bold plendify">
-          Powered by Plendify
+          <a href="https://plendifyloans.com/our-why#scroll" target="_blank" class="hover:underline">Powered by Plendify</a>
         </p>
         <p class="font-normal text-sm flex mobile">
           <img src="@/assets/img/lock-alt.png" alt="" srcset=""> You are on a secure page
