@@ -162,6 +162,16 @@ export const getters = {
       })
     }
   },
+  nonFinancialSupport (state) {
+    if (state.dropdowns !== null) {
+      return state.dropdowns.non_financial_supports.map((item) => {
+        return {
+          name: item.name,
+          val: item.id
+        }
+      })
+    }
+  },
   momo (state) {
     if (state.dropdowns) {
       return state.dropdowns.financial_institutions.filter(item => item.type === 'mm')

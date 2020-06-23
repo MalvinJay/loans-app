@@ -41,4 +41,18 @@ export default {
     width: 70%;
   }
 }
+@include for-phone-only {
+  .card {
+    &.small {
+      width: 90%;
+    }
+  }
+}
+@include for-tablet-portrait-only {
+  .card {
+    &.small {
+      width: 90%;
+    }
+  }
+}
 </style>

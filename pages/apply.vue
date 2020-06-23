@@ -210,8 +210,13 @@ input[type=checkbox] {
 @include for-phone-only {
   .grid {
     grid-template-columns: 100%;
-    &>div:nth-child(4) {
-      order: 1;
+    &>div{
+      &:nth-child(2) {
+        order: 2;
+      }
+      &:nth-child(4) {
+        order: 4;
+      }
     }
   }
 .buttons {

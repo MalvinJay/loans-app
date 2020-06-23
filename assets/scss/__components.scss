@@ -5,6 +5,7 @@
   @include button;
   padding: 10px 24px;
   width: 140px;
+  margin-right: 10px;
   &:focus {
     outline: none;
   }
@@ -112,6 +113,7 @@ textarea{
     @include button;
     width: 279px;
     height: 50px;
+    margin-right: 10px;
     &.previous {
       border: 1px solid $color-primary;
       color: $color-primary;
@@ -151,10 +153,12 @@ textarea{
   .button-small {
     width: 115px;
     height: 33px;
+    margin-right: 0;
   }
   .nav-buttons {
     button {
       width: 100%;
+      margin: 10px 0;
     }
     &.c-b {
       width: 100%;
