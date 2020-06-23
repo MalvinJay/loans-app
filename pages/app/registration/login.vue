@@ -91,6 +91,8 @@ export default {
     }
   },
   mounted () {
+    // eslint-disable-next-line no-console
+    console.log('Router', this.$router)
     this.$store.commit('local/SET_LOGOUT')
   },
   methods: {
@@ -107,8 +109,14 @@ export default {
             position: 'top-center',
             duration: 5000
           })
-          // this.$router.push('/app/dashboard')
-          window.location = '/app/dashboard'
+          this.$store.dispatch('loan/fetchLoanDetails')
+            .finally(() => {
+              if (this.$store.state.loan.loandetails.status === 'complete') {
+                window.location = '/app/dashboard'
+              } else {
+                window.location = '/app/loanapplication'
+              }
+            })
         })
         .catch((error) => {
           // console.log('Error:', error)
@@ -167,8 +175,6 @@ export default {
   vertical-align: middle;
 }
 .signin-container {
-  // height: 80%;
-  // background-color: honeydew;
   margin: 0px auto;
   margin: 53px 73px;
 }
@@ -184,6 +190,18 @@ export default {
   flex-direction: column;
   height: 800px;
   justify-content: center;
+
+  img {
+    animation: 300ms ease-out 0s 1 slideInFromLeft;
+  }
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-4%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }
 .right {
   height: 1000px;

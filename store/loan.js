@@ -79,24 +79,24 @@ export const actions = {
         })
     })
   },
-  getPDF ({ commit }) {
+  getPDF ({ commit, state }, type) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = '/current_application'
+      const url = '/documents/loan-' + type + '/' + state.loandetails.data.id
       const config = {
-        responseType: 'arraybuffer',
+        // responseType: 'arraybuffer',
         headers: {
-          Accept: 'application/pdf'
+          Accept: 'application/json'
         }
       }
 
-      this.$axios.$get(url, config)
+      this.$axios.$post(url, config)
         .then((response) => {
-          commit('SET_LOANDETAILS', response.data)
+          // commit('SET_LOANDETAILS', response.data)
           commit('SET_STATE', 'DATA')
-          resolve(response)
+          resolve(response.data.url)
         }).catch((error) => {
-          localStorage.setItem('loanStatus', 'incomplete')
+          commit('SET_STATE', 'DATA')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)
         })

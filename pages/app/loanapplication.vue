@@ -276,4 +276,9 @@ table {
     }
   }
 }
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
+  }
+}
 </style>

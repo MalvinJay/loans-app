@@ -109,8 +109,7 @@ export default {
       return this.loanStatus === 'complete'
     }
   },
-  created () {
-    this.$store.dispatch('applicant/fetchApplicant')
+  beforeCreate () {
     this.$store.dispatch('loan/fetchLoanDetails')
       .then((response) => {
         if (this.$store.state.loan.loandetails.status !== 'complete') {
@@ -126,6 +125,7 @@ export default {
           this.$router.push('/app/loanapplication')
         }
       })
+    this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('queries/fetchQueries')
   },
   methods: {
@@ -225,12 +225,91 @@ main {
   margin-top: 100px;
 }
 @include for-tablet-portrait-only {
+.overlay {
+    background-attachment: fixed;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    transition: opacity 0.3s ease;
+  }
   .sidebar {
-    width: 0;
-    display: none;
+    z-index: 1000;
+    margin-left: -14rem;
+    transition: transform 0.3s ease;
+    padding-left: 16px;
+    .links {
+      ul {
+        li {
+          font-size: 12px;
+          a {
+            img {
+              width: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+  .block {
+    transform: translateX(14rem);
+    width: 20rem;
+    z-index: 1000;
+    .close {
+      display: block;
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 21px;
+      top: 5%;
+    }
   }
   .right {
+    width: 100%;
     margin-left: 0 !important;
+    .top-bar {
+      padding: 10px 20px;
+      width: 100%;
+      height: 70px;
+      display: flex;
+      justify-content: space-between;
+      // position: absolute;
+      .logo {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-left: 0;
+        img {
+          width: 100px;
+          padding-left: 10px;
+          &:nth-child(1) {
+            padding: 0;
+            display: block;
+            height: 30px;
+            width: auto;
+          }
+        }
+      }
+      .r-s, .r-s button, .r-s .profile {
+        margin: 0 auto;
+
+        .button-small {
+          width: 80px;
+          height: 30px;
+          padding: 7px 18px;
+          margin-left: 10px;
+        }
+      }
+      .profile {
+        display: flex;
+      }
+    }
+    .content {
+      margin-top: 70px;
+    }
   }
 }
 ::-webkit-scrollbar {
