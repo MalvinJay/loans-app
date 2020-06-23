@@ -237,12 +237,6 @@ export default {
     general () {
       return this.$store.state.api.general
     },
-    // requestedLoanAmount () {
-    //   return this.$store.getters['api/requestedLoanAmount']
-    // },
-    // fundRoles () {
-    //   return this.$store.getters['pages/fundRoles']
-    // },
     ...mapGetters({
       requestedLoanAmount: 'api/requestedLoanAmout',
       fundRoles: 'pages/fundRoles',
