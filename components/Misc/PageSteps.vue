@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Checks from './Checks'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 export default {
@@ -48,6 +49,12 @@ export default {
       ]
     }
   },
+  computed: {
+    ...mapGetters({
+      businessScale: 'pages/businessScale',
+      isStartup: 'pages/isStartup'
+    })
+  },
   watch: {
     current (val) {
       this.status.forEach((item, index) => {
@@ -59,6 +66,11 @@ export default {
           item.status = 'pending'
         }
       })
+    }
+  },
+  mounted () {
+    if (this.businessScale === '1' || this.businessScale === '2' || this.isStartup === false) {
+      this.status = this.status.filter(item => item.name !== 'Documents Upload')
     }
   }
 }

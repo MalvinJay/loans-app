@@ -176,11 +176,13 @@ export default {
         duration: 10000
       })
 
-      this.$store.dispatch('api/verifyApplication', applyObject).then((res) => {
-        window.location = '/loans/0/form'
-      })
+      this.$store.dispatch('api/verifyApplication', applyObject)
+        .then((res) => {
+          window.location = '/loans/0/form'
+        })
         .catch(() => {
-          this.$toast.error('Wrong Id number provided')
+          this.$toast.error('Could not verify ID')
+          this.$toast.error('Please make sure you enter a valid ID')
         })
     }
   }
