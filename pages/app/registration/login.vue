@@ -230,6 +230,75 @@ export default {
   }
 }
 @include for-tablet-portrait-only {
+  .signin-container {
+    margin: 20px;
+
+    .body {
+      display: flex;
+      flex-direction: row;
+      .left {
+        width: 50%;
+        height: auto;
+      }
+      .right {
+        padding: 20px 0;
+        height: auto;
+        width: 50%;
+        .logo {
+          img {
+            margin: 1rem auto 5rem;
+          }
+        }
+        .r-c {
+          margin: 50px 20px;
+
+          form {
+            button {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media (min-width: 900px) and (max-width: 1560px) {
+.signin-container {
+    margin: 50px;
+
+    .body {
+      display: flex;
+      flex-direction: row;
+      .left {
+        width: 50%;
+        height: auto;
+      }
+      .right {
+        padding: 80px 0;
+        height: auto;
+        width: 50%;
+        .logo {
+          img {
+            margin: 1rem auto 7rem;
+          }
+        }
+        .r-c {
+          margin: 100px 40px;
+
+          form {
+            width: 100%;
+            div {
+              width: 100%;
+              button {
+                width: 100%;
+                max-width: 469px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }
 @include for-phone-only {
   .signin {
@@ -237,19 +306,21 @@ export default {
     background: $white!important;
     .main {
       display: block;
+      background-color: $color-mild-pink;
       .signin-container {
         margin: 0;
         .body {
           flex-direction: column;
           align-items: flex-start;
-          height: 100vh;
+          height: 100%;
+          overflow-x: hidden;
           .left {
             position: relative;
             left: 0px;
             // top: -68px;
             width: 100%;
             // height: 381.39px;
-            height: 50%;
+            max-height: 40vh;
             background: url('../../../assets/img/sign_in.png');
             background-repeat: no-repeat;
             background-position: center;
@@ -262,7 +333,7 @@ export default {
             display: flex;
             flex-direction: column;
             width: 100%;
-            height: auto;
+            height: 60vh;
             padding: 20px 20px;
             background-color: $color-mild-pink;
             .logo {
@@ -273,6 +344,9 @@ export default {
             }
             .r-c {
               margin: 0;
+              form {
+                padding-bottom: 10px;
+              }
               p {
                 line-height: 22px;
               }

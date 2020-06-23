@@ -143,7 +143,7 @@ export default {
   }
   .logo {
     left: 5rem;
-    margin-top: 2rem;
+    margin-top: 42px;
     img {
       height: 30px;
     }
