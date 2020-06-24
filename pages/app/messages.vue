@@ -262,4 +262,12 @@ button {
     width: 95%;
   }
 }
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
+  }
+}
+.modal-container {
+  width: 90%!important;
+}
 </style>

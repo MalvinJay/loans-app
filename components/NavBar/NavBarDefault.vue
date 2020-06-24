@@ -14,7 +14,9 @@
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
-        <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
+        <template v-if="redundant">
+          <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
+        </template>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
     </div>
@@ -65,6 +67,16 @@ export default {
   computed: {
     token () {
       return this.$store.state.auth.loggedIn
+    },
+    redundant () {
+      const current = this.$router.currentRoute.name
+      if (current === 'apply') {
+        return false
+      } else if (current === 'loans-amount-form') {
+        return false
+      } else {
+        return true
+      }
     }
   }
 }

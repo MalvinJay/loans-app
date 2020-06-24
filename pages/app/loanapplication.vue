@@ -24,13 +24,13 @@
           <tbody>
             <tr>
               <td>
-                {{ loanDetails.first_name || 'N/A' }} {{ loanDetails.last_name || 'N/A' }}
+                {{ loanDetails.first_name || 'N/A' }} {{ loanDetails.last_name || '' }}
               </td>
               <td>
                 N/A
               </td>
               <td class="text blue">
-                {{ loanDetails.status }}
+                {{ loanDetails.status || 'N/A' }}
               </td>
               <td>
                 <button class="button-small">
@@ -51,7 +51,7 @@
               </span>
               <div class="md:p-4 mt-4 cursor-pointer flex justify-center rounded-full shadow">
                 <div @click="continueApplication">
-                  <img src="@/assets/img/go-back_resigtration.svg" class="w-10" alt="">
+                  <img src="@/assets/img/go-back_resigtration.svg" class="w-8" alt="">
                 </div>
               </div>
             </div>
@@ -83,12 +83,12 @@ export default {
       return this.loanStatus === 'complete'
     }
   },
-  mounted () {
+  beforeCreate () {
     this.$store.dispatch('loan/fetchLoanDetails')
   },
   methods: {
     continueApplication () {
-      localStorage.clear()
+      // window.location = '/loans/0/form'
       this.$router.push('/loans/0/form')
     }
   }
@@ -274,6 +274,11 @@ table {
     .redirect {
       padding: 5px;
     }
+  }
+}
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
   }
 }
 </style>

@@ -44,11 +44,6 @@ export const actions = {
   },
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {
-      // const config = {
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   }
-      // }
       const url = '/login'
       this.$axios.$post(url, data)
         .then((response) => {

@@ -66,11 +66,21 @@
             </p>
           </div>
           <div class="flex c-grid">
-            <div class="box bg-white cursor-pointer text-white pt-2 file_area">
-              <img src="@/assets/img/pdf.png" alt srcset>
-              <p class="text-center">
-                Loan Agreement
-              </p>
+            <div class="relative box bg-white cursor-pointer text-white file_area">
+              <template v-if="loanDetails.status_number === '1' || loanDetails.status_number === '5' || loanDetails.status_number === '6'" @click="getPDF('agreement')">
+                <span class="tooltip absolute py-1 px-2 bg-black text-white text-xs w-auto rounded-xs hidden"> Click to Dowloand</span>
+                <img src="@/assets/img/pdf.png" alt srcset>
+                <p class="text-center">
+                  Loan Agreement
+                </p>
+              </template>
+              <template v-else>
+                <div class="flex flex-col items-center text-center cursor-not-allowed h-full">
+                  <!-- <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt=""> -->
+                  <img src="@/assets/img/pdf.png" alt srcset>
+                  <span class="px-4">No Loan Agreement Available</span>
+                </div>
+              </template>
             </div>
             <div class="flex flex-col md:flex-row md:items-center info_area">
               <div class="md:ml-10 flex flex-row items-center md:items-start md:flex-col">
@@ -145,6 +155,23 @@ export default {
   methods: {
     toggleView () {
       this.tabView = 'history'
+    },
+    getPDF (url) {
+      this.$toasted.show('Downloading document ....', {
+        theme: 'toasted-primary',
+        position: 'top-center',
+        duration: 3000
+      })
+      this.$store.dispatch('loan/getPDF', url)
+        .then((response) => {
+          const link = document.createElement('a')
+          link.href = response
+          link.target = '_blank'
+          link.click()
+        })
+        .catch((err) => {
+          this.$toasted.error(err.error)
+        })
     }
   }
 }
@@ -157,6 +184,11 @@ export default {
 .box {
   width: 16rem;
   height: 12.65rem;
+  &:hover {
+    .tooltip {
+      display: block!important;
+    }
+  }
   img {
     margin: 2rem auto;
   }
@@ -221,27 +253,6 @@ export default {
       font-size: 25px;
     }
   }
-  .docs {
-    display: flex;
-    flex-wrap: wrap;
-    .box {
-      width: calc(50% - 10px);
-      margin: 0px 10px 10px 0px;
-    }
-  }
-  .uploadfiles {
-    .box {
-      width: 24rem;
-      img {
-        width: 15%;
-      }
-    }
-  }
-  #messaging {
-    button {
-      width: 120px;
-    }
-  }
   .box {
     padding: 12px;
     .button-sec {
@@ -293,6 +304,15 @@ export default {
           }
         }
       }
+    }
+  }
+}
+
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
     }
   }
 }

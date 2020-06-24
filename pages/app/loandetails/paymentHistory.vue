@@ -177,4 +177,12 @@ table {
     }
   }
 }
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+  }
+}
 </style>
