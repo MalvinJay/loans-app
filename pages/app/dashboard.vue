@@ -22,7 +22,7 @@
         </p>
         <div class="my-3">
           <p>
-            Repayment isn't due until 13-11-2020 but you can choose to start repaying at anytime
+            Repayment isn't due until DD/MM/2020 but you can choose to start repaying at anytime
           </p>
         </div>
 
@@ -54,25 +54,52 @@
           Application and Documents
         </p>
         <div class="docs flex flex-wrap text-white gap-10 my-5">
-          <div v-for="(document, index) in loanDocuments" :key="index" class="box bg-white cursor-pointer" @click="getPDF()">
-            <template v-if="document.type === 'Primary Identity'">
-              <img src="@/assets/img/google-docs.png" alt srcset>
-            </template>
-            <template v-else>
-              <img src="@/assets/img/pdf.png" alt srcset>
-            </template>
+          <div class="relative box bg-white cursor-pointer" @click="getPDF('details')">
+            <span class="tooltip absolute py-1 px-2 bg-black text-white text-xs w-auto rounded-xs hidden"> Click to Dowloand</span>
+            <img src="@/assets/img/pdf.png" alt srcset>
             <p class="text-center">
-              {{ document.type }}
+              Loan Details
             </p>
+          </div>
+          <div class="relative box bg-white cursor-pointer">
+            <template v-if="loanDetails.status_number === '1' || loanDetails.status_number === '5' || loanDetails.status_number === '6'" @click="getPDF('agreement')">
+              <span class="tooltip absolute py-1 px-2 bg-black text-white text-xs w-auto rounded-xs hidden"> Click to Dowloand</span>
+              <img src="@/assets/img/pdf.png" alt srcset>
+              <p class="text-center">
+                Loan Agreement
+              </p>
+            </template>
+            <template>
+              <div class="flex flex-col items-center text-center cursor-not-allowed h-full">
+                <!-- <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt=""> -->
+                <img src="@/assets/img/pdf.png" alt srcset>
+                <span class="px-4">No Loan Agreement Available</span>
+              </div>
+            </template>
+          </div>
+          <div v-for="(document, index) in loanDocuments" :key="index" class="relative box bg-white cursor-pointer">
+            <a :href="document.assets[0].file_url" target="_blank" download>
+              <span class="tooltip absolute py-1 px-2 bg-black text-white text-xs w-auto rounded-xs hidden"> Click to Dowloand</span>
+              <template v-if="document.type === 'Primary Identity'">
+                <img src="@/assets/img/google-docs.png" alt srcset>
+              </template>
+              <template v-else>
+                <img src="@/assets/img/pdf.png" alt srcset>
+              </template>
+              <p class="text-center">
+                {{ document.type }}
+              </p>
+
+            </a>
           </div>
         </div>
         <div>
           <p class="text-2xl md:text-xl block font-semibold">
             Documents Upload
           </p>
-          <div class="uploadfiles md:flex gap-10 my-5">
+          <div class="uploadfiles flex flex-wrap gap-10 my-5">
             <template>
-              <div v-for="(upload, index) in possibleUploads" :key="index" class="md:pr-10 py-4">
+              <div v-for="(upload, index) in possibleUploads" :key="index" class="pr-4 sm:pr-6 md:pr-8 py-4">
                 <label class="block text-gray-900 mb-5 h-10 text-lg sentence">
                   {{ upload.name }}
                   <br v-if="upload.period">{{ upload.period }}
@@ -173,6 +200,16 @@ export default {
           name: 'SSNIT Payment',
           period: '(2019)'
         }
+      ],
+      defaultDocuments: [
+        {
+          name: 'Loan Details',
+          url: 'details'
+        },
+        {
+          name: 'Loan Agreement',
+          url: 'agreement'
+        }
       ]
     }
   },
@@ -242,26 +279,24 @@ export default {
           this.$toasted.error(error.error)
         })
     },
-    getPDF () {
-      // this.$store.dispatch('dashboard/getPDF')
-      //   .then((response) => {
-      //     // this.openModal()
-      //     // const blob = new Blob([response.data], { type: 'application/pdf' })
-      //     // const link = document.createElement('a')
-      //     // link.href = window.URL.createObjectURL(blob)
-      //     // link.download = 'currentApplication.pdf'
-      //     // link.click()
-      //     // this.closeModal()
-      //   })
-      //   .catch((err) => {
-      //     // eslint-disable-next-line no-console
-      //     this.$toasted.error(err.response.data)
-      //   })
+    getPDF (url) {
       this.$toasted.show('Downloading document ....', {
         theme: 'toasted-primary',
         position: 'top-center',
-        duration: 5000
+        duration: 3000
       })
+      this.$store.dispatch('loan/getPDF', url)
+        .then((response) => {
+          // this.openModal()
+          // const blob = new Blob([response.data], { type: 'application/pdf' })
+          const link = document.createElement('a')
+          link.href = response
+          link.target = '_blank'
+          link.click()
+        })
+        .catch((err) => {
+          this.$toasted.error(err.error)
+        })
     }
   }
 }
@@ -278,6 +313,11 @@ export default {
   width: 16rem;
   height: 12.65rem;
   border-radius: 5px;
+  &:hover {
+    .tooltip {
+      display: block!important;
+    }
+  }
   img {
     margin: 2rem auto;
   }
@@ -288,7 +328,8 @@ export default {
 .docs {
   // grid-template-columns: 16rem 16rem 16rem 16rem;
   .box {
-    margin: 10px 40px 10px 0px;
+    margin: 10px 30px 10px 0px;
+    background: #394777;
     img {
       margin-bottom: 3rem;
     }
@@ -302,9 +343,9 @@ export default {
     &:nth-child(2) {
       background: #5a8ff2;
     }
-    &:nth-child(3) {
-      background: #394777;
-    }
+    // &:nth-child(3) {
+    //   background: #394777;
+    // }
   }
 }
 .d-i {
@@ -359,7 +400,37 @@ export default {
     transform:rotate(360deg);
   }
 }
+
 @include for-phone-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
+  }
+}
+@include for-tablet-portrait-only {
   .app {
     padding: 0 20px!important;
     .overview p {

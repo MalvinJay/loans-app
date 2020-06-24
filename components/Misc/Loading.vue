@@ -51,9 +51,15 @@ export default {
   }
 }
 @include for-phone-only {
-.loading {
-  left: 0!important;
-  top: 70px!important;
+  .loading {
+    left: 0!important;
+    top: 70px!important;
+  }
 }
+@include for-tablet-portrait-only {
+  .loading {
+    left: 0!important;
+    top: 100px!important;
+  }
 }
 </style>

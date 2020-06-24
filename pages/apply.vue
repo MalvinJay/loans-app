@@ -216,6 +216,10 @@ export default {
 <style lang="scss" scoped>
 input[type=checkbox] {
   zoom: 2;
+  background-color: red!important;
+  &:checked::after, &:checked::before  {
+    background-color: $color-primary
+  }
 }
 .grid {
   grid-template-columns: repeat(2, 1fr);
