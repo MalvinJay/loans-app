@@ -51,6 +51,7 @@ export const actions = {
           resolve(response)
         }).catch((error) => {
           localStorage.setItem('loanStatus', 'incomplete')
+          commit('SET_STATE', 'DATA')
           commit('SET_ERROR', error.response.data)
           reject(error.response.data)
         })
