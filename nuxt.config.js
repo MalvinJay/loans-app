@@ -83,8 +83,15 @@ export default {
     '@nuxtjs/dotenv',
     '@nuxtjs/style-resources',
     '@nuxtjs/toast',
-    '@nuxtjs/auth'
+    '@nuxtjs/auth',
+    '@nuxtjs/recaptcha'
   ],
+  recaptcha: {
+    hideBadge: true,
+    siteKey: '6LclZakZAAAAAEukShZ6S6w-LxcryhBRw6_k4_V0',
+    version: 2,
+    size: 'visible'
+  },
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options

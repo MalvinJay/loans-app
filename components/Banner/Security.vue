@@ -5,7 +5,7 @@
     </h1>
     <div class="security flex justify-center text-center">
       <div class="s-l-s">
-        <div class="img">
+        <div class="img pr-4 sm:pb-4">
           <img src="@/assets/img/lock.png" alt="" srcset="">
         </div>
         <div>
@@ -20,7 +20,7 @@
         </div>
       </div>
       <div class="s-r-s ">
-        <div class="img">
+        <div class="img pr-4 sm:pb-4">
           <img src="@/assets/img/privacy.png" alt="" srcset="">
         </div>
         <div>
@@ -59,6 +59,9 @@ img {
   margin: 0 auto;
 }
 @include for-phone-only {
+  .main {
+    height: auto;
+  }
   .security {
     flex-direction: column;
     text-align: left;
