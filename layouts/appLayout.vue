@@ -47,7 +47,7 @@
         </div>
         <div class="r-s flex items-center">
           <div class="profile flex justify-center items-center">
-            <span>Hi, <span class="font-bold">{{ Details.first_name }}</span></span>
+            <span>Hi, <span class="font-bold sentence">{{ Details.first_name }}</span></span>
           </div>
           <button class="button-small" @click="logout">
             SIGN OUT

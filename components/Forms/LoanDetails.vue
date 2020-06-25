@@ -881,6 +881,9 @@ export default {
 label.mobile {
   display: none;
 }
+.momo {
+  width: 100%;
+}
 @include for-phone-only {
   label.mobile {
     display: block;

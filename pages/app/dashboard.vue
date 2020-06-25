@@ -17,7 +17,7 @@
         <div class="my-5">
           <ProgressBar :max="0" :value="0" />
         </div>
-        <p class="text-2xl md:text-xl block font-semibold">
+        <p class="text-2xl md:text-xl block font-semibold pt-2 md:pt-6">
           Payment Method
         </p>
         <div class="my-3">
@@ -50,7 +50,7 @@
       ==========================DOCUMENTS SECTION====================
       ==============================================================-->
       <section id="docs" class="my-5">
-        <p class="text-2xl md:text-xl">
+        <p class="text-2xl md:text-xl font-semibold pt-2 md:pt-6">
           Application and Documents
         </p>
         <div class="docs flex flex-wrap text-white gap-10 my-5">
@@ -94,7 +94,7 @@
           </div>
         </div>
         <div>
-          <p class="text-2xl md:text-xl block font-semibold">
+          <p class="text-2xl md:text-xl block font-semibold pt-2 md:pt-6">
             Documents Upload
           </p>
           <div class="uploadfiles flex flex-wrap gap-10 my-5">
@@ -143,9 +143,9 @@
       <!-- ==============================================================
       ==========================MESSAGING SECTION====================
       ==============================================================-->
-      <section id="messaging" class="my-10">
+      <section id="messaging" class="my-10 pb-20">
         <div class="flex justify-between w-full">
-          <p class="text-xl">
+          <p class="text-xl font-semibold pt-2 md:pt-6">
             Messages
           </p>
           <div class="flex gap-3">
@@ -160,7 +160,7 @@
           </div>
         </div>
         <template v-for="(message, index) in messages.slice(0,2)">
-          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id-prop="message.id" :body="message.messages" />
+          <Accordion :key="index" :body="message" />
         </template>
       </section>
     </div>
@@ -414,6 +414,10 @@ export default {
     .box {
       width: calc(50% - 10px);
       margin: 0px 10px 10px 0px;
+      img {
+        margin: 2rem auto;
+        margin-bottom: 15px;
+      }
     }
   }
   .uploadfiles {
