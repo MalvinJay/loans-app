@@ -67,7 +67,7 @@
           </div>
           <div class="flex c-grid">
             <div class="relative box bg-white cursor-pointer text-white file_area">
-              <template v-if="loanDetails.status_number === '1' || loanDetails.status_number === '5' || loanDetails.status_number === '6'" @click="getPDF('agreement')">
+              <template v-if="agreement" @click="getPDF('agreement')">
                 <span class="tooltip absolute py-1 px-2 bg-black text-white text-xs w-auto rounded-xs hidden"> Click to Dowloand</span>
                 <img src="@/assets/img/pdf.png" alt srcset>
                 <p class="text-center">
@@ -78,7 +78,7 @@
                 <div class="flex flex-col items-center text-center cursor-not-allowed h-full">
                   <!-- <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt=""> -->
                   <img src="@/assets/img/pdf.png" alt srcset>
-                  <span class="px-4">No Loan Agreement Available</span>
+                  <span class="md:px-4">No Loan Agreement Available</span>
                 </div>
               </template>
             </div>
@@ -103,8 +103,8 @@
               </div>
             </div>
             <div class="ml-10 mt-10 buttons buttons_area">
-              <button class="button-sec" @click="toggleView">
-                Payment History
+              <button :class="[{'cursor-not-allowed': !agreement}, 'button-sec']">
+                Download
               </button>
               <button class="button-sec print">
                 Print
@@ -144,11 +144,20 @@ export default {
     }),
     state () {
       return this.loansState === 'LOADING'
+    },
+    agreement () {
+      if (this.loanDetails.status_number === '1' || this.loanDetails.status_number === '5' || this.loanDetails.status_number === '6') {
+        return true
+      } else {
+        return false
+      }
     }
   },
   mounted () {
     this.tabView = 'details'
     EventBus.$on('goBack', () => {
+      // eslint-disable-next-line no-console
+      console.log('Event called')
       this.tabView = 'details'
     })
   },
@@ -225,13 +234,18 @@ export default {
     }
   }
 }
+.cursor-not-allowed {
+  cursor: not-allowed!important;
+}
 #agreement {
   .box {
     background: #5a8ff2;
   }
   .c-grid {
     display: grid;
-    grid-template-columns: 200px 1fr;
+    // grid-template-columns: 200px 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-template-rows: repeat(auto-fit, minmax(100px, 1fr));
     grid-template: "file_area info_area"
     "file_area buttons_area";
   }
@@ -278,6 +292,7 @@ export default {
     .file_area {
       img {
         margin: 1rem auto;
+        margin-bottom: 15px;
       }
     }
     .buttons_area {

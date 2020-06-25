@@ -14,7 +14,7 @@
       </div>
       <div v-if="messages.length > 0">
         <template v-for="(message, index) in messages">
-          <Accordion :key="index" :head="message.messages[0].sender" :identifier="message.identifier" :id-prop="message.id" :body="message.messages" />
+          <Accordion :key="index" :body="message" />
         </template>
       </div>
       <div v-else class="flex items-center justify-center w-full pt-6 md:pt-56">
@@ -260,6 +260,12 @@ button {
   }
   .modal-container {
     width: 95%;
+    padding: 10px;
+  }
+}
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
   }
 }
 @include for-tablet-portrait-only {

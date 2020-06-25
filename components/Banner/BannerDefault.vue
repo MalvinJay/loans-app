@@ -20,8 +20,8 @@
         </a>
       </div>
     </div>
-    <div class="r-s">
-      <img src="@/assets/img/1_2.png" alt srcset>
+    <div class="r-s flex justify-center items-center">
+      <img src="@/assets/img/1_2.png" class="w-11/12" alt srcset>
     </div>
   </div>
 </template>
@@ -57,6 +57,9 @@ export default {}
 @include for-desktop-up {
   .l-s {
     width: 40%;
+  }
+  .r-s {
+    width: 50%;
   }
 }
 @include for-tablet-landscape-only {

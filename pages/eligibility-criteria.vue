@@ -1,10 +1,10 @@
 <template>
   <div>
-    <section id="criteria" class="py-40 px-40">
+    <section id="criteria" class="py-8 md:py-40 px-40">
       <p class="text-center text-4xl font-medium mt-5">
         Eligibility Criteria
       </p>
-      <div class="mt-32">
+      <div class="mt-8 md:mt-32">
         <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
@@ -66,7 +66,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-32">
+      <div class="mt-8 md:mt-32">
         <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
@@ -118,7 +118,7 @@
           </div>
         </div>
       </div>
-      <div class="mt-24">
+      <div class="mt-8 md:mt-24">
         <div class="point flex gap-10">
           <div class="bullet">
             <div class="mt-2 mr-2 rounded-full h-4 w-4 flex items-center justify-center" />
@@ -144,37 +144,37 @@
             <div class="grid priorities mt-8">
               <div class="box pb-8">
                 <img src="@/assets/img/vegetable.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Agriculture/Agribusiness
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/sanitation.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Sanitation
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/digital.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Digital Economy
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/shirt.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Garment and Textiles
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/logistics.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Logistics
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/stethoscope.png" alt="">
-                <p class="text-center">
+                <p class="text-center px-2 md:p-0 break-words">
                   Health <br>
                   (Centers/Pharmaceuticals)
                 </p>
@@ -244,11 +244,11 @@
         </div>
       </div>
     </section>
-    <section id="limitations" class="py-40 px-40">
-      <p class="text-4xl font-medium mt-5">
+    <section id="limitations" class="py-10 md:py-40 px-40">
+      <p class="text-3xl md:text-4xl font-medium mt-5">
         EXCLUSIONS/LIMITATIONS
       </p>
-      <div class="mt-32 limitations">
+      <div class="mt-8 mr-8 md:mt-32 limitations">
         <div class="flex gap-10 my-10">
           <div class="img mr-4">
             <img src="@/assets/img/cancel.png" alt="">
@@ -277,7 +277,7 @@
             <p class="text-xl">
               Businesses cannot be those that do not meet basic social, environmental and governance compliance criteria
             </p>
-            <div class="flex mt-8 flex-wrap">
+            <div class="flex mr-12 mt-8 flex-wrap">
               <div class="card shadow-lg py-4 px-6 flex flex-col justify-center text-red-600 font-medium">
                 Alcohol
               </div>
@@ -288,7 +288,7 @@
                 Weapons Manufacture & War-related Activities
               </div>
             </div>
-            <div class="flex mt-8 flex-wrap">
+            <div class="flex mr-12 mt-8 flex-wrap">
               <div class="card shadow-lg py-4 px-6 flex flex-col justify-center text-red-600 font-medium">
                 Gambling/betting
               </div>
@@ -433,8 +433,9 @@ export default {
   }
   .priorities {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
     .box {
-      width: 14rem;
+      width: 13rem;
     }
   }
   .point {
