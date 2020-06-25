@@ -49,7 +49,7 @@
               </div>
               <div>
                 <p class="text-xl">
-                  Detail of product and services.
+                  Detail of product and services
                 </p>
               </div>
             </div>
@@ -59,7 +59,7 @@
               </div>
               <div>
                 <p class="text-xl">
-                  Demonstrate that COVID-19 had had negative impact on your business.
+                  Demonstrate that COVID-19 had had negative impact on your business
                 </p>
               </div>
             </div>
@@ -238,7 +238,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Enterprise must be willing and committed to continue maintaining the operation of their business via the accessing of a loan (either with or without the grant) AND are unable to avail the required loan collateral
+              Enterprise must be willing and committed to continue maintaining the operation of their business via the accessing of a loan (either with or without the grant) and are unable to avail the required loan collateral
             </p>
           </div>
         </div>
