@@ -6,7 +6,7 @@
         <div :class="[ blocked ? 'bg-red-600' : 'chat--active' , 'indicator mr-4']" />
         <div class="title text-xl">
           <span class="capitalize">
-            {{ body.messages[0].sender }} - {{ body.identifier }}
+            {{ body.messages[0].sender }} - {{ loanDetails.loan_identifier }}
           </span>
         </div>
         <div v-if="blocked" class="flex items-center bg-red-600 rounded ml-4">
@@ -57,6 +57,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'Accordion',
   props: {
@@ -74,6 +75,9 @@ export default {
     }
   },
   computed: {
+    ...mapGetters({
+      loanDetails: 'loan/loanDetails'
+    }),
     blocked () {
       if (this.body.status === 2) {
         return true
@@ -81,10 +85,6 @@ export default {
         return false
       }
     }
-  },
-  mounted () {
-    // eslint-disable-next-line no-console
-    console.log('Body:', this.body)
   },
   methods: {
     respondQuery () {

@@ -1,10 +1,10 @@
 <template>
   <div class="accordion p-5 my-4">
-    <div class="flex justify-between">
+    <div class="flex justify-between cursor-pointer" @click="active = !active">
       <div class="title text-xl">
         <slot name="header" />
       </div>
-      <div class="icon inset-y-0 items-center text-gray-700 px-5" :class="{active: active}" @click="active = !active">
+      <div class="icon inset-y-0 items-center text-gray-700 px-5" :class="{active: active}">
         <svg class="fill-current h-4 w-4 cursor-pointer" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" /></svg>
       </div>
     </div>

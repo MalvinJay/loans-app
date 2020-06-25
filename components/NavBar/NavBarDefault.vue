@@ -14,7 +14,7 @@
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
-        <a href="/apply" :class="{invisible: !redundant}"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
+        <a href="/apply" :class="{invisible: !redundant}"> <input type="button" value="Apply Now" class="uppercase button-small mr-2 cursor-pointer"></a>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
     </div>

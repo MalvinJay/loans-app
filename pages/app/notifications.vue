@@ -10,9 +10,42 @@
       <div class="notifications">
         <template v-if="notifications.length > 0">
           <template v-for="(notification, index) in notifications">
-            <p :key="index" class="pb-4">
-              {{ notification }}
-            </p>
+            <div :key="index" class="pb-4">
+              <!-- {{ notification }} -->
+              <table class="w-full">
+                <thead>
+                  <tr>
+                    <th>
+                      Message
+                    </th>
+                    <th>Sent At</th>
+                    <!-- <th>
+                      Paid With
+                    </th> -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="card">
+                    <td class="py-4">
+                      {{ notification.data.message }}
+                    </td>
+                    <td class="py-4">
+                      {{ formatDate(notification.created_at) }}
+                    </td>
+                  </tr>
+                </tbody>
+                <!-- <div class="table flex flex-col">
+                  <div class="flex justify-between w-full">
+                    <div class="py-4 w-1/2">
+                      {{ notification.data.message }}
+                    </div>
+                    <div class="py-4 w-1/2">
+                      {{ notification.created_at }}
+                    </div>
+                  </div>
+                </div> -->
+              </table>
+            </div>
           </template>
         </template>
         <div v-else class="flex items-center justify-center h-64">
@@ -49,6 +82,14 @@ export default {
   },
   created () {
     this.$store.dispatch('notifications/getNotifications')
+  },
+  methods: {
+    formatDate (data) {
+      const time = data.split('T')
+      // const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
+      // const [{ value: month },, { value: day },, { value: year }] = dateTimeFormat.formatToParts(time[0])
+      return time[0]
+    }
   }
 }
 </script>
@@ -68,7 +109,41 @@ button {
   height: 40px;
   font-size: 0.8rem;
 }
+table {
+  table-layout: fixed;
+  width: 100%;
+  height: 100%;
+  thead {
+    background-color: white;
+    text-align: left;
+    height: 4rem;
+    padding-left: 2rem;
+    th {
+      padding: 14px 0;
+      &:first-child {
+        padding-left: 2rem;
+      }
+    }
+  }
+  tbody {
+    td {
+      padding-top: 1rem;
+      padding-bottom: 1rem;
+      &:first-child {
+        padding-left: 2rem;
+      }
+    }
+  }
+}
+.card {
+  box-shadow: 0 2px 12px 0 rgba(0,0,0,.1);
+}
 @include for-phone-only {
+  table {
+    thead {
+      background: none;
+    }
+  }
   .app {
     padding: 0 20px!important;
     .overview p {

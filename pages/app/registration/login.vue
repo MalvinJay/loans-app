@@ -95,8 +95,7 @@ export default {
     }
   },
   mounted () {
-    // eslint-disable-next-line no-console
-    console.log('Router', this.$router)
+    this.$auth.logout()
     this.$store.commit('local/SET_LOGOUT')
   },
   methods: {

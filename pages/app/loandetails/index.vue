@@ -106,7 +106,7 @@
               <button :class="[{'cursor-not-allowed': !agreement}, 'button-sec']">
                 Download
               </button>
-              <button class="button-sec print">
+              <button :class="[{'cursor-not-allowed': !agreement}, 'button-sec print']">
                 Print
               </button>
             </div>

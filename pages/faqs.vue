@@ -28,7 +28,7 @@
           3. Can I apply if I have no audited financial statements?
         </template>
         <template v-slot:body>
-          Yes. You will be required to provide basic information on your business such as total revenue/sales and total expenses, but do not need to have documents prepared by an accountant
+          Yes. You will be required to provide basic information on your business such as total revenue/sales and total expenses, but do not need to have documents prepared by an accountant.
         </template>
       </Accordion>
       <Accordion>
@@ -36,7 +36,7 @@
           4. When can businesses apply?
         </template>
         <template v-slot:body>
-          Businesses can start applying now. Applications were opened to the public in the 1stweek of July 2020 and will continue for 2 months or until the funds run out
+          Businesses can start applying now. Applications were opened to the public in the 1stweek of July 2020 and will continue for 2 months or until the funds run out.
         </template>
       </Accordion>
       <Accordion>
@@ -44,7 +44,7 @@
           5. When will the programme application window be closed?
         </template>
         <template v-slot:body>
-          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the application process to be closed by the end of September 2020
+          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the application process to be closed by the end of September 2020.
         </template>
       </Accordion>
       <Accordion>
@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit <a href="https://gra.gov.gh/tin/get-a-in/">https://gra.gov.gh/tin/get-a-in/</a> to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN          <div class="w-full text-left" />
+          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit <a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a> to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.<div class="w-full text-left" />
         </template>
       </Accordion>
       <Accordion>
@@ -76,7 +76,7 @@
           9. How can I apply for the fund?
         </template>
         <template v-slot:body>
-          There are several avenues to apply for the fund: visit our website: www.mcfrelief.nbssi.gov.gh; or call the NBSSI Helpline on 030 274 7777; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
+          There are several avenues to apply for the fund: visit our website: <a href="www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">www.mcfrelief.nbssi.gov.gh</a>; or call the NBSSI Helpline on <b>030 274 7777</b> ; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
         </template>
       </Accordion>
       <Accordion>
@@ -181,7 +181,7 @@
           13. How do I check my application status?
         </template>
         <template v-slot:body>
-          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://www.mcfrelief.nbssi.gov.gh">https://www.mcfrelief.nbssi.gov.gh</a>
+          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
         </template>
       </Accordion>
       <Accordion>
@@ -253,8 +253,8 @@
           22. How do I make an official complaint about my problem?
         </template>
         <template v-slot:body>
-          If you have any issue with the system or process, please visit the Client Portal via this website -  https://www.mcfrelief.nbssi.gov.gh
-          and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at 0302 747 777 if you would like to speak to someone.
+          If you have any issue with the system or process, please visit the Client Portal via this website -  <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
+          and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at <b>0302 747 777</b> if you would like to speak to someone.
         </template>
       </Accordion>
       <Accordion>
@@ -286,7 +286,7 @@
           26. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
-          Note, effective 24th May 2020, all NBSSI client registration fees have been waived until 31st July, 2020 to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at https://nbssi.crisp.help/en/ or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
+          Note, effective 24th May 2020, all NBSSI client registration fees have been waived until 31st July, 2020 to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.crisp.help/en/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.crisp.help/en/</a> or call the Call Centre Helpline on <b>0302 747 777</b>  or visit the nearest NBSSI Business Advisory Centre.
         </template>
       </Accordion>
       <Accordion>
@@ -294,7 +294,7 @@
           27. How can I contact NBSSI for further details?
         </template>
         <template v-slot:body>
-          Applicants seeking further clarification can call the NBSSI Call Centre on 0302 747 777.
+          Applicants seeking further clarification can call the NBSSI Call Centre on <b>0302 747 777</b>.
         </template>
       </Accordion>
     </div>
@@ -341,6 +341,11 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.text-blue-600 {
+    --text-opacity: 1;
+    color: #3182ce!important;
+    color: rgba(49, 130, 206, var(--text-opacity));
+}
 section {
   background-color: $color-white-alt;
 }
