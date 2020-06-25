@@ -14,9 +14,7 @@
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
-        <template v-if="redundant">
-          <a href="/apply"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
-        </template>
+        <a href="/apply" :class="{invisible: !redundant}"> <input type="button" value="Apply Now" class="uppercase button-small mr-2"></a>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
     </div>
@@ -26,21 +24,21 @@
           <div @click="open=false">
             <img src="@/assets/img/Close.png">
           </div>
-          <div class="mt-8">
+          <div class="mt-8 uppercase">
             <ul>
-              <li class="my-4">
+              <li class="my-8">
                 <a href="/">Home</a>
               </li>
-              <li class="my-4">
+              <li class="my-8">
                 <a href="/eligibility-criteria">Eligibility Criteria</a>
               </li>
-              <li class="my-4">
+              <li class="my-8">
                 <a href="/faqs">FAQ</a>
               </li>
-              <li class="my-4">
+              <li class="my-8">
                 <a href="/business-tips">COVID-19 Business tips</a>
               </li>
-              <li class="my-4">
+              <li class="my-8">
                 <a href="/#about-the-programme">About the Programme</a>
               </li>
             </ul>
@@ -206,6 +204,7 @@ export default {
   }
   .r-s {
     right: 1.5rem;
+    line-height: 20px;
     input {
       height: 2rem;
       padding-top: 7px;
@@ -213,7 +212,7 @@ export default {
     }
   }
   .rem-margin {
-    margin-top: 20px;
+    margin-top: 15px;
   }
 }
 @media (max-width: 320px) {

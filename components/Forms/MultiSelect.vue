@@ -84,6 +84,9 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+input[type="checkbox"] {
+  zoom: 1.5
+}
 .container {
   width: 469px;
 }

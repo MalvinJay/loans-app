@@ -3,7 +3,7 @@
     <Modal v-if="showModal" :flex="true">
       <div class="flex flex-col">
         <div class="text-3xl text-center">
-          <i>** <span class="font-bold">Tip</span> **</i>
+          <i>** <span class="font-bold">TIP</span> **</i>
         </div>
         <div class="flex justify-between items-center pt-8">
           <p class="flex flex-col pr-6">
