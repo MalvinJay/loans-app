@@ -463,4 +463,33 @@ export default {
     }
   }
 }
+@include for-tablet-portrait-only {
+  .app {
+    padding: 0 20px!important;
+    .overview p {
+      font-size: 25px;
+    }
+  }
+  .docs {
+    display: flex;
+    flex-wrap: wrap;
+    .box {
+      width: calc(50% - 10px);
+      margin: 0px 10px 10px 0px;
+    }
+  }
+  .uploadfiles {
+    .box {
+      width: 24rem;
+      img {
+        width: 15%;
+      }
+    }
+  }
+  #messaging {
+    button {
+      width: 120px;
+    }
+  }
+}
 </style>

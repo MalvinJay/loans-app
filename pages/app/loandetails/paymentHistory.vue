@@ -35,7 +35,7 @@
               </td>
             </tr> -->
             <tr>
-              <td class="ml-12">
+              <td class="p-12">
                 No Payment History Found
               </td>
             </tr>
