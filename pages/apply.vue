@@ -9,7 +9,7 @@
           <p class="flex flex-col pr-6">
             <span>Have you read the Eligibility Criteria section?</span>
             <nuxt-link to="eligibility-criteria">
-              <span class="font-bold text-xs text-blue"><i>Get info here -></i></span>
+              <span class="font-bold text-sm text-blue"><i>Get info here -></i></span>
             </nuxt-link>
           </p>
           <input v-model="initialChecks.eligibility" name="eligibility" type="checkbox" @change="confirmKnowledge">
@@ -18,7 +18,7 @@
           <p class="flex flex-col pr-6">
             <span>Have you read the FAQs section?</span>
             <nuxt-link to="faqs">
-              <span class="font-bold text-xs text-blue"><i>Get info here -></i></span>
+              <span class="font-bold text-sm text-blue"><i>Get info here -></i></span>
             </nuxt-link>
           </p>
           <input v-model="initialChecks.faqs" name="eligibility" type="checkbox" @change="confirmKnowledge">

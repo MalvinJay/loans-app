@@ -180,7 +180,7 @@ button {
 }
 
 .modal-container {
-  // width: 30%;
+  width: 30%;
   margin: 0px auto;
   padding: 20px 30px;
   background-color: #fff;
@@ -272,8 +272,9 @@ button {
   .app {
     padding: 0 20px!important;
   }
+  .modal-container {
+    width: 70%!important;
+  }
 }
-.modal-container {
-  width: 90%!important;
-}
+
 </style>
