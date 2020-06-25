@@ -3,7 +3,7 @@
     <Modal v-if="showModal" :flex="true">
       <div class="flex flex-col">
         <div class="text-3xl text-center">
-          <i>** <span class="font-bold">TIP</span> **</i>
+          <i>** <span class="font-bold">TIPS</span> **</i>
         </div>
         <div class="flex justify-between items-center pt-8">
           <p class="flex flex-col pr-6">
@@ -33,7 +33,8 @@
         </p>
         <div class="mt-10">
           <validation-observer v-slot="{ handleSubmit }">
-            <form @submit.prevent="handleSubmit(submit)">
+            <!-- <form ref="form" @submit.prevent="handleSubmit(submit)"> -->
+            <form ref="form" @submit.prevent="handleSubmit(onSubmit)">
               <div class="grid">
                 <div class="mb-4">
                   <label class="block text-gray-900 text-sm mb-2">Applicant ID Type <span class="text-red-600">*</span></label>
@@ -79,6 +80,8 @@
                   </ValidationProvider>
                 </div>
               </div>
+              <recaptcha @error="onError" @success="onSuccess" @expired="onExpired" />
+              <small class="text-sm text-red-700 font-bold">{{ recaptchError }}</small>
               <div class="nav-buttons mt-10">
                 <div>
                   <button
@@ -134,8 +137,8 @@ export default {
       image_url: '/icon.png',
       url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
       title: 'Apply For Funding',
-      description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.'
-
+      description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.',
+      recaptchError: null
     }
   },
   computed: {
@@ -161,6 +164,36 @@ export default {
     this.$store.dispatch('pages/getDropDowns')
   },
   methods: {
+    onError (error) {
+      // eslint-disable-next-line no-console
+      console.log('Error happened:', error)
+    },
+    async onSubmit () {
+      try {
+        const token = await this.$recaptcha.getResponse()
+        this.recaptchError = null
+        // eslint-disable-next-line no-console
+        console.log('ReCaptcha token:', token)
+
+        // Token available
+        if (token) {
+          this.submit()
+        }
+        // Reset token
+        await this.$recaptcha.reset()
+      } catch (error) {
+        this.$toast.error('You are a robot')
+        this.recaptchError = 'You are a robot'
+      }
+    },
+    onSuccess (token) {
+      this.recaptchError = null
+      // eslint-disable-next-line no-console
+      console.log('Not a robot')
+    },
+    onExpired () {
+      this.$toast.error('Verification Expired, Try again')
+    },
     confirmKnowledge () {
       if (this.initialChecks.eligibility && this.initialChecks.faqs) {
         localStorage.setItem('userReader', true)

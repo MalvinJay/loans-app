@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="banner flex py-16 justify-between px-16">
+    <div class="banner flex justify-between py-8 px-10 md:p-16">
       <p class="text-3xl b-b">
         Are you ready to fund your business?
       </p>
@@ -10,7 +10,7 @@
         </a>
       </div>
     </div>
-    <footer class="flex py-24 justify-between px-64">
+    <footer class="flex justify-between p-8 md:py-24 md:px-64">
       <div class="l-s h-t">
         <div class="logo mb-10">
           <img src="@/assets/img/logo.png" alt="" srcset="">
@@ -48,13 +48,13 @@
         </p>
       </div>
     </footer>
-    <div class="copyright flex justify-between py-10 text-white px-10 gap-10">
-      <p class="text-sm italic font-bold plendify pr-4">
+    <div class="copyright flex flex-col sm:flex-row justify-between py-10 text-white px-10 gap-10">
+      <div class="text-sm italic font-bold plendify py-4">
         <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">Powered by Plendify</a>
-      </p>
-      <p class="font-light">
+      </div>
+      <div class="font-light py-4">
         &copy; National Board for Small Scale Industries. All rights reserved.
-      </p>
+      </div>
     </div>
   </div>
 </template>
@@ -162,7 +162,7 @@ ul {
   footer {
     height: 100%;
     flex-direction: column;
-    padding: 5rem;
+    // padding: 5rem;
     text-align: left;
     ul {
       justify-content: left;

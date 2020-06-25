@@ -7,7 +7,7 @@
     <div class="div flex">
       <div class="check mr-2">
         <img src="@/assets/img/check.png" alt>
-        <p class="text-white text-sm">
+        <p class="text-white text-sm text-center">
           {{ step }}
         </p>
       </div>

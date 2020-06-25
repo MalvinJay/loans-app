@@ -43,7 +43,7 @@
           </p>
         </div>
       </div>
-      <div class="b-s flex justify-center mx-40">
+      <div class="b-s flex justify-center mb-12 md:m-40 mx-40">
         <div class="l-s mobile-order-2">
           <p class="text-5xl text-gray-500 font-extrabold mb-3">
             03
@@ -115,7 +115,6 @@ export default {
   }
 }
 .b-s {
-  margin-bottom: 10rem;
 }
 .vecs {
   div {

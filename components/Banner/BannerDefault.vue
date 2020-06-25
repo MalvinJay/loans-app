@@ -21,7 +21,7 @@
       </div>
     </div>
     <div class="r-s flex justify-center items-center">
-      <img src="@/assets/img/1_2.png" class="w-11/12" alt srcset>
+      <img src="@/assets/img/1_2.png" class="w-10/12" alt srcset>
     </div>
   </div>
 </template>
@@ -53,6 +53,7 @@ export default {}
 }
 .r-s {
   position: relative;
+  width: 60%;
 }
 @include for-desktop-up {
   .l-s {
@@ -82,6 +83,9 @@ export default {}
         font-size: 1.1rem;
       }
     }
+      .r-s {
+        width: 50%;
+      }
     .l-s {
       padding-top: 0;
       width: 50%;
