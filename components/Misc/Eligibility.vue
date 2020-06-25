@@ -1,5 +1,5 @@
 <template>
-  <div class="py-20 eligibility px-40">
+  <div class="py-20 eligibility px-8 md:px-40">
     <div class="mb-12">
       <p class="text-center text-4xl text-white font-extrabold">
         About the Programme
@@ -10,40 +10,40 @@
         The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:
       </p>
       <div class="points">
-        <ol class="list-disc">
-          <li class="text-xl flex py-1">
+        <div class="list-disc">
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Production and supply chain disruptions, shortages and delays.</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Reduced consumer demand for products and services</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Reduced capital and investment flows</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Labor shortages due to social distancing regulations</span>
-          </li>
-        </ol>
+          </div>
+        </div>
       </div>
       <p class="mt-10 md:text-2xl pb-4">
         The NBSSI Mastercard Foundation Recovery and Resilience Program for MSMEs has been set up to provide financial and business advisory support to MSMEs and start-ups weather the economic downturn caused by the COVID-19 pandemic. Particularly, the Programme will focus on:
       </p>
       <!-- <hr class="pb-4"> -->
       <div class="points sec">
-        <ol class="list-disc">
-          <li class="text-xl flex py-1">
+        <div class="list-disc">
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>MSMEs who need support to survive the COVID-19 pandemic.</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures.</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</span>
-          </li>
-          <li class="text-xl flex py-1">
+          </div>
+          <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses that will focus on digitization to support MSMEs.</span>
-          </li>
-        </ol>
+          </div>
+        </div>
       </div>
     </div>
     <!-- <p class="text-xl font-semibold text-center text-white mb-16">
