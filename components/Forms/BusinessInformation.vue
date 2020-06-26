@@ -3361,12 +3361,22 @@ export default {
     }),
     ...mapState({
       pendingApplication: state => state.api.pendingApplication,
-      applicationObject: state => state.pages.application_object
+      applicationObject: state => state.pages.application_object,
+      generalStoreGeneral: state => state.api.general
     }),
     details: {
       get () {
         if (this.pendingApplication) {
           return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
+    },
+    prefill: {
+      get () {
+        if (this.generalStoreGeneral) {
+          return Object.assign({}, this.generalStoreGeneral)
         } else {
           return {}
         }
@@ -3638,6 +3648,11 @@ export default {
         if (this.pendingApplication !== null) {
           this.$store.commit('api/MERGE_DATA', data)
         }
+      }
+    },
+    prefill: {
+      handler (value) {
+        this.general = value
       }
     }
   },

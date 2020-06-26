@@ -215,12 +215,13 @@ export default {
   justify-content: center;
 
   img {
+    max-height: 600px;
     animation: 300ms ease-out 0s 1 slideInFromLeft;
   }
 }
 @keyframes slideInFromLeft {
   0% {
-    transform: translateX(-4%);
+    transform: translateX(-1%);
   }
   100% {
     transform: translateX(0%);

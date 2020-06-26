@@ -81,6 +81,9 @@ export default {
     }
   },
   created () {
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
     this.$store.dispatch('notifications/getNotifications')
   },
   methods: {

@@ -153,6 +153,11 @@ export default {
       }
     }
   },
+  created () {
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
+  },
   mounted () {
     this.tabView = 'details'
     EventBus.$on('goBack', () => {

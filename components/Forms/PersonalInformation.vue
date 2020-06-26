@@ -222,6 +222,14 @@ export default {
           this.$store.commit('api/MERGE_DATA', data)
         }
       }
+    },
+    personalInfo: {
+      handler (value) {
+        if (value.phone_number) {
+          this.personalInfo.business_phone_number = value.phone_number
+        }
+      },
+      deep: true
     }
   },
   methods: {

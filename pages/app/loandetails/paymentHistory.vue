@@ -54,6 +54,11 @@ export default {
     return {
     }
   },
+  created () {
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
+  },
   methods: {
     goback () {
       EventBus.$emit('goBack')

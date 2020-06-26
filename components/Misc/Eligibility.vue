@@ -10,7 +10,7 @@
         The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:
       </p>
       <div class="points">
-        <div class="list-disc">
+        <div class="">
           <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Production and supply chain disruptions, shortages and delays.</span>
           </div>
@@ -30,7 +30,7 @@
       </p>
       <!-- <hr class="pb-4"> -->
       <div class="points sec">
-        <div class="list-disc">
+        <div class="">
           <div class="text-xl flex py-1">
             <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>MSMEs who need support to survive the COVID-19 pandemic.</span>
           </div>
