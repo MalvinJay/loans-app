@@ -95,6 +95,11 @@ export default {
       return this.messagesState === 'LOADING'
     }
   },
+  created () {
+    if (this.$store.state.loan.loandetails.status !== 'complete') {
+      this.$router.push('/app/loanapplication')
+    }
+  },
   mounted () {
     this.$store.dispatch('queries/fetchQueries')
   },
