@@ -59,7 +59,7 @@
         </div>
         <div>
           <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
+            <img src="@/assets/img/fast_selling.png" alt="">
           </div>
           <div class="mt-5">
             <p class="text-2xl font-medium">
@@ -72,7 +72,7 @@
         </div>
         <div>
           <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
+            <img src="@/assets/img/lev_infrastructure.png" alt="">
           </div>
           <div class="mt-5">
             <p class="text-2xl font-medium">
@@ -85,7 +85,7 @@
         </div>
         <div>
           <div class="icon">
-            <img src="@/assets/img/delivery.png" alt="">
+            <img src="@/assets/img/networking.png" alt="">
           </div>
           <div class="mt-5">
             <p class="text-2xl font-medium">
@@ -98,7 +98,7 @@
         </div>
         <div>
           <div class="icon">
-            <img src="@/assets/img/digital.png" alt="">
+            <img src="@/assets/img/job_security.png" alt="">
           </div>
           <div class="mt-5">
             <p class="text-2xl font-medium">
