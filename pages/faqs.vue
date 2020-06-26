@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit <a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a> to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.<div class="w-full text-left" />
+          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
         </template>
       </Accordion>
       <Accordion>
@@ -173,7 +173,8 @@
           12. Can applicants stop and resume application at any time?
         </template>
         <template v-slot:body>
-          Yes. You can save your application and resume at any time you are ready to continue by visiting <a href="https://www.mcfrelief.nbssi.gov.gh">https://www.mcfrelief.nbssi.gov.gh</a> and clicking on SIGN IN. You will need to use the phone number you used when  you started the application process to sign in.
+          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your Phone Number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the Client Portal.</b>
+          Yes. You can save your application and resume at any time you are ready to continue by visiting<a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline"> https://www.mcfrelief.nbssi.gov.gh </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
         </template>
       </Accordion>
       <Accordion>
