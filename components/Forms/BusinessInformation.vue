@@ -1,6 +1,6 @@
 <template>
   <div v-show="show">
-    <ValidationObserver v-slot="{ handleSubmit }">
+    <ValidationObserver v-slot="{ handleSubmit, valid }">
       <form @submit.prevent="handleSubmit(moveNext)">
         <div class="grid form-c py-20">
           <div class="mb-10">
@@ -84,7 +84,7 @@
                 type="text"
                 name="Tax Identification Number (TIN)"
                 optional
-                regex="([A-Z]{1})([0-9]{10})$"
+                regex="([A-Za-z]{1})([0-9]{10})$"
                 required
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -319,6 +319,11 @@
           </div>
         </div>
         <div class="nav-buttons">
+          <template v-if="!valid">
+            <div class="py-2">
+              <span class="text-red-500 ">Complete all * fields to proceed</span>
+            </div>
+          </template>
           <div class="flex flex-wrap gap-8">
             <button class="next" type="submit">
               Next
@@ -3390,6 +3395,14 @@ export default {
         // eslint-disable-next-line no-debugger
         return this.details.annual_sales ? this.thousandSeprator(this.details.annual_sales) : ''
       }
+    },
+    TIN: {
+      get () {
+        return this.general.tin_number ? this.TINFormatter(this.general.tin_number) : ''
+      },
+      set (newValue) {
+        this.general.tin_number = newValue
+      }
     }
   },
   watch: {
@@ -3654,6 +3667,11 @@ export default {
       handler (value) {
         this.general = value
       }
+    },
+    TIN: {
+      handler (value) {
+        this.general.tin_number = value
+      }
     }
   },
   mounted () {
@@ -3821,6 +3839,19 @@ export default {
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount
+      }
+    },
+    TINFormatter (value) {
+      if (
+        value !== '' ||
+        value !== undefined ||
+        value !== 0 ||
+        value !== '0' ||
+        value !== null
+      ) {
+        return value.replace(/^\w/, chr => chr.toUpperCase())
+      } else {
+        return value
       }
     }
   }

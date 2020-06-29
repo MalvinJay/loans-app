@@ -1,6 +1,6 @@
 <template>
   <div v-show="show">
-    <ValidationObserver v-slot="{ handleSubmit }">
+    <ValidationObserver v-slot="{ handleSubmit, valid }">
       <form @submit.prevent="handleSubmit(moveNext)">
         <div class="grid form-b py-20">
           <div class="mb-10">
@@ -130,6 +130,11 @@
           </div>
         </div>
         <div class="nav-buttons">
+          <template v-if="!valid">
+            <div class="py-2">
+              <span class="text-red-500 ">Complete all * fields to proceed</span>
+            </div>
+          </template>
           <div class="flex flex-wrap gap-8">
             <button type="submit" class="next">
               Next
