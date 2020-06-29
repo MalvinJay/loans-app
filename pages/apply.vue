@@ -80,8 +80,10 @@
                   </ValidationProvider>
                 </div>
               </div>
-              <recaptcha @error="onError" @success="onSuccess" @expired="onExpired" />
-              <small class="text-sm text-red-700 font-bold">{{ recaptchError }}</small>
+              <div class="mb-4 w-full">
+                <recaptcha @error="onError" @success="onSuccess" @expired="onExpired" />
+                <small class="text-sm text-red-700 font-bold">{{ recaptchError }}</small>
+              </div>
               <div class="nav-buttons mt-10">
                 <div>
                   <button
@@ -151,13 +153,14 @@ export default {
   },
   watch: {
     id_type (value) {
-      // if (value === '3') {
-      //   this.regex = '[A-Z]{3,4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
-      // } else if (value === '1') {
-      //   this.regex = '[0-9]{10}$'
-      // } else if (value === '2') {
-      //   this.regex = '[A-Z]{1}[0-9]{7}$'
-      // }
+      if (value === '3') {
+        // this.regex = '[A-Z]{3,4}-[0-9]{4}-[0-9]{4}-[0-9]{4}$'
+        this.regex = ''
+      } else if (value === '1') {
+        this.regex = '[0-9]{10}$'
+      } else if (value === '2') {
+        this.regex = '[A-Z]{1}[0-9]{7}$'
+      }
     }
   },
   beforeCreate () {

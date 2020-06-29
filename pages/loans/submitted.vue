@@ -5,18 +5,27 @@
       :header="false"
       small
     >
-      <div class="main text-center pt-24">
+      <div class="main text-center pt-16">
         <div class="check mb-5">
           <img src="@/assets/img/ellipse-check.png" alt="">
         </div>
         <div class="mt-10">
           <p class="text-4xl text-white">
-            Your Application is on its way!
+            Thank you for submitting your application
           </p>
         </div>
         <div class="mt-10">
           <p class="text-white text-2xl ">
             We will verify your documents and get back to you within 2 weeks
+          </p>
+        </div>
+        <div class="mt-10">
+          <p class="text-xl text-white">
+            Click here
+            <nuxt-link to="/app/registration/login" class="sign_in px-2 py-1 ml-1 mr-2 rounded-md">
+              Sign In
+            </nuxt-link>
+            to check on the status of your request
           </p>
         </div>
         <div class="mt-10">
@@ -50,6 +59,11 @@ export default {
       height: 100px;
     }
   }
+}
+.sign_in {
+  background: white;
+  color: #6A1B9A;
+  font-size: 12px;
 }
 @include for-phone-only {
   .main {
