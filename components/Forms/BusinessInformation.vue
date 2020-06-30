@@ -982,7 +982,7 @@
           <div>
             <label
               class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019 (required)</label>
+            >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>) </label>
           </div>
           <div>
             <label
@@ -1526,7 +1526,6 @@
         </div>
       </div>
     </Modal>
-
     <!-- =============================================================================================================
     ========================================= CASH FLOW MODAL ===================================================-->
     <Modal v-if="cashFlowModal" @close="cashFlowModal=false">
@@ -1547,7 +1546,7 @@
           <div>
             <label
               class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019 (required)</label>
+            >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>)</label>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
@@ -2142,7 +2141,7 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.trim="directors_list[0].tin_number"
-                    regex="([P]{1})([0-9]{10})$"
+                    regex="([A-Za-z]{1})([0-9]{10})$"
                     type="text"
                     small
                   />
@@ -3403,6 +3402,14 @@ export default {
       set (newValue) {
         this.general.tin_number = newValue
       }
+    },
+    directorTIN: {
+      get () {
+        return this.directors_list[0].tin_number ? this.TINFormatter(this.directors_list[0].tin_number) : ''
+      },
+      set (newValue) {
+        this.directors_list[0].tin_number = newValue
+      }
     }
   },
   watch: {
@@ -3665,18 +3672,26 @@ export default {
     },
     prefill: {
       handler (value) {
-        this.general = value
+        if (!this.token && this.applicationObject) {
+          this.general = value
+        }
       }
     },
     TIN: {
       handler (value) {
         this.general.tin_number = value
       }
+    },
+    directorTIN: {
+      handler (value) {
+        this.directors_list[0].tin_number = value
+      }
     }
   },
   mounted () {
     if (!this.token && this.applicationObject) {
       this.general.annual_sales = this.applicationObject.annual_sales
+      this.setDefaultValues()
     }
   },
   methods: {
@@ -3840,6 +3855,34 @@ export default {
       } else {
         return amount
       }
+    },
+    setDefaultValues () {
+      // Cashflow defaults
+      // this.cash_flow_2019.ebit = 0
+      // this.cash_flow_2019.depreciation = 0
+      // this.cash_flow_2019.working_capital_change = 0
+      this.cash_flow_2019.tax_paid_in_cash = 0
+      this.cash_flow_2019.total_interest_paid_in_cash = 0
+      this.cash_flow_2019.total_capital_expenditure = 0
+      this.cash_flow_2019.total_sold_equity_sold = 0
+      this.cash_flow_2019.total_credit_value = 0
+      this.cash_flow_2019.total_principal_paid_loan = 0
+      // this.cash_flow_2019.beginning_cash = 0
+      this.cash_flow_2019.cash_change = 0
+      // this.cash_flow_2019.end_cash = 0
+      // balance sheet defaults
+      this.balance_sheet_2019.total_cash = 0
+      this.balance_sheet_2019.total_inventory_amount = 0
+      this.balance_sheet_2019.total_receivables_amount = 0
+      this.balance_sheet_2019.other_short_term_assets = 0
+      this.balance_sheet_2019.total_net_property = 0
+      this.balance_sheet_2019.total_payables_amount = 0
+      this.balance_sheet_2019.total_overdraft_outstanding = 0
+      this.balance_sheet_2019.other_short_term_liability = 0
+      this.balance_sheet_2019.total_loan_outstanding = 0
+      this.balance_sheet_2019.equity_value = 0
+      this.balance_sheet_2019.retained_earning_value = 0
+      this.balance_sheet_2019.other_equity = 0
     },
     TINFormatter (value) {
       if (
