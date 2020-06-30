@@ -20,7 +20,7 @@
           2. Can I apply if I am not Ghanaian?
         </template>
         <template v-slot:body>
-          Non-Ghanaians are not qualified to apply. However, if your company has a Ghanaianshareholder with over 50% ownership of the company, it may apply.
+          Non-Ghanaians are not qualified to apply. However, if your company has a Ghanaians hareholder with over 50% ownership of the company, it may apply.
         </template>
       </Accordion>
       <Accordion>
@@ -36,7 +36,7 @@
           4. When can businesses apply?
         </template>
         <template v-slot:body>
-          Businesses can start applying now. Applications were opened to the public in the 1stweek of July 2020 and will continue for 2 months or until the funds run out.
+          Businesses can start applying now. Applications were opened to the public in the 1st week of July 2020 and will continue for 2 months or until the funds run out.
         </template>
       </Accordion>
       <Accordion>
@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Yes. Businesses must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
+          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
         </template>
       </Accordion>
       <Accordion>
@@ -84,7 +84,7 @@
           10. Which documents do I need to provide with my application?
         </template>
         <template v-slot:body>
-          The only document required during the application process is a copy of your ID. However, you will also need a Tax Payer Identification Number (TIN). If your businessis a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your business.
+          The only document required during the application process is a copy of your ID. However, you will also need a Taxpayer Identification Number (TIN). If your business is a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your business.
         </template>
       </Accordion>
       <Accordion>
@@ -164,6 +164,23 @@
                   3,000,001 – 5,000,000
                 </td>
               </tr>
+              <tr>
+                <td><div class="pt-4" /></td>
+                <td><div class="pt-4" /></td>
+                <td><div class="pt-4" /></td>
+                <td><div class="pt-4" /></td>
+              </tr>
+              <tr class="font-medium">
+                <td>
+                  START-UPS
+                </td>
+                <td>
+                  0 - 16
+                </td>
+                <td>
+                  0 – 1,500,000
+                </td>
+              </tr>
             </tbody>
           </table>
         </template>
@@ -222,7 +239,7 @@
           18. Can I access a loan to start a new business venture?
         </template>
         <template v-slot:body>
-          No. This fund seeks to provide relief to business that have been in operation for at least 6 months before date of application.
+          No. This fund seeks to provide relief to businesses that have been in operation for at least 6 months before date of application.
         </template>
       </Accordion>
       <Accordion>
@@ -241,17 +258,17 @@
           Yes. A beneficiary of the Government of Ghana CAP Business Support Scheme can apply for funding from the NBSSI Mastercard Foundation COVID-19 Resilience and Recovery Program.
         </template>
       </Accordion>
-      <Accordion>
+      <!-- <Accordion>
         <template v-slot:header>
           21. Can I apply twice?
         </template>
         <template v-slot:body>
           No. You cannot apply twice.
         </template>
-      </Accordion>
+      </Accordion> -->
       <Accordion>
         <template v-slot:header>
-          22. How do I make an official complaint about my problem?
+          21. How do I make an official complaint about my problem?
         </template>
         <template v-slot:body>
           If you have any issue with the system or process, please visit the Client Portal via this website -  <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
@@ -260,7 +277,7 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          23. Can I apply for funding if I am not a part of an association?
+          22. Can I apply for funding if I am not a part of an association?
         </template>
         <template v-slot:body>
           Yes. You do not have to be a member of an association to apply.
@@ -268,7 +285,7 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          24. Can associations apply on behalf of their members?
+          23. Can associations apply on behalf of their members?
         </template>
         <template v-slot:body>
           No. However, we encourage associations to inform their members about this fund.
@@ -276,7 +293,7 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          25. Where can I register as a client of NBSSI?
+          24. Where can I register as a client of NBSSI?
         </template>
         <template v-slot:body>
           You can register as a client of NBSSI at our Business Advisory Centres (BACs) located within the districts across Ghana.
@@ -284,7 +301,7 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          26. How much do I need to pay for the NBSSI Client registration?
+          25. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
           Note, effective 24th May 2020, all NBSSI client registration fees have been waived until 31st July, 2020 to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.crisp.help/en/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.crisp.help/en/</a> or call the Call Centre Helpline on <b>0302 747 777</b>  or visit the nearest NBSSI Business Advisory Centre.
@@ -292,7 +309,7 @@
       </Accordion>
       <Accordion>
         <template v-slot:header>
-          27. How can I contact NBSSI for further details?
+          26. How can I contact NBSSI for further details?
         </template>
         <template v-slot:body>
           Applicants seeking further clarification can call the NBSSI Call Centre on <b>0302 747 777</b>.
