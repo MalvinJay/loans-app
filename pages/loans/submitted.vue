@@ -5,7 +5,7 @@
       :header="false"
       small
     >
-      <div class="main text-center pt-16">
+      <div class="main text-center px-6 pt-16">
         <div class="check mb-5">
           <img src="@/assets/img/ellipse-check.png" alt="">
         </div>
@@ -20,7 +20,7 @@
           </p>
         </div>
         <div class="mt-10">
-          <p class="text-xl text-white">
+          <p class="text-xl text-white leading-loose md:leading-tight">
             Click here
             <nuxt-link to="/app/registration/login" class="sign_in px-2 py-1 ml-1 mr-2 rounded-md">
               Sign In
