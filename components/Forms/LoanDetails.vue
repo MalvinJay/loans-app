@@ -130,10 +130,13 @@
             <label
               class="block text-gray-700 text-sm font-normal mb-2 font-bold"
             >Proof of COVID-19 Impact Template</label>
+            <!-- <ValidationProvider ref="impactTemplate" v-slot="{ errors }"> -->
             <button class="i-t-b" type="button" :class="{done: checkModal1}" @click="modal1 = true">
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
+            <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+            <!-- </ValidationProvider> -->
             <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
               What will you use the funds for?
               <span class="text-red-600">*</span>
@@ -525,7 +528,7 @@
         <button class="button-small" @click="doneModal1">
           Done
         </button>
-        <button class="button-small" @click="modal1 = false">
+        <button class="button-small" @click="cancelModal1">
           Cancel
         </button>
       </div>
@@ -811,6 +814,8 @@ export default {
     }
   },
   methods: {
+    // markCovidTemplate () {
+    // },
     moveNext () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },
@@ -831,6 +836,19 @@ export default {
     doneModal1 (value) {
       this.checkModal1 = true
       this.modal1 = false
+      // this.markValidation()
+    },
+    cancelModal1 () {
+      this.modal1 = false
+      // this.markValidation()
+    },
+    markValidation () {
+      // eslint-disable-next-line no-console
+      console.log('Ref in action:', this.$refs.impactTemplate)
+      return this.$refs.impactTemplate.applyResult({
+        valid: true,
+        errors: ['']
+      })
     },
     thousandSeprator (amount) {
       if (
