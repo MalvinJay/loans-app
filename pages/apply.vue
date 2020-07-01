@@ -32,14 +32,14 @@
           Welcome to the  Mastercard Foundation COVID-19 Recovery and Resilience Program in partnership with NBSSI. Please provide the requested pre-application information below and also thoroughly complete the funding application to the best of your ability.  We will use the information from the submitted funding application to assess your business and provide you with a funding decision.
         </p>
         <div class="mt-10">
-          <validation-observer v-slot="{ handleSubmit }">
+          <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
             <!-- <form ref="form" @submit.prevent="handleSubmit(submit)"> -->
             <form ref="form" @submit.prevent="handleSubmit(onSubmit)">
               <div class="grid">
                 <div class="mb-4">
                   <label class="block text-gray-900 text-sm mb-2">Applicant ID Type <span class="text-red-600">*</span></label>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Select v-model="id_type" :items="idType" small />
+                    <Select v-model="id_type" :items="idType" small @input="onChange" />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -60,7 +60,7 @@
                 </div>
                 <div class="mb-4">
                   <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span></label>
-                  <ValidationProvider v-slot="{ errors }" rules="required">
+                  <ValidationProvider ref="idNum" v-slot="{ errors }" rules="required">
                     <Input
                       v-model="id_number"
                       type="text"
@@ -95,7 +95,7 @@
                 </div>
               </div>
             </form>
-          </validation-observer>
+          </ValidationObserver>
         </div>
       </div>
     </BaseCard>
@@ -167,6 +167,14 @@ export default {
     this.$store.dispatch('pages/getDropDowns')
   },
   methods: {
+    onChange (val) {
+      if (val === '3') {
+        this.$nextTick(() => {
+          this.$refs.idNum.reset()
+          // this.$refs.observer.reset()
+        })
+      }
+    },
     onError (error) {
       // eslint-disable-next-line no-console
       console.log('Error happened:', error)

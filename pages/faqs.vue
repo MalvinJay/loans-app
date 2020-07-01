@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline">https://gra.gov.gh/tin/get-a-tin/</a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
+          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline"> https://gra.gov.gh/tin/get-a-tin/ </a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
         </template>
       </Accordion>
       <Accordion>
@@ -84,7 +84,7 @@
           10. Which documents do I need to provide with my application?
         </template>
         <template v-slot:body>
-          The only document required during the application process is a copy of your ID. However, you will also need a Taxpayer Identification Number (TIN). If your business is a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your business.
+          The only document required during the application process is a copy of your ID. However, you will also need a Taxpayer Identification Number (<b>TIN</b>). If your business is a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your businessis.
         </template>
       </Accordion>
       <Accordion>
@@ -190,8 +190,8 @@
           12. Can applicants stop and resume application at any time?
         </template>
         <template v-slot:body>
-          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your Phone Number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the Client Portal.</b>
-          Yes. You can save your application and resume at any time you are ready to continue by visiting<a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline"> https://www.mcfrelief.nbssi.gov.gh </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
+          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your phone number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the <nuxt-link to="/" class="text-blue-600 hover:underline">Client Portal</nuxt-link></b>.
+          You can save your application and resume at any time you are ready to continue by visiting<a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline"> https://www.mcfrelief.nbssi.gov.gh </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
         </template>
       </Accordion>
       <Accordion>

@@ -132,6 +132,13 @@ export default {
           this.error = true
           this.$emit('input', val)
         }
+      } else if (this.type === 'text' && this.regex === '') {
+        const regex = RegExp(this.regex)
+        if (regex.test(val)) {
+          this.error = false
+          this.errorMessage = null
+          this.$emit('input', val)
+        }
       } else if (this.type === 'email') {
         // eslint-disable-next-line no-useless-escape
         const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])/
