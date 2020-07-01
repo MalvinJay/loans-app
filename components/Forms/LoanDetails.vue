@@ -104,7 +104,7 @@
           </div>
           <div class="mb-12">
             <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-              Do you require any non-financial support?
+              Do you need any business development training or advice?
               <span class="text-red-600">*</span>
             </label>
             <ValidationProvider v-slot="{ errors }" rules="required">
