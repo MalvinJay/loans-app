@@ -63,7 +63,7 @@
         </div>
       </div>
     </div>
-    <div class="vecs">
+    <div class="vecs opacity-50 md:opacity-100">
       <div>
         <img src="@/assets/img/vector 1.png" alt="">
       </div>

@@ -10,50 +10,47 @@
         The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:
       </p>
       <div class="points">
-        <div class="">
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Production and supply chain disruptions, shortages and delays.</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Reduced consumer demand for products and services</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Reduced capital and investment flows</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Labor shortages due to social distancing regulations</div>
-          </div>
+        <div class="text-xl flex py-1">
+          <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+          <div>Production and supply chain disruptions, shortages and delays.</div>
         </div>
-      </div>
-      <p class="mt-10 md:text-2xl pb-4">
-        The NBSSI Mastercard Foundation Recovery and Resilience Program for MSMEs has been set up to provide financial and business advisory support to MSMEs and start-ups weather the economic downturn caused by the COVID-19 pandemic. Particularly, the Programme will focus on:
-      </p>
-      <!-- <hr class="pb-4"> -->
-      <div class="points sec">
-        <div class="">
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>MSMEs who need support to survive the COVID-19 pandemic.</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures.</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</div>
-          </div>
-          <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-            <div>Businesses that will focus on digitization to support MSMEs.</div>
-          </div>
+        <div class="text-xl flex py-1">
+          <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+          <div>Reduced consumer demand for products and services</div>
+        </div>
+        <div class="text-xl flex py-1">
+          <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+          <div>Reduced capital and investment flows</div>
+        </div>
+        <div class="text-xl flex py-1">
+          <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+          <div>Labor shortages due to social distancing regulations</div>
         </div>
       </div>
     </div>
+    <p class="mt-10 md:text-2xl pb-4">
+      The NBSSI Mastercard Foundation Recovery and Resilience Program for MSMEs has been set up to provide financial and business advisory support to MSMEs and start-ups weather the economic downturn caused by the COVID-19 pandemic. Particularly, the Programme will focus on:
+    </p>
+    <div class="points sec">
+      <div class="text-xl flex py-1">
+        <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+        <div>MSMEs who need support to survive the COVID-19 pandemic.</div>
+      </div>
+      <div class="text-xl flex py-1">
+        <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+        <div>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures.</div>
+      </div>
+      <div class="text-xl flex py-1">
+        <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+        <div>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</div>
+      </div>
+      <div class="text-xl flex py-1">
+        <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+        <div>Businesses that will focus on digitization to support MSMEs.</div>
+      </div>
+    </div>
+  </div>
+  </div>
     <!-- <p class="text-xl font-semibold text-center text-white mb-16">
       All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify
       are encouraged to apply for the Emergency Relief Funding Programme.

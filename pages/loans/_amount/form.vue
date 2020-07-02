@@ -120,6 +120,20 @@ export default {
         return false
       }
     }
+    // beforeRouteLeave(to, from, next) {
+    //   if (confirm('You may have unsaved changes. Do you want to continue?')) {
+    //     return next()
+    //   }
+    // }
+  },
+  beforeDestroy () {
+    window.onpopstate = function (event) {
+      if (confirm('Are you sure you want to go back?')) {
+        history.back()
+      } else {
+        return false
+      }
+    }
   },
   methods: {
     viewCurrent (value) {
