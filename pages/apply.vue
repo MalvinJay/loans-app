@@ -183,9 +183,6 @@ export default {
       try {
         const token = await this.$recaptcha.getResponse()
         this.recaptchError = null
-        // eslint-disable-next-line no-console
-        console.log('ReCaptcha token:', token)
-
         // Token available
         if (token) {
           this.submit()

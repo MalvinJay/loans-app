@@ -166,19 +166,23 @@
               </tr>
               <tr>
                 <td><div class="pt-4" /></td>
+                <td>
+                  <div class="pt-4 font-bold">
+                    Years in Business
+                  </div>
+                </td>
                 <td><div class="pt-4" /></td>
-                <td><div class="pt-4" /></td>
-                <td><div class="pt-4" /></td>
+                <td><div class="pt-4 " /></td>
               </tr>
               <tr class="font-medium">
                 <td>
                   START-UPS
                 </td>
                 <td>
-                  0 - 16
+                  0 - 2
                 </td>
                 <td>
-                  0 – 1,500,000
+                  0 – 500,000
                 </td>
               </tr>
             </tbody>

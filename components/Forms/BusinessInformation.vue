@@ -971,559 +971,606 @@
             Balance Sheet
           </p>
         </div>
-        <div class="grid grid-cols-5 gap-8 b-d">
-          <div />
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>) </label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2020F (FORECAST)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Cash</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount of Inventory</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_inventory_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_inventory_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_inventory_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_inventory_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Amount of Receivables (how much is owed by customers)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_receivables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_receivables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_receivables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_receivables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Short Term Assets</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.other_short_term_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Net Property, Plant and Equipment</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_net_property"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_net_property"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_net_property"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_net_property"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Amount of Payables (how much is owed to suppliers by the company)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_payables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_payables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_payables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_payables_amount"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Overdraft Outstanding (yet to be paid to the bank)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_overdraft_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_overdraft_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_overdraft_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_overdraft_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Any Other Short Term Liabilities</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.other_short_term_liability"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.other_short_term_liability"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.other_short_term_liability"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.other_short_term_liability"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Loans Outstanding</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.total_loan_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.total_loan_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.total_loan_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.total_loan_outstanding"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Value of Equity</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.equity_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.equity_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.equity_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.equity_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Value of Retained Earnings</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.retained_earning_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.retained_earning_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.retained_earning_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.retained_earning_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Equity</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="balance_sheet_2017.other_equity"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="balance_sheet_2018.other_equity"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="balance_sheet_2019.other_equity"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="balance_sheet_2020.other_equity"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-        </div>
-        <div class="my-20 flex gap-3 buttons">
-          <button type="submit" class="button-small" @click="doneBalanceSheetModal">
-            Done
-          </button>
-          <button type="button" class="button-small" @click="balanceSheetModal= false">
-            Cancel
-          </button>
-        </div>
+        <ValidationObserver v-slot="{ handleSubmit, valid }">
+          <form @submit.prevent="handleSubmit(doneBalanceSheetModal)">
+            <div class="grid grid-cols-5 gap-8 b-d">
+              <div />
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>) </label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2020F (FORECAST)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Total Cash</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_cash"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount of Inventory</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_inventory_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_inventory_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_inventory_amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_inventory_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Amount of Receivables (how much is owed by customers)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_receivables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_receivables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_receivables_amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_receivables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Short Term Assets</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.other_short_term_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.other_short_term_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.other_short_term_assets"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.other_short_term_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Net Property, Plant and Equipment</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_net_property"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_net_property"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_net_property"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_net_property"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Amount of Payables (how much is owed to suppliers by the company)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_payables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_payables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_payables_amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_payables_amount"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Overdraft Outstanding (yet to be paid to the bank)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_overdraft_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_overdraft_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_overdraft_outstanding"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_overdraft_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Any Other Short Term Liabilities</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.other_short_term_liability"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.other_short_term_liability"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.other_short_term_liability"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.other_short_term_liability"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Total Loans Outstanding</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.total_loan_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.total_loan_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.total_loan_outstanding"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.total_loan_outstanding"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Value of Equity</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.equity_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.equity_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.equity_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.equity_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Value of Retained Earnings</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.retained_earning_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.retained_earning_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.retained_earning_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.retained_earning_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Any Other Equity</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="balance_sheet_2017.other_equity"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="balance_sheet_2018.other_equity"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="balance_sheet_2019.other_equity"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="balance_sheet_2020.other_equity"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+            </div>
+            <div class="mt-16">
+              <template v-if="!valid">
+                <div class="py-1">
+                  <span class="text-red-500 ">* Complete all 2019 fields to proceed</span>
+                </div>
+              </template>
+            </div>
+            <div class="mt-2 mb-20 flex gap-3 buttons">
+              <button type="submit" class="button-small">
+                Done
+              </button>
+              <button type="button" class="button-small" @click="balanceSheetModal= false">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </validationobserver>
       </div>
     </Modal>
     <!-- =============================================================================================================
@@ -1535,579 +1582,626 @@
             Cash Flow
           </p>
         </div>
-        <div class="grid grid-cols-5 gap-8 b-d">
-          <div />
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Profit Before Interest and Tax</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.ebit"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.ebit"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.ebit"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.ebit"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.depreciation"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.depreciation"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.depreciation"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.depreciation"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Change in Working Capital</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.working_capital_change"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.working_capital_change"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.working_capital_change"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.working_capital_change"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Any Tax Paid in Cash</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.tax_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.tax_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.tax_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.tax_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Interest Amount Paid in Cash</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.total_interest_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.total_interest_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.total_interest_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.total_interest_paid_in_cash"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Capital Expenditure (total value of plant and building equipment purchased this year)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.total_capital_expenditure"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.total_capital_expenditure"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.total_capital_expenditure"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.total_capital_expenditure"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Value of Equity Sold (if shares have been issued)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.total_sold_equity_sold"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.total_sold_equity_sold"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.total_sold_equity_sold"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.total_sold_equity_sold"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Value of New Credit Facilities Taken this Year (if shares have been issued)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.total_credit_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.total_credit_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.total_credit_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.total_credit_value"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Value of Outstanding Loan Principal this Year</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.total_principal_paid_loan"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.total_principal_paid_loan"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.total_principal_paid_loan"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.total_principal_paid_loan"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Beginning Cash (ending cash from previous year)</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.beginning_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.beginning_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.beginning_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.beginning_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Change in Cash</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.cash_change"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.cash_change"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.cash_change"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.cash_change"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Ending Cash</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="cash_flow_2017.end_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="cash_flow_2018.end_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="cash_flow_2019.end_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="cash_flow_2020.end_cash"
-              grey
-              type="number"
-              placeholder="CALCULATED"
-              money
-              small
-            />
-          </div>
-        </div>
-        <div class="my-20 flex gap-3 buttons">
-          <button type="submit" class="button-small" @click="doneCashFlowModal">
-            Done
-          </button>
-          <button type="button" class="button-small" @click="cashFlowModal= false">
-            Cancel
-          </button>
-        </div>
+        <ValidationObserver v-slot="{ handleSubmit, valid }">
+          <form @submit.prevent="handleSubmit(doneCashFlowModal)">
+            <div class="grid grid-cols-5 gap-8 b-d">
+              <div />
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Profit Before Interest and Tax</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.ebit"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.ebit"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+                <Input
+                  v-model.number="cash_flow_2019.ebit"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+                <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+                <!-- </validationprovider> -->
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.ebit"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.depreciation"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.depreciation"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+                <Input
+                  v-model.number="cash_flow_2019.depreciation"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+                <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+                <!-- </validationprovider> -->
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.depreciation"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Change in Working Capital</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.working_capital_change"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.working_capital_change"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+                <Input
+                  v-model.number="cash_flow_2019.working_capital_change"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+                <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+                <!-- </validationprovider> -->
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.working_capital_change"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Any Tax Paid in Cash</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.tax_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.tax_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.tax_paid_in_cash"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.tax_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Interest Amount Paid in Cash</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.total_interest_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.total_interest_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.total_interest_paid_in_cash"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.total_interest_paid_in_cash"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Capital Expenditure (total value of plant and building equipment purchased this year)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.total_capital_expenditure"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.total_capital_expenditure"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.total_capital_expenditure"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.total_capital_expenditure"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Value of Equity Sold (if shares have been issued)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.total_sold_equity_sold"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.total_sold_equity_sold"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.total_sold_equity_sold"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.total_sold_equity_sold"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Value of New Credit Facilities Taken this Year (if shares have been issued)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.total_credit_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.total_credit_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.total_credit_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.total_credit_value"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Value of Outstanding Loan Principal this Year</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.total_principal_paid_loan"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.total_principal_paid_loan"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.total_principal_paid_loan"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.total_principal_paid_loan"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Beginning Cash (ending cash from previous year)</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.beginning_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.beginning_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+                <Input
+                  v-model.number="cash_flow_2019.beginning_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+                <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+                <!-- </validationprovider> -->
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.beginning_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Change in Cash</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.cash_change"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.cash_change"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="cash_flow_2019.cash_change"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.cash_change"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Ending Cash</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="cash_flow_2017.end_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="cash_flow_2018.end_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+                <Input
+                  v-model.number="cash_flow_2019.end_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+                <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
+                <!-- </validationprovider> -->
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="cash_flow_2020.end_cash"
+                  grey
+                  type="number"
+                  placeholder="CALCULATED"
+                  money
+                  small
+                />
+              </div>
+            </div>
+            <div class="mt-16">
+              <template v-if="!valid">
+                <div class="py-1">
+                  <span class="text-red-500 ">* Complete all 2019 fields to proceed</span>
+                </div>
+              </template>
+            </div>
+            <div class="mt-2 mb-20 flex gap-3 buttons">
+              <button type="submit" class="button-small">
+                Done
+              </button>
+              <button type="button" class="button-small" @click="cashFlowModal= false">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </validationobserver>
       </div>
     </Modal>
     <!-- =============================================================================================================
@@ -2141,7 +2235,7 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.trim="directors_list[0].tin_number"
-                    regex="([A-Za-z]{1})([0-9]{10})$"
+                    regex="([A-Z]{1})([0-9]{10})$"
                     type="text"
                     small
                   />
@@ -2954,7 +3048,7 @@
                     v-model="business_owner[0].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
+                    regex="([A-Z]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3410,6 +3504,14 @@ export default {
       set (newValue) {
         this.directors_list[0].tin_number = newValue
       }
+    },
+    businessTIN: {
+      get () {
+        return this.business_owner[0].tin_number ? this.TINFormatter(this.business_owner[0].tin_number) : ''
+      },
+      set (newValue) {
+        this.business_owner[0].tin_number = newValue
+      }
     }
   },
   watch: {
@@ -3686,12 +3788,17 @@ export default {
       handler (value) {
         this.directors_list[0].tin_number = value
       }
+    },
+    businessTIN: {
+      handler (value) {
+        this.business_owner[0].tin_number = value
+      }
     }
   },
   mounted () {
     if (!this.token && this.applicationObject) {
       this.general.annual_sales = this.applicationObject.annual_sales
-      this.setDefaultValues()
+      // this.setDefaultValues()
     }
   },
   methods: {
