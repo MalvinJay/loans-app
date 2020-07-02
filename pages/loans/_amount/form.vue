@@ -61,7 +61,7 @@
 <script>
 import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import { mapState } from 'vuex'
-import Utils from '@/utils/services'
+// import Utils from '@/utils/services'
 import NavBar from '@/components/NavBar/NavBarDefault.vue'
 import Steps from '@/components/Misc/PageSteps.vue'
 import Content from '@/components/Misc/Content.vue'
@@ -74,14 +74,7 @@ import Footer from '@/components/Footer/FooterAlt.vue'
 import Modal from '@/components/Misc/Modal'
 import Input from '@/components/Forms/Input.vue'
 export default {
-  middleware ({ store, redirect }) {
-    if (Utils.present(store.state.pages.application_object) ||
-    store.state.auth.loggedIn) {
-      return true
-    } else {
-      return redirect('/apply')
-    }
-  },
+  middleware: ['readyToApply', 'checkBeforeLeave'],
   layout: 'homeLayout',
   components: {
     NavBar,
@@ -118,6 +111,15 @@ export default {
   created () {
     this.$store.dispatch('api/getPendingApplications')
     this.$store.dispatch('api/setApplicationObject')
+  },
+  mounted () {
+    window.onpopstate = function (event) {
+      if (confirm('Are you sure you want to go back?')) {
+        history.back()
+      } else {
+        return false
+      }
+    }
   },
   methods: {
     viewCurrent (value) {

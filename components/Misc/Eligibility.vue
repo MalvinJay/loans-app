@@ -12,16 +12,20 @@
       <div class="points">
         <div class="">
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Production and supply chain disruptions, shortages and delays.</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Production and supply chain disruptions, shortages and delays.</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Reduced consumer demand for products and services</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Reduced consumer demand for products and services</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Reduced capital and investment flows</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Reduced capital and investment flows</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Labor shortages due to social distancing regulations</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Labor shortages due to social distancing regulations</div>
           </div>
         </div>
       </div>
@@ -32,16 +36,20 @@
       <div class="points sec">
         <div class="">
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>MSMEs who need support to survive the COVID-19 pandemic.</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>MSMEs who need support to survive the COVID-19 pandemic.</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures.</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Businesses in growth sectors where the employment of young people, especially young women, will be negatively impacted as a result of business operation disruptions, supply chain challenges, liquidity shortages, declining sales and profits, and business closures.</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Businesses providing services that will be in demand during the pandemic and that have the potential to grow and positively impact communities affected by COVID-19.</div>
           </div>
           <div class="text-xl flex py-1">
-            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt=""> <span>Businesses that will focus on digitization to support MSMEs.</span>
+            <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
+            <div>Businesses that will focus on digitization to support MSMEs.</div>
           </div>
         </div>
       </div>
