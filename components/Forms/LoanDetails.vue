@@ -127,16 +127,19 @@
             </div>
           </div>
           <div class="mb-4">
-            <label
-              class="block text-gray-700 text-sm font-normal mb-2 font-bold"
-            >Proof of COVID-19 Impact Template</label>
-            <!-- <ValidationProvider ref="impactTemplate" v-slot="{ errors }"> -->
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+              Proof of COVID-19 Impact Template
+            </label>
             <button class="i-t-b" type="button" :class="{done: checkModal1}" @click="modal1 = true">
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
-            <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small> -->
-            <!-- </ValidationProvider> -->
+            <ValidationProvider ref="impactTemplate" v-slot="{ errors }" rules="required">
+              <div>
+                <input v-model="impactTemplate" name="impactTemplate" type="text" style="display: none!important">
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
             <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
               What will you use the funds for?
               <span class="text-red-600">*</span>
@@ -582,8 +585,9 @@ export default {
       general: {},
       otherSelected: false,
       fundOtherSelected: false,
-      nonFinancialOtherSelected: false
+      nonFinancialOtherSelected: false,
       // details: {}
+      impactTemplate: null
     }
   },
   computed: {
@@ -834,6 +838,7 @@ export default {
       }
     },
     doneModal1 (value) {
+      this.markValidation()
       this.checkModal1 = true
       this.modal1 = false
       // this.markValidation()

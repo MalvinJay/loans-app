@@ -121,6 +121,15 @@ export default {
       }
     }
   },
+  beforeRouteLeave (to, from, next) {
+    if (to.path !== '/loans/submitted') {
+      if (confirm('Are you sure you want to go back?')) {
+        next()
+      } else {
+        next(false)
+      }
+    }
+  },
   methods: {
     viewCurrent (value) {
       this.current = value

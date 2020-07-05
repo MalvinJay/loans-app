@@ -187,11 +187,9 @@ export default {
         if (token) {
           this.submit()
         }
-        // Reset token
-        await this.$recaptcha.reset()
       } catch (error) {
-        this.$toast.error('You are a robot')
-        this.recaptchError = 'You are a robot'
+        this.$toast.error('Kindly check & complete recaptcha')
+        this.recaptchError = 'Kindly check & complete recaptcha'
       }
     },
     onSuccess (token) {
@@ -224,6 +222,8 @@ export default {
 
       this.$store.dispatch('api/verifyApplication', applyObject)
         .then((res) => {
+          // Reset token
+          // this.$recaptcha.reset()
           window.location = '/loans/0/form'
         })
         .catch(() => {
