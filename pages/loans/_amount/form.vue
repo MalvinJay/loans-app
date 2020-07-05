@@ -120,18 +120,13 @@ export default {
         return false
       }
     }
-    // beforeRouteLeave(to, from, next) {
-    //   if (confirm('You may have unsaved changes. Do you want to continue?')) {
-    //     return next()
-    //   }
-    // }
   },
-  beforeDestroy () {
-    window.onpopstate = function (event) {
+  beforeRouteLeave (to, from, next) {
+    if (to.path !== '/loans/submitted') {
       if (confirm('Are you sure you want to go back?')) {
-        history.back()
+        next()
       } else {
-        return false
+        next(false)
       }
     }
   },

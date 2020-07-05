@@ -85,6 +85,7 @@ export default {
     '@nuxtjs/toast',
     '@nuxtjs/auth',
     '@nuxtjs/recaptcha'
+    // '@nuxtjs/router'
   ],
   recaptcha: {
     hideBadge: true,
@@ -156,6 +157,9 @@ export default {
     }
   },
   generate: {
+    // routes: [
+    //   '/'
+    // ],
     fallback: true
   }
 }
