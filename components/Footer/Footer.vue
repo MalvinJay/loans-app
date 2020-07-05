@@ -50,7 +50,10 @@
     </footer>
     <div class="copyright flex flex-col sm:flex-row justify-between py-10 text-white px-10 gap-10">
       <div class="text-sm italic font-bold plendify py-4">
-        <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">Powered by Plendify</a>
+        <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">
+          <!-- Powered by Plendify -->
+          <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+        </a>
       </div>
       <div class="font-light py-4">
         &copy; National Board for Small Scale Industries. All rights reserved.
