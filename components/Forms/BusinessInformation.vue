@@ -984,7 +984,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-                >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>) </label>
+                >2019 <br> <span class="text-red-600">*Required. <br> Default values are 0</span></label>
               </div>
               <div>
                 <label
@@ -1595,7 +1595,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-                >2019 <br> (<span class="text-red-600">Required. *Default values are 0</span>)</label>
+                >2019 <br><span class="text-red-600">*Required. <br> Default values are 0</span></label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>

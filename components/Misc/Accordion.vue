@@ -4,7 +4,7 @@
     <div class="flex justify-between cursor-pointer" @click="active = !active">
       <div class="flex items-center">
         <div :class="[ blocked ? 'bg-red-600' : 'chat--active' , 'indicator mr-4']" />
-        <div class="title text-xl">
+        <div class="title sm:text-xl">
           <span class="capitalize">
             {{ body.messages[0].sender }} - {{ loanDetails.loan_identifier }}
           </span>

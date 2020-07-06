@@ -122,7 +122,7 @@
               <Input
                 v-model="general.other_non_financial_support"
                 type="text"
-                placeholder="Please write down the impact"
+                placeholder="Please write down what you need"
               />
             </div>
           </div>
@@ -818,8 +818,6 @@ export default {
     }
   },
   methods: {
-    // markCovidTemplate () {
-    // },
     moveNext () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },
@@ -841,19 +839,13 @@ export default {
       this.markValidation()
       this.checkModal1 = true
       this.modal1 = false
-      // this.markValidation()
     },
     cancelModal1 () {
       this.modal1 = false
       // this.markValidation()
     },
     markValidation () {
-      // eslint-disable-next-line no-console
-      console.log('Ref in action:', this.$refs.impactTemplate)
-      return this.$refs.impactTemplate.applyResult({
-        valid: true,
-        errors: ['']
-      })
+      this.impactTemplate = 'Done'
     },
     thousandSeprator (amount) {
       if (

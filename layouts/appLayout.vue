@@ -1,7 +1,7 @@
 <template>
   <main>
     <div :class="{ 'overlay': side }">
-      <div :class="[{ 'block': side }, 'sidebar', 'pt-32', 'pl-4']">
+      <div :class="[{ 'block': side }, 'sidebar', 'reltive pt-32', 'pl-4']">
         <div class="close hidden" @click="toggleSide">
           <img src="@/assets/img/close-w.svg" class="w-6 h-6" alt="">
         </div>
@@ -36,6 +36,11 @@
               </nuxt-link>
             </li>
           </ul>
+        </div>
+        <div class="absolute bottom-0 plendify py-4">
+          <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">
+            <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+          </a>
         </div>
       </div>
     </div>
@@ -415,6 +420,11 @@ main {
     .content {
       margin-top: 70px;
     }
+  }
+}
+@media screen and (max-height: '360px'){
+  .plendify {
+    position: relative!important;
   }
 }
 </style>
