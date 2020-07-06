@@ -122,7 +122,7 @@
               <Input
                 v-model="general.other_non_financial_support"
                 type="text"
-                placeholder="Please write down the impact"
+                placeholder="Please write down what you need"
               />
             </div>
           </div>

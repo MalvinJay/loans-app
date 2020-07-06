@@ -1,11 +1,11 @@
 <template>
-  <div class="py-20 eligibility px-8 md:px-40">
+  <div class="py-20 eligibility px-8 md:px-40 text-white">
     <div class="mb-12">
       <p class="text-center text-4xl text-white font-extrabold">
         About the Programme
       </p>
     </div>
-    <div class="text-white">
+    <div class="">
       <p class="md:text-2xl">
         The COVID-19 pandemic has drastically slowed economic activities for Micro, Small and Medium Enterprises (MSMEs) in many ways including:
       </p>
@@ -50,12 +50,11 @@
       </div>
     </div>
   </div>
-  </div>
-    <!-- <p class="text-xl font-semibold text-center text-white mb-16">
+  <!-- <p class="text-xl font-semibold text-center text-white mb-16">
       All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify
       are encouraged to apply for the Emergency Relief Funding Programme.
     </p> -->
-    <!-- <div class="descr flex justify-center">
+  <!-- <div class="descr flex justify-center">
       <div class="l-t flex">
         <img src="@/assets/img/ellipse-check.png" alt>
         <div class="t-s text-white">
@@ -91,8 +90,8 @@
           <p>You are a Start-up with less than 2 years of operation.</p>
         </div>
       </div>
-    </div> -->
-  </div>
+    </div>
+  </div> -->
 </template>
 <script>
 export default {}
