@@ -12,7 +12,7 @@
       <div class="points">
         <div class="text-xl flex py-1">
           <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">
-          <div>Production and supply chain disruptions, shortages and delays.</div>
+          <div>Production and supply chain disruptions, shortages and delays</div>
         </div>
         <div class="text-xl flex py-1">
           <img src="@/assets/img/linkshows.svg" class="w-6 h-6 pr-2" alt="">

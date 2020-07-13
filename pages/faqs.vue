@@ -36,7 +36,7 @@
           4. When can businesses apply?
         </template>
         <template v-slot:body>
-          Businesses can start applying now. Applications were opened to the public in the 1st week of July 2020 and will continue for 2 months or until the funds run out.
+          Businesses can start applying now. Applications were opened to the public in the 4th week of July 2020 and will continue for 2 months or until the funds run out.
         </template>
       </Accordion>
       <Accordion>
@@ -84,7 +84,7 @@
           10. Which documents do I need to provide with my application?
         </template>
         <template v-slot:body>
-          The only document required during the application process is a copy of your ID. However, you will also need a Taxpayer Identification Number (<b>TIN</b>). If your business is a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your businessis.
+          The only document required during the application process is a copy of your ID. However, you will also need a Taxpayer Identification Number (<b>TIN</b>). If your business is a small or medium sized enterprise you may also be asked to provide a SSNIT Employer Registration Number, and additional financial information on your business.
         </template>
       </Accordion>
       <Accordion>
@@ -227,7 +227,7 @@
           16. Do I have to pay any money for NBSSI/Mastercard Foundation COVID-19 Resilience and Recovery Program?
         </template>
         <template v-slot:body>
-          No. NBSSI does not charge any fees for this program.
+          No. NBSSI does not charge any application fees for this Program. However, if your loan request is approved, you will pay interest and repay the principal amount according to the terms of the loan agreement.
         </template>
       </Accordion>
       <Accordion>

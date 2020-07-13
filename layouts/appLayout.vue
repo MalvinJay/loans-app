@@ -25,8 +25,13 @@
                 <img src="@/assets/img/app-docs.png" alt=""> Loan Application
               </nuxt-link>
             </li>
-            <li @click="toggleSide">
+            <li class="relative" @click="toggleSide">
               <nuxt-link to="messages">
+                <!--
+                  <div class="badge absolute flex items-center justify-center w-6 h-6 bg-white rounded-full">
+                    <span class="primary-text text-xs font-bold">{{ 1 }}</span>
+                  </div>
+                -->
                 <img src="@/assets/img/app-messages.png" alt=""> Message
               </nuxt-link>
             </li>
@@ -148,6 +153,13 @@ export default {
 <style lang="scss" scoped>
 .lock {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(82deg) brightness(102%) contrast(103%);
+}
+.primary-text {
+  color: $color-secondary;
+}
+.badge {
+  left: 60%;
+  top: -5px;
 }
 main {
   display: flex;
