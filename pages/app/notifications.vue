@@ -18,7 +18,9 @@
                     <th>
                       Message
                     </th>
-                    <th class="pl-2" style="padding-left: 0.5rem;">Sent At</th>
+                    <th class="pl-2" style="padding-left: 0.5rem;">
+                      Sent At
+                    </th>
                     <!-- <th>
                       Paid With
                     </th> -->
@@ -84,6 +86,10 @@ export default {
     if (this.$store.state.loan.loandetails.status !== 'complete') {
       this.$router.push('/app/loanapplication')
     }
+    this.$store.dispatch('notifications/markAllAsRead')
+      .then(() => {
+        this.$store.dispatch('notifications/getAllUnread')
+      })
     this.$store.dispatch('notifications/getNotifications')
   },
   methods: {

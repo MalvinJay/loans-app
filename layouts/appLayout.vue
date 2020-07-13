@@ -27,16 +27,17 @@
             </li>
             <li class="relative" @click="toggleSide">
               <nuxt-link to="messages">
-                <!--
-                  <div class="badge absolute flex items-center justify-center w-6 h-6 bg-white rounded-full">
-                    <span class="primary-text text-xs font-bold">{{ 1 }}</span>
-                  </div>
-                -->
+                <!-- <div class="badge absolute flex items-center justify-center w-6 h-6 bg-white rounded-full">
+                  <span class="primary-text text-xs font-bold">{{ unread }}</span>
+                </div> -->
                 <img src="@/assets/img/app-messages.png" alt=""> Message
               </nuxt-link>
             </li>
-            <li @click="toggleSide">
+            <li class="relative" @click="toggleSide">
               <nuxt-link to="notifications">
+                <div v-if="unread > 0" class="badge absolute flex items-center justify-center w-6 h-6 bg-white rounded-full">
+                  <span class="primary-text text-xs font-bold">{{ unread }}</span>
+                </div>
                 <img src="@/assets/img/app-notifications.svg" alt=""> Notifications
               </nuxt-link>
             </li>
@@ -110,7 +111,8 @@ export default {
     ...mapGetters({
       Details: 'applicant/applicantDetails',
       sState: 'applicant/applicantState',
-      loanStatus: 'loan/loanStatus'
+      loanStatus: 'loan/loanStatus',
+      unread: 'notifications/unreadNotifications'
     }),
     state () {
       return this.sState === 'LOADING'
@@ -138,6 +140,9 @@ export default {
     this.$store.dispatch('applicant/fetchApplicant')
     this.$store.dispatch('queries/fetchQueries')
   },
+  mounted () {
+    this.$store.dispatch('notifications/getAllUnread')
+  },
   methods: {
     logout () {
       this.$store.commit('local/SET_LOGOUT')
@@ -158,7 +163,7 @@ export default {
   color: $color-secondary;
 }
 .badge {
-  left: 60%;
+  right: 10%;
   top: -5px;
 }
 main {
