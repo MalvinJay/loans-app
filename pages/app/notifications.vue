@@ -18,7 +18,7 @@
                     <th>
                       Message
                     </th>
-                    <th>Sent At</th>
+                    <th class="pl-2" style="padding-left: 0.5rem;">Sent At</th>
                     <!-- <th>
                       Paid With
                     </th> -->
@@ -29,7 +29,7 @@
                     <td class="py-4">
                       {{ notification.data.message }}
                     </td>
-                    <td class="py-4">
+                    <td class="py-4 px-2">
                       {{ formatDate(notification.created_at) }}
                     </td>
                   </tr>

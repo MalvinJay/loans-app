@@ -53,7 +53,7 @@
               Communicate with your clients, staff  and suppliers
             </p>
             <p>
-              Prepare a communication plan: you will need to regularly communicate with your clients about how youare prioritizing and serving them safely. Include a message reassuring them of the safety measure you are taking for your employees and business. You can post this message on your website and social media pages. If you have employees, you may want to prepare a separate internal message to share with them
+              Prepare a communication plan: you will need to regularly communicate with your clients about how you are prioritizing and serving them safely. Include a message reassuring them of the safety measure you are taking for your employees and business. You can post this message on your website and social media pages. If you have employees, you may want to prepare a separate internal message to share with them
             </p>
           </div>
         </div>
@@ -92,7 +92,7 @@
               Networking opportunities
             </p>
             <p>
-              Search for opportunities to join business or trade groups for increased visibility and use webinars and email marketing to reach their clients.
+              Search for opportunities to join business or trade groups for increased visibility and use webinars and email marketing to reach your clients.
             </p>
           </div>
         </div>
