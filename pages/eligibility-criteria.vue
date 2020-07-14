@@ -145,25 +145,43 @@
               <div class="box pb-8">
                 <img src="@/assets/img/vegetable.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Agriculture/Agribusiness
+                  Agri and Agro-Businesses
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/sanitation.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Sanitation
+                  Water and Sanitation
+                </p>
+              </div>
+              <!-- <div class="box pb-8">
+                <img src="@/assets/img/networking.png" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Creative
+                </p>
+              </div> -->
+              <div class="box pb-8">
+                <img src="@/assets/img/fast_selling.png" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Technology
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/digital.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Digital Economy
+                  Manufacturing
                 </p>
               </div>
               <div class="box pb-8">
                 <img src="@/assets/img/shirt.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Garment and Textiles
+                  Garments and PPE
+                </p>
+              </div>
+              <div class="box pb-8">
+                <img src="@/assets/img/credit-card.png" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Commerce and Trade
                 </p>
               </div>
               <div class="box pb-8">
@@ -173,10 +191,22 @@
                 </p>
               </div>
               <div class="box pb-8">
+                <img src="@/assets/img/delivery.png" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Tourism and Hospitability
+                </p>
+              </div>
+              <div class="box pb-8">
                 <img src="@/assets/img/stethoscope.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Health <br>
-                  (Centers/Pharmaceuticals)
+                  Healthcare and <br>
+                  Pharmaceuticals
+                </p>
+              </div>
+              <div class="box pb-8">
+                <img src="@/assets/img/networking.png" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Education
                 </p>
               </div>
             </div>
@@ -354,7 +384,7 @@ export default {
   flex-shrink: 0;
 }
 .priorities {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   // width: 10%;
   .box {

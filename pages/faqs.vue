@@ -20,7 +20,7 @@
           2. Can I apply if I am not Ghanaian?
         </template>
         <template v-slot:body>
-          Non-Ghanaians are not qualified to apply. However, if your company has a Ghanaians hareholder with over 50% ownership of the company, it may apply.
+          Non-Ghanaians are not qualified to apply. However, if your company has a Ghanaian shareholder with over 50% ownership of the company, it may apply.
         </template>
       </Accordion>
       <Accordion>

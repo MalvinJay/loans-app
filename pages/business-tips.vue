@@ -218,6 +218,7 @@ export default {
   background-color: $color-white-alt;
 }
 .lettering {
+  padding-right: 10px;
   width: 3rem;
   &>div {
     border: 1px solid;
