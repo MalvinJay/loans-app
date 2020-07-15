@@ -46,7 +46,8 @@ export default {
     '~assets/scss/__spacers.scss',
     '~assets/scss/__variables.scss',
     '~assets/scss/__components.scss',
-    '~assets/scss/__colors.scss'
+    '~assets/scss/__colors.scss',
+    '~assets/scss/__general.scss'
   ],
 
   styleResources: {
