@@ -55,4 +55,10 @@ div {
   font-family: 'Montserrat', sans-serif;
 }
 
+.tooltip-btn {
+  color: $button-primary-color;
+  border-color: $button-primary-color;
+  @apply w-6 h-6 border rounded-full mb-2 cursor-pointer;
+}
+
 

@@ -11,6 +11,7 @@
                 type="number"
                 money
                 required
+                tooltip="Enter how much money your business needs."
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -20,10 +21,18 @@
           </div>
           <div>
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-                Are you a startup (i.e. between 0 and 2 years' old)?
-                <span class="text-red-600">*</span>
-              </label>
+              <div class="flex">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Are you a startup (i.e. between 0 and 2 years' old)?
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'A business that is 2 years or younger is considered a Start-up under the programme.'"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
               <div class="flex justify-start">
                 <label class="checkbox">
                   Yes
@@ -52,10 +61,18 @@
             </ValidationProvider>
             <div class="mb-12 mt-12">
               <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
-              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-                Can you provide proof of COVID-19 impact?
-                <span class="text-red-600">*</span>
-              </label>
+              <div class="flex">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Can you provide proof of COVID-19 impact?
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'You will have to provide estimated amounts '"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
               <div class="flex justify-start">
                 <label class="checkbox">
                   Yes
@@ -85,10 +102,18 @@
             </div>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-              How has COVID-19 impacted your business?
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                How has COVID-19 impacted your business?
+                <span class="text-red-600">*</span>
+              </label>
+              <div
+                v-tooltip="'Select applicable items on the list and if you have information on the value of these items, add it in the template provided.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <MultiSelect v-model="general.covid_impact" :list="covidImpacts" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -103,10 +128,18 @@
             </div>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-              Do you need any business development training or advice?
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                Do you need any business development training or advice?
+                <span class="text-red-600">*</span>
+              </label>
+              <div
+                v-tooltip="'Select areas on the list that you need support to grow your business. Select None if you do not require any training or coaching.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
             <ValidationProvider v-slot="{ errors }" rules="required">
               <MultiSelect v-model="general.non_financial_supports" :list="nonFinancialSupport" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -140,10 +173,20 @@
               </div>
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider> -->
-            <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
-              What will you use the funds for?
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
+                What will you use the funds for?
+                <span class="text-red-600">*</span>
+              </label>
+
+              <div
+                v-tooltip="'Select applicable uses for the money you are requesting.'"
+                class="ml-4 mt-8 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <MultiSelect v-model="general.fund_purposes" :list="fundRoles" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -159,10 +202,19 @@
           </div>
           <div class="mb-4">
             <div>
-              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
-                Payment Account Details
-                <span class="text-red-600">*</span>
-              </label>
+              <div class="flex">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Payment Account Details
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'You will provide a valid mobile money number or bank account associated with the company where the funds your company is awarded will be deposited'"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
+
               <div v-if="general.requested_loan_amount<=2000" class="grid justify-start ac-dc">
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="grid grid-cols-2 gap-5">

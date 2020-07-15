@@ -1,5 +1,10 @@
 <template>
   <div v-show="show">
+    <div class="h-d my-10">
+      <p class="text-red-600 text-sm text-center">
+        * You need to upload your most recent <b>3 months proof of PAYE Payments</b> to GRA and your <b>SSNIT Statement for 2019</b>.
+      </p>
+    </div>
     <div class="grid docs border-blue-100">
       <!-- <div @drop.prevent="addApplicationId" @dragover.prevent>
         <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>

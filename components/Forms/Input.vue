@@ -1,6 +1,19 @@
 <template>
   <div>
-    <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }} <span v-if="required" class="text-red-600">*</span> </label>
+    <template v-if="tooltip">
+      <div class="flex">
+        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }} <span v-if="required" class="text-red-600">*</span> </label>
+        <div
+          v-tooltip="tooltip"
+          class="ml-4 tooltip-btn flex items-center justify-center"
+        >
+          ?
+        </div>
+      </div>
+    </template>
+    <template v-else>
+      <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">{{ name }} <span v-if="required" class="text-red-600">*</span> </label>
+    </template>
     <div v-if="type === 'number'">
       <input
         v-if="visible && type==='number'"
@@ -95,6 +108,11 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    tooltip: {
+      required: false,
+      type: String,
+      default: null
     }
   },
   data () {
