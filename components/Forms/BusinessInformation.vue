@@ -5,13 +5,14 @@
         <div class="grid form-c py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="general.business_name" type="text" required name="Business Name" />
+              <Input v-model="general.business_name" tooltip="Enter the name of the Business for which you requesting funding. " type="text" required name="Business Name" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-10">
             <Input
               v-model="general.ssnit_employer_no"
+              tooltip=" Enter the SSNIT Employer Registration number if you have one"
               type="text"
               name="SSNIT Employer Number (Optional)"
               regex="[A-Z]{1}[0-9]{12}$"
@@ -19,10 +20,18 @@
             />
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-              Business Address
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
+                Business Address
+                <span class="text-red-600">*</span>
+              </label>
+              <div
+                v-tooltip="'Enter your Business location address with your Street Name and not Post-office address. Also select your region and district'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
           </div>
           <div />
           <div class="mb-12">
@@ -57,6 +66,7 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
                 v-model="general.business_phone_number"
+                tooltip="Enter the phone number for your business. If it is the same as your personal number, enter it again."
                 type="text"
                 name="Business Phone Number"
                 regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
@@ -68,6 +78,7 @@
           <div class="mb-12">
             <Input
               v-model="general.business_email"
+              tooltip="Enter the E-mail address you use for business activities"
               type="email"
               name="Business Email Address (Optional)"
               optional
@@ -81,6 +92,7 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
                 v-model="general.tin_number"
+                tooltip=" You will need a TIN to be able to complete this application. Enter your Business TIN starting with C….. or Individual TIN starting with P…... Visit the GRA website or a GRA office to get a TIN if you do not have one"
                 type="text"
                 name="Tax Identification Number (TIN)"
                 optional
@@ -94,6 +106,7 @@
             <Input
               v-model="general.business_digital_address_code"
               type="text"
+              tooltip=" Generate your Digital Address from the Ghana Post GPS app. This will help the programme locate you"
               name="Business Digital Address Code (Optional)"
               placeholder="GA-xxx-xxxx"
               regex="[A-Z]{2}-[0-9]{3,4}-[0-9]{4}$"
@@ -101,20 +114,40 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">
-              Industry
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-bold mb-2">
+                Industry
+                <span class="text-red-600">*</span>
+              </label>
+
+              <div
+                v-tooltip="'Enter the Industry your business in operating under, not necessarily registered. E.g. If you are Tailor/Seamstress you under Textiles and Garment Industry'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.industry" :items="industry" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">
-              Legal Organization
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-bold mb-2">
+                Legal Organization
+                <span class="text-red-600">*</span>
+              </label>
+
+              <div
+                v-tooltip="'Select how your business should be categorised if you are registered. If you are not registered at the Registrar General’s Department just select unregistered.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.legal_organization" :items="legalOrganization" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -124,6 +157,7 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
                 v-model="general.business_services"
+                tooltip="Enter the specific products and services that your business provides to its customers. E.g. if you are a fruit processor you put in juice"
                 type="text"
                 name="Main Product(s) or Service(s)"
                 placeholder="Please type it in"
@@ -138,9 +172,20 @@
               <span class="text-red-600">*</span>
             </label>
             <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
-            <label class="block text-gray-900 text-sm font-normal mb-2 text-sm">
-              An enterprise that has a pre-defined primary social purpose, environmental or other public benefit, and reinvests the majority of its annual profits towards achieving the social purpose
-            </label>
+
+            <div class="flex items-end">
+              <label class="block text-gray-900 text-sm font-normal mb-2 text-sm">
+                An enterprise that has a pre-defined primary social purpose, environmental or other public benefit, and reinvests the majority of its annual profits towards achieving the social purpose
+              </label>
+              <div
+                v-tooltip="'Select YES if your business is a Social Enterprise. Select No if otherwise.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+                style="width: 4rem"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex mb-3">
                 <label class="checkbox">
@@ -168,9 +213,18 @@
               </div>
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
-            <label
-              class="block text-gray-900 text-sm font-normal mb-2"
-            >Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)</label>
+            <div class="flex items-end">
+              <label class="block text-gray-900 text-sm font-normal mb-2">
+                Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)
+              </label>
+              <div
+                v-tooltip="'Select YES if your business produces COVID 19 related products or not. Select NO if otherwise.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex">
                 <label class="checkbox">
@@ -200,10 +254,20 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">
-              Business Association
-              <span class="text-red-600">*</span>
-            </label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-bold mb-2">
+                Business Association
+                <span class="text-red-600">*</span>
+              </label>
+
+              <div
+                v-tooltip="'If you belong to a business association, look through the list and select that association. If you cannot find your association in the list provided select “Other” and provide the Name of the Association below. If you do not belong to any association select “None.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Select v-model="general.business_association" :items="businessAssociation" />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -347,6 +411,9 @@
           <p class="text-center text-lg">
             Income Statement
           </p>
+          <p class="text-red-600 text-sm text-center">
+            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+          </p>
         </div>
         <div class="grid grid-cols-6 gap-8 b-d">
           <div />
@@ -359,7 +426,8 @@
           <div>
             <label
               class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019 (required)</label>
+            >2019
+            </label>
           </div>
           <div>
             <label
@@ -372,7 +440,15 @@
             >2020F (FORECAST)</label>
           </div>
           <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Revenue</label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-bold mb-2">Total Revenue</label>
+              <div
+                v-tooltip="'Enter your total sales or turnover for periods indicated.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
           </div>
           <div>
             <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -804,9 +880,18 @@
           </div>
         </div>
         <div class="mt-3">
-          <label
-            class="block text-gray-700 text-sm font-normal mb-2"
-          >Is the business currently servicing any credit (loan, overdraft, letter of credit, etc)</label>
+          <div class="flex">
+            <label
+              class="block text-gray-700 text-sm font-normal mb-2"
+            >Is the business currently servicing any credit (loan, overdraft, letter of credit, etc)</label>
+            <div
+              v-tooltip="'You will be asked if you have a Loan/Overdraft/Letter of credit with your current operations. If your Answer is YES, you are required to input the details. If NO, then you can move ahead.'"
+              class="ml-4 tooltip-btn flex items-center justify-center"
+            >
+              ?
+            </div>
+          </div>
+
           <div class="flex">
             <label class="checkbox">
               Yes
@@ -970,6 +1055,9 @@
           <p class="text-center text-lg">
             Balance Sheet
           </p>
+          <p class="text-red-600 text-sm text-center">
+            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+          </p>
         </div>
         <ValidationObserver v-slot="{ handleSubmit, valid }">
           <form @submit.prevent="handleSubmit(doneBalanceSheetModal)">
@@ -984,7 +1072,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-                >2019 <br> <span class="text-red-600">*Required. <br> Default values are 0</span></label>
+                >2019</label>
               </div>
               <div>
                 <label
@@ -1581,6 +1669,9 @@
           <p class="text-center text-lg">
             Cash Flow
           </p>
+          <p class="text-red-600 text-sm text-center">
+            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+          </p>
         </div>
         <ValidationObserver v-slot="{ handleSubmit, valid }">
           <form @submit.prevent="handleSubmit(doneCashFlowModal)">
@@ -1595,7 +1686,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-                >2019 <br><span class="text-red-600">*Required. <br> Default values are 0</span></label>
+                >2019</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2020F</label>
@@ -2213,6 +2304,9 @@
             <div class="h-d mb-10">
               <p class="text-center text-lg font-bold">
                 Director and Shareholder List
+              </p>
+              <p class="text-red-600 text-sm text-center">
+                You are required to provide more information on the Directors and Shareholders, their <b>Age</b>, <b>Gender</b>, <b>TIN</b> and <b>% Ownership</b>.
               </p>
             </div>
             <div v-if="shareHolders >= 1" class="grid gap-8 b-d">
@@ -2867,9 +2961,15 @@
                 >Jan 2020 - April 2020</label>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                >Total Revenue</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile">Total Revenue</label>
+                  <div
+                    v-tooltip="'Enter your total sales or turnover for periods indicated.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
               </div>
               <div class="first">
                 <label
@@ -2922,9 +3022,17 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                >Total Expenses</label>
+                <div class="flex">
+                  <label
+                    class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
+                  >Total Expenses</label>
+                  <div
+                    v-tooltip="'Put in your total expenses incurred in operating your business for the same periods indicated.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
               </div>
               <div class="fourth">
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Income Statement 2018</label>
@@ -2968,9 +3076,17 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                >Profit Before Tax</label>
+                <div class="flex">
+                  <label
+                    class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
+                  >Profit Before Tax</label>
+                  <div
+                    v-tooltip="'The system will calculate this for you.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
               </div>
               <div class="seventh">
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2018</label>
@@ -3028,7 +3144,15 @@
           <div v-if="businessOwners >= 1" class="d-s">
             <div class="grid gap-8 b-d">
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                  <div
+                    v-tooltip="'Put in your Full Name'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[0].name"
@@ -3040,9 +3164,18 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                <div class="flex">
+                  <label
+                    class="block text-gray-900 text-sm font-normal mb-2"
+                  >Tax Identification Number(TIN)</label>
+                  <div
+                    v-tooltip="'Enter your personal TIN that starts with P….'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[0].tin_number"
@@ -3054,7 +3187,16 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                  <div
+                    v-tooltip="'Indicate how old you are, e.g. if you we born June 1990 you are 30 years'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="business_owner[0].age"
@@ -3066,7 +3208,16 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                  <div
+                    v-tooltip="'Select Male if you are a Man and Female if you are Woman.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="flex">
                     <label class="checkbox">
@@ -3096,7 +3247,17 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+
+                  <div
+                    v-tooltip="'Select your country of primary citizenship'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select
@@ -3110,7 +3271,16 @@
                 </div>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                  <div
+                    v-tooltip="' What percentage (%) of the Business do you own if you have other people investing. Put 100% if you are a sole proprietor.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="business_owner[0].share" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3121,7 +3291,15 @@
           <div v-if="businessOwners >= 2" class="d-s">
             <div class="grid gap-8 b-d mt-12">
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                  <div
+                    v-tooltip="'Put in your Full Name'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[1].name"
@@ -3133,9 +3311,17 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                <div class="flex">
+                  <label
+                    class="block text-gray-900 text-sm font-normal mb-2"
+                  >Tax Identification Number(TIN)</label>
+                  <div
+                    v-tooltip="'Enter your personal TIN that starts with P….'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[1].tin_number"
@@ -3147,7 +3333,15 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                  <div
+                    v-tooltip="'Indicate how old you are, e.g. if you we born June 1990 you are 30 years'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="business_owner[1].age"
@@ -3159,7 +3353,16 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                  <div
+                    v-tooltip="'Select Male if you are a Man and Female if you are Woman.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="flex">
                     <label class="checkbox">
@@ -3189,7 +3392,16 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                  <div
+                    v-tooltip="'Select your country of primary citizenship'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select
@@ -3203,7 +3415,15 @@
                 </div>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                  <div
+                    v-tooltip="' What percentage (%) of the Business do you own if you have other people investing. Put 100% if you are a sole proprietor.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="business_owner[1].share" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3214,7 +3434,16 @@
           <div v-if="businessOwners >= 3" class="d-s">
             <div class="grid gap-8 b-d mt-12">
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Name</label>
+                  <div
+                    v-tooltip="'Put in your Full Name'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[2].name"
@@ -3226,9 +3455,17 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label
-                  class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                <div class="flex">
+                  <label
+                    class="block text-gray-900 text-sm font-normal mb-2"
+                  >Tax Identification Number(TIN)</label>
+                  <div
+                    v-tooltip="'Enter your personal TIN that starts with P….'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[2].tin_number"
@@ -3240,7 +3477,15 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
+                  <div
+                    v-tooltip="'Indicate how old you are, e.g. if you we born June 1990 you are 30 years'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="business_owner[2].age"
@@ -3252,7 +3497,15 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
+                  <div
+                    v-tooltip="'Select Male if you are a Man and Female if you are Woman.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="flex">
                     <label class="checkbox">
@@ -3282,7 +3535,15 @@
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Nationality</label>
+                  <div
+                    v-tooltip="'Select your country of primary citizenship'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select
@@ -3296,7 +3557,15 @@
                 </div>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
+                  <div
+                    v-tooltip="' What percentage (%) of the Business do you own if you have other people investing. Put 100% if you are a sole proprietor.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="business_owner[2].share" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3341,28 +3610,64 @@
           <div class="d-s mt-12">
             <div class="grid gap-8 b-d">
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Number of Employees</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Number of Employees</label>
+                  <div
+                    v-tooltip="'Put in the total number of people who work for you. Include all part-time/casual workers as well.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="general.number_of_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Permanent Employees</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Permanent Employees</label>
+                  <div
+                    v-tooltip="'How many of the people who work with you are permanent staff that is, they do not have a fixed term contract'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="general.permanent_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Temporary Employees</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Temporary Employees</label>
+                  <div
+                    v-tooltip="'How many of the people who for you come to work for as and when needed for a specific time period or task'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="general.temporary_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-normal mb-2">Female Employees</label>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Female Employees</label>
+                  <div
+                    v-tooltip="'How many of the people working for you are Women? If you do not have employees falling under a particular category, input 0'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="general.female_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
