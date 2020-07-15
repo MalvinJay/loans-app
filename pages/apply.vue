@@ -44,9 +44,17 @@
                   </ValidationProvider>
                 </div>
                 <div class="mb-4">
-                  <label
-                    class="block text-gray-700 text-sm font-normal mb-2"
-                  >2019 Annual Sales or 2019 Annual Turnover <span class="text-red-600">*</span></label>
+                  <div class="flex">
+                    <label
+                      class="block text-gray-700 text-sm font-normal mb-2"
+                    >2019 Annual Sales or 2019 Annual Turnover <span class="text-red-600">*</span></label>
+                    <div
+                      v-tooltip="'Insert the total sales or revenue your company made from January to December 2019'"
+                      class="ml-4 tooltip-btn flex items-center justify-center"
+                    >
+                      ?
+                    </div>
+                  </div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Input
                       v-model.number="annual_sales"
@@ -59,7 +67,17 @@
                   </ValidationProvider>
                 </div>
                 <div class="mb-4">
-                  <label class="block text-gray-900 text-sm mb-2">Applicant's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span></label>
+                  <div class="flex">
+                    <label class="block text-gray-900 text-sm mb-2">
+                      Applicant's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span>
+                    </label>
+                    <div
+                      v-tooltip="'You cannot apply without an ID. Any of the following is acceptable: <br /> Passport, <br /> Voters ID  and <br /> Driver’s License'"
+                      class="ml-4 tooltip-btn flex items-center justify-center"
+                    >
+                      ?
+                    </div>
+                  </div>
                   <ValidationProvider ref="idNum" v-slot="{ errors }" rules="required">
                     <Input
                       v-model="id_number"
@@ -71,9 +89,17 @@
                   </ValidationProvider>
                 </div>
                 <div class="mb-4">
-                  <label
-                    class="block text-gray-700 text-sm font-normal mb-2"
-                  >Years in Business <span class="text-red-600">*</span></label>
+                  <div class="flex">
+                    <label
+                      class="block text-gray-700 text-sm font-normal mb-2"
+                    >Years in Business <span class="text-red-600">*</span></label>
+                    <div
+                      v-tooltip="'Indicate the number of years you have operated your business until 2020. E.g. if you started your business in 2015 then enter 5 years.'"
+                      class="ml-4 tooltip-btn flex items-center justify-center"
+                    >
+                      ?
+                    </div>
+                  </div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Input v-model.number="years_in_business" type="text" small />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>

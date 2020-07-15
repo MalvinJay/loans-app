@@ -5,18 +5,42 @@
         <div class="grid form-b py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.first_name" type="text" name="First Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
+              <Input
+                v-model="personalInfo.first_name"
+                tooltip="Enter your name. Make sure it is the same first name on the ID you are using."
+                type="text"
+                name="First Name"
+                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                required
+              />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="personalInfo.last_name" type="text" name="Last Name" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" required />
+              <Input
+                v-model="personalInfo.last_name"
+                tooltip=" Enter your Surname or Family Name. Make sure it is the same surname on the ID you are using."
+                type="text"
+                name="Last Name"
+                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+                required
+              />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender <span class="text-red-600">*</span></label>
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender <span class="text-red-600">*</span></label>
+
+              <div
+                v-tooltip="'Select Male if you are a Man and Female if you are Woman.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <div class="flex justify-start">
                 <label class="checkbox">
@@ -46,10 +70,19 @@
             </ValidationProvider>
           </div>
           <div class="mb-12">
-            <Input v-model="personalInfo.primary_email" type="email" name="Email Address (Optional)" optional />
+            <Input v-model="personalInfo.primary_email" tooltip=" Enter your personal E-mail address if you have one" type="email" name="Email Address (Optional)" optional />
           </div>
           <div>
-            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address <span class="text-red-600">*</span></label>
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Present Address <span class="text-red-600">*</span></label>
+
+              <div
+                v-tooltip="' Enter your home or house location address with your Street Name and not Post-office address. Also select your region and district.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
           </div>
           <div />
           <div class="mb-12">
@@ -107,6 +140,7 @@
           <div class="mb-12">
             <Input
               v-model="personalInfo.personal_digital_address_code"
+              tooltip="Generate your Digital Address from the Ghana Post (GPS) app or use the Digital Address that is close to you if you can’t generate one on your own."
               type="text"
               name="Nearest Digital Address Code (Optional)"
               placeholder="GA-xxx-xxxx"
@@ -115,7 +149,16 @@
             />
           </div>
           <div class="mb-12">
-            <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth <span class="text-red-600">*</span></label>
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-bold mb-2">Date of Birth <span class="text-red-600">*</span></label>
+              <div
+                v-tooltip="'Enter the date you were born. Make sure it is the birth date on the ID you are using.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
             <ValidationProvider v-slot="{ errors }" rules="required">
               <input
                 id="dob"

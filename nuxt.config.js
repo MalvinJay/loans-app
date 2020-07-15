@@ -46,7 +46,8 @@ export default {
     '~assets/scss/__spacers.scss',
     '~assets/scss/__variables.scss',
     '~assets/scss/__components.scss',
-    '~assets/scss/__colors.scss'
+    '~assets/scss/__colors.scss',
+    '~assets/scss/__general.scss'
   ],
 
   styleResources: {
@@ -61,7 +62,8 @@ export default {
     '~/plugins/vue-multiselect.js',
     '~/plugins/Vuelidate.js',
     '~/plugins/vee-validate.js',
-    '~/plugins/directives.js'
+    '~/plugins/directives.js',
+    '@/plugins/vue-tooltips.js'
   ],
   /*
   ** Nuxt.js dev-modules

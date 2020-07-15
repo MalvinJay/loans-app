@@ -127,7 +127,7 @@
       </div>
     </div>
     <div class="nav-buttons">
-      <div class="flex flex-wrap gap-8">
+      <div class="flex flex-wrap gap-8 mt-8">
         <button class="next" @click="confirmModal=true">
           Submit
         </button>
@@ -144,6 +144,12 @@
         <div class="h-d mb-10">
           <p class="text-center text-lg font-bold">
             Declaration Section of Application
+          </p>
+          <p class="text-red-600 text-sm text-center">
+            * Ensure all information you have provided is correct <br>
+            * Select <b>YES</b> or <b>NO</b> on the applicable questions. <br>
+            * Read the terms and conditions information provided carefully. <br>
+            * Sign by Entering <b>Agree/Disagree</b> to the text information read. Then click <b>Finish</b>.
           </p>
         </div>
         <div>
