@@ -213,7 +213,7 @@
               </div>
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
-            <div class="flex items-end">
+            <div class="flex">
               <label class="block text-gray-900 text-sm font-normal mb-2">
                 Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)
               </label>
@@ -2961,7 +2961,7 @@
                 >Jan 2020 - April 2020</label>
               </div>
               <div>
-                <div class="flex">
+                <div class="flex items-baseline">
                   <label class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile">Total Revenue</label>
                   <div
                     v-tooltip="'Enter your total sales or turnover for periods indicated.'"
@@ -3022,7 +3022,7 @@
                 </ValidationProvider>
               </div>
               <div>
-                <div class="flex">
+                <div class="flex items-baseline">
                   <label
                     class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
                   >Total Expenses</label>
@@ -3076,7 +3076,7 @@
                 </ValidationProvider>
               </div>
               <div>
-                <div class="flex">
+                <div class="flex items-baseline">
                   <label
                     class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
                   >Profit Before Tax</label>

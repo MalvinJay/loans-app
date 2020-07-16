@@ -106,7 +106,7 @@
                   </ValidationProvider>
                 </div>
               </div>
-              <div class="mb-4 w-full">
+              <div class="mb-4">
                 <recaptcha @error="onError" @success="onSuccess" @expired="onExpired" />
                 <small class="text-sm text-red-700 font-bold">{{ recaptchError }}</small>
               </div>
