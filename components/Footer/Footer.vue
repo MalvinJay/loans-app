@@ -55,7 +55,7 @@
           <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
         </a>
       </div>
-      <div class="font-light py-4">
+      <div class="flex items-center font-light py-4">
         &copy; National Board for Small Scale Industries. All rights reserved.
       </div>
     </div>
