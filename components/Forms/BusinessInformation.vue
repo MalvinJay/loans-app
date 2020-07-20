@@ -96,9 +96,9 @@
                 type="text"
                 name="Tax Identification Number (TIN)"
                 optional
-                regex="([A-Za-z]{1})([0-9]{10})$"
                 required
               />
+              <!-- regex="([A-Za-z]{1})([0-9]{10})$" -->
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -2329,10 +2329,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.trim="directors_list[0].tin_number"
-                    regex="([A-Z]{1})([0-9]{10})$"
                     type="text"
                     small
                   />
+                  <!-- regex="([A-Z]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -3181,11 +3181,11 @@
                     v-model="business_owner[0].tin_number"
                     type="text"
                     small
-                    regex="([A-Z]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
+              <!-- regex="([A-Z]{1})([0-9]{10})$" -->
               <div>
                 <div class="flex">
                   <label class="block text-gray-900 text-sm font-normal mb-2">Age</label>
@@ -3316,7 +3316,7 @@
                     class="block text-gray-900 text-sm font-normal mb-2"
                   >Tax Identification Number(TIN)</label>
                   <div
-                    v-tooltip="'Enter your personal TIN that starts with P….'"
+                    v-tooltip="'Enter your personal `TIN `that starts with P….'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
                   >
                     ?
@@ -3327,8 +3327,8 @@
                     v-model="business_owner[1].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
+                  <!-- regex="([P]{1})([0-9][A-Za-z]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -3471,8 +3471,8 @@
                     v-model="business_owner[2].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
+                  <!-- regex="([P]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
