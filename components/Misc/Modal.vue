@@ -70,11 +70,12 @@ export default {
 
 .modal-body {
   margin: 20px 0;
+  padding-right: 20px;
   max-height: 100vh;
   overflow-y: auto;
   -ms-overflow-style: none;
   &::-webkit-scrollbar {
-    display: none;
+    // display: none;
   }
 }
 
