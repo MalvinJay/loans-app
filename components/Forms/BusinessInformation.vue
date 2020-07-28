@@ -3270,7 +3270,7 @@
                   </ValidationProvider>
                 </div>
               </div>
-              <div>
+              <!-- <div>
                 <div class="flex">
                   <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
                   <div
@@ -3285,7 +3285,7 @@
                   <Input v-model.number="business_owner[0].share" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
-              </div>
+              </div> -->
             </div>
           </div>
           <div v-if="businessOwners >= 2" class="d-s">
@@ -4106,6 +4106,7 @@ export default {
     }
   },
   mounted () {
+    this.business_owner[0].share = 100
     if (!this.token && this.applicationObject) {
       this.general.annual_sales = this.applicationObject.annual_sales
       // this.setDefaultValues()
