@@ -55,13 +55,14 @@
                       ?
                     </div>
                   </div>
-                  <ValidationProvider v-slot="{ errors }" rules="required">
+                  <ValidationProvider v-slot="{ errors }" name="annualSales" rules="required">
                     <Input
                       v-model.number="annual_sales"
                       type="number"
                       placeholder="e.g 1,000"
                       small
                       money
+                      :capped="true"
                     />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
@@ -186,6 +187,15 @@ export default {
         this.regex = '[0-9]{10}$'
       } else if (value === '2') {
         this.regex = '[A-Z]{1}[0-9]{7}$'
+      }
+    },
+    annual_sales (value) {
+      if (value > 5000000) {
+        // this.$refs.form.setErrors({
+        //   annual_sales: ['Input too big. Max value is GHS 5,000,000']
+        // })
+        // eslint-disable-next-line no-console
+        console.log('form:', this.$refs.form)
       }
     }
   },

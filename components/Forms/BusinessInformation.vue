@@ -3207,7 +3207,7 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <div>
+              <div class="flex flex-col justify-between">
                 <div class="flex">
                   <label class="block text-gray-900 text-sm font-normal mb-2">Gender</label>
                   <div
@@ -3575,6 +3575,7 @@
           </div>
           <div class="flex gap-6">
             <small
+              v-if="showAddBusOwner"
               class="text-blue-600 cursor-pointer"
               @click="businessOwners +=1"
             >Add another Owner</small>
@@ -3817,6 +3818,10 @@ export default {
       set (newValue) {
         this.business_owner[0].tin_number = newValue
       }
+    },
+    showAddBusOwner () {
+      return false
+      // return (this.general.legal_organization !== '1') || (this.general.legal_organization !== '2')
     }
   },
   watch: {
@@ -4228,24 +4233,26 @@ export default {
       }
     },
     doneOwnerModal () {
-      const businessOwner = JSON.parse(
-        JSON.stringify(this.business_owner)
-      ).filter(value => JSON.stringify(value) !== '{}')
+      // const businessOwner = JSON.parse(
+      //   JSON.stringify(this.business_owner)
+      // ).filter(value => JSON.stringify(value) !== '{}')
 
-      const reducer = (accumulator, currentValue) =>
-        accumulator + currentValue.share
+      // const reducer = (accumulator, currentValue) =>
+      //   accumulator + currentValue.share
 
-      const total = businessOwner.reduce(reducer, 0)
-      if (total !== 100) {
-        this.$toasted.error('Ownership percentage should equal 100%', {
-          theme: 'toasted-primary',
-          position: 'top-center',
-          duration: 5000
-        })
-      } else {
-        this.checkOwnerModal = true
-        this.ownerModal = false
-      }
+      // const total = businessOwner.reduce(reducer, 0)
+      // if (total !== 100) {
+      //   this.$toasted.error('Ownership percentage should equal 100%', {
+      //     theme: 'toasted-primary',
+      //     position: 'top-center',
+      //     duration: 5000
+      //   })
+      // } else {
+      //   this.checkOwnerModal = true
+      //   this.ownerModal = false
+      // }
+      this.checkOwnerModal = true
+      this.ownerModal = false
     },
     doneEmployeesModal () {
       this.checkEmployeesModal = true

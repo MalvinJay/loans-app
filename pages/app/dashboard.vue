@@ -22,7 +22,8 @@
         </p>
         <div class="my-3">
           <p>
-            Repayment isn't due until DD/MM/2020 but you can choose to start repaying at anytime
+            <!-- Repayment isn't due until DD/MM/2020 but you can choose to start repaying at anytime -->
+            You can choose to stat repayment anytime. Click Schedule a Payment.
           </p>
         </div>
 
