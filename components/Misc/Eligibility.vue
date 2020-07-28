@@ -98,7 +98,7 @@ export default {}
 </script>
 <style lang="scss" scoped>
 .eligibility {
-  background: linear-gradient(90deg, #6a1b9a 0%, #9b51e0 100%);
+  background: linear-gradient(90deg, #0d247d 0%, #9b51e0 100%);
   // height: 700px;
 }
 

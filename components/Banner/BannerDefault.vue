@@ -39,8 +39,8 @@ export default {}
   width: 100%;
   background: linear-gradient(
     90deg,
-    rgba(94, 27, 154, 1) 0%,
-    rgba(141, 27, 154, 1) 0%,
+    rgb(13, 36, 125) 0%,
+    rgb(13, 35, 125) 0%,
     rgba(196, 144, 0, 1) 100%
   );
   p {

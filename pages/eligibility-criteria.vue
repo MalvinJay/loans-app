@@ -193,7 +193,7 @@
               <div class="box pb-8">
                 <img src="@/assets/img/delivery.png" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Tourism and Hospitability
+                  Tourism and Hospitality
                 </p>
               </div>
               <div class="box pb-8">
@@ -220,7 +220,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Enterprise must be either a micro or small enterprise as defined by the Fund Manager
+              Enterprise must be either a micro, small OR MEDIUM enterprise as defined by the FUND ADVISOR
             </p>
           </div>
         </div>

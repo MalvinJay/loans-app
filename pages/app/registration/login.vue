@@ -184,7 +184,7 @@ export default {
 // @tailwind components;
 // @tailwind utilities;
 .signin {
-  background: linear-gradient(90deg, #5E1B9A 0%, #C49000 100%);
+  background: linear-gradient(90deg, #0d247d 0%, #C49000 100%);
   position: fixed;
   z-index: 999;
   width: 100%;

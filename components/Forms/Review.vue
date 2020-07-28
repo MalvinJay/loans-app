@@ -206,11 +206,29 @@
           <Input v-model="signature" small type="text" />
         </div>
         <div class="nav-buttons c-b flex gap-5">
-          <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="submitAll">
+          <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="reConfirm = true">
             Finish
           </button>
           <button class="button-small previous" @click="confirmModal=false">
             Return
+          </button>
+        </div>
+      </div>
+    </Modal>
+    <Modal v-if="reConfirm" :flex="true">
+      <div class="h-d mb-10 flex flex-col items-center justify-center">
+        <p class="text-center text-xl font-bold py-4">
+          Are you sure all information provided are accurate?
+        </p>
+        <p class="py-4">
+          Note that inaccurate information provided can disqualify you from funding
+        </p>
+        <div class="nav-buttons c-b flex gap-5 py-4">
+          <button class="button-small next" @click="submitAll">
+            Proceed
+          </button>
+          <button class="button-small previous" @click="reConfirm=false">
+            Go Back
           </button>
         </div>
       </div>
@@ -236,7 +254,8 @@ export default {
       confirmModal: false,
       signature: '',
       liquidation: null,
-      crime: null
+      crime: null,
+      reConfirm: false
     }
   },
   computed: {
@@ -259,6 +278,7 @@ export default {
       }
     },
     submitAll () {
+      this.reConfirm = false
       this.$emit('submitted', true)
       this.$toasted.show('Submitting...', {
         theme: 'toasted-primary',

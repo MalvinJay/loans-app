@@ -12,6 +12,7 @@
                 money
                 required
                 tooltip="Enter how much money your business needs."
+                :capped="true"
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>

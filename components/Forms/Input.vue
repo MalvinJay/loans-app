@@ -113,6 +113,11 @@ export default {
       required: false,
       type: String,
       default: null
+    },
+    capped: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {
@@ -137,6 +142,9 @@ export default {
           this.error = true
         } if (parseFloat(val) > 1000000000) {
           this.errorMessage = 'Number too big'
+          this.error = true
+        } if (this.capped === true && val > 5000000) {
+          this.errorMessage = 'Input too big. Max value is GHS 5,000,000'
           this.error = true
         }
       } else if (this.type === 'text' && this.regex !== '' && val !== '') {

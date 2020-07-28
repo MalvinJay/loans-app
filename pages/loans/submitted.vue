@@ -49,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 .main {
   height: 732px;
-  background: linear-gradient(90deg, #6A1B9A 0%, #9B51E0 100%);
+  background: linear-gradient(90deg, #0d247d 0%, rgba(13, 35, 125, 0.664) 100%);
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.15);
   img {
     margin: 0 auto;
