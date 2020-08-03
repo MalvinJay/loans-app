@@ -6,7 +6,7 @@
     <div class="security flex justify-center text-center">
       <div class="s-l-s">
         <div class="img pr-4 sm:pb-4">
-          <img src="@/assets/img/lock.png" alt="" srcset="">
+          <img src="@/assets/img/shield.png" alt="" srcset="">
         </div>
         <div>
           <p class="text-3xl font-extrabold">

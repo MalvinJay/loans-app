@@ -71,6 +71,10 @@ export default {
   },
   data () {
     return {
+      image_url: '/icon.png',
+      url: 'https://nbssimastercard-staging.wl.r.appspot.com/app/registration/login',
+      title: 'Notifications | Client Portal',
+      description: 'Client portal to view loan application status and also to chat directly with backOffice'
     }
   },
   computed: {
@@ -98,6 +102,26 @@ export default {
       // const dateTimeFormat = new Intl.DateTimeFormat('en', { year: 'numeric', month: 'short', day: '2-digit' })
       // const [{ value: month },, { value: day },, { value: year }] = dateTimeFormat.formatToParts(time[0])
       return time[0]
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: this.title },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: this.title },
+        { property: 'twitter:description', content: this.description },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
     }
   }
 }
