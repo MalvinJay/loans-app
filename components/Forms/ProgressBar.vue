@@ -55,8 +55,8 @@ export default {
 .progress {
   background: linear-gradient(
     90deg,
-    rgba(150, 77, 204, 0.8) 0%,
-    rgba(39, 125, 247, 0.8) 100%
+    rgba(13, 35, 125, 0.973) 0%,
+    rgba(13, 35, 125, 0.773) 100%
   );
   padding: 2rem 1.25rem;
   border-radius: 5px;

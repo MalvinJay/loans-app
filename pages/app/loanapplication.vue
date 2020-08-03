@@ -75,6 +75,14 @@ export default {
   components: {
     Loading
   },
+  data () {
+    return {
+      image_url: '/icon.png',
+      url: 'https://nbssimastercard-staging.wl.r.appspot.com/app/registration/login',
+      title: 'Loan Application | Client Portal',
+      description: 'Client portal to view loan application status and also to chat directly with backOffice'
+    }
+  },
   computed: {
     ...mapGetters({
       loanDetails: 'loan/loanDetails',
@@ -95,6 +103,26 @@ export default {
     continueApplication () {
       // window.location = '/loans/0/form'
       this.$router.push('/loans/0/form')
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: this.title },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: this.title },
+        { property: 'og:description', content: this.description },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: this.title },
+        { property: 'twitter:description', content: this.description },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
     }
   }
 }
