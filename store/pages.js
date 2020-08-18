@@ -246,7 +246,7 @@ export const actions = {
     //     commit('SET_COUNTRIES', response.data)
     //   })
     // eslint-disable-next-line no-console
-    console.log('Countries', countryList)
+    // console.log('Countries', countryList)
     commit('SET_COUNTRIES', countryList)
   }
 }
