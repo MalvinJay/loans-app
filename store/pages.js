@@ -1,4 +1,5 @@
-import axios from 'axios'
+// import axios from 'axios'
+import { countryList } from './countries'
 export const state = () => ({
   loanAmount: null,
   years: null,
@@ -228,9 +229,24 @@ export const actions = {
       })
   },
   getCountries ({ commit }) {
-    axios.get('https://restcountries.eu/rest/v2/all')
-      .then((response) => {
-        commit('SET_COUNTRIES', response.data)
-      })
+    // axios.get('https://restcountries.eu/rest/v2/all')
+    // axios({
+    //   method: 'GET',
+    //   url: 'https://restcountries-v1.p.rapidapi.com/all',
+    //   headers: {
+    //     'content-type': 'application/octet-stream',
+    //     'x-rapidapi-host': 'restcountries-v1.p.rapidapi.com',
+    //     'x-rapidapi-key': 'b625a5022bmshe3f5ace2e19a571p12f017jsndd4d5446d4a9',
+    //     useQueryString: true
+    //   }
+    // })
+    //   .then((response) => {
+    //     // eslint-disable-next-line no-console
+    //     console.log('Countries:', response)
+    //     commit('SET_COUNTRIES', response.data)
+    //   })
+    // eslint-disable-next-line no-console
+    console.log('Countries', countryList)
+    commit('SET_COUNTRIES', countryList)
   }
 }
