@@ -101,7 +101,7 @@
                 </th>
                 <th>Number of Employees</th>
                 <th>
-                  Revenue Range <br>
+                  Annual Revenue Range <br>
                   <span>
                     (GHS)
                   </span>
@@ -259,7 +259,7 @@
           20. Will a business be eligible for this fund if they have already accessed funding from the Government of Ghana CAP Business Support Scheme?
         </template>
         <template v-slot:body>
-          Yes. A beneficiary of the Government of Ghana CAP Business Support Scheme can apply for funding from the NBSSI Mastercard Foundation COVID-19 Resilience and Recovery Program.
+          No, a beneficiary to the Government of Ghana CAP Business Support Scheme (i.e. a business that has received funds from that program) cannot apply to for funding from the NBSSI Mastercard Foundation COVID-19 Resilience and Recovery Program.
         </template>
       </Accordion>
       <!-- <Accordion>
