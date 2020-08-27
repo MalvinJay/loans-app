@@ -92,7 +92,7 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
                 v-model="general.tin_number"
-                tooltip=" You will need a TIN to be able to complete this application. Enter your Business TIN starting with C….. or Individual TIN starting with P…... Visit the GRA website or a GRA office to get a TIN if you do not have one"
+                tooltip="Input the Business TIN if available otherwise input TIN of business owner"
                 type="text"
                 name="Tax Identification Number (TIN)"
                 optional
@@ -296,6 +296,12 @@
               Click to Fill in Template
               <span v-if="checkOwnerModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="busOwner" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Employees</label>
@@ -308,6 +314,12 @@
               Click to Fill in Template
               <span v-if="checkEmployeesModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="employeesDone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div
             v-if="(businessScale === '1' || businessScale === '2') && isStartup === false"
@@ -323,6 +335,12 @@
               Click to Fill in Template
               <span v-if="checkMicroIncomeModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="microIncomeDone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div v-else class="mb-12">
             <label class="block text-gray-900 text-sm font-bold mb-2">Income Statement</label>
@@ -335,6 +353,12 @@
               Click to Fill in Template
               <span v-if="checkIncomeModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="incomeDone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div
             v-if="(businessScale === '4' || businessScale === '5') && isStartup === false"
@@ -350,6 +374,12 @@
               Click to Fill in Template
               <span v-if="checkBalanceSheetModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="balanceSheetDone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div
             v-if="(businessScale === '4' || businessScale === '5') && isStartup === false"
@@ -365,6 +395,12 @@
               Click to Fill in Template
               <span v-if="checkCashFlowModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="cashFlowDone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
           <div
             v-if="general.legal_organization === '3' || general.legal_organization === '4' || general.legal_organization === '5'"
@@ -380,6 +416,12 @@
               Click to Fill in Template
               <span v-if="checkShareHolderModal">&#10003;</span>
             </button>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <input v-model="directorListdone" type="text" style="display: none!important">
+              <div class="text-sm text-red-700 pt-2">
+                {{ errors[0] }}
+              </div>
+            </ValidationProvider>
           </div>
         </div>
         <div class="nav-buttons">
@@ -415,635 +457,670 @@
             You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
           </p>
         </div>
-        <div class="grid grid-cols-6 gap-8 b-d">
-          <div />
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2019
-            </label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >Jan 2020-April 2020</label>
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
-            >2020F (FORECAST)</label>
-          </div>
-          <div>
-            <div class="flex">
-              <label class="block text-gray-900 text-sm font-bold mb-2">Total Revenue</label>
-              <div
-                v-tooltip="'Enter your total sales or turnover for periods indicated.'"
-                class="ml-4 tooltip-btn flex items-center justify-center"
-              >
-                ?
+        <ValidationObserver v-slot="{ handleSubmit, valid }">
+          <form @submit.prevent="handleSubmit(doneIncomeModal)">
+            <div class="grid grid-cols-6 gap-8 b-d">
+              <div />
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2017</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">2018</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2019
+                </label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >Jan 2020-April 2020</label>
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+                >2020F (FORECAST)</label>
+              </div>
+              <div>
+                <div class="flex">
+                  <label class="block text-gray-900 text-sm font-bold mb-2">Total Revenue</label>
+                  <div
+                    v-tooltip="'Enter your total sales or turnover for periods indicated.'"
+                    class="ml-4 tooltip-btn flex items-center justify-center"
+                  >
+                    ?
+                  </div>
+                </div>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_revenue"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_revenue"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_revenue"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_revenue"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_revenue"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-gray-900 text-sm font-bold mb-2"
+                >Total Amount Paid for Raw Materials</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_raw_materials"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_raw_materials"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_raw_materials"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_raw_materials"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_raw_materials"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount Paid for Salaries</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_salaries"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_salaries"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_salaries"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_salaries"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_salaries"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Other Operating Expenses</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_expenses"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_expenses"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_expenses"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_expenses"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_expenses"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Interest on Loans</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_loan_repayment"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_loan_repayment"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_loan_repayment"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_loan_repayment"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_loan_repayment"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation Charge on Assets</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.depreciation_charge_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.depreciation_charge_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.depreciation_charge_assets"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.depreciation_charge_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.depreciation_charge_assets"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Total Charge in Taxes</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model.number="income_statement_2017.total_taxes_charge"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="income_statement_2018.total_taxes_charge"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="income_statement_2019.total_taxes_charge"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="income_statement_apr_2020.total_taxes_charge"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="income_statement_2020.total_taxes_charge"
+                  type="number"
+                  placeholder="GHS"
+                  money
+                  small
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Net Profit</label>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
+                <Input
+                  v-model="total_income_statement.net_profit_17"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
+                <Input
+                  v-model.number="total_income_statement.net_profit_18"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input
+                    v-model.number="total_income_statement.net_profit_19"
+                    type="text"
+                    placeholder="GHS"
+                    money
+                    small
+                    disabled
+                  />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </validationprovider>
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
+                <Input
+                  v-model.number="total_income_statement.net_profit_apr_20"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
+              </div>
+              <div>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
+                <Input
+                  v-model.number="total_income_statement.net_profit_20"
+                  type="text"
+                  placeholder="GHS"
+                  money
+                  small
+                  disabled
+                />
               </div>
             </div>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_revenue"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_revenue"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_revenue"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_revenue"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_revenue"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label
-              class="block text-gray-900 text-sm font-bold mb-2"
-            >Total Amount Paid for Raw Materials</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_raw_materials"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_raw_materials"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_raw_materials"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_raw_materials"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_raw_materials"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount Paid for Salaries</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_salaries"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_salaries"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_salaries"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_salaries"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_salaries"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Other Operating Expenses</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_expenses"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_expenses"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_expenses"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_expenses"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_expenses"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Interest on Loans</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_loan_repayment"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_loan_repayment"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_loan_repayment"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_loan_repayment"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_loan_repayment"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation Charge on Assets</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.depreciation_charge_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.depreciation_charge_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.depreciation_charge_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.depreciation_charge_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.depreciation_charge_assets"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Total Charge in Taxes</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model.number="income_statement_2017.total_taxes_charge"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="income_statement_2018.total_taxes_charge"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="income_statement_2019.total_taxes_charge"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="income_statement_apr_2020.total_taxes_charge"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="income_statement_2020.total_taxes_charge"
-              type="number"
-              placeholder="GHS"
-              money
-              small
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-bold mb-2">Net Profit</label>
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
-            <Input
-              v-model="total_income_statement.net_profit_17"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2018</label>
-            <Input
-              v-model.number="total_income_statement.net_profit_18"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2019 (required)</label>
-            <Input
-              v-model.number="total_income_statement.net_profit_19"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Jan 2020-April 2020</label>
-            <Input
-              v-model.number="total_income_statement.net_profit_apr_20"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-          <div>
-            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2020F (FORECAST)</label>
-            <Input
-              v-model.number="total_income_statement.net_profit_20"
-              type="text"
-              placeholder="GHS"
-              money
-              small
-              disabled
-            />
-          </div>
-        </div>
-        <div class="mt-3">
-          <div class="flex">
-            <label
-              class="block text-gray-700 text-sm font-normal mb-2"
-            >Is the business currently servicing any credit (loan, overdraft, letter of credit, etc)</label>
-            <div
-              v-tooltip="'You will be asked if you have a Loan/Overdraft/Letter of credit with your current operations. If your Answer is YES, you are required to input the details. If NO, then you can move ahead.'"
-              class="ml-4 tooltip-btn flex items-center justify-center"
-            >
-              ?
-            </div>
-          </div>
+            <div class="mt-3">
+              <div class="flex">
+                <label
+                  class="block text-gray-700 text-sm font-normal mb-2"
+                >Is the business currently servicing any credit (loan, overdraft, letter of credit, etc)</label>
+                <div
+                  v-tooltip="'You will be asked if you have a Loan/Overdraft/Letter of credit with your current operations. If your Answer is YES, you are required to input the details. If NO, then you can move ahead.'"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
 
-          <div class="flex">
-            <label class="checkbox">
-              Yes
-              <input
-                id="yes"
-                v-model="general.has_credit"
-                type="checkbox"
-                true-value="1"
-                false-value="0"
-              >
-              <span class="checkmark" />
-            </label>
-            <label class="checkbox">
-              No
-              <input
-                id="no"
-                v-model="general.has_credit"
-                type="checkbox"
-                false-value="1"
-                true-value="0"
-              >
-              <span class="checkmark" />
-            </label>
-          </div>
-        </div>
-        <div class="mt-3">
-          <label
-            class="block text-gray-700 text-sm font-bold mb-2"
-          >If yes, please provide the details below</label>
-          <div class="grid c-f gap-8 mb-8">
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
-              <Input v-model="credit_facilities[0].financial_institution" type="text" small />
+              <div class="flex">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="yes"
+                    v-model="general.has_credit"
+                    type="checkbox"
+                    true-value="1"
+                    false-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="no"
+                    v-model="general.has_credit"
+                    type="checkbox"
+                    false-value="1"
+                    true-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
             </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
-              <Input v-model="credit_facilities[0].type" type="text" small />
+            <div class="mt-3">
+              <label
+                class="block text-gray-700 text-sm font-bold mb-2"
+              >If yes, please provide the details below</label>
+              <div class="grid c-f gap-8 mb-8">
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
+                  <Input v-model="credit_facilities[0].financial_institution" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
+                  <Input v-model="credit_facilities[0].type" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
+                  <Input
+                    v-model.number="credit_facilities[0].amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
+                  <Input v-model="credit_facilities[0].interest_rate" type="number" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
+                  <input v-model="credit_facilities[0].maturity_date" type="date" name>
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
+                  <Input
+                    v-model="credit_facilities[0].current_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+              </div>
+              <div class="grid c-f gap-8 mb-8">
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
+                  <Input v-model="credit_facilities[1].financial_institution" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
+                  <Input v-model="credit_facilities[1].type" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
+                  <Input
+                    v-model.number="credit_facilities[1].amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
+                  <Input v-model="credit_facilities[1].interest_rate" type="number" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
+                  <input v-model="credit_facilities[1].maturity_date" type="date" name>
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
+                  <Input
+                    v-model="credit_facilities[1].current_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+              </div>
+              <div class="grid c-f gap-8 mb-8">
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
+                  <Input v-model="credit_facilities[2].financial_institution" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
+                  <Input v-model="credit_facilities[2].type" type="text" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
+                  <Input
+                    v-model.number="credit_facilities[2].amount"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
+                  <Input v-model="credit_facilities[2].interest_rate" type="number" small />
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
+                  <input v-model="credit_facilities[2].maturity_date" type="date" name>
+                </div>
+                <div>
+                  <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
+                  <Input
+                    v-model="credit_facilities[2].current_value"
+                    type="number"
+                    placeholder="GHS"
+                    money
+                    small
+                  />
+                </div>
+              </div>
             </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input
-                v-model.number="credit_facilities[0].amount"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
+            <div class="mt-16">
+              <template v-if="!valid">
+                <div class="py-1">
+                  <span class="text-red-500 ">* Complete all 2019 fields to proceed</span>
+                </div>
+              </template>
             </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-              <Input v-model="credit_facilities[0].interest_rate" type="number" small />
+            <div class="mt-2 mb-20 flex gap-3 buttons">
+              <button type="submit" class="button-small">
+                Done
+              </button>
+              <button type="button" class="button-small" @click="incomeModal= false">
+                Cancel
+              </button>
             </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
-              <input v-model="credit_facilities[0].maturity_date" type="date" name>
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input
-                v-model="credit_facilities[0].current_value"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
-            </div>
-          </div>
-          <div class="grid c-f gap-8 mb-8">
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
-              <Input v-model="credit_facilities[1].financial_institution" type="text" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
-              <Input v-model="credit_facilities[1].type" type="text" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input
-                v-model.number="credit_facilities[1].amount"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-              <Input v-model="credit_facilities[1].interest_rate" type="number" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
-              <input v-model="credit_facilities[1].maturity_date" type="date" name>
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input
-                v-model="credit_facilities[1].current_value"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
-            </div>
-          </div>
-          <div class="grid c-f gap-8 mb-8">
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
-              <Input v-model="credit_facilities[2].financial_institution" type="text" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
-              <Input v-model="credit_facilities[2].type" type="text" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-              <Input
-                v-model.number="credit_facilities[2].amount"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-              <Input v-model="credit_facilities[2].interest_rate" type="number" small />
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
-              <input v-model="credit_facilities[2].maturity_date" type="date" name>
-            </div>
-            <div>
-              <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-              <Input
-                v-model="credit_facilities[2].current_value"
-                type="number"
-                placeholder="GHS"
-                money
-                small
-              />
-            </div>
-          </div>
-          <div class="my-20 flex gap-3 buttons">
-            <button type="submit" class="button-small" @click="doneIncomeModal">
-              Done
-            </button>
-            <button type="button" class="button-small" @click="incomeModal= false">
-              Cancel
-            </button>
-          </div>
-        </div>
+          </form>
+        </validationobserver>
       </div>
     </Modal>
     <!-- =============================================================================================================
@@ -2325,7 +2402,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                >Business owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.trim="directors_list[0].tin_number"
@@ -2445,7 +2522,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                >Business owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[1].tin_number"
@@ -2565,7 +2642,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                >Business owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[2].tin_number"
@@ -2685,7 +2762,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                >Business owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[3].tin_number"
@@ -2805,7 +2882,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Tax Identification Number(TIN)</label>
+                >Business owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[4].tin_number"
@@ -3748,7 +3825,15 @@ export default {
       region: null,
       // annual_sales_display: null,
       businessOwners: 1,
-      shareHolders: 1
+      shareHolders: 1,
+
+      incomeDone: null,
+      microIncomeDone: null,
+      balanceSheetDone: null,
+      cashFlowDone: null,
+      directorListdone: null,
+      busOwner: null,
+      employeesDone: null
     }
   },
   computed: {
@@ -4187,32 +4272,38 @@ export default {
       return data
     },
     moveNext () {
-      if (this.businessScale !== '1' && this.businessScale !== '2' && this.isStartup === false) {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
-      }
+      // if (this.businessScale !== '1' && this.businessScale !== '2' && this.isStartup === false) {
+      //   this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
+      // } else {
+      //   this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
+      // }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
     },
     movePrevious () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },
     doneIncomeModal () {
+      this.incomeDone = 'Done'
       this.checkIncomeModal = true
       this.incomeModal = false
     },
     doneMicroIncomeModal () {
+      this.microIncomeDone = 'Done'
       this.checkMicroIncomeModal = true
       this.microIncomeModal = false
     },
     doneBalanceSheetModal () {
+      this.balanceSheetDone = 'done'
       this.checkBalanceSheetModal = true
       this.balanceSheetModal = false
     },
     doneCashFlowModal () {
+      this.cashFlowDone = 'Done'
       this.checkCashFlowModal = true
       this.cashFlowModal = false
     },
     doneShareHolderModal () {
+      this.directorListdone = 'Done'
       // filter out empty directors
       const directorsList = JSON.parse(
         JSON.stringify(this.directors_list)
@@ -4252,10 +4343,12 @@ export default {
       //   this.checkOwnerModal = true
       //   this.ownerModal = false
       // }
+      this.busOwner = 'Done'
       this.checkOwnerModal = true
       this.ownerModal = false
     },
     doneEmployeesModal () {
+      this.employeesDone = 'Done'
       this.checkEmployeesModal = true
       this.employeesModal = false
     },

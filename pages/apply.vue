@@ -37,7 +37,7 @@
             <form ref="form" @submit.prevent="handleSubmit(onSubmit)">
               <div class="grid">
                 <div class="mb-4">
-                  <label class="block text-gray-900 text-sm mb-2">Applicant ID Type <span class="text-red-600">*</span></label>
+                  <label class="block text-gray-900 text-sm mb-2">Business Owner ID Type <span class="text-red-600">*</span></label>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select v-model="id_type" :items="idType" small @input="onChange" />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -70,7 +70,7 @@
                 <div class="mb-4">
                   <div class="flex">
                     <label class="block text-gray-900 text-sm mb-2">
-                      Applicant's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span>
+                      Business Owner ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span>
                     </label>
                     <div
                       v-tooltip="'You cannot apply without an ID. Any of the following is acceptable: <br /> Passport, <br /> Voters ID  and <br /> Driver’s License'"

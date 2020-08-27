@@ -1,13 +1,16 @@
 <template>
   <div v-show="show">
     <div class="h-d my-10">
-      <p class="text-red-600 text-sm text-center">
+      <p v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="text-red-600 text-sm text-center">
         * You need to upload your most recent <b>3 months proof of PAYE Payments</b> to GRA and your <b>SSNIT Statement for 2019</b>.
+      </p>
+      <p class="text-red-600 text-sm text-center">
+        * Add main business owner ID.
       </p>
     </div>
     <div class="grid docs border-blue-100">
-      <!-- <div @drop.prevent="addApplicationId" @dragover.prevent>
-        <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Photo ID</label>
+      <div @drop.prevent="addApplicationId" @dragover.prevent>
+        <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Main business owner ID</label>
         <div class="d-i border border-gray-900 py-12">
           <div class="img">
             <img src="@/assets/img/docs.png" alt>
@@ -32,7 +35,7 @@
             </p>
           </div>
         </div>
-      </div> -->
+      </div>
       <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
         <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
         <div class="d-i border border-gray-900 py-12">

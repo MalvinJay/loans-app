@@ -220,7 +220,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Enterprise must be either a micro, small OR MEDIUM enterprise as defined by the FUND ADVISOR
+              Enterprise must be either a Micro, Small OR Medium enterprise as defined by the investment advisor.
             </p>
           </div>
         </div>
