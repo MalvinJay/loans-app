@@ -254,11 +254,11 @@
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
+              <!-- <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
               <ValidationProvider v-slot="{ errors }" rules="required">
                 <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
-              </ValidationProvider>
+              </ValidationProvider> -->
             </div>
           </div>
         </div>
