@@ -92,9 +92,9 @@
             <ValidationProvider v-slot="{ errors }" rules="required">
               <Input
                 v-model="general.tin_number"
-                tooltip="Input the Business TIN if available otherwise input TIN of business owner"
+                tooltip="Input the Business Owner TIN if available otherwise input TIN of business owner"
                 type="text"
-                name="Tax Identification Number (TIN)"
+                name="Business Owner TIN"
                 optional
                 required
               />
@@ -2402,7 +2402,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Business owner TIN</label>
+                >Business Owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.trim="directors_list[0].tin_number"
@@ -2498,7 +2498,7 @@
                   </label>
                 </div>
               </div>
-              <div>
+              <div v-if="shareHolders > 1">
                 <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="directors_list[0].share" type="number" small />
@@ -2522,7 +2522,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Business owner TIN</label>
+                >Business Owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[1].tin_number"
@@ -2642,7 +2642,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Business owner TIN</label>
+                >Business Owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[2].tin_number"
@@ -2762,7 +2762,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Business owner TIN</label>
+                >Business Owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[3].tin_number"
@@ -2882,7 +2882,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2"
-                >Business owner TIN</label>
+                >Business Owner TIN</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[4].tin_number"
@@ -2986,7 +2986,7 @@
                 </ValidationProvider>
               </div>
             </div>
-            <div class="flex gap-6">
+            <div class="flex gap-6 mt-4">
               <small
                 class="text-blue-600 cursor-pointer"
                 @click="shareHolders +=1"
@@ -4192,6 +4192,9 @@ export default {
   },
   mounted () {
     this.business_owner[0].share = 100
+    if (this.shareHolders === 1) {
+      this.directors_list[0].share = 100
+    }
     if (!this.token && this.applicationObject) {
       this.general.annual_sales = this.applicationObject.annual_sales
       // this.setDefaultValues()

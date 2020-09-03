@@ -203,7 +203,7 @@
           </div>
           <div class="mb-4">
             <div>
-              <div class="flex">
+              <div class="flex items-center mb-4">
                 <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                   Payment Account Details
                   <span class="text-red-600">*</span>
@@ -216,7 +216,7 @@
                 </div>
               </div>
 
-              <div v-if="general.requested_loan_amount<=2000" class="grid justify-start ac-dc">
+              <div v-if="general.requested_loan_amount <= 2000" class="grid justify-start ac-dc">
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <div class="grid grid-cols-2 gap-5">
                     <label v-for="(item, i) in momo" :key="i" class="checkbox momo">
@@ -234,31 +234,47 @@
                 </ValidationProvider>
               </div>
             </div>
-            <label v-if="general.requested_loan_amount <= 2000" class="block text-gray-900 text-sm font-normal mb-2">
-              Mobile Wallet Number (must use your own mobile wallet)
-              <span
-                class="text-red-600 font-bold"
-              >*</span>
-            </label>
-            <div v-if="general.requested_loan_amount<= 2000">
+            <div v-if="general.requested_loan_amount <= 2000">
+              <label class="block text-gray-900 text-sm font-normal my-2">
+                Mobile Wallet Number (must use your own mobile wallet)
+                <span
+                  class="text-red-600 font-bold"
+                >*</span>
+              </label>
               <ValidationProvider v-slot="{ errors }" rules="required">
                 <Input v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+              <label class="block text-gray-900 text-sm font-normal mt-4">
+                Mobile Money Name
+                <span
+                  class="text-red-600 font-bold"
+                >*</span>
+              </label>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.mobile_money_name" type="text" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
               </ValidationProvider>
             </div>
             <div v-else>
               <div class="mb-8">
-                <label class="block text-gray-900 text-sm font-normal mb-2">Your Selected Bank</label>
+                <label class="block text-gray-900 text-sm font-normal mb-4">
+                  Which of the following financial institutions that are partnering with this
+                  Program are you located close to or do you have an existing account?
+                  (Please Select Only One)*
+                </label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Select v-model="general.financial_institution_id" :items="bankPartner" />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
-              <!-- <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
-              <ValidationProvider v-slot="{ errors }" rules="required">
-                <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
-                <small class="text-sm text-red-700">{{ errors[0] }}</small>
-              </ValidationProvider> -->
+              <template v-if="general.financial_institution_id == 17">
+                <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </template>
             </div>
           </div>
         </div>

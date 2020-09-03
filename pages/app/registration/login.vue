@@ -89,7 +89,7 @@ export default {
       OTP: null,
       phone: '',
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/apply',
       title: 'Sign In',
       description: 'Already submitted a funding request? Sign in now to check your progress'
     }

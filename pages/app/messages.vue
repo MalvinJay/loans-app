@@ -85,7 +85,7 @@ export default {
         body: null
       },
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/app/registration/login',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/app/registration/login',
       title: 'Messages | Client Portal',
       description: 'Client portal to view loan application status and also to chat directly with backOffice'
     }

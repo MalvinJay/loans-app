@@ -136,7 +136,7 @@ export default {
     return {
       tabView: 'details',
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/app/registration/login',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/app/registration/login',
       title: 'Loan Details | Client Portal',
       description: 'Client portal to view loan application status and also to chat directly with backOffice'
     }

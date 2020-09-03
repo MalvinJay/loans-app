@@ -342,7 +342,7 @@ export default {
   data () {
     return {
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/apply',
       title: 'Eligibility Criteria',
       description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.'
     }

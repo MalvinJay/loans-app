@@ -25,6 +25,40 @@
         </div>
       </div>
     </Modal>
+
+    <Modal v-if="showErrorModal" :flex="true" :allow="true">
+      <div class="flex flex-col relative">
+        <div class="absolute right-0 top-0 px-4">
+          <img src="@/assets/img/Close.png" class="w-6 cursor-pointer" @click="showErrorModal = false">
+        </div>
+        <div class="flex justify-center items-center text-3xl text-center">
+          <span class="font-bold">Sorry</span>
+          <svg class="w-8 mr-4" viewBox="0 0 490 490" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g clip-path="url(#clip0)">
+              <path d="M244.709 389.496C263.445 389.496 279.041 375.141 280.619 356.47L304.978 65.543C306.396 48.67 300.675 31.99 289.222 19.532C277.783 7.09 261.629 0 244.709 0C227.789 0 211.635 7.09 200.195 19.532C188.74 31.99 183.022 48.67 184.44 65.543L208.799 356.47C210.377 375.141 225.973 389.496 244.709 389.496Z" fill="black" />
+              <path d="M244.709 410.908C223.025 410.908 205.453 428.479 205.453 450.164C205.453 471.847 223.025 489.418 244.709 489.418C266.393 489.418 283.965 471.847 283.965 450.164C283.965 428.479 266.393 410.908 244.709 410.908Z" fill="black" />
+            </g>
+            <defs>
+              <clipPath id="clip0">
+                <rect width="489.418" height="489.418" fill="white" />
+              </clipPath>
+            </defs>
+          </svg>
+        </div>
+        <div class="flex flex-col pt-4 text-sm">
+          <p>
+            Sorry for any inconvenience caused with processing your application.
+          </p>
+          <p>
+            We are experiencing an issue with one of our technology partners.
+          </p>
+          <p>
+            Try again a few minutes from now. Thanks for your patience.
+          </p>
+        </div>
+      </div>
+    </Modal>
+
     <NavBar alt />
     <BaseCard>
       <div class="main py-12">
@@ -37,7 +71,7 @@
             <form ref="form" @submit.prevent="handleSubmit(onSubmit)">
               <div class="grid">
                 <div class="mb-4">
-                  <label class="block text-gray-900 text-sm mb-2">Business Owner ID Type <span class="text-red-600">*</span></label>
+                  <label class="block text-gray-900 text-sm sm:mb-5">Business Owner ID Type <span class="text-red-600">*</span></label>
                   <ValidationProvider v-slot="{ errors }" rules="required">
                     <Select v-model="id_type" :items="idType" small @input="onChange" />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -70,7 +104,7 @@
                 <div class="mb-4">
                   <div class="flex">
                     <label class="block text-gray-900 text-sm mb-2">
-                      Business Owner ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span>
+                      Business Owner's ID Number(passport, driver's license, Voters Id) <span class="text-red-600">*</span>
                     </label>
                     <div
                       v-tooltip="'You cannot apply without an ID. Any of the following is acceptable: <br /> Passport, <br /> Voters ID  and <br /> Driver’s License'"
@@ -92,7 +126,7 @@
                 <div class="mb-4">
                   <div class="flex">
                     <label
-                      class="block text-gray-700 text-sm font-normal mb-2"
+                      class="block text-gray-700 text-sm font-normal mb-6"
                     >Years in Business <span class="text-red-600">*</span></label>
                     <div
                       v-tooltip="'Indicate the number of years you have operated your business until 2020. E.g. if you started your business in 2015 then enter 5 years.'"
@@ -164,10 +198,11 @@ export default {
       },
       ApplicantReader: JSON.parse(localStorage.getItem('userReader')) || false,
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/apply',
       title: 'Apply For Funding',
       description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.',
-      recaptchError: null
+      recaptchError: null,
+      showErrorModal: null
     }
   },
   computed: {
@@ -262,9 +297,23 @@ export default {
           // this.$recaptcha.reset()
           window.location = '/loans/0/form'
         })
-        .catch(() => {
-          this.$toast.error('Could not verify ID')
-          this.$toast.error('Please make sure you enter a valid ID')
+        .catch((err) => {
+          if (err.response.status) {
+            switch (err.response.status) {
+              case 404:
+                this.$toast.error('Could not verify ID')
+                this.$toast.error('Please make sure you enter a valid ID')
+                break
+              case 500:
+                this.showErrorModal = true
+                break
+
+              default:
+                // this.$toast.error('Could not verify ID')
+                this.$toast.error('Please make sure you enter a valid ID')
+                break
+            }
+          }
         })
     }
   },

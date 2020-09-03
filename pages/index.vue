@@ -33,7 +33,7 @@ export default {
   data () {
     return {
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/',
       title: 'Covid-19 Emergency Relief Fund',
       description: 'Welcome to the Mastercard Foundation and National Board for Small Scale Industries (NBSSI) application portal.'
     }
