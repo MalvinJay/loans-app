@@ -335,7 +335,7 @@ export default {
   data () {
     return {
       image_url: '/icon.png',
-      url: 'https://nbssimastercard-staging.wl.r.appspot.com/apply',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/apply',
       title: 'FAQs',
       description: 'Frequently Asked Questions'
     }

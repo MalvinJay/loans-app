@@ -1,8 +1,7 @@
 <template>
   <transition name="modal">
     <div class="modal-mask">
-      <div class="modal-wrapper">
-        <!-- v-click-outside="closeModal" -->
+      <div v-click-outside="closeModal" class="modal-wrapper">
         <div class="modal-container" :class="{flex}">
           <div v-scroll-lock="open" class="modal-body">
             <slot />
@@ -19,6 +18,11 @@ export default {
       type: Boolean,
       required: false,
       default: false
+    },
+    allow: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -28,7 +32,9 @@ export default {
   },
   methods: {
     closeModal () {
-      this.$emit('close')
+      if (this.allow) {
+        this.$emit('close')
+      }
     }
   }
 }
