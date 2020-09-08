@@ -269,11 +269,20 @@
                 </ValidationProvider>
               </div>
               <template v-if="general.financial_institution_id == 17">
-                <label class="block text-gray-900 text-sm font-normal mb-2">Bank Account Number</label>
-                <ValidationProvider v-slot="{ errors }" rules="required">
-                  <Input v-model="general.account_no" type="text" regex="[0-9]{5}" />
-                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
-                </ValidationProvider>
+                <template>
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Regions</label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="region" first="Region" :items="regions" />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </template>
+                <template>
+                  <label class="block text-gray-900 text-sm font-normal my-2">Associated Banks</label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="rcbBank" first="Select associated regional bank" :items="regionalRcbs" />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </template>
               </template>
             </div>
           </div>
@@ -656,7 +665,10 @@ export default {
       fundOtherSelected: false,
       nonFinancialOtherSelected: false,
       // details: {}
-      impactTemplate: null
+      impactTemplate: null,
+      region: '',
+      rcb: '',
+      rcbBank: ''
     }
   },
   computed: {
@@ -667,7 +679,9 @@ export default {
       fundRoles: 'pages/fundRoles',
       momo: 'pages/momo',
       token: 'local/token',
-      nonFinancialSupport: 'pages/nonFinancialSupport'
+      nonFinancialSupport: 'pages/nonFinancialSupport',
+      regions: 'pages/regions',
+      rcbanks: 'pages/rcbanks'
     }),
     ...mapState({
       currentTab: state => state.pages.currentTab,
@@ -681,6 +695,9 @@ export default {
           return {}
         }
       }
+    },
+    regionalRcbs () {
+      return this.rcbanks.filter(bank => this.rcb.toLowerCase().includes(bank.region.toLowerCase()))
     }
   },
   watch: {
@@ -706,6 +723,10 @@ export default {
 
         if (value.non_financial_supports) {
           this.nonFinancialOtherSelected = value.non_financial_supports.includes(12)
+        }
+
+        if (value.financial_institution_id !== '17') {
+          delete this.general.bank_name
         }
       },
       deep: true
@@ -874,7 +895,30 @@ export default {
         )
       },
       deep: true
+    },
+    region (value) {
+      this.$store.commit('pages/SET_PERSONAL_DISTRICTS', value)
+      this.regions.map((region) => {
+        if (value.toString() === region.val.toString()) {
+          // return region.name.toLowerCase()
+          this.rcb = region.name
+        }
+      })
+    },
+    rcbBank (value) {
+      this.regionalRcbs.map((bank) => {
+        if (value.toString() === bank.val.toString()) {
+          // return region.name.toLowerCase()
+          this.general.bank_name = bank.name
+        }
+      })
     }
+    // regions (value) {
+    //   // for continuing applications: if region exists get districts
+    //   if (this.region) {
+    //     this.$store.commit('pages/SET_PERSONAL_DISTRICTS', this.region)
+    //   }
+    // }
   },
   created () {
     if (this.$route.params.amount < 145000) {
@@ -929,6 +973,13 @@ export default {
         return amount
       }
     }
+    // returnRegion (val) {
+    //   this.regions.map((region) => {
+    //     if (val === region.val) {
+    //       return region.name.toLowerCase()
+    //     }
+    //   })
+    // }
   }
 }
 </script>

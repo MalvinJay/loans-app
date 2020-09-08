@@ -1,11 +1,13 @@
 <template>
   <div v-show="show">
+    <!-- <ValidationObserver v-slot="{ handleSubmit, valid }">
+      <ValidationProvider v-slot="{ errors }" rules="required"> -->
     <div class="h-d my-10">
+      <p class="text-red-600 text-sm text-center">
+        * Attach copy of Business Owner Personal ID
+      </p>
       <p v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="text-red-600 text-sm text-center">
         * You need to upload your most recent <b>3 months proof of PAYE Payments</b> to GRA and your <b>SSNIT Statement for 2019</b>.
-      </p>
-      <p class="text-red-600 text-sm text-center">
-        * Add main business owner ID.
       </p>
     </div>
     <div class="grid docs border-blue-100">
@@ -35,7 +37,11 @@
             </p>
           </div>
         </div>
+        <!-- <div class="text-sm text-red-700">
+          {{ errors[0] }}
+        </div> -->
       </div>
+
       <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
         <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
         <div class="d-i border border-gray-900 py-12">
@@ -93,8 +99,14 @@
       <div />
     </div>
     <div class="nav-buttons flex">
+      <!-- <template v-if="!valid">
+        <div class="py-2">
+          <span class="text-red-500 ">Upload at least Business Owner ID to proceed</span>
+        </div>
+      </template> -->
       <div>
         <button class="button-small next" @click="moveNext">
+          <!-- handleSubmit(moveNext)-->
           Next
         </button>
         <button class="button-small previous" @click="movePrevious">
@@ -105,9 +117,12 @@
         </button>
       </div>
     </div>
+    <!-- </ValidationProvider>
+    </ValidationObserver> -->
   </div>
 </template>
 <script>
+// import { ValidationProvider, ValidationObserver } from 'vee-validate'
 export default {
   components: {},
   props: {
