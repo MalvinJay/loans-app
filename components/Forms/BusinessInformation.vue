@@ -94,7 +94,7 @@
                 v-model="general.tin_number"
                 tooltip="Input the Business Owner TIN if available otherwise input TIN of business owner"
                 type="text"
-                name="Business Owner TIN"
+                name="Business Tax Identification Number"
                 optional
                 required
               />

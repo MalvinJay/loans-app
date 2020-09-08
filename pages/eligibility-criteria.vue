@@ -143,68 +143,74 @@
             </div>
             <div class="grid priorities mt-8">
               <div class="box pb-8">
-                <img src="@/assets/img/vegetable.png" alt="">
+                <img src="@/assets/img/vegetable.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Agri and Agro-Businesses
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/sanitation.png" alt="">
+                <img src="@/assets/img/fastfood.svg" class="w-16" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Food and Beverages
+                </p>
+              </div>
+              <div class="box pb-8">
+                <img src="@/assets/img/sanitation.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Water and Sanitation
                 </p>
               </div>
-              <!-- <div class="box pb-8">
-                <img src="@/assets/img/networking.png" alt="">
-                <p class="text-center px-2 md:p-0 break-words">
-                  Creative
-                </p>
-              </div> -->
               <div class="box pb-8">
-                <img src="@/assets/img/fast_selling.png" alt="">
+                <img src="@/assets/img/services.svg" class="w-16" alt="">
+                <p class="text-center px-2 md:p-0 break-words">
+                  Sercvices
+                </p>
+              </div>
+              <div class="box pb-8">
+                <img src="@/assets/img/fast_selling.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Technology
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/digital.png" alt="">
+                <img src="@/assets/img/digital.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Manufacturing
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/shirt.png" alt="">
+                <img src="@/assets/img/shirt.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Garments and PPE
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/credit-card.png" alt="">
+                <img src="@/assets/img/credit-card.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Commerce and Trade
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/logistics.png" alt="">
+                <img src="@/assets/img/logistics.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Logistics
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/delivery.png" alt="">
+                <img src="@/assets/img/delivery.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Tourism and Hospitality
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/stethoscope.png" alt="">
+                <img src="@/assets/img/stethoscope.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Healthcare and <br>
                   Pharmaceuticals
                 </p>
               </div>
               <div class="box pb-8">
-                <img src="@/assets/img/networking.png" alt="">
+                <img src="@/assets/img/networking.png" class="" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
                   Education
                 </p>
@@ -384,7 +390,7 @@ export default {
   flex-shrink: 0;
 }
 .priorities {
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   // width: 10%;
   .box {
@@ -412,6 +418,18 @@ export default {
     }
     &:nth-child(6) {
       color: $color-pizza;
+    }
+    &:nth-child(7) {
+      color: $color-orange;
+    }
+    &:nth-child(8) {
+      color: $color-blue;
+    }
+    &:nth-child(9) {
+      color: $color-dark-blue;
+    }
+    &:nth-child(10) {
+      color: $color-orange;
     }
   }
 }

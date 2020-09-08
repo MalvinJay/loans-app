@@ -177,6 +177,17 @@ export const getters = {
     if (state.dropdowns) {
       return state.dropdowns.financial_institutions.filter(item => item.type === 'mm')
     }
+  },
+  rcbanks (state) {
+    if (state.dropdowns !== null) {
+      return state.dropdowns.rcbs.map((item) => {
+        return {
+          name: item.bank,
+          val: item.id,
+          region: item.region.toLowerCase()
+        }
+      })
+    }
   }
 }
 

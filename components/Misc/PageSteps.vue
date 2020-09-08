@@ -42,7 +42,7 @@ export default {
     return {
       status: [
         { name: 'Funding Details', status: 'current', noline: false },
-        { name: 'Personal Information', status: 'pending', noline: false },
+        { name: 'Business Owner Personal Information', status: 'pending', noline: false },
         { name: 'Business Information', status: 'pending', noline: false },
         { name: 'Documents Upload', status: 'pending', noline: false },
         { name: 'Review', status: 'pending', noline: true }

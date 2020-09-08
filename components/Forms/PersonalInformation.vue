@@ -30,7 +30,7 @@
             </ValidationProvider>
           </div>
           <div>
-            <div class="flex">
+            <div class="flex items-center mb-2">
               <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">Gender <span class="text-red-600">*</span></label>
 
               <div
@@ -122,7 +122,7 @@
               <Input
                 v-model="personalInfo.phone_number"
                 type="text"
-                name="Main Phone Number"
+                name="Main Mobile Phone Number"
                 regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 required
               />
