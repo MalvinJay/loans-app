@@ -38,7 +38,7 @@
           </p>
         </div>
         <p class="flex">
-          <img src="@/assets/img/location.png" alt="" srcset=""> visit the nearest NBSSI Business <br> Advisory Centre (BAC) across Ghana
+          <img src="@/assets/img/location.png" alt="" srcset=""> Visit the nearest NBSSI Business <br> Advisory Centre (BAC) across Ghana
         </p>
         <p class="flex">
           <img src="@/assets/img/smartphone.png" alt="" srcset=""> <a href="tel:0302747777">0302 747 777</a> <br>
@@ -50,8 +50,7 @@
     </footer>
     <div class="copyright flex flex-col sm:flex-row justify-between py-10 text-white px-10 gap-10">
       <div class="text-sm italic font-bold plendify py-4">
-        <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">
-          <!-- Powered by Plendify -->
+        <a href="https://plendify.com" class="hover:underline" target="_blank">
           <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
         </a>
       </div>
