@@ -238,7 +238,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Informal enterprises can be classified as micro only. Formal enterprises can be registered taxpayer
+              Informal enterprises
             </p>
           </div>
         </div>
