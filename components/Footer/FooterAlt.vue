@@ -3,7 +3,7 @@
     <div class="flex justify-between footer">
       <div class="flex justify-between flex-row-reverse">
         <p class="text-sm italic font-bold plendify">
-          <a href="https://plendifyloans.com/our-why#scroll" target="_blank" class="hover:underline">
+          <a href="https://plendify.com" target="_blank" class="hover:underline">
             <!-- Powered by Plendify -->
             <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
           </a>

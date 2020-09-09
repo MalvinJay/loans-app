@@ -163,7 +163,7 @@
               <div class="box pb-8">
                 <img src="@/assets/img/services.svg" class="w-16" alt="">
                 <p class="text-center px-2 md:p-0 break-words">
-                  Sercvices
+                  Services
                 </p>
               </div>
               <div class="box pb-8">
@@ -226,7 +226,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Enterprise must be either a Micro, Small OR Medium enterprise as defined by the investment advisor.
+              Enterprise must be either a micro, small OR MEDIUM enterprise.
             </p>
           </div>
         </div>
@@ -250,7 +250,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Female-owned businesses encouraged to apply
+              Female-owned businesses are encouraged to apply
             </p>
           </div>
         </div>

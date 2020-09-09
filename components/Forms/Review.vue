@@ -4,7 +4,7 @@
       <div class="card">
         <div class="mb-5">
           <p class="text-lg">
-            Fund Details
+            Funding Details
           </p>
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
@@ -22,7 +22,7 @@
       <div class="card">
         <div class="mb-5">
           <p class="text-lg">
-            Personal Information
+            Business Owner Personal Information
           </p>
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
@@ -93,7 +93,7 @@
           </p>
         </div>
       </div>
-      <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="card">
+      <div class="card">
         <div class="mb-5">
           <p class="text-lg">
             Document Upload
@@ -101,23 +101,34 @@
         </div>
         <div class="grid grid-cols-2 gap-5 text-sm">
           <p class="font-bold">
-            Proof of PAYE
+            Main Business Owner ID
           </p>
-          <p v-if="general.paye_file_name !== undefined">
-            {{ general.paye_file_name }}
-          </p>
-          <p v-else>
-            N/A
-          </p>
-          <p class="font-bold">
-            SSNIT Statement 2019
-          </p>
-          <p v-if="general.ssnit_file_name !== undefined">
-            {{ general.ssnit_file_name }}
+          <p v-if="general.id_file_name !== undefined">
+            {{ general.id_file_name }}
           </p>
           <p v-else>
             N/A
           </p>
+          <template v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="card">
+            <p class="font-bold">
+              Proof of PAYE
+            </p>
+            <p v-if="general.paye_file_name !== undefined">
+              {{ general.paye_file_name }}
+            </p>
+            <p v-else>
+              N/A
+            </p>
+            <p class="font-bold">
+              SSNIT Statement 2019
+            </p>
+            <p v-if="general.ssnit_file_name !== undefined">
+              {{ general.ssnit_file_name }}
+            </p>
+            <p v-else>
+              N/A
+            </p>
+          </template>
         </div>
         <div class="mt-10">
           <p class="uppercase mt-5 edit cursor-pointer" @click="editDocs">
