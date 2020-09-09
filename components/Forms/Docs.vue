@@ -47,7 +47,7 @@
           </div>
 
           <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
-            <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">Proof of PAYE Payments (last 3 months)</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2 mt-4">Proof of PAYE Payments (last 3 months)</label>
             <div class="d-i border border-gray-900 py-12">
               <div class="img">
                 <img src="@/assets/img/docs.png" alt>
@@ -74,7 +74,7 @@
             </div>
           </div>
           <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
-            <label class="block text-gray-900 text-sm font-bold mb-2 mt-12">SSNIT Statement (2019)</label>
+            <label class="block text-gray-900 text-sm font-bold mb-2 mt-4">SSNIT Statement (2019)</label>
             <div class="d-i border border-gray-900 py-12">
               <div class="img">
                 <img src="@/assets/img/docs.png" alt>

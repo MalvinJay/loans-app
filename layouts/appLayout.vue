@@ -44,7 +44,7 @@
           </ul>
         </div>
         <div class="absolute bottom-0 plendify py-4">
-          <a href="https://plendifyloans.com/our-why#scroll" class="hover:underline" target="_blank">
+          <a href="https://app.plendify.com" class="hover:underline" target="_blank">
             <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
           </a>
         </div>
