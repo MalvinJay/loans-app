@@ -44,7 +44,7 @@ export const actions = {
   makeInquiry ({ commit, rootState }, body) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/queries'
+      const url = 'https://admin.ghrecoveryprogram/api/queries'
       // const config = {
       //   headers: {
       //     Authorization: 'Bearer ' + rootState.local.token,
