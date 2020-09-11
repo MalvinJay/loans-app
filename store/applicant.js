@@ -24,7 +24,7 @@ export const actions = {
   fetchApplicant ({ commit, rootState }) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = 'https://admin.ghrecoveryprogram/api/applicant-details'
+      const url = 'https://admin.ghrecoveryprogram.com/api/applicant-details'
       // const config = {
       //   headers: {
       //     Authorization: 'Bearer ' + rootState.local.token,
