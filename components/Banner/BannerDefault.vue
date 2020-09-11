@@ -7,9 +7,8 @@
           Emergency Relief Funding Application
         </p>
         <p class="text-white">
-          Welcome to the MasterCard Foundation and Young
-          Africa Works partnership with National Board for
-          Small Scale Industries (NBSSI) applcation portal.
+          Welcome to the Mastercard Foundation and National Board for
+          Small Scale Industries (NBSSI) application portal.
           Thank you for visiting
         </p>
       </div>
@@ -21,8 +20,8 @@
         </a>
       </div>
     </div>
-    <div class="r-s">
-      <img src="@/assets/img/banner-img.png" alt srcset>
+    <div class="r-s flex justify-center items-center">
+      <img src="@/assets/img/1_2.png" class="w-10/12" alt srcset>
     </div>
   </div>
 </template>
@@ -40,8 +39,8 @@ export default {}
   width: 100%;
   background: linear-gradient(
     90deg,
-    rgba(94, 27, 154, 1) 0%,
-    rgba(141, 27, 154, 1) 0%,
+    rgb(13, 36, 125) 0%,
+    rgb(13, 35, 125) 0%,
     rgba(196, 144, 0, 1) 100%
   );
   p {
@@ -54,10 +53,14 @@ export default {}
 }
 .r-s {
   position: relative;
+  width: 60%;
 }
 @include for-desktop-up {
   .l-s {
     width: 40%;
+  }
+  .r-s {
+    width: 50%;
   }
 }
 @include for-tablet-landscape-only {
@@ -80,6 +83,9 @@ export default {}
         font-size: 1.1rem;
       }
     }
+      .r-s {
+        width: 50%;
+      }
     .l-s {
       padding-top: 0;
       width: 50%;

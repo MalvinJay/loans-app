@@ -1,6 +1,6 @@
 <template>
   <div class="card shadow-md" :class="{ small: small}">
-    <div v-if="header" class="header px-24 py-8 text-white text-4xl">
+    <div v-if="header" class="header px-12 md:px-24 py-8 text-white text-4xl">
       <p>{{ name }}</p>
     </div>
     <div class="body bg-white">
@@ -39,6 +39,20 @@ export default {
   }
   &.small {
     width: 70%;
+  }
+}
+@include for-phone-only {
+  .card {
+    &.small {
+      width: 90%;
+    }
+  }
+}
+@include for-tablet-portrait-only {
+  .card {
+    &.small {
+      width: 90%;
+    }
   }
 }
 </style>

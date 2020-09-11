@@ -7,7 +7,7 @@
     <div class="div flex">
       <div class="check mr-2">
         <img src="@/assets/img/check.png" alt>
-        <p class="text-white text-sm">
+        <p class="text-white text-xs text-center">
           {{ step }}
         </p>
       </div>
@@ -45,6 +45,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
 .steps {
   width: 100%;
   .l-c {
@@ -52,7 +53,7 @@ export default {
   }
   .name {
     white-space: nowrap;
-    font-size: 1rem;
+    font-size: 0.9rem;
   }
   .check {
       width: 32px;

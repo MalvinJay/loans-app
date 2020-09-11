@@ -1,6 +1,9 @@
 <template>
-  <div class="flex relative w-64 container">
-    <select @change="selected">
+  <div
+    class="flex relative w-64 container"
+    :class="{small: small}"
+  >
+    <select :value="value" @change="selected">
       <option disabled value="" selected="true">
         {{ first }}
       </option>
@@ -27,17 +30,17 @@ export default {
       type: String,
       required: false,
       default: 'Select one'
+    },
+    small: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
+    // eslint-disable-next-line vue/require-prop-types
+    value: {
+      required: true
     }
   },
-  // data () {
-  //   return {
-  //     items: [
-  //       { name: 'Passport', val: 1 },
-  //       { name: 'Drivers License', val: 2 },
-  //       { name: 'National ID', val: 3 }
-  //     ]
-  //   }
-  // },
   methods: {
     selected (e) {
       this.$emit('input', e.target.value)
@@ -48,6 +51,12 @@ export default {
 <style lang="scss" scoped>
 .container {
   width: 469px;
+    &.small {
+    width: 100%;
+    select {
+      width: 100%;
+    }
+  }
 }
 select {
   padding-left: 1rem;

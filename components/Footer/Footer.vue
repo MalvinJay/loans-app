@@ -1,32 +1,35 @@
 <template>
   <div>
-    <footer class="flex py-24 justify-center">
+    <div class="banner flex justify-between py-8 px-10 md:p-16">
+      <p class="text-3xl b-b">
+        Are you ready to fund your business?
+      </p>
+      <div class="h-full flex flex-col justify-center">
+        <a href="/apply">
+          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
+        </a>
+      </div>
+    </div>
+    <footer class="flex justify-between p-8 md:py-24 md:px-64">
       <div class="l-s h-t">
         <div class="logo mb-10">
           <img src="@/assets/img/logo.png" alt="" srcset="">
         </div>
         <p class="b-b text-sm">
-          This is a blurb about the company <br>
-          Lorem, ipsum dolor sit amet consectetur <br>
-          adipisicing elit. Dolorem itaque, cupiditate <br>
+          Recovery and Resilience Program <br>
+          for MSMEs Against Impacts of Coronavirus.
         </p>
         <div class="icons flex justify mt-10">
-          <img src="@/assets/img/facebook.png" alt="" srcset="">
-          <img src="@/assets/img/twitter.png" alt="" srcset="">
-          <img src="@/assets/img/instagram.png" alt="" srcset="">
+          <a target="_blank" href="https://www.facebook.com/nbssighana/">
+            <img src="@/assets/img/facebook.png" alt="" srcset="">
+          </a>
+          <a target="_blank" href="https://twitter.com/NBSSIGhana?s=09">
+            <img src="@/assets/img/twitter.png" alt="" srcset="">
+          </a>
+          <a target="_blank" href="https://instagram.com/nbssighana?igshid=1lbc3e98woz2d">
+            <img src="@/assets/img/instagram.png" alt="" srcset="">
+          </a>
         </div>
-      </div>
-      <div class="m-s h-t">
-        <div class="r-s mb-10">
-          <p class="text-sm b-b font-bold uppercase">
-            Explore Links
-          </p>
-        </div>
-        <ul class="text-sm b-b font-bold flex justify-center">
-          <li><a href="">About</a></li>
-          <li><a href="">Services</a></li>
-          <li><a href="">FAQs</a></li>
-        </ul>
       </div>
       <div class="r-s h-t">
         <div class="mb-10">
@@ -35,33 +38,25 @@
           </p>
         </div>
         <p class="flex">
-          <img src="@/assets/img/location.png" alt="" srcset=""> Lorem Ipsum dolor sit amet, <br>
-          consectetur adipisicing elit ut
+          <img src="@/assets/img/location.png" alt="" srcset=""> Visit the nearest NBSSI Business <br> Advisory Centre (BAC) across Ghana
         </p>
         <p class="flex">
-          <img src="@/assets/img/smartphone.png" alt="" srcset=""> (000) 100-100 <br>
+          <img src="@/assets/img/smartphone.png" alt="" srcset=""> <a href="tel:0302747777">0302 747 777</a> <br>
         </p>
         <p class="flex">
-          <img src="@/assets/img/mail.png" alt="" srcset=""> info@company.com
+          <img src="@/assets/img/timer.png" alt="" srcset=""> Mon - Sat: 8:00am - 5:00pm
         </p>
-        <p class="flex">
-          <img src="@/assets/img/timer.png" alt="" srcset=""> Mon - Sat: 7:00am - 6:00pm
-        </p>
-      </div>
-      <div class="banner flex py-16 justify-between px-16">
-        <p class="text-3xl b-b">
-          Are you ready to fund your business?
-        </p>
-        <a href="/apply">
-          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
-        </a>
       </div>
     </footer>
-    <div class="copyright flex justify-center py-10 text-white">
-      <p>Tagline we dey for you. Abi you barb</p>
-      <p class="font-light">
-        &copy; 2020 Company. <span class="font-bold">Privacy Policy</span> | <span class="font-bold">Terms & Conditions</span>
-      </p>
+    <div class="copyright flex flex-col sm:flex-row justify-between py-10 text-white px-10 gap-10">
+      <div class="text-sm italic font-bold plendify py-4">
+        <a href="https://plendify.com" class="hover:underline" target="_blank">
+          <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+        </a>
+      </div>
+      <div class="flex items-center font-light py-4">
+        &copy; National Board for Small Scale Industries. All rights reserved.
+      </div>
     </div>
   </div>
 </template>
@@ -71,18 +66,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.banner {
-  width: 70%;
-  margin: 0 auto;
-  background-color: $color-mild-pink;
-  border-radius: $card-border-radius;
-  position: absolute;
-  margin-top: -200px;
-  left: 50%;
-  margin-left: -35%;
-  button {
-    padding-right: 50px;
-    padding-left: 50px;
+.logo {
+  img {
+      max-width: 13rem;
+      height: auto;
   }
 }
 footer {
@@ -102,6 +89,19 @@ ul {
     margin-right: 4rem;
   }
 }
+.banner {
+  width: 68%;
+  // margin: 0 auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 20px;
+  background-color: $color-mild-pink;
+  margin-top: -75px;
+  z-index: 99999;
+}
 .icons {
   img {
     margin-right: 10px;
@@ -119,18 +119,16 @@ ul {
 }
 .copyright {
   background-color: $color-secondary-alt;
-  p {
-    &:first-child {
-      margin-right: 40%;
-    }
-  }
+  // p {
+  //   &:first-child {
+  //     margin-right: 40%;
+  //   }
+  // }
 }
 
 @include for-tablet-portrait-only {
   .banner {
     width: 100%;
-    left: 0%;
-    margin-left: 0px;
   }
   ul {
     display: flex;
@@ -149,26 +147,24 @@ ul {
     }
   }
 }
+
+@include for-tablet-landscape-only {
+  .banner {
+    width: 90%;
+  }
+}
 @include for-phone-only {
   .banner {
     width: 100%;
-    margin-left: 0%;
-    margin-top: -800px;
-    left: 0%;
-    flex-direction: column;
-    padding: 1rem;
-    text-align: center;
+    height: 111px;
     p {
       font-size: 1.2rem;
-    }
-    input[type="button"] {
-      margin:  2rem auto;
     }
   }
   footer {
     height: 100%;
     flex-direction: column;
-    padding: 5rem;
+    // padding: 5rem;
     text-align: left;
     ul {
       justify-content: left;

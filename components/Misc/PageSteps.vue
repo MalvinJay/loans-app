@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="page">
     <BaseCard :header="false">
       <div class="pb-32 px-8">
         <div class="h-t text-center b-b py-16">
@@ -24,6 +24,7 @@
   </div>
 </template>
 <script>
+import { mapGetters } from 'vuex'
 import Checks from './Checks'
 import BaseCard from '@/components/Misc/ApplicationCard.vue'
 export default {
@@ -41,12 +42,18 @@ export default {
     return {
       status: [
         { name: 'Funding Details', status: 'current', noline: false },
-        { name: 'Personal Information', status: 'pending', noline: false },
+        { name: 'Business Owner Personal Information', status: 'pending', noline: false },
         { name: 'Business Information', status: 'pending', noline: false },
         { name: 'Documents Upload', status: 'pending', noline: false },
         { name: 'Review', status: 'pending', noline: true }
       ]
     }
+  },
+  computed: {
+    ...mapGetters({
+      businessScale: 'pages/businessScale',
+      isStartup: 'pages/isStartup'
+    })
   },
   watch: {
     current (val) {
@@ -60,6 +67,11 @@ export default {
         }
       })
     }
+  },
+  mounted () {
+    // if (this.businessScale === '1' || this.businessScale === '2' || this.isStartup === true) {
+    //   this.status = this.status.filter(item => item.name !== 'Documents Upload')
+    // }
   }
 }
 </script>

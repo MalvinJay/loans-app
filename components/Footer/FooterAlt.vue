@@ -3,20 +3,23 @@
     <div class="flex justify-between footer">
       <div class="flex justify-between flex-row-reverse">
         <p class="text-sm italic font-bold plendify">
-          Powered by Plendify
+          <a href="https://plendify.com" target="_blank" class="hover:underline">
+            <!-- Powered by Plendify -->
+            <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
+          </a>
         </p>
         <p class="font-normal text-sm flex mobile">
-          <img src="@/assets/img/lock-alt.png" alt="" srcset=""> You are on a secure page
+          <img src="@/assets/img/lock-alt.png" class="h-5" alt="" srcset=""> You are on a secure page
         </p>
       </div>
-      <div>
+      <div class="py-4">
         <p class="text-sm font-normal flex qs-tc">
-          Questions? <img src="@/assets/img/smartphone.png" alt="" srcset=""> <span class="font-bold">Call us (000) 100-100</span>
+          Questions? <img src="@/assets/img/smartphone.png" class="h-5" alt="" srcset=""> <span class="font-bold">Call us (030) 274 7777</span>
         </p>
       </div>
-      <div class="desktop">
+      <div class="desktop py-4">
         <p class="font-normal text-sm flex">
-          <img src="@/assets/img/lock-alt.png" alt="" srcset=""> You are on a secure page
+          <img src="@/assets/img/lock-alt.png" class="h-5" alt="" srcset=""> You are on a secure page
         </p>
       </div>
     </div>
@@ -32,11 +35,14 @@ footer {
   padding: 1.7rem 5%;
   img {
     margin: 0 5px;
-    height: 20px;
+    // height: 20px;
   }
   .plendify {
     color: $color-secondary;
   }
+}
+.h-5 {
+  height: 20px!important;
 }
 .mobile {
   display: none;

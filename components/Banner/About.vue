@@ -1,65 +1,69 @@
 <template>
   <div class="about relative">
-    <p class="text-center mt-24 mb-20 text-4xl font-extrabold">
-      How It Works
-    </p>
-    <div class="t-s flex justify-center mx-40">
-      <div class="l-s mobile-order-2">
-        <p class="text-5xl text-gray-500 font-extrabold mb-3">
-          01
-        </p>
-        <p class="font-extrabold text-2xl mb-6">
-          Complete Application Form
-        </p>
-        <p>
-          We have built a seamless and simple funding application<br>
-          process for you. Ensure that you have all relevant <br>
-          information handy so you can sail through the application<br>
-        </p>
+    <div class="mt-24 mb-20">
+      <p class="text-center text-4xl font-extrabold">
+        How It Works
+      </p>
+    </div>
+    <div>
+      <div class="t-s flex justify-center mx-40">
+        <div class="l-s mobile-order-2">
+          <p class="text-5xl text-gray-500 font-extrabold mb-3">
+            01
+          </p>
+          <p class="font-extrabold text-2xl mb-6">
+            Complete Application Form
+          </p>
+          <p class="txt">
+            We have built a seamless and simple funding application
+            process for you. Ensure that you have all relevant
+            information handy so you can sail through the application
+          </p>
+        </div>
+        <div class="r-s mobile-order-1">
+          <img src="@/assets/img/doodle 1.png" alt="">
+        </div>
       </div>
-      <div class="r-s mobile-order-1">
-        <img src="@/assets/img/doodle 1.png" alt="">
+      <div class="m-s flex justify-center mx-40 my-48">
+        <div class="l-s">
+          <img src="@/assets/img/doodle 2.png" alt="">
+        </div>
+        <div class="r-s">
+          <p class="text-5xl text-gray-500 font-extrabold mb-3">
+            02
+          </p>
+          <p class="font-extrabold text-2xl mb-6">
+            Application Review
+          </p>
+          <p class="txt">
+            Upon completion of your funding application, you will
+            be shown a Review Page. Thoroughly review all your
+            inputted information before hitting submit. This will
+            enable us to serve you as quickly as possible
+          </p>
+        </div>
+      </div>
+      <div class="b-s flex justify-center mb-12 md:m-40 mx-40">
+        <div class="l-s mobile-order-2">
+          <p class="text-5xl text-gray-500 font-extrabold mb-3">
+            03
+          </p>
+          <p class="font-extrabold text-2xl mb-6">
+            Receive Funds
+          </p>
+          <p class="txt">
+            Upon submission, our team will review your application.
+            Once everything is satisfactory, you can expect to receive
+            your funds in the mobile wallet or bank account you selected
+            within 2 weeks. Sit tight while we work for you.
+          </p>
+        </div>
+        <div class="r-s mobile-order-1">
+          <img src="@/assets/img/doodle 3.png" alt="">
+        </div>
       </div>
     </div>
-    <div class="m-s flex justify-center mx-40 my-48">
-      <div class="l-s">
-        <img src="@/assets/img/doodle 2.png" alt="">
-      </div>
-      <div class="r-s">
-        <p class="text-5xl text-gray-500 font-extrabold mb-3">
-          02
-        </p>
-        <p class="font-extrabold text-2xl mb-6">
-          Application Review
-        </p>
-        <p>
-          Upon completion of your funding application, you will<br>
-          be shown a Review Page. Thoroughly review all your <br>
-          inputted information before hitting submit. This will <br>
-          enable us to serve you as quickly as possible
-        </p>
-      </div>
-    </div>
-    <div class="b-s flex justify-center mx-40">
-      <div class="l-s mobile-order-2">
-        <p class="text-5xl text-gray-500 font-extrabold mb-3">
-          03
-        </p>
-        <p class="font-extrabold text-2xl mb-6">
-          Receive Loan
-        </p>
-        <p>
-          Upon submission, our team will review your application.<br>
-          Once everything is satisfactory, you can expect to receive <br>
-          your funds in the mobile wallet or bank account you selected <br>
-          within 2 weeks. Sit tight while we work for you.
-        </p>
-      </div>
-      <div class="r-s mobile-order-1">
-        <img src="@/assets/img/doodle 3.png" alt="">
-      </div>
-    </div>
-    <div class="vecs">
+    <div class="vecs opacity-50 md:opacity-100">
       <div>
         <img src="@/assets/img/vector 1.png" alt="">
       </div>
@@ -81,9 +85,6 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 .t-s, .b-s {
   img {
     max-width: 100%;
@@ -98,6 +99,9 @@ export default {
     }
   }
 }
+.txt {
+  max-width: 30rem;
+}
 .m-s {
   .l-s{
     margin-right: 17%;
@@ -111,7 +115,6 @@ export default {
   }
 }
 .b-s {
-  margin-bottom: 10rem;
 }
 .vecs {
   div {

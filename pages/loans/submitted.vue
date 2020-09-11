@@ -5,18 +5,27 @@
       :header="false"
       small
     >
-      <div class="main text-center pt-24">
+      <div class="main text-center px-6 pt-16">
         <div class="check mb-5">
           <img src="@/assets/img/ellipse-check.png" alt="">
         </div>
         <div class="mt-10">
           <p class="text-4xl text-white">
-            Your Application is on its way!
+            Thank you for submitting your application
           </p>
         </div>
         <div class="mt-10">
           <p class="text-white text-2xl ">
-            We will verify your documents and get back to you in 2 weeks
+            We will verify your documents and get back to you within 2 weeks
+          </p>
+        </div>
+        <div class="mt-10">
+          <p class="text-xl text-white leading-loose md:leading-tight">
+            Click here
+            <nuxt-link to="/app/registration/login" class="sign_in px-2 py-1 ml-1 mr-2 rounded-md">
+              Sign In
+            </nuxt-link>
+            to check on the status of your request
           </p>
         </div>
         <div class="mt-10">
@@ -40,7 +49,7 @@ export default {
 <style lang="scss" scoped>
 .main {
   height: 732px;
-  background: linear-gradient(90deg, #6A1B9A 0%, #9B51E0 100%);
+  background: linear-gradient(90deg, #0d247d 0%, rgba(13, 35, 125, 0.664) 100%);
   box-shadow: 0px 4px 17px rgba(0, 0, 0, 0.15);
   img {
     margin: 0 auto;
@@ -48,6 +57,23 @@ export default {
   .check {
     img {
       height: 100px;
+    }
+  }
+}
+.sign_in {
+  background: white;
+  color: #6A1B9A;
+  font-size: 12px;
+}
+@include for-phone-only {
+  .main {
+    img {
+      max-width: 15rem;
+    }
+  }
+  .check {
+    img {
+      height: 4rem !important;
     }
   }
 }

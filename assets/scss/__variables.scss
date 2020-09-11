@@ -10,6 +10,11 @@ $default-font-size: 0.7rem;
 @mixin button {
   background-color: $color-primary;
   color: $white;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  border-radius: $button-border-radius;
+  font-size: $default-font-size;
 }
 
 @tailwind base;
@@ -50,4 +55,8 @@ div {
   font-family: 'Montserrat', sans-serif;
 }
 
-
+.tooltip-btn {
+  @apply w-6 h-6 border rounded-full mb-2 cursor-pointer;
+  color: $button-primary-color;
+  border-color: $button-primary-color;
+}

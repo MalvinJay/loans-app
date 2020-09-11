@@ -4,7 +4,9 @@
     <Banner />
     <Counter />
     <About />
-    <Info />
+    <div id="about-the-programme">
+      <Info />
+    </div>
     <SecurityBanner />
     <Footer />
   </div>
@@ -27,6 +29,34 @@ export default {
     SecurityBanner,
     Footer,
     Counter
+  },
+  data () {
+    return {
+      image_url: '/icon.png',
+      url: 'https://nbssi-post-deploy.wl.r.appspot.com/',
+      title: 'Covid-19 Emergency Relief Fund',
+      description: 'Welcome to the Mastercard Foundation and National Board for Small Scale Industries (NBSSI) application portal.'
+    }
+  },
+  head () {
+    return {
+      title: this.title,
+      meta: [
+        // hid is used as unique identifier. Do not use `vmid` for it as it will not work
+        { hid: 'description', name: 'title', content: 'Covid-19 Emergency Relief Fund' },
+        { hid: 'description', name: 'description', content: this.description },
+        { property: 'og:type', content: 'website' },
+        { property: 'og:url', content: this.url },
+        { property: 'og:title', content: 'Covid-19 Emergency Relief Fund' },
+        { property: 'og:description', content: 'Welcome to the Mastercard Foundation and National Board for Small Scale Industries (NBSSI) application portal. Thank you for visiting' },
+        { property: 'og:image', content: this.image_url },
+        { property: 'twitter:url', content: this.url },
+        { property: 'twitter:title', content: 'Covid-19 Emergency Relief Fund' },
+        { property: 'twitter:description', content: 'Welcome to the Mastercard Foundation and National Board for Small Scale Industries (NBSSI) application portal. Thank you for visiting' },
+        { property: 'twitter:image', content: this.image_url }
+
+      ]
+    }
   }
 }
 </script>

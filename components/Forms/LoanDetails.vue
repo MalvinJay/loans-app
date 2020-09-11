@@ -1,172 +1,632 @@
 <template>
   <div v-show="show">
-    <div class="grid form-a py-20">
-      <div class="mb-10">
-        <Input v-model="loanAmount" name="Funding Amount" type="number" />
-      </div>
-      <div class="mb-10">
-        <Input v-model="years" name="Years in Operation" />
-      </div>
-      <div>
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Are you a startup?
-        </label>
-        <div class="flex justify-start mb-12">
-          <label class="checkbox">Yes
-            <input id="yes" v-model="startup" type="checkbox" true-value="true" false-value="false">
-            <span class="checkmark" />
-          </label>
-          <label class="checkbox">No
-            <input id="no" v-model="startup" type="checkbox" false-value="true" true-value="false">
-            <span class="checkmark" />
-          </label>
-        </div>
-        <div class="mb-12">
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-            Can you provide proof COVID-19 of impact
-          </label>
-          <div class="flex justify-start">
-            <label class="checkbox">Yes
-              <input id="yes" v-model="proofOfImpact" type="checkbox" true-value="true" false-value="false">
-              <span class="checkmark" />
-            </label>
-            <label class="checkbox">No
-              <input id="no" v-model="proofOfImpact" type="checkbox" false-value="true" true-value="false">
-              <span class="checkmark" />
-            </label>
+    <ValidationObserver ref="observer" v-slot="{ handleSubmit, valid }">
+      <form @submit.prevent="handleSubmit(moveNext)">
+        <div class="grid form-a py-20">
+          <div class="mb-10">
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <Input
+                v-model.number="general.requested_loan_amount"
+                name="Amount Requested"
+                type="number"
+                money
+                required
+                tooltip="Enter how much money your business needs."
+                :capped="true"
+              />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
           </div>
-        </div>
-      </div>
-      <div class="mb-12">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          How has COVID-19 impacted your business?
-        </label>
-        <MultiSelect :list="covidImpacts" @selected="selected" />
-        <div class="mt-5">
-          <textarea v-model="covidImpactText" name="" rows="10" placeholder="Please write down the impact" />
-        </div>
-      </div>
-      <div class="mb-4">
-        <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Proof of COVID-19 Impact Template
-        </label>
-        <button class="i-t-b" @click="modal1 = true">
-          Click to Fill in Template
-        </button>
-        <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold" for="username">
-          What will you use the funds for
-        </label>
-        <Select v-model="general.fund_purpose_id" :items="fundRoles" />
-        <label v-if="general.fund_purpose_id =='9'" class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
-          If other, fill this field
-        </label>
-        <Input v-if="general.fund_purpose_id =='9'" v-model="general.custom_fund_purpose" />
-      </div>
-      <div class="mb-4">
-        <div class="mb-12">
-          <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-            Repayment Account Details
-          </label>
-          <div class="flex justify-start ac-dc">
-            <div class="flex justify-start">
-              <label class="checkbox">MTN
-                <input id="mtn" v-model="mobileWallet" type="checkbox" false-value="true" true-value="mtn">
-                <span class="checkmark" />
+          <div class="mb-10">
+            <Input v-model.number="years" name="Years in Operation" type="number" disabled />
+          </div>
+          <div>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <div class="flex">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Are you a startup (i.e. between 0 and 2 years' old)?
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'A business that is 2 years or younger is considered a Start-up under the programme.'"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="yes"
+                    v-model="general.is_startup"
+                    type="checkbox"
+                    true-value="1"
+                    false-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="no"
+                    v-model="general.is_startup"
+                    type="checkbox"
+                    false-value="1"
+                    true-value="0"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div class="mb-12 mt-12">
+              <!-- <ValidationProvider v-slot="{ errors }" rules="required"> -->
+              <div class="flex">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Can you provide proof of COVID-19 impact?
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'You will have to provide estimated amounts '"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
+              <div class="flex justify-start">
+                <label class="checkbox">
+                  Yes
+                  <input
+                    id="yes"
+                    v-model="proofOfImpact"
+                    type="checkbox"
+                    true-value="true"
+                    false-value="false"
+                  >
+                  <span class="checkmark" />
+                </label>
+                <label class="checkbox">
+                  No
+                  <input
+                    id="no"
+                    v-model="proofOfImpact"
+                    type="checkbox"
+                    false-value="true"
+                    true-value="false"
+                  >
+                  <span class="checkmark" />
+                </label>
+              </div>
+              <!-- <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider> -->
+            </div>
+          </div>
+          <div class="mb-12">
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                How has COVID-19 impacted your business?
+                <span class="text-red-600">*</span>
               </label>
-              <label class="checkbox mr-5">Vodafone
-                <input id="vodafone" v-model="mobileWallet" type="checkbox" false-value="true" true-value="vodafone">
-                <span class="checkmark" />
+              <div
+                v-tooltip="'Select applicable items on the list and if you have information on the value of these items, add it in the template provided.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="general.covid_impact" :list="covidImpacts" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="otherSelected" class="mt-5">
+              <textarea
+                v-model="general.other_covid_impact"
+                name
+                rows="10"
+                placeholder="Please write down the impact"
+              />
+            </div>
+          </div>
+          <div class="mb-12">
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                Do you need any business development training or advice?
+                <span class="text-red-600">*</span>
               </label>
-              <label class="checkbox">AirtelTigo
-                <input id="airteltigo" v-model="mobileWallet" type="checkbox" true-value="airtelTigo">
-                <span class="checkmark" />
+              <div
+                v-tooltip="'Select areas on the list that you need support to grow your business. Select None if you do not require any training or coaching.'"
+                class="ml-4 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="general.non_financial_supports" :list="nonFinancialSupport" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="nonFinancialOtherSelected" class="mt-5">
+              <label
+                v-if="nonFinancialOtherSelected"
+                class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+              >
+                If other, fill this field
+                <span class="text-red-600">*</span>
               </label>
+              <Input
+                v-model="general.other_non_financial_support"
+                type="text"
+                placeholder="Please write down what you need"
+              />
+            </div>
+          </div>
+          <div class="mb-4">
+            <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+              Proof of COVID-19 Impact Template
+            </label>
+            <button class="i-t-b" type="button" :class="{done: checkModal1}" @click="modal1 = true">
+              Click to Fill in Template
+              <span v-if="checkModal1">&#10003;</span>
+            </button>
+            <!-- <ValidationProvider ref="impactTemplate" v-slot="{ errors }" rules="required">
+              <div>
+                <input v-model="impactTemplate" name="impactTemplate" type="text" style="display: none!important">
+              </div>
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider> -->
+            <div class="flex">
+              <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
+                What will you use the funds for?
+                <span class="text-red-600">*</span>
+              </label>
+
+              <div
+                v-tooltip="'Select applicable uses for the money you are requesting.'"
+                class="ml-4 mt-8 tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="general.fund_purposes" :list="fundRoles" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <label
+              v-if="fundOtherSelected"
+              class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+            >
+              If other, fill this field
+              <span class="text-red-600">*</span>
+            </label>
+            <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
+          </div>
+          <div class="mb-4">
+            <div>
+              <div class="flex items-center mb-4">
+                <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
+                  Payment Account Details
+                  <span class="text-red-600">*</span>
+                </label>
+                <div
+                  v-tooltip="'You will provide a valid mobile money number or bank account associated with the company where the funds your company is awarded will be deposited'"
+                  class="ml-4 tooltip-btn flex items-center justify-center"
+                >
+                  ?
+                </div>
+              </div>
+
+              <div v-if="general.requested_loan_amount <= 2000" class="grid justify-start ac-dc">
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <div class="grid grid-cols-2 gap-5">
+                    <label v-for="(item, i) in momo" :key="i" class="checkbox momo">
+                      {{ item.bank_name.split(' ')[0] }}
+                      <input
+                        :id="item.name"
+                        v-model="general.financial_institution_id"
+                        type="checkbox"
+                        :true-value="item.id"
+                      >
+                      <span class="checkmark" />
+                    </label>
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </div>
+                </ValidationProvider>
+              </div>
+            </div>
+            <div v-if="general.requested_loan_amount <= 2000">
+              <label class="block text-gray-900 text-sm font-normal my-2">
+                Mobile Wallet Number (must use your own mobile wallet)
+                <span
+                  class="text-red-600 font-bold"
+                >*</span>
+              </label>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.account_no" type="text" regex="0[2,3,5]{1}[0-9]{8}$" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+              <label class="block text-gray-900 text-sm font-normal mt-4">
+                Mobile Money Name
+                <span
+                  class="text-red-600 font-bold"
+                >*</span>
+              </label>
+              <ValidationProvider v-slot="{ errors }" rules="required">
+                <Input v-model="general.mobile_money_name" type="text" regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" />
+                <small class="text-sm text-red-700">{{ errors[0] }}</small>
+              </ValidationProvider>
+            </div>
+            <div v-else>
+              <div class="mb-8">
+                <label class="block text-gray-900 text-sm font-normal mb-4">
+                  Which of the following financial institutions that are partnering with this
+                  Program are you located close to or do you have an existing account?
+                  (Please Select Only One)*
+                </label>
+                <ValidationProvider v-slot="{ errors }" rules="required">
+                  <Select v-model="general.financial_institution_id" :items="bankPartner" />
+                  <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                </ValidationProvider>
+              </div>
+              <template v-if="general.financial_institution_id == 17">
+                <template>
+                  <label class="block text-gray-900 text-sm font-normal mb-2">Regions</label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="region" first="Region" :items="regions" />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </template>
+                <template>
+                  <label class="block text-gray-900 text-sm font-normal my-2">Associated Banks</label>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Select v-model="rcbBank" first="Select associated regional bank" :items="regionalRcbs" />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
+                </template>
+              </template>
             </div>
           </div>
         </div>
-        <!-- <label class="block text-gray-700 text-sm font-normal mb-2 font-bold" for="username">
-          Repayment Account Details
-        </label> -->
-        <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
-          Mobile Wallet Number (must use your own mobile wallet account)
-        </label>
-        <Input v-model="general.mobile_wallet_number" />
-        <div class="mb-8">
-          <label class="block text-gray-900 text-sm font-normal mb-2 mt-8" for="username">
-            Your Selected Bank
-          </label>
-          <Select v-model="general.financial_institution_ID" :items="bankPartner" />
+        <div class="nav-buttons">
+          <template v-if="!valid">
+            <div class="py-2">
+              <span class="text-red-500 ">Complete all * fields to proceed</span>
+            </div>
+          </template>
+          <div class="flex">
+            <button type="submit" class="next">
+              Next
+            </button>
+          </div>
         </div>
-        <label class="block text-gray-900 text-sm font-normal mb-2" for="username">
-          Bank Account Number
-        </label>
-        <Input v-model="general.account_no" />
-      </div>
-    </div>
+      </form>
+    </ValidationObserver>
+
+    <!-- ===================================================================================
+    =================================COVID TEMPLATE MODAL==============================-->
     <Modal v-if="modal1" @close="modal1 = false">
       <div class="income-info">
         <div class="h-d">
           <p class="text-center text-lg">
             Proof of Covid-19 Impact (2020)
           </p>
-          <p class="text-center text-sm">
+          <p
+            class="text-center text-sm"
+          >
             (Please provide proof of COVID-19 impact on your business, enter amounts as applicable )
           </p>
         </div>
         <!--   Other (add field for applicant to type in what item)  -->
         <div class="grid grid-cols-5 gap-8 b-d">
           <div />
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">March</label> </div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">April</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">May</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed to Company from Customers </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_invoice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.demand_notice" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.outstanding_rent" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_salaries" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales </label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.unpaid_utility_bills" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-bold mb-2">Other</label></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label><Input v-model="covid_proof_of_march_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">April</label><Input v-model="covid_proof_of_april_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">May</label><Input v-model="covid_proof_of_may_20.reduced_productivity" placeholder="GHC" small /></div>
-          <div><label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label><Input placeholder="GHC" small /></div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >March 2020</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >April 2020</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile"
+            >May 2020</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold text-center mt-10 not-mobile">Total</label>
+          </div>
+          <div>
+            <label
+              class="block text-gray-900 text-sm font-bold mb-2"
+            >Amount owed to Company from Customers</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March 2020</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.outstanding_invoice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.outstanding_invoice"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Amount owed by Company</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.demand_notice"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.demand_notice"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Salaries</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.outstanding_rent"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.outstanding_rent"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Unpaid Utility Bills</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.unpaid_salaries"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.unpaid_salaries"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Reduced Sales</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.unpaid_utility_bills"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.unpaid_utility_bills"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-bold mb-2">Other</label>
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">March</label>
+            <Input
+              v-model.number="covid_proof_of_march_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">April 2020</label>
+            <Input
+              v-model.number="covid_proof_of_april_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">May 2020</label>
+            <Input
+              v-model.number="covid_proof_of_may_20.reduced_productivity"
+              type="number"
+              placeholder="GHS"
+              money
+              small
+            />
+          </div>
+          <div>
+            <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total</label>
+            <Input
+              v-model="total.reduced_productivity"
+              type="text"
+              placeholder="GHS"
+              money
+              small
+              disabled
+            />
+          </div>
         </div>
       </div>
-      <div class="my-20">
-        <button class="button-small" @click="modal1= false">
+      <div class="my-20 flex gap-3 buttons">
+        <button class="button-small" @click="doneModal1">
           Done
+        </button>
+        <button class="button-small" @click="cancelModal1">
+          Cancel
         </button>
       </div>
     </Modal>
   </div>
 </template>
 <script>
+import { mapGetters, mapState } from 'vuex'
+import { ValidationProvider, ValidationObserver } from 'vee-validate'
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
 import MultiSelect from './MultiSelect'
 export default {
   components: {
+    ValidationProvider,
+    ValidationObserver,
     Input,
     Select,
     Modal,
@@ -177,6 +637,11 @@ export default {
     submit: {
       type: Boolean,
       default: false
+    },
+    validate: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -184,79 +649,337 @@ export default {
       show: this.active,
       mobileWallet: null,
       modal1: false,
+      checkModal1: false,
       micro: false,
-      loanAmount: null,
-      years: null,
-      startup: null,
+      // startup: null,
       covidImpact: [],
       proofOfImpact: null,
       covid_proof_of_march_20: {},
       covid_proof_of_april_20: {},
       covid_proof_of_may_20: {},
-      general: {}
+      total: {
+        outstanding_invoice: 0
+      },
+      general: {},
+      otherSelected: false,
+      fundOtherSelected: false,
+      nonFinancialOtherSelected: false,
+      // details: {}
+      impactTemplate: null,
+      region: '',
+      rcb: '',
+      rcbBank: ''
     }
   },
   computed: {
-    bankPartner () {
-      return this.$store.getters['pages/bankPartner']
+    ...mapGetters({
+      years: 'pages/yearsInBusiness',
+      bankPartner: 'pages/bankPartner',
+      covidImpacts: 'pages/covidImpacts',
+      fundRoles: 'pages/fundRoles',
+      momo: 'pages/momo',
+      token: 'local/token',
+      nonFinancialSupport: 'pages/nonFinancialSupport',
+      regions: 'pages/regions',
+      rcbanks: 'pages/rcbanks'
+    }),
+    ...mapState({
+      currentTab: state => state.pages.currentTab,
+      pendingApplication: state => state.api.pendingApplication
+    }),
+    details: {
+      get () {
+        if (this.pendingApplication) {
+          return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
     },
-    covidImpacts () {
-      return this.$store.getters['pages/covidImpacts']
-    },
-    fundRoles () {
-      return this.$store.getters['pages/fundRoles']
+    regionalRcbs () {
+      return this.rcbanks.filter(bank => this.rcb.toLowerCase().includes(bank.region.toLowerCase()))
     }
   },
   watch: {
-    loanAmount (value) {
-      this.$store.commit('pages/SET_AMOUNT', value)
+    details: {
+      handler (value) {
+        this.general = { ...this.general, ...value }
+        this.covid_proof_of_march_20 = { ...this.covid_proof_of_march_20, ...value.covid_proof_mar_20 }
+        this.covid_proof_of_april_20 = { ...this.covid_proof_of_april_20, ...value.covid_proof_apr_20 }
+        this.covid_proof_of_may_20 = { ...this.covid_proof_of_may_20, ...value.covid_proof_may_20 }
+      },
+      deep: true
     },
-    years (value) {
-      this.$store.commit('pages/SET_YEARS', value)
-    },
-    startup (value) {
-      this.$store.commit('pages/SET_STARTUP', value)
-      if (value === 'true') {
-        this.$store.commit('pages/SET_STARTUP', true)
-      } else {
-        this.$store.commit('pages/SET_STARTUP', false)
-      }
+    general: {
+      handler (value) {
+        // eslint-disable-next-line no-console
+        if (value.covid_impact) {
+          this.otherSelected = value.covid_impact.includes('11')
+        }
+
+        if (value.fund_purposes) {
+          this.fundOtherSelected = value.fund_purposes.includes(9)
+        }
+
+        if (value.non_financial_supports) {
+          this.nonFinancialOtherSelected = value.non_financial_supports.includes(12)
+        }
+
+        if (value.financial_institution_id !== '17') {
+          delete this.general.bank_name
+        }
+      },
+      deep: true
     },
     show (value) {
       const data = Object.assign({}, this.general) // create copy general object
 
-      // merge general object with necessary data
-      data.covid_impact = this.covidImpact
-      // clone all neccessary data
       const covidProofOfMarch = Object.assign({}, this.covid_proof_of_march_20)
       const covidProofOfApril = Object.assign({}, this.covid_proof_of_april_20)
       const covidProofOfMay = Object.assign({}, this.covid_proof_of_may_20)
 
       // merge data
-      data.covid_proof_of_march_20 = covidProofOfMarch
-      data.covid_proof_of_april_20 = covidProofOfApril
-      data.covid_proof_of_may_20 = covidProofOfMay
+      data.covid_proof_mar_20 = covidProofOfMarch
+      data.covid_proof_apr_20 = covidProofOfApril
+      data.covid_proof_may_20 = covidProofOfMay
       data.years_in_business = this.years
-      data.requested_loan_amount = this.loanAmount
-      this.startup === 'true' ? data.is_startup = '1' : data.is_startup = '0'
-      // Once show value changes, commit to store
+      data.requested_loan_amount = this.general.requested_loan_amount
+
       if (value === false) {
         this.$store.commit('api/SET_GENERAL_DATA', data)
+        // Update pendingApplication
+        if (this.pendingApplication !== null) {
+          this.$store.commit('api/MERGE_DATA', data)
+        }
       }
+    },
+    covidImpact: {
+      handler (value) {
+        this.otherSelected = value.includes('11')
+      },
+      deep: true
+    },
+    covid_proof_of_may_20: {
+      handler (value) {
+        // calculate total outstanding invoie
+        const data =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(data)
+
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
+
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
+
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
+
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
+
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
+
+        // calculate total demand notce
+      },
+      deep: true
+    },
+    covid_proof_of_april_20: {
+      handler (value) {
+        // calculate total outstanding invoie
+        const invoiceData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
+
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
+
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
+
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
+
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
+
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
+        // calculate total demand notce
+      },
+      deep: true
+    },
+    covid_proof_of_march_20: {
+      handler (value) {
+        // calculate total outstanding invoice
+        const invoiceData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_invoice) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_invoice)
+        this.total.outstanding_invoice = this.thousandSeprator(invoiceData)
+
+        // calculate total demand notice
+        const demandData =
+          this.parseNumber(this.covid_proof_of_march_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_april_20.demand_notice) +
+          this.parseNumber(this.covid_proof_of_may_20.demand_notice)
+        this.total.demand_notice = this.thousandSeprator(demandData)
+
+        // calculate total outstanding rent
+        const rentData =
+          this.parseNumber(this.covid_proof_of_march_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_april_20.outstanding_rent) +
+          this.parseNumber(this.covid_proof_of_may_20.outstanding_rent)
+        this.total.outstanding_rent = this.thousandSeprator(rentData)
+
+        // calculate total unpaid salaries
+        const salariesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_salaries) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_salaries)
+        this.total.unpaid_salaries = this.thousandSeprator(salariesData)
+
+        // calculate total unpaid utility bills
+        const utilitiesData =
+          this.parseNumber(this.covid_proof_of_march_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_april_20.unpaid_utility_bills) +
+          this.parseNumber(this.covid_proof_of_may_20.unpaid_utility_bills)
+        this.total.unpaid_utility_bills = this.thousandSeprator(utilitiesData)
+
+        // calculate total reduced productivity
+        const productivityData =
+          this.parseNumber(this.covid_proof_of_march_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_april_20.reduced_productivity) +
+          this.parseNumber(this.covid_proof_of_may_20.reduced_productivity)
+        this.total.reduced_productivity = this.thousandSeprator(
+          productivityData
+        )
+      },
+      deep: true
+    },
+    region (value) {
+      this.$store.commit('pages/SET_PERSONAL_DISTRICTS', value)
+      this.regions.map((region) => {
+        if (value.toString() === region.val.toString()) {
+          // return region.name.toLowerCase()
+          this.rcb = region.name
+        }
+      })
+    },
+    rcbBank (value) {
+      this.regionalRcbs.map((bank) => {
+        if (value.toString() === bank.val.toString()) {
+          // return region.name.toLowerCase()
+          this.general.bank_name = bank.name
+        }
+      })
     }
+    // regions (value) {
+    //   // for continuing applications: if region exists get districts
+    //   if (this.region) {
+    //     this.$store.commit('pages/SET_PERSONAL_DISTRICTS', this.region)
+    //   }
+    // }
   },
   created () {
     if (this.$route.params.amount < 145000) {
       this.micro = true
     }
   },
+  mounted () {
+    if (this.token && this.pendingApplication) {
+      // this.general = this.pendingApplication.loan_application
+    }
+  },
   methods: {
+    moveNext () {
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
+    },
     toggleModal1 () {
       this.modal1 = false
     },
     selected (value) {
       this.covidImpact = value
+    },
+    parseNumber (value) {
+      const val = parseFloat(value)
+      if (isNaN(val)) {
+        return 0
+      } else {
+        return val
+      }
+    },
+    doneModal1 (value) {
+      // this.markValidation()
+      this.checkModal1 = true
+      this.modal1 = false
+    },
+    cancelModal1 () {
+      this.modal1 = false
+      // this.markValidation()
+    },
+    // markValidation () {
+    //   this.impactTemplate = 'Done'
+    // },
+    thousandSeprator (amount) {
+      if (
+        amount !== '' ||
+        amount !== undefined ||
+        amount !== 0 ||
+        amount !== '0' ||
+        amount !== null
+      ) {
+        return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+      } else {
+        return amount
+      }
     }
+    // returnRegion (val) {
+    //   this.regions.map((region) => {
+    //     if (val === region.val) {
+    //       return region.name.toLowerCase()
+    //     }
+    //   })
+    // }
   }
 }
 </script>
@@ -266,7 +989,7 @@ export default {
   width: 73%;
   column-gap: 3rem;
   .ac-dc {
-    >label {
+    > label {
       margin-right: 30px;
     }
   }
@@ -277,6 +1000,13 @@ export default {
     color: $color-secondary;
     height: 50px;
     column-gap: 35px;
+    &:focus {
+      outline: none;
+    }
+    &.done {
+      color: rgb(31, 189, 17);
+      border-color: rgb(31, 189, 17);
+    }
   }
 }
 
@@ -290,6 +1020,9 @@ export default {
 }
 label.mobile {
   display: none;
+}
+.momo {
+  width: 100%;
 }
 @include for-phone-only {
   label.mobile {
@@ -315,6 +1048,12 @@ label.mobile {
   .button-small {
     margin-bottom: 70px;
   }
+  .buttons {
+    justify-content: space-between;
+  }
+}
+.momo:nth-child(2) {
+  margin-right: 20px;
 }
 @include for-tablet-portrait-only {
   .form-a {
@@ -344,6 +1083,116 @@ label.mobile {
   }
   .c-f {
     grid-template-columns: repeat(3, 1fr);
+  }
+}
+.tooltip {
+  display: block !important;
+  z-index: 10000;
+
+  .tooltip-inner {
+    background: #C49000;
+    color: white;
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 300px;
+  }
+
+  .tooltip-arrow {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    position: absolute;
+    margin: 5px;
+    border-color: #C49000;
+    z-index: 1;
+  }
+
+  &[x-placement^="top"] {
+    margin-bottom: 10px;
+
+    .tooltip-arrow {
+      border-width: 5px 5px 0 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      bottom: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="bottom"] {
+    margin-top: 10px;
+
+    .tooltip-arrow {
+      border-width: 0 5px 5px 5px;
+      border-left-color: transparent !important;
+      border-right-color: transparent !important;
+      border-top-color: transparent !important;
+      top: -5px;
+      left: calc(50% - 5px);
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  &[x-placement^="right"] {
+    margin-left: 10px;
+
+    .tooltip-arrow {
+      border-width: 5px 5px 5px 0;
+      border-left-color: transparent !important;
+      border-top-color: transparent !important;
+      border-bottom-color: transparent !important;
+      left: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &[x-placement^="left"] {
+    margin-right: 10px;
+
+    .tooltip-arrow {
+      border-width: 5px 0 5px 5px;
+      border-top-color: transparent !important;
+      border-right-color: transparent !important;
+      border-bottom-color: transparent !important;
+      right: -5px;
+      top: calc(50% - 5px);
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+
+  &.popover {
+    $color: #f9f9f9;
+
+    .popover-inner {
+      background: $color;
+      color: #C49000;
+      padding: 24px;
+      border-radius: 5px;
+      box-shadow: 0 5px 30px rgba(#C49000, .1);
+    }
+
+    .popover-arrow {
+      border-color: $color;
+    }
+  }
+
+  &[aria-hidden='true'] {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .15s, visibility .15s;
+  }
+
+  &[aria-hidden='false'] {
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .15s;
   }
 }
 </style>
