@@ -128,7 +128,7 @@
               />
             </div>
           </div>
-          <div class="mb-12">
+          <div class="mb-4">
             <div class="flex">
               <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                 Do you need any business development training or advice?
@@ -201,7 +201,7 @@
             </label>
             <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
           </div>
-          <div class="mb-4">
+          <div class="my-8">
             <div>
               <div class="flex items-center mb-4">
                 <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
@@ -286,6 +286,38 @@
               </template>
             </div>
           </div>
+          <!-- <div class="my-8">
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold w-11/12">
+                Where do you keep your money or borrow money? Check all the options you use:
+                <span class="text-red-600">*</span>
+              </label>
+              <div
+                v-tooltip="'Select the bank(s) you frequently borrow or have a financial account with. Select None if you do not save/borrow from any of these institutions.'"
+                class="tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="general.financial_bodies" :list="savingsInstitutions" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="financialOtherSelected" class="mt-5">
+              <label
+                v-if="financialOtherSelected"
+                class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+              >
+                If other, fill this field
+                <span class="text-red-600">*</span>
+              </label>
+              <Input
+                v-model="general.financial_bodies"
+                type="text"
+                placeholder="Please list all other institutions you borrow or keep money with"
+              />
+            </div>
+          </div> -->
         </div>
         <div class="nav-buttons">
           <template v-if="!valid">
@@ -664,6 +696,7 @@ export default {
       otherSelected: false,
       fundOtherSelected: false,
       nonFinancialOtherSelected: false,
+      financialOtherSelected: false,
       // details: {}
       impactTemplate: null,
       region: '',
@@ -723,6 +756,10 @@ export default {
 
         if (value.non_financial_supports) {
           this.nonFinancialOtherSelected = value.non_financial_supports.includes(12)
+        }
+
+        if (value.financial_bodies) {
+          this.financialOtherSelected = value.financial_bodies.includes(7)
         }
 
         if (value.financial_institution_id !== '17') {
