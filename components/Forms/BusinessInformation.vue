@@ -15,7 +15,7 @@
               tooltip=" Enter the SSNIT Employer Registration number if you have one"
               type="text"
               name="SSNIT Employer Number (Optional)"
-              regex="[A-Z]{1}[0-9]{12}$"
+              regex="[0-9]$"
               optional
             />
           </div>
@@ -174,13 +174,12 @@
             <label class="block text-gray-900 text-sm font-normal mb-2">Are you a Social Enterprise?</label>
 
             <div class="flex items-end">
-              <label class="block text-gray-900 text-sm font-normal mb-2 text-sm">
+              <label class="block text-gray-900 text-sm font-normal mb-2 text-sm w-11/12">
                 An enterprise that has a pre-defined primary social purpose, environmental or other public benefit, and reinvests the majority of its annual profits towards achieving the social purpose
               </label>
               <div
                 v-tooltip="'Select YES if your business is a Social Enterprise. Select No if otherwise.'"
                 class="ml-4 tooltip-btn flex items-center justify-center"
-                style="width: 4rem"
               >
                 ?
               </div>
@@ -214,7 +213,7 @@
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
             <div class="flex">
-              <label class="block text-gray-900 text-sm font-normal mb-2">
+              <label class="block text-gray-900 text-sm font-normal mb-2 w-11/12">
                 Do you provide C0VID-19 Product(s) & Service(s)? (e.g PPE manufacturing)
               </label>
               <div
@@ -454,7 +453,7 @@
             Income Statement
           </p>
           <p class="text-red-600 text-sm text-center">
-            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+            You are required to only put in your <b>2019</b> information, but you can complete the other years provided. <br> If you don’t have a number for any field put in 0.
           </p>
         </div>
         <ValidationObserver v-slot="{ handleSubmit, valid }">
@@ -1133,7 +1132,7 @@
             Balance Sheet
           </p>
           <p class="text-red-600 text-sm text-center">
-            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+            You are required to only put in your <b>2019</b> information, but you can complete the other years provided. <br> If you don’t have a number for any field put in 0.
           </p>
         </div>
         <ValidationObserver v-slot="{ handleSubmit, valid }">
@@ -1747,7 +1746,7 @@
             Cash Flow
           </p>
           <p class="text-red-600 text-sm text-center">
-            You are required to only put in your <b>2019</b> information, but you can complete the years provided. <br> If you don’t have a number for any field put in 0.
+            You are required to only put in your <b>2019</b> information, but you can complete the other years provided. <br> If you don’t have a number for any field put in 0.
           </p>
         </div>
         <ValidationObserver v-slot="{ handleSubmit, valid }">
@@ -2498,7 +2497,7 @@
                   </label>
                 </div>
               </div>
-              <div v-if="shareHolders > 1">
+              <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input v-model.number="directors_list[0].share" type="number" small />

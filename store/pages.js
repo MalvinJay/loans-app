@@ -188,6 +188,16 @@ export const getters = {
         }
       })
     }
+  },
+  savingsInstitutions (state) {
+    if (state.dropdowns !== null) {
+      return state.dropdowns.financial_institutions.filter(item => item.type !== 'mm').map((item) => {
+        return {
+          name: item.bank_name,
+          val: item.id
+        }
+      })
+    }
   }
 }
 
