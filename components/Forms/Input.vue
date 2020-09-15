@@ -118,6 +118,11 @@ export default {
       required: false,
       type: Boolean,
       default: false
+    },
+    validatetext: {
+      required: false,
+      type: String,
+      default: ''
     }
   },
   data () {
@@ -164,6 +169,13 @@ export default {
           this.error = false
           this.errorMessage = null
           this.$emit('input', val)
+        }
+        if (this.validatetext) {
+          if ((this.validatetext.toString() !== 'agree') || (this.validatetext.toString() !== 'disagree')) {
+            this.errorMessage = 'Only agree/disagree is accepted'
+            this.error = true
+            this.$emit('input', val)
+          }
         }
       } else if (this.type === 'email') {
         // eslint-disable-next-line no-useless-escape

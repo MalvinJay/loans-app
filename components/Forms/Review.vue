@@ -227,7 +227,7 @@
         </div>
         <div class="sig">
           <label class="block text-gray-900 text-sm font-bold mb-2">Type Agree/Disagree to accept or decline</label>
-          <Input v-model="signature" small type="text" />
+          <Input v-model="signature" small type="text" validatetext="signature" />
         </div>
         <div class="nav-buttons c-b flex gap-5">
           <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="reConfirm = true">

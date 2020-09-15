@@ -40,6 +40,11 @@ export default {
       required: false,
       default: () => [],
       type: Array
+    },
+    allowMutiple: {
+      type: Boolean,
+      required: false,
+      default: false
     }
   },
   data () {
@@ -69,13 +74,16 @@ export default {
   },
   methods: {
     addValue (e) {
-      // this.selected.push(e.target.value)
-      if (this.selected.length > 3) {
-        this.error = true
+      if (this.allowMutiple === false) {
+        if (this.selected.length > 3) {
+          this.error = true
+        } else {
+          this.error = false
+        }
+        this.$emit('input', this.selected.slice(0, 3))
       } else {
-        this.error = false
+        this.$emit('input', this.selected)
       }
-      this.$emit('input', this.selected.slice(0, 3))
     },
     toggleDropdown () {
       this.showDropdown = !this.showDropdown

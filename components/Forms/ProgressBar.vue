@@ -3,13 +3,13 @@
     <div class="summary text-white flex">
       <div class="flex mr-16">
         <p class="text-xl table">
-          {{ value || '0' }}
+          GHS {{ value || '0' }}
           <span class="table-cell text-sm">Repayment Made</span>
         </p>
       </div>
       <div class="flex">
         <p class="text-xl table">
-          {{ max - value || '0' }}
+          GHS {{ max - value || '0' }}
           <span class="table-cell text-sm">Repayment Left</span>
         </p>
       </div>
@@ -25,7 +25,7 @@
         {{ value }}
       </p>
       <p class="last">
-        {{ max || 'N/A' }}
+        {{ max || '0' }}
       </p>
     </div>
   </div>
