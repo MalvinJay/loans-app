@@ -128,7 +128,7 @@
               />
             </div>
           </div>
-          <div class="mb-12">
+          <div class="mb-4">
             <div class="flex">
               <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                 Do you need any business development training or advice?
@@ -201,7 +201,7 @@
             </label>
             <Input v-if="fundOtherSelected" v-model="general.other_fund_purpose" type="text" />
           </div>
-          <div class="mb-4">
+          <div class="my-8">
             <div>
               <div class="flex items-center mb-4">
                 <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
@@ -284,6 +284,39 @@
                   </ValidationProvider>
                 </template>
               </template>
+            </div>
+          </div>
+          <div class="sm:mt-20">
+            <div class="flex">
+              <label class="block text-gray-700 text-sm font-normal mb-2 font-bold w-10/12">
+                Where do you keep your money or borrow money? Check all the options you use:
+                <span class="text-red-600">*</span>
+              </label>
+              <div
+                v-tooltip="'Select the bank(s) you frequently borrow or have a financial account with. Select None if you do not save/borrow from any of these institutions.'"
+                class="tooltip-btn flex items-center justify-center"
+              >
+                ?
+              </div>
+            </div>
+            <div class="mt-6" />
+            <ValidationProvider v-slot="{ errors }" rules="required">
+              <MultiSelect v-model="money_storages" :list="savingsInstitutions" :allow-mutiple="true" />
+              <small class="text-sm text-red-700">{{ errors[0] }}</small>
+            </ValidationProvider>
+            <div v-if="financialOtherSelected" class="mt-5">
+              <label
+                v-if="financialOtherSelected"
+                class="block text-gray-900 text-sm font-normal mb-2 mt-8"
+              >
+                Please list all other institutions seperated with a <b>comma</b>
+                <span class="text-red-600">*</span>
+              </label>
+              <Input
+                v-model="other_storages"
+                type="text"
+                placeholder="Please list all other institutions seperated with a comma ','"
+              />
             </div>
           </div>
         </div>
@@ -664,11 +697,15 @@ export default {
       otherSelected: false,
       fundOtherSelected: false,
       nonFinancialOtherSelected: false,
+      financialOtherSelected: false,
+      other_money_storages: '',
       // details: {}
       impactTemplate: null,
       region: '',
       rcb: '',
-      rcbBank: ''
+      rcbBank: '',
+      money_storages: [],
+      other_storages: ''
     }
   },
   computed: {
@@ -681,7 +718,8 @@ export default {
       token: 'local/token',
       nonFinancialSupport: 'pages/nonFinancialSupport',
       regions: 'pages/regions',
-      rcbanks: 'pages/rcbanks'
+      rcbanks: 'pages/rcbanks',
+      savingsInstitutions: 'pages/savingsInstitutions'
     }),
     ...mapState({
       currentTab: state => state.pages.currentTab,
@@ -912,13 +950,34 @@ export default {
           this.general.bank_name = bank.name
         }
       })
+    },
+    money_storages (value) {
+      // Clear contents of array
+      this.general.money_storages = []
+
+      if (value) {
+        this.financialOtherSelected = value.includes(8)
+      }
+
+      this.money_storages.map((id) => {
+        if (id === 8) {
+        } else {
+          this.general.money_storages.push(this.savingsInstitutions[id - 1].name)
+        }
+      })
+    },
+    other_storages (value) {
+      if (value) {
+        this.general.other_money_storages = []
+        const insitutions = value.toString().split(',')
+        // eslint-disable-next-line no-console
+        console.log('Institution', insitutions)
+
+        insitutions.map((institute) => {
+          this.general.other_money_storages.push(institute)
+        })
+      }
     }
-    // regions (value) {
-    //   // for continuing applications: if region exists get districts
-    //   if (this.region) {
-    //     this.$store.commit('pages/SET_PERSONAL_DISTRICTS', this.region)
-    //   }
-    // }
   },
   created () {
     if (this.$route.params.amount < 145000) {
@@ -929,8 +988,15 @@ export default {
     if (this.token && this.pendingApplication) {
       // this.general = this.pendingApplication.loan_application
     }
+    this.general.money_storages = []
+    this.general.other_money_storages = []
   },
   methods: {
+    // setOtherMoneyStorageOption () {
+    //   if (this.other_money_storages) {
+    //     this.general.money_storages.push(this.other_money_storages)
+    //   }
+    // },
     moveNext () {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 1)
     },

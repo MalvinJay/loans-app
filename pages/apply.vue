@@ -136,7 +136,7 @@
                     </div>
                   </div>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Input v-model.number="years_in_business" type="text" small />
+                    <Input v-model.number="years_in_business" type="number" :yearcapped="true" small />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -303,6 +303,9 @@ export default {
               case 404:
                 this.$toast.error('Could not verify ID')
                 this.$toast.error('Please make sure you enter a valid ID')
+                break
+              case 403:
+                this.$toast.error('ID Expired, Please provide a valid ID')
                 break
               case 500:
                 this.showErrorModal = true

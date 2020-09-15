@@ -36,7 +36,7 @@
           4. When can businesses apply?
         </template>
         <template v-slot:body>
-          Businesses can start applying now. Applications were opened to the public in the 4th week of July 2020 and will continue for 2 months or until the funds run out.
+          Businesses can start applying from September 16th 2020 and will continue for 1 month or until the funds run out.
         </template>
       </Accordion>
       <Accordion>
@@ -44,7 +44,7 @@
           5. When will the programme application window be closed?
         </template>
         <template v-slot:body>
-          The application closing date will depend on the number of applicants and amounts requested, but we expect all financing requests to be disbursed, and the application process to be closed by the end of September 2020.
+          The final application closing date will depend on the number of applicants and amounts requested. We expect all financing requests to be disbursed, and the application process to be closed by the end of October 2020 or when the funds run out.
         </template>
       </Accordion>
       <Accordion>
@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline"> https://gra.gov.gh/tin/get-a-tin/ </a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
+          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin" target="_blank" class="text-blue-600 hover:underline"> https://gra.gov.gh/tin </a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
         </template>
       </Accordion>
       <Accordion>
@@ -76,7 +76,7 @@
           9. How can I apply for the fund?
         </template>
         <template v-slot:body>
-          There are several avenues to apply for the fund: visit our website: <a href="www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">www.mcfrelief.nbssi.gov.gh</a>; or call the NBSSI Helpline on <b>030 274 7777</b> ; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
+          There are several avenues to apply for the fund: visit our website: <a href="https://nbssi.gov.gh/recoveryprogram" target="_blank" class="text-blue-600 hover:underline">nbssi.gov.gh/recoveryprogram</a>; or call the NBSSI Helpline on <b>030 274 7777</b> ; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
         </template>
       </Accordion>
       <Accordion>
@@ -194,8 +194,8 @@
           12. Can applicants stop and resume application at any time?
         </template>
         <template v-slot:body>
-          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your phone number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the <nuxt-link to="/" class="text-blue-600 hover:underline">Client Portal</nuxt-link></b>.
-          You can save your application and resume at any time you are ready to continue by visiting<a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline"> https://www.mcfrelief.nbssi.gov.gh </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
+          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your phone number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the <nuxt-link to="/app/registration/login" class="text-blue-600 hover:underline">Client Portal</nuxt-link></b>.
+          You can save your application and resume at any time you are ready to continue by visiting<a href="https://nbssi.gov.gh/recoveryprogram" target="_blank" class="text-blue-600 hover:underline"> https://nbssi.gov.gh/recoveryprogram </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
         </template>
       </Accordion>
       <Accordion>
@@ -203,7 +203,7 @@
           13. How do I check my application status?
         </template>
         <template v-slot:body>
-          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
+          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://ghrecoveryprogram.com/app/registration/login" target="_blank" class="text-blue-600 hover:underline">https://ghrecoveryprogram.com/app/registration/login</a>
         </template>
       </Accordion>
       <Accordion>
@@ -211,7 +211,7 @@
           14. How long does the approval & disbursement process take?
         </template>
         <template v-slot:body>
-          The approval and disbursement process should take two weeks but may extend further if there are any irregularities with an application.
+          The approval and disbursement process should take two weeks but may extend if further procedures are needed to process the application.
         </template>
       </Accordion>
       <Accordion>
@@ -275,7 +275,7 @@
           21. How do I make an official complaint about my problem?
         </template>
         <template v-slot:body>
-          If you have any issue with the system or process, please visit the Client Portal via this website -  <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
+          If you have any issue with the system or process, please visit the Client Portal via this website -  <a href="https://ghrecoveryprogram.com/app/registration/login" target="_blank" class="text-blue-600 hover:underline">https://ghrecoveryprogram.com/app/registration/login</a>
           and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at <b>0302 747 777</b> if you would like to speak to someone.
         </template>
       </Accordion>
@@ -308,7 +308,7 @@
           25. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
-          Note, effective 24th May 2020, all NBSSI client registration fees have been waived until 31st July, 2020 to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.crisp.help/en/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.crisp.help/en/</a> or call the Call Centre Helpline on <b>0302 747 777</b>  or visit the nearest NBSSI Business Advisory Centre.
+          Note, effective 24th May 2020, all NBSSI client registration fees have been waived to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at https://nbssi.crisp.help/en/ or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
         </template>
       </Accordion>
       <Accordion>
@@ -317,6 +317,14 @@
         </template>
         <template v-slot:body>
           Applicants seeking further clarification can call the NBSSI Call Centre on <b>0302 747 777</b>.
+        </template>
+      </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          27. Do I need to have a bank account or an account with the Program's financial partners before I can apply?
+        </template>
+        <template v-slot:body>
+          No, you do not need to have a bank account or an account with the Program's financial partners to apply for funds.
         </template>
       </Accordion>
     </div>

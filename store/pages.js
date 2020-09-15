@@ -188,6 +188,16 @@ export const getters = {
         }
       })
     }
+  },
+  savingsInstitutions (state) {
+    if (state.dropdowns !== null) {
+      return state.dropdowns.money_storages.map((item) => {
+        return {
+          name: item.name,
+          val: item.id
+        }
+      })
+    }
   }
 }
 

@@ -1,13 +1,13 @@
 <template>
   <div class="counter grid justify-center">
-    <div class="l-s">
+    <!-- <div class="l-s">
       <p class="text-md">
         Funding Ranging From
       </p>
       <p class="text-center font-normal text-xl">
         GHS800 - GHS500,000
       </p>
-    </div>
+    </div> -->
     <div class="m-s">
       <p class="text-md">
         Apply Online In
@@ -30,12 +30,12 @@
 .counter {
   background-color: $color-mild-pink;
   padding: 37px 10%;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   text-align: center;
 }
 .m-s {
   border-right: 1px solid $color-primary;
-  border-left: 1px solid $color-primary;
+  // border-left: 1px solid $color-primary;
 }
 p {
   &:last-child {
