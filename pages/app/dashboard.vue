@@ -17,15 +17,14 @@
         <div class="my-5">
           <ProgressBar :max="0" :value="0" />
         </div>
-        <p class="text-2xl md:text-xl block font-semibold pt-2 md:pt-6">
+        <!-- <p class="text-2xl md:text-xl block font-semibold pt-2 md:pt-6">
           Payment Method
         </p>
         <div class="my-3">
           <p>
-            <!-- Repayment isn't due until DD/MM/2020 but you can choose to start repaying at anytime -->
             You can choose to stat repayment anytime. Click Schedule a Payment.
           </p>
-        </div>
+        </div> -->
 
         <div class="payment-structure flex">
           <!-- <div class="box bg-white cursor-pointer">
@@ -39,12 +38,12 @@
               OR
             </div>
           </div> -->
-          <div class="box bg-white cursor-pointer">
+          <!-- <div class="box bg-white cursor-pointer">
             <img src="@/assets/img/calender.png" alt srcset>
             <p class="text-center">
               Scheduled
             </p>
-          </div>
+          </div> -->
         </div>
       </section>
       <!-- ==============================================================

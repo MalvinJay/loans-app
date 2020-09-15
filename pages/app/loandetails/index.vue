@@ -28,7 +28,7 @@
               </div>
               <div>
                 <p>
-                  / week
+                  / month
                 </p>
               </div>
               <div class="mt-3">

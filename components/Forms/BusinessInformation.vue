@@ -68,7 +68,7 @@
                 v-model="general.business_phone_number"
                 tooltip="Enter the phone number for your business. If it is the same as your personal number, enter it again."
                 type="text"
-                name="Business Phone Number"
+                name="Main Phone Number"
                 regex="0[2-5]{1}[0-9]{1}[0-9]{6,7}$"
                 required
               />
@@ -484,7 +484,7 @@
               </div>
               <div>
                 <div class="flex">
-                  <label class="block text-gray-900 text-sm font-bold mb-2">Total Revenue</label>
+                  <label class="block text-gray-900 text-sm font-bold mb-2">+ Total Revenue</label>
                   <div
                     v-tooltip="'Enter your total sales or turnover for periods indicated.'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
@@ -549,7 +549,7 @@
               <div>
                 <label
                   class="block text-gray-900 text-sm font-bold mb-2"
-                >Total Amount Paid for Raw Materials</label>
+                >- Total Amount Paid for Raw Materials</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -605,7 +605,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Total Amount Paid for Salaries</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">- Total Amount Paid for Salaries</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -661,7 +661,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Other Operating Expenses</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">- Other Operating Expenses</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -717,7 +717,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Interest on Loans</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">- Interest on Loans</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -773,7 +773,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Depreciation Charge on Assets</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">- Depreciation Charge on Assets</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -829,7 +829,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Total Charge in Taxes</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">- Total Charge in Taxes</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -885,7 +885,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">Net Profit</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">= Net Profit</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -3038,7 +3038,7 @@
               </div>
               <div>
                 <div class="flex items-baseline">
-                  <label class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile">Total Revenue</label>
+                  <label class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile">+ Total Revenue</label>
                   <div
                     v-tooltip="'Enter your total sales or turnover for periods indicated.'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
@@ -3051,7 +3051,7 @@
                 <label
                   class="mb-5 block text-gray-900 text-sm font-bold text-center mt-10 mobile"
                 >2018</label>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total Revenue 2018</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">+ Total Revenue 2018</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2018.total_revenue"
@@ -3067,7 +3067,7 @@
                 <label
                   class="mb-5 block text-gray-900 text-sm font-bold text-center mt-10 mobile"
                 >2019</label>
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Total Revenue 2019</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">+ Total Revenue 2019</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2019.total_revenue"
@@ -3085,7 +3085,7 @@
                 >Jan 2020 - April 2020</label>
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2 mobile"
-                >Total Revenue Jan 2020 - April 2020</label>
+                >+ Total Revenue Jan 2020 - April 2020</label>
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model.number="income_statement_2020.total_revenue"
@@ -3101,7 +3101,7 @@
                 <div class="flex items-baseline">
                   <label
                     class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                  >Total Expenses</label>
+                  >- Total Expenses</label>
                   <div
                     v-tooltip="'Put in your total expenses incurred in operating your business for the same periods indicated.'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
@@ -3155,7 +3155,7 @@
                 <div class="flex items-baseline">
                   <label
                     class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                  >Profit Before Tax</label>
+                  >- Profit Before Tax</label>
                   <div
                     v-tooltip="'The system will calculate this for you.'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
@@ -3165,7 +3165,7 @@
                 </div>
               </div>
               <div class="seventh">
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2018</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">= Net Profit 2018</label>
                 <Input
                   v-model="total_micro_statement.profit_18"
                   type="text"
@@ -3176,7 +3176,7 @@
                 />
               </div>
               <div class="eighth">
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2019</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">= Net Profit 2019</label>
                 <Input
                   v-model="total_micro_statement.profit_19"
                   type="text"
@@ -3189,7 +3189,7 @@
               <div class="ninth">
                 <label
                   class="block text-gray-900 text-sm font-normal mb-2 mobile"
-                >Net Profit Jan 2020 - April 2020</label>
+                >= Net Profit Jan 2020 - April 2020</label>
                 <Input
                   v-model="total_micro_statement.profit_20"
                   type="text"
@@ -3697,7 +3697,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="totalemployees" rules="required">
                   <Input v-model.number="general.number_of_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3713,7 +3713,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="permanentemployees" rules="required">
                   <Input v-model.number="general.permanent_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3729,7 +3729,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="temporalemployees" rules="required">
                   <Input v-model.number="general.temporary_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3745,7 +3745,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="femalesemployees" rules="required">
                   <Input v-model.number="general.female_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -4411,6 +4411,12 @@ export default {
       } else {
         return value
       }
+    },
+    validateField (field) {
+      const provider = this.$refs[field]
+
+      // Validate the field
+      return provider.validate()
     }
   }
 }

@@ -304,6 +304,9 @@ export default {
                 this.$toast.error('Could not verify ID')
                 this.$toast.error('Please make sure you enter a valid ID')
                 break
+              case 403:
+                this.$toast.error('ID Expired, Please provide a valid ID')
+                break
               case 500:
                 this.showErrorModal = true
                 break
