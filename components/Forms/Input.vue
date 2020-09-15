@@ -171,11 +171,14 @@ export default {
           this.$emit('input', val)
         }
         if (this.validatetext) {
-          if ((this.validatetext.toString() !== 'agree') || (this.validatetext.toString() !== 'disagree')) {
+          if ((this.validatetext.toString().toLowerCase() !== 'agree') || (this.validatetext.toString().toLowerCase() !== 'disagree')) {
             this.errorMessage = 'Only agree/disagree is accepted'
             this.error = true
-            this.$emit('input', val)
+          } else {
+            this.errorMessage = null
+            this.error = false
           }
+          this.$emit('input', val)
         }
       } else if (this.type === 'email') {
         // eslint-disable-next-line no-useless-escape
