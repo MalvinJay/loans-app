@@ -227,7 +227,8 @@
         </div>
         <div class="sig">
           <label class="block text-gray-900 text-sm font-bold mb-2">Type Agree/Disagree to accept or decline</label>
-          <Input v-model="signature" small type="text" validatetext="signature" />
+          <Input v-model="signature" small type="text" />
+          <span v-if="showError" class="text-xs text-red-700">Only agree/disagree is accepted</span>
         </div>
         <div class="nav-buttons c-b flex gap-5">
           <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="reConfirm = true">
@@ -291,7 +292,10 @@ export default {
       fundRoles: 'pages/fundRoles',
       businessScale: 'pages/businessScale',
       isStartup: 'pages/isStartup'
-    })
+    }),
+    showError () {
+      return this.signature.toLowerCase() !== 'agree' && this.signature.toLowerCase() !== 'disagree'
+    }
   },
   methods: {
     movePrevious () {

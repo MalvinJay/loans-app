@@ -68,7 +68,7 @@
           8. Must I have a TIN to apply?
         </template>
         <template v-slot:body>
-          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin/get-a-tin/" target="_blank" class="text-blue-600 hover:underline"> https://gra.gov.gh/tin/get-a-tin/ </a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
+          Businesses and Individuals must have a Tax Identification Number (TIN) as mandated by law. Visit<a href="https://gra.gov.gh/tin" target="_blank" class="text-blue-600 hover:underline"> https://gra.gov.gh/tin </a>to apply for a TIN or visit the nearest Ghana Revenue Authority office, if you do not already have a TIN.
         </template>
       </Accordion>
       <Accordion>
@@ -76,7 +76,7 @@
           9. How can I apply for the fund?
         </template>
         <template v-slot:body>
-          There are several avenues to apply for the fund: visit our website: <a href="www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">www.mcfrelief.nbssi.gov.gh</a>; or call the NBSSI Helpline on <b>030 274 7777</b> ; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
+          There are several avenues to apply for the fund: visit our website: <a href="https://nbssi.gov.gh/recoveryprogram" target="_blank" class="text-blue-600 hover:underline">nbssi.gov.gh/recoveryprogram</a>; or call the NBSSI Helpline on <b>030 274 7777</b> ; or visit the nearest NBSSI district office (Business Advisory Centre) for help.
         </template>
       </Accordion>
       <Accordion>
@@ -194,8 +194,8 @@
           12. Can applicants stop and resume application at any time?
         </template>
         <template v-slot:body>
-          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your phone number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the <nuxt-link to="/" class="text-blue-600 hover:underline">Client Portal</nuxt-link></b>.
-          You can save your application and resume at any time you are ready to continue by visiting<a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline"> https://www.mcfrelief.nbssi.gov.gh </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
+          You can only SAVE an application after you enter in your Personal Information and are on the Business Information page. This is so we can capture your phone number to use as verification of your identity. <b>Note: Please use a Genuine Phone Number. As doing so will allow you to log into the <nuxt-link to="/app/registration/login" class="text-blue-600 hover:underline">Client Portal</nuxt-link></b>.
+          You can save your application and resume at any time you are ready to continue by visiting<a href="https://nbssi.gov.gh/recoveryprogram" target="_blank" class="text-blue-600 hover:underline"> https://nbssi.gov.gh/recoveryprogram </a> and clicking on SIGN IN. You will need to use the phone number you used when you started the application process to sign in.
         </template>
       </Accordion>
       <Accordion>
@@ -203,7 +203,7 @@
           13. How do I check my application status?
         </template>
         <template v-slot:body>
-          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://www.mcfrelief.nbssi.gov.gh" target="_blank" class="text-blue-600 hover:underline">https://www.mcfrelief.nbssi.gov.gh</a>
+          The application system has a secure Client Portal that allows applicants to view the status of their applications. Access to the Client Portal is via <a href="https://ghrecoveryprogram.com/app/registration/login" target="_blank" class="text-blue-600 hover:underline">https://ghrecoveryprogram.com/app/registration/login</a>
         </template>
       </Accordion>
       <Accordion>

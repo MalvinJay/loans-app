@@ -885,7 +885,7 @@
                 />
               </div>
               <div>
-                <label class="block text-gray-900 text-sm font-bold mb-2">= Net Profit</label>
+                <label class="block text-gray-900 text-sm font-bold mb-2">Net Profit =</label>
               </div>
               <div>
                 <label class="block text-gray-900 text-sm font-normal mb-2 mobile">2017</label>
@@ -2527,7 +2527,6 @@
                     v-model="directors_list[1].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2647,7 +2646,6 @@
                     v-model="directors_list[2].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2767,7 +2765,6 @@
                     v-model="directors_list[3].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2887,7 +2884,6 @@
                     v-model="directors_list[4].tin_number"
                     type="text"
                     small
-                    regex="([P]{1})([0-9]{10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3155,7 +3151,7 @@
                 <div class="flex items-baseline">
                   <label
                     class="block text-gray-900 text-sm font-bold text-left mt-10 not-mobile"
-                  >- Profit Before Tax</label>
+                  > Profit Before Tax = </label>
                   <div
                     v-tooltip="'The system will calculate this for you.'"
                     class="ml-4 tooltip-btn flex items-center justify-center"
@@ -3165,7 +3161,7 @@
                 </div>
               </div>
               <div class="seventh">
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">= Net Profit 2018</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2018 =</label>
                 <Input
                   v-model="total_micro_statement.profit_18"
                   type="text"
@@ -3176,7 +3172,7 @@
                 />
               </div>
               <div class="eighth">
-                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">= Net Profit 2019</label>
+                <label class="block text-gray-900 text-sm font-normal mb-2 mobile">Net Profit 2019 = </label>
                 <Input
                   v-model="total_micro_statement.profit_19"
                   type="text"

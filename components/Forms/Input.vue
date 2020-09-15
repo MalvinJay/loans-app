@@ -119,6 +119,11 @@ export default {
       type: Boolean,
       default: false
     },
+    yearcapped: {
+      required: false,
+      type: Boolean,
+      default: false
+    },
     validatetext: {
       required: false,
       type: String,
@@ -151,6 +156,9 @@ export default {
         } if (this.capped === true && val > 5000000) {
           this.errorMessage = 'Input too big. Max value is GHS 5,000,000'
           this.error = true
+        } if (this.yearcapped && val > 50) {
+          this.errorMessage = 'Years cannot exceed 50'
+          this.error = true
         }
       } else if (this.type === 'text' && this.regex !== '' && val !== '') {
         const regex = RegExp(this.regex)
@@ -170,16 +178,17 @@ export default {
           this.errorMessage = null
           this.$emit('input', val)
         }
-        if (this.validatetext) {
-          if ((this.validatetext.toString().toLowerCase() !== 'agree') || (this.validatetext.toString().toLowerCase() !== 'disagree')) {
-            this.errorMessage = 'Only agree/disagree is accepted'
-            this.error = true
-          } else {
-            this.errorMessage = null
-            this.error = false
-          }
-          this.$emit('input', val)
-        }
+        // if (this.validatetext !== '') {
+        //   if ((this.validatetext.toString().toLowerCase() !== 'agree') || (this.validatetext.toString().toLowerCase() !== 'disagree')) {
+        //     this.error = true
+        //     this.errorMessage = 'Only agree/disagree is accepted'
+        //     this.$emit('input', val)
+        //   } else {
+        //     this.error = false
+        //     this.errorMessage = null
+        //     this.$emit('input', val)
+        //   }
+        // }
       } else if (this.type === 'email') {
         // eslint-disable-next-line no-useless-escape
         const regex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])/
