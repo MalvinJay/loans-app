@@ -97,8 +97,8 @@
                 name="Business Tax Identification Number"
                 optional
                 required
+                regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
               />
-              <!-- regex="([A-Za-z]{1})([0-9]{10})$" -->
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -984,46 +984,64 @@
                 </label>
               </div>
             </div>
-            <div class="mt-3">
+            <div v-if="general.has_credit === '1'" class="mt-3">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
               >If yes, please provide the details below</label>
               <div class="grid c-f gap-8 mb-8">
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Bank/Loan Company</label>
-                  <Input v-model="credit_facilities[0].financial_institution" type="text" small />
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input v-model="credit_facilities[0].financial_institution" type="text" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Credit Facility Type</label>
-                  <Input v-model="credit_facilities[0].type" type="text" small />
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input v-model="credit_facilities[0].type" type="text" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Amount</label>
-                  <Input
-                    v-model.number="credit_facilities[0].amount"
-                    type="number"
-                    placeholder="GHS"
-                    money
-                    small
-                  />
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input
+                      v-model.number="credit_facilities[0].amount"
+                      type="number"
+                      placeholder="GHS"
+                      money
+                      small
+                    />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-                  <Input v-model="credit_facilities[0].interest_rate" type="number" small />
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input v-model="credit_facilities[0].interest_rate" type="number" small />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
-                  <input v-model="credit_facilities[0].maturity_date" type="date" name>
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <input v-model="credit_facilities[0].maturity_date" type="date" name>
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Current Balance</label>
-                  <Input
-                    v-model="credit_facilities[0].current_value"
-                    type="number"
-                    placeholder="GHS"
-                    money
-                    small
-                  />
+                  <ValidationProvider v-slot="{ errors }" rules="required">
+                    <Input
+                      v-model="credit_facilities[0].current_value"
+                      type="number"
+                      placeholder="GHS"
+                      money
+                      small
+                    />
+                    <small class="text-sm text-red-700">{{ errors[0] }}</small>
+                  </ValidationProvider>
                 </div>
               </div>
               <div class="grid c-f gap-8 mb-8">
@@ -1119,7 +1137,7 @@
               </button>
             </div>
           </form>
-        </validationobserver>
+        </ValidationObserver>
       </div>
     </Modal>
     <!-- =============================================================================================================
@@ -2407,6 +2425,7 @@
                     v-model.trim="directors_list[0].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <!-- regex="([A-Z]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -2527,6 +2546,7 @@
                     v-model="directors_list[1].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2646,6 +2666,7 @@
                     v-model="directors_list[2].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2765,6 +2786,7 @@
                     v-model="directors_list[3].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2884,6 +2906,7 @@
                     v-model="directors_list[4].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3253,6 +3276,7 @@
                     v-model="business_owner[0].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3399,6 +3423,7 @@
                     v-model="business_owner[1].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <!-- regex="([P]{1})([0-9][A-Za-z]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3543,6 +3568,7 @@
                     v-model="business_owner[2].tin_number"
                     type="text"
                     small
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
                   />
                   <!-- regex="([P]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3677,6 +3703,12 @@
             <div class="h-d mb-10">
               <p class="text-center text-lg font-bold">
                 Employees
+              </p>
+              <p class="text-red-600 text-sm text-center">
+                Sum of <b>Permanent</b> and <b>Temporary</b> Employees cannot exceed Total Number of Employees
+              </p>
+              <p class="text-red-600 text-sm text-center">
+                <b>Female</b> Employees Number cannot exceed Total Number of Employees
               </p>
             </div>
           </div>
@@ -4186,10 +4218,10 @@ export default {
     }
   },
   mounted () {
-    this.business_owner[0].share = 100
-    if (this.shareHolders === 1) {
-      this.directors_list[0].share = 100
-    }
+    // this.business_owner[0].share = 100
+    // if (this.shareHolders === 1) {
+    //   this.directors_list[0].share = 100
+    // }
     if (!this.token && this.applicationObject) {
       this.general.annual_sales = this.applicationObject.annual_sales
       // this.setDefaultValues()

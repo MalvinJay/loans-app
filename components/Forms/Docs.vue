@@ -22,6 +22,9 @@
                   <p class="text-center text-sm">
                     Drag & Drop file here (max: 5MB)
                   </p>
+                  <p class="text-center">
+                    Please use file type jpeg, png or jpg
+                  </p>
                 </div>
 
                 <div class="u-b">
@@ -56,6 +59,9 @@
                 <p class="text-center text-sm">
                   Drag & Drop file here (max: 5MB)
                 </p>
+                <p class="text-center">
+                  Please use file type jpeg, png or jpg
+                </p>
               </div>
               <div class="u-b">
                 <label>
@@ -82,6 +88,9 @@
               <div class="my-6">
                 <p class="text-center text-sm">
                   Drag & Drop file here (max: 5MB)
+                </p>
+                <p class="text-center">
+                  Please use file type jpeg, png or jpg
                 </p>
               </div>
               <div class="u-b">
@@ -206,9 +215,9 @@ export default {
               duration: 5000
             })
           })
-          .catch(() => {
+          .catch((err) => {
             this.loading = false
-            this.$toasted.error('Could not upload image', {
+            this.$toasted.error(err.response.data.errors.file[0], {
               theme: 'toasted-primary',
               position: 'top-right',
               duration: 5000
@@ -233,9 +242,9 @@ export default {
             duration: 5000
           })
         })
-        .catch(() => {
+        .catch((err) => {
           this.payeloading = false
-          this.$toasted.error('Could not upload image', {
+          this.$toasted.error(err.response.data.errors.file[0], {
             theme: 'toasted-primary',
             position: 'top-right',
             duration: 5000
@@ -260,9 +269,9 @@ export default {
             duration: 5000
           })
         })
-        .catch(() => {
+        .catch((err) => {
           this.payeloading = false
-          this.$toasted.error('Could not upload image', {
+          this.$toasted.error(err.response.data.errors.file[0], {
             theme: 'toasted-primary',
             position: 'top-right',
             duration: 5000
@@ -286,9 +295,9 @@ export default {
             duration: 5000
           })
         })
-        .catch(() => {
+        .catch((err) => {
           this.ssnitloading = false
-          this.$toasted.error('Could not upload image', {
+          this.$toasted.error(err.response.data.errors.file[0], {
             theme: 'toasted-primary',
             position: 'top-right',
             duration: 5000
@@ -313,9 +322,9 @@ export default {
             duration: 5000
           })
         })
-        .catch(() => {
+        .catch((err) => {
           this.ssnitloading = false
-          this.$toasted.error('Could not upload image', {
+          this.$toasted.error(err.response.data.errors.file[0], {
             theme: 'toasted-primary',
             position: 'top-right',
             duration: 5000

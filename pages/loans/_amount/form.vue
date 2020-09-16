@@ -121,15 +121,15 @@ export default {
       }
     }
   },
-  beforeRouteLeave (to, from, next) {
-    if (to.path !== '/loans/submitted') {
-      if (confirm('Are you sure you want to go back?')) {
-        next()
-      } else {
-        next(false)
-      }
-    }
-  },
+  // beforeRouteLeave (to, from, next) {
+  //   if (to.path !== '/loans/submitted') {
+  //     if (confirm('Are you sure you want to go back?')) {
+  //       next()
+  //     } else {
+  //       next(false)
+  //     }
+  //   }
+  // },
   methods: {
     viewCurrent (value) {
       this.current = value
@@ -154,6 +154,7 @@ export default {
               duration: 5000
             })
             this.$store.commit('pages/SET_SAVE_MODAL', false)
+            this.$router.push('/app/registration/login')
           })
           .catch((errors) => {
           // get errors from api if any

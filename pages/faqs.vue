@@ -308,7 +308,7 @@
           25. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
-          Note, effective 24th May 2020, all NBSSI client registration fees have been waived to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at https://nbssi.crisp.help/en/ or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
+          Note, effective 24th May 2020, all NBSSI client registration fees have been waived to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.gov.gh/become-nbssi-client/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.gov.gh/become-nbssi-client/</a> or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
         </template>
       </Accordion>
       <Accordion>
