@@ -68,7 +68,7 @@ export const actions = {
   },
   verifyApplication ({ commit }, data) {
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/verify-id'
+      const url = 'https://admin.ghrecoveryprogram.com/api/verify-id'
       this.$axios.$post(url, data)
         .then((result) => {
           localStorage.setItem('application_object', JSON.stringify(result.data))
@@ -83,7 +83,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       const formData = new FormData()
       formData.append('file', data.file)
-      const url = 'https://mcftest.plendifyloans.com/api/upload-media'
+      const url = 'https://admin.ghrecoveryprogram.com/api/upload-media'
       this.$axios.$post(url, formData)
         .then((result) => {
           commit('SET_MEDIA_PATH', { path: result.data.path, name: data.name })
@@ -97,9 +97,9 @@ export const actions = {
     return new Promise((resolve, reject) => {
       let url
       if (state.pendingApplication) {
-        url = 'https://mcftest.plendifyloans.com/api/auth/loan-applications'
+        url = 'https://admin.ghrecoveryprogram.com/api/auth/loan-applications'
       } else {
-        url = 'https://mcftest.plendifyloans.com/api/loan-applications'
+        url = 'https://admin.ghrecoveryprogram.com/api/loan-applications'
       }
       this.$axios.$post(url, state.general)
         .then((result) => {
@@ -117,9 +117,9 @@ export const actions = {
     return new Promise((resolve, reject) => {
       let url
       if (state.pendingApplication) {
-        url = `https://mcftest.plendifyloans.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
+        url = `https://admin.ghrecoveryprogram.com/api/unfinished/loan-applications/update/${state.pendingApplication.id}`
       } else {
-        url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications/save-continue'
+        url = 'https://admin.ghrecoveryprogram.com/api/unfinished/loan-applications/save-continue'
       }
       this.$axios.$post(url, state.general)
         .then((result) => {
@@ -134,7 +134,7 @@ export const actions = {
   },
   getPendingApplications ({ rootState, state, commit }) {
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/unfinished/loan-applications'
+      const url = 'https://admin.ghrecoveryprogram.com/api/unfinished/loan-applications'
       this.$axios.$get(url)
         .then((result) => {
           commit('SET_PENDING_APPLICATION', result.data)
