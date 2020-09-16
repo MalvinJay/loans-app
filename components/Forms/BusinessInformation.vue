@@ -5,7 +5,14 @@
         <div class="grid form-c py-20">
           <div class="mb-10">
             <ValidationProvider v-slot="{ errors }" rules="required">
-              <Input v-model="general.business_name" tooltip="Enter the name of the Business for which you requesting funding. " type="text" required name="Business Name" />
+              <Input
+                v-model="general.business_name"
+                tooltip="Enter the name of the Business for which you requesting funding. "
+                type="text"
+                required
+                name="Business Name"
+                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
+              />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -160,6 +167,7 @@
                 tooltip="Enter the specific products and services that your business provides to its customers. E.g. if you are a fruit processor you put in juice"
                 type="text"
                 name="Main Product(s) or Service(s)"
+                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                 placeholder="Please type it in"
                 required
               />
