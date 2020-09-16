@@ -299,11 +299,7 @@ export default {
   },
   methods: {
     movePrevious () {
-      if (this.businessScale !== '1' && this.businessScale !== '2' && this.isStartup === false) {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
-      } else {
-        this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
-      }
+      this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 3)
     },
     submitAll () {
       this.reConfirm = false
