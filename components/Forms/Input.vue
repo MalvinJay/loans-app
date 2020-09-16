@@ -43,7 +43,7 @@
       v-else
       :type="type"
       :placeholder="placeholder"
-      :class="{small: small, error:error, textRight:money, grey:grey }"
+      :class="{small: small, error:error, textRight:money, grey:grey, 'uppercase':uppercase }"
       :value="value"
       :disabled="grey || disabled"
       @input="validateSend"
@@ -128,6 +128,11 @@ export default {
       required: false,
       type: String,
       default: ''
+    },
+    uppercase: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
   data () {
