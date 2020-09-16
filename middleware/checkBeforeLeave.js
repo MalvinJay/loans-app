@@ -6,11 +6,7 @@ export default function ({ store }) {
       setup = true
       // eslint-disable-next-line no-console
       console.log('STORE - guarding', store)
-      if (confirm('Are you sure you want to go back?')) {
-        next()
-      } else {
-        next(false)
-      }
+      next()
     })
   }
 }

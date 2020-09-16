@@ -4388,27 +4388,27 @@ export default {
       }
     },
     doneOwnerModal () {
-      // const businessOwner = JSON.parse(
-      //   JSON.stringify(this.business_owner)
-      // ).filter(value => JSON.stringify(value) !== '{}')
+      const businessOwner = JSON.parse(
+        JSON.stringify(this.business_owner)
+      ).filter(value => JSON.stringify(value) !== '{}')
 
-      // const reducer = (accumulator, currentValue) =>
-      //   accumulator + currentValue.share
+      const reducer = (accumulator, currentValue) =>
+        accumulator + currentValue.share
 
-      // const total = businessOwner.reduce(reducer, 0)
-      // if (total !== 100) {
-      //   this.$toasted.error('Ownership percentage should equal 100%', {
-      //     theme: 'toasted-primary',
-      //     position: 'top-center',
-      //     duration: 5000
-      //   })
-      // } else {
-      //   this.checkOwnerModal = true
-      //   this.ownerModal = false
-      // }
-      this.busOwner = 'Done'
-      this.checkOwnerModal = true
-      this.ownerModal = false
+      const total = businessOwner.reduce(reducer, 0)
+      if (total !== 100) {
+        this.$toasted.error('Ownership percentage should equal 100%', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+        this.busOwner = 'Done'
+        this.checkOwnerModal = false
+        this.ownerModal = true
+      } else {
+        this.checkOwnerModal = true
+        this.ownerModal = false
+      }
     },
     doneEmployeesModal () {
       this.employeesDone = 'Done'

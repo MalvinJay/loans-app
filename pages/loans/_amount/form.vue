@@ -113,13 +113,13 @@ export default {
     this.$store.dispatch('api/setApplicationObject')
   },
   mounted () {
-    window.onpopstate = function (event) {
-      if (confirm('Are you sure you want to go back?')) {
-        history.back()
-      } else {
-        return false
-      }
-    }
+    // window.onpopstate = function (event) {
+    //   if (confirm('Are you sure you want to go back?')) {
+    //     history.back()
+    //   } else {
+    //     return false
+    //   }
+    // }
   },
   // beforeRouteLeave (to, from, next) {
   //   if (to.path !== '/loans/submitted') {
