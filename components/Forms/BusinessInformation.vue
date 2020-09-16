@@ -97,7 +97,7 @@
                 name="Business Tax Identification Number"
                 optional
                 required
-                regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
               />
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
@@ -2425,7 +2425,7 @@
                     v-model.trim="directors_list[0].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <!-- regex="([A-Z]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -2546,7 +2546,7 @@
                     v-model="directors_list[1].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2666,7 +2666,7 @@
                     v-model="directors_list[2].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2786,7 +2786,7 @@
                     v-model="directors_list[3].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -2906,7 +2906,7 @@
                     v-model="directors_list[4].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3012,7 +3012,7 @@
               <small
                 v-if="shareHolders > 1"
                 class="text-red-600 cursor-pointer"
-                @click="shareHolders -=1"
+                @click="removeDirectorList()"
               >Remove Director/Shareholder</small>
             </div>
             <div class="my-20 flex gap-3 buttons">
@@ -3276,7 +3276,7 @@
                     v-model="business_owner[0].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3366,7 +3366,7 @@
                   </ValidationProvider>
                 </div>
               </div>
-              <!-- <div>
+              <div>
                 <div class="flex">
                   <label class="block text-gray-900 text-sm font-normal mb-2">% Ownership</label>
                   <div
@@ -3381,7 +3381,7 @@
                   <Input v-model.number="business_owner[0].share" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
-              </div> -->
+              </div>
             </div>
           </div>
           <div v-if="businessOwners >= 2" class="d-s">
@@ -3423,7 +3423,7 @@
                     v-model="business_owner[1].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <!-- regex="([P]{1})([0-9][A-Za-z]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3568,7 +3568,7 @@
                     v-model="business_owner[2].tin_number"
                     type="text"
                     small
-                    regex="([Pp|Cc]{1})(([0-9]|[A-Z]){10})$"
+                    regex="([Pp|Cc]{1})(([0-9]|[A-Za-z]){10})$"
                   />
                   <!-- regex="([P]{1})([0-9]{10})$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
@@ -3860,7 +3860,8 @@ export default {
       cashFlowDone: null,
       directorListdone: null,
       busOwner: null,
-      employeesDone: null
+      employeesDone: null,
+      counter: 0
     }
   },
   computed: {
@@ -3915,14 +3916,14 @@ export default {
         this.general.tin_number = newValue
       }
     },
-    directorTIN: {
-      get () {
-        return this.directors_list[0].tin_number ? this.TINFormatter(this.directors_list[0].tin_number) : ''
-      },
-      set (newValue) {
-        this.directors_list[0].tin_number = newValue
-      }
-    },
+    // directorTIN: {
+    //   get () {
+    //     return this.directors_list[0].tin_number ? this.TINFormatter(this.directors_list[0].tin_number) : ''
+    //   },
+    //   set (newValue) {
+    //     this.directors_list[0].tin_number = newValue
+    //   }
+    // },
     businessTIN: {
       get () {
         return this.business_owner[0].tin_number ? this.TINFormatter(this.business_owner[0].tin_number) : ''
@@ -4194,6 +4195,20 @@ export default {
         }
       }
     },
+    directors_list: {
+      handler (value) {
+        if (value) {
+          // this.directors_list[0].tin_number
+          console.log('what is value now?', value)
+          value.map((tin, i) => {
+            if (tin.tin_number) {
+              tin.tin_number = this.TINFormatter(tin.tin_number)
+            }
+          })
+        }
+      },
+      deep: true
+    },
     prefill: {
       handler (value) {
         if (!this.token && this.applicationObject) {
@@ -4228,6 +4243,23 @@ export default {
     }
   },
   methods: {
+    removeDirectorList () {
+      this.directors_list.map((list, i) => {
+        console.log('Keys', Object.keys(list))
+        if (Object.keys(list).length > 0) {
+          this.counter++
+        }
+      })
+
+      if (this.counter > 0) {
+        // this.directors_list[this.counter - 1] = {}
+        Object.keys(this.directors_list[this.counter - 1]).forEach((key) => { delete this.directors_list[this.counter - 1][key] })
+        // Object.assign(this.directors_list[this.counter - 1], {})
+        this.shareHolders -= 1
+        console.log('Directors:', this.directors_list)
+      }
+      this.counter = 0
+    },
     aggregate () {
       const data = Object.assign({}, this.general)
 
@@ -4343,6 +4375,7 @@ export default {
         accumulator + currentValue.share
 
       const total = directorsList.reduce(reducer, 0)
+      console.log('Total', total)
       if (total !== 100) {
         this.$toasted.error('Share percentage should equal 100%', {
           theme: 'toasted-primary',
@@ -4435,7 +4468,8 @@ export default {
         value !== '0' ||
         value !== null
       ) {
-        return value.replace(/^\w/, chr => chr.toUpperCase())
+        // return value.replace(/^a-z/, chr => chr.toUpperCase())
+        return value.toString().toUpperCase()
       } else {
         return value
       }
