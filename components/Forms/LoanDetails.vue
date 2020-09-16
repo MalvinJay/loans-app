@@ -65,7 +65,6 @@
               <div class="flex">
                 <label class="block text-gray-700 text-sm font-normal mb-2 font-bold">
                   Can you provide proof of COVID-19 impact?
-                  <span class="text-red-600">*</span>
                 </label>
                 <div
                   v-tooltip="'You will have to provide estimated amounts '"
@@ -168,12 +167,12 @@
               Click to Fill in Template
               <span v-if="checkModal1">&#10003;</span>
             </button>
-            <!-- <ValidationProvider ref="impactTemplate" v-slot="{ errors }" rules="required">
+            <ValidationProvider ref="impactTemplate" v-slot="{ errors }" rules="required">
               <div>
                 <input v-model="impactTemplate" name="impactTemplate" type="text" style="display: none!important">
               </div>
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
-            </ValidationProvider> -->
+            </ValidationProvider>
             <div class="flex">
               <label class="block text-gray-900 text-sm font-normal mb-2 mt-8 font-bold">
                 What will you use the funds for?
@@ -638,6 +637,13 @@
           </div>
         </div>
       </div>
+      <!-- <div class="mt-16">
+        <template v-if="!valid">
+          <div class="py-1">
+            <span class="text-red-500 ">* Complete all 2019 fields to proceed</span>
+          </div>
+        </template>
+      </div> -->
       <div class="my-20 flex gap-3 buttons">
         <button class="button-small" @click="doneModal1">
           Done
@@ -977,6 +983,18 @@ export default {
           this.general.other_money_storages.push(institute)
         })
       }
+    },
+    proofOfImpact (value) {
+      if (value) {
+        // eslint-disable-next-line no-console
+        console.log('changing proofOfImpact')
+        if (value === 'true') {
+          this.impactTemplate = null
+        }
+        if (value === 'false') {
+          this.impactTemplate = 'Done'
+        }
+      }
     }
   },
   created () {
@@ -990,6 +1008,7 @@ export default {
     }
     this.general.money_storages = []
     this.general.other_money_storages = []
+    // this.proofOfImpact = 'false'
   },
   methods: {
     // setOtherMoneyStorageOption () {
@@ -1015,17 +1034,17 @@ export default {
       }
     },
     doneModal1 (value) {
-      // this.markValidation()
+      this.markValidation()
       this.checkModal1 = true
       this.modal1 = false
     },
     cancelModal1 () {
       this.modal1 = false
-      // this.markValidation()
+      this.markValidation()
     },
-    // markValidation () {
-    //   this.impactTemplate = 'Done'
-    // },
+    markValidation () {
+      this.impactTemplate = 'Done'
+    },
     thousandSeprator (amount) {
       if (
         amount !== '' ||
