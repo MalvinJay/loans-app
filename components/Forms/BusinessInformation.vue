@@ -3938,10 +3938,10 @@ export default {
       // return (this.general.legal_organization !== '1') || (this.general.legal_organization !== '2')
     },
     permanentEmployees () {
-      return `required|permanentmax:${this.general.number_of_employees | 0}|sum:${this.general.permanent_employees | 0},${this.general.temporary_employees | 0}, ${this.general.number_of_employees | 0}`
+      return `required|permanentmax:${this.general.number_of_employees | 0}`
     },
     temporalEmployees () {
-      return `required|temporalmax:${this.general.number_of_employees | 0}|sum:${this.general.permanent_employees | 0},${this.general.temporary_employees | 0}, ${this.general.number_of_employees | 0}`
+      return `required|temporalmax:${this.general.number_of_employees | 0}`
     },
     femaleEmployees () {
       return `required|femalemax:${this.general.number_of_employees | 0}`
