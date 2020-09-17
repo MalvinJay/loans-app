@@ -3749,7 +3749,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" ref="permanentemployees" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="permanentemployees" :rules="permanentEmployees">
                   <Input v-model.number="general.permanent_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3765,7 +3765,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" ref="temporalemployees" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="temporalemployees" :rules="temporalEmployees">
                   <Input v-model.number="general.temporary_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3781,7 +3781,7 @@
                   </div>
                 </div>
 
-                <ValidationProvider v-slot="{ errors }" ref="femalesemployees" rules="required">
+                <ValidationProvider v-slot="{ errors }" ref="femalesemployees" :rules="femaleEmployees">
                   <Input v-model.number="general.female_employees" type="number" small />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -3805,6 +3805,7 @@
 /* eslint-disable no-console */
 import { mapGetters, mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
+
 import Modal from '../Misc/Modal'
 import Input from './Input'
 import Select from './Select'
@@ -3943,6 +3944,15 @@ export default {
     showAddBusOwner () {
       return false
       // return (this.general.legal_organization !== '1') || (this.general.legal_organization !== '2')
+    },
+    permanentEmployees () {
+      return `required|permanentmax:${this.general.number_of_employees | 0}`
+    },
+    temporalEmployees () {
+      return `required|temporalmax:${this.general.number_of_employees | 0}`
+    },
+    femaleEmployees () {
+      return `required|femalemax:${this.general.number_of_employees | 0}`
     }
   },
   watch: {

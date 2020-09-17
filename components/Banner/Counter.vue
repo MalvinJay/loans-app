@@ -21,7 +21,7 @@
         Get Funds Approved Within
       </p>
       <p class="text-center font-normal text-xl">
-        2 weeks
+        4 weeks
       </p>
     </div>
   </div>
