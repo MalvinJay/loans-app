@@ -6,9 +6,9 @@
           <p class="text-red-600 text-sm text-center">
             * Attach copy of Business Owner Personal ID
           </p>
-          <p v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="text-red-600 text-sm text-center">
+          <!-- <p v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" class="text-red-600 text-sm text-center">
             * You need to upload your most recent <b>3 months proof of PAYE Payments</b> to GRA and your <b>SSNIT Statement for 2019</b>.
-          </p>
+          </p> -->
         </div>
         <div class="grid docs border-blue-100">
           <div @drop.prevent="addApplicationId" @dragover.prevent>
@@ -20,7 +20,7 @@
                 </div>
                 <div class="my-6">
                   <p class="text-center text-sm">
-                    Drag & Drop file here (max: 5MB)
+                    Drag & Drop file here (max: 2MB)
                   </p>
                   <p class="text-center">
                     Please use file type jpeg, png or jpg
@@ -49,7 +49,7 @@
             </ValidationProvider>
           </div>
 
-          <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
+          <!-- <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
             <label class="block text-gray-900 text-sm font-bold mb-2 mt-4">Proof of PAYE Payments (last 3 months)</label>
             <div class="d-i border border-gray-900 py-12">
               <div class="img">
@@ -78,8 +78,8 @@
                 </p>
               </div>
             </div>
-          </div>
-          <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
+          </div> -->
+          <!-- <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="ssnitStatement" @dragover.prevent>
             <label class="block text-gray-900 text-sm font-bold mb-2 mt-4">SSNIT Statement (2019)</label>
             <div class="d-i border border-gray-900 py-12">
               <div class="img">
@@ -108,7 +108,7 @@
                 </p>
               </div>
             </div>
-          </div>
+          </div> -->
           <div />
         </div>
         <div class="nav-buttons">
@@ -167,6 +167,8 @@ export default {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
     },
     movePrevious () {
+      // eslint-disable-next-line no-console
+      console.log('Go back')
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
     },
     addApplicationId (e) {

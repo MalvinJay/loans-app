@@ -158,12 +158,12 @@
           </p>
           <p class="text-red-600 text-sm text-center">
             * Ensure all information you have provided is correct <br>
-            * Select <b>YES</b> or <b>NO</b> on the applicable questions. <br>
+            <!-- * Select <b>YES</b> or <b>NO</b> on the applicable questions. <br> -->
             * Read the terms and conditions information provided carefully. <br>
             * Sign by Entering <b>Agree/Disagree</b> to the text information read. Then click <b>Finish</b>.
           </p>
         </div>
-        <div>
+        <!-- <div>
           <div>
             <p class="text-center text-sm">
               1. Is any shareholder of the applicant organization who owns 20% or
@@ -202,7 +202,7 @@
               <span class="checkmark" />
             </label>
           </div>
-        </div>
+        </div> -->
         <div class="mt-16">
           <p class="text-center text-sm">
             By signing this application, I certify that all of the information in this application form is true to the best of my knowledge. I understand that if this application is approved, I may be asked to provide additional business documents prior to the disbursement of funds. Further, I understand that this information and other information held by NBSSI may be reported to Mastercard Foundation and its partner institutions, and be used for evaluation and other program purposes. I understand that the information may be stored both in Canada and Ghana. I also understand that NBSSI and Mastercard Foundation will keep all of my information in strict confidence and will not release it in any way that would permit individual identification without my permission. I authorize release and use of this information, as described above, to Mastercard Foundation.
@@ -231,7 +231,7 @@
           <span v-if="showError" class="text-xs text-red-700">Only agree/disagree is accepted</span>
         </div>
         <div class="nav-buttons c-b flex gap-5">
-          <button v-if="signature.toLowerCase() === 'agree' && liquidation=='false' && crime=='false'" class="button-small next" @click="reConfirm = true">
+          <button v-if="signature.toLowerCase() === 'agree'" class="button-small next" @click="reConfirm = true">
             Finish
           </button>
           <button class="button-small previous" @click="confirmModal=false">
