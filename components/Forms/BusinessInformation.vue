@@ -4433,6 +4433,7 @@ export default {
         amount !== '0' ||
         amount !== null
       ) {
+        amount = parseFloat(Math.round(amount * 100) / 100).toFixed(2)
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount
