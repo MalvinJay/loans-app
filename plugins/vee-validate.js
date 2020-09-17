@@ -29,7 +29,7 @@ extend('temporalmax', {
   validate (value, { max }) {
     return value <= max
   },
-  message: 'Temporal employees should not exceed total employees',
+  message: 'Temporary employees should not exceed total employees',
   params: ['max']
 })
 extend('femalemax', {
@@ -43,6 +43,6 @@ extend('sum', {
   validate ({ first, second, max }) {
     return first + second <= max
   },
-  message: 'Addition of permanent and temporal employees should not exceed total employees',
+  message: 'Addition of permanent and temporary employees should not exceed total employees',
   params: ['first', 'second', 'max']
 })

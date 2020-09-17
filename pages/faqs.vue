@@ -211,7 +211,7 @@
           14. How long does the approval & disbursement process take?
         </template>
         <template v-slot:body>
-          The approval and disbursement process should take two weeks but may extend if further procedures are needed to process the application.
+          The approval and disbursement process should take four weeks but may extend if further procedures are needed to process the application.
         </template>
       </Accordion>
       <Accordion>
@@ -276,7 +276,7 @@
         </template>
         <template v-slot:body>
           If you have any issue with the system or process, please visit the Client Portal via this website -  <a href="https://ghrecoveryprogram.com/app/registration/login" target="_blank" class="text-blue-600 hover:underline">https://ghrecoveryprogram.com/app/registration/login</a>
-          and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at <b>0302 747 777</b> if you would like to speak to someone.
+          and Sign In into your account. Once you sign into your account you can send a message to the Customer Support team by clicking on Messages button. You can also call the Helpline at <b>0302 747 775</b> if you would like to speak to someone.
         </template>
       </Accordion>
       <Accordion>
@@ -308,7 +308,7 @@
           25. How much do I need to pay for the NBSSI Client registration?
         </template>
         <template v-slot:body>
-          Note, effective 24th May 2020, all NBSSI client registration fees have been waived to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.gov.gh/become-nbssi-client/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.gov.gh/become-nbssi-client/</a> or call the Call Centre Helpline on 0302 747 777 or visit the nearest NBSSI Business Advisory Centre.
+          Note, effective 24th May 2020, all NBSSI client registration fees have been waived to help lessen the burden on MSMEs affected by the COVID-19 Pandemic. For more enquiries, visit the Help Desk at <a href="https://nbssi.gov.gh/become-nbssi-client/" target="_blank" class="text-blue-600 hover:underline">https://nbssi.gov.gh/become-nbssi-client/</a> or call the Call Centre Helpline on 0302 747 775 or visit the nearest NBSSI Business Advisory Centre.
         </template>
       </Accordion>
       <Accordion>
@@ -316,7 +316,7 @@
           26. How can I contact NBSSI for further details?
         </template>
         <template v-slot:body>
-          Applicants seeking further clarification can call the NBSSI Call Centre on <b>0302 747 777</b>.
+          Applicants seeking further clarification can call the NBSSI Call Centre on <b>0302 747 775</b>.
         </template>
       </Accordion>
       <Accordion>
