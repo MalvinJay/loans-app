@@ -307,6 +307,9 @@ export default {
               case 403:
                 this.$toast.error('ID Expired, Please provide a valid ID')
                 break
+              case 422:
+                this.$toast.error('The id number has already been taken')
+                break
               case 500:
                 this.showErrorModal = true
                 break
