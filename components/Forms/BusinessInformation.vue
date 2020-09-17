@@ -4410,10 +4410,8 @@ export default {
           position: 'top-center',
           duration: 5000
         })
-        this.busOwner = 'Done'
-        this.checkOwnerModal = false
-        this.ownerModal = true
       } else {
+        this.busOwner = 'Done'
         this.checkOwnerModal = true
         this.ownerModal = false
       }
