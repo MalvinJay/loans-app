@@ -4410,10 +4410,8 @@ export default {
           position: 'top-center',
           duration: 5000
         })
-        this.busOwner = 'Done'
-        this.checkOwnerModal = false
-        this.ownerModal = true
       } else {
+        this.busOwner = 'Done'
         this.checkOwnerModal = true
         this.ownerModal = false
       }
@@ -4435,6 +4433,7 @@ export default {
         amount !== '0' ||
         amount !== null
       ) {
+        amount = parseFloat(Math.round(amount * 100) / 100).toFixed(2)
         return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
       } else {
         return amount
