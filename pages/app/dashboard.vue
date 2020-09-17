@@ -189,17 +189,17 @@ export default {
           id: 1,
           name: 'Primary Identity',
           period: ''
-        },
-        {
-          id: 2,
-          name: 'Proof of PAYE Payments',
-          period: '(last 3 months)'
-        },
-        {
-          id: 3,
-          name: 'SSNIT Payment',
-          period: '(2019)'
         }
+        // {
+        //   id: 2,
+        //   name: 'Proof of PAYE Payments',
+        //   period: '(last 3 months)'
+        // },
+        // {
+        //   id: 3,
+        //   name: 'SSNIT Payment',
+        //   period: '(2019)'
+        // }
       ],
       defaultDocuments: [
         {
