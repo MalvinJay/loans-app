@@ -20,7 +20,7 @@
                 </div>
                 <div class="my-6">
                   <p class="text-center text-sm">
-                    Drag & Drop file here (max: 5MB)
+                    Drag & Drop file here (max: 2MB)
                   </p>
                   <p class="text-center">
                     Please use file type jpeg, png or jpg
