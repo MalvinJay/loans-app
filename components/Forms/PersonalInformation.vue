@@ -10,9 +10,9 @@
                 tooltip="Enter your name. Make sure it is the same first name on the ID you are using."
                 type="text"
                 name="First Name"
-                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                 required
               />
+              <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -23,9 +23,9 @@
                 tooltip=" Enter your Surname or Family Name. Make sure it is the same surname on the ID you are using."
                 type="text"
                 name="Last Name"
-                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                 required
               />
+              <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>

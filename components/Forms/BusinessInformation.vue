@@ -11,8 +11,8 @@
                 type="text"
                 required
                 name="Business Name"
-                regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
               />
+              <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
               <small class="text-sm text-red-700">{{ errors[0] }}</small>
             </ValidationProvider>
           </div>
@@ -2417,10 +2417,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[0].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2538,10 +2538,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[1].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2658,10 +2658,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[2].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2778,10 +2778,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[3].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -2898,10 +2898,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="directors_list[4].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -3259,10 +3259,10 @@
                 <ValidationProvider v-slot="{ errors }" rules="required">
                   <Input
                     v-model="business_owner[0].name"
-                    regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$"
                     type="text"
                     small
                   />
+                  <!-- regex="^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*$" -->
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
               </div>
@@ -3945,11 +3945,14 @@ export default {
       return false
       // return (this.general.legal_organization !== '1') || (this.general.legal_organization !== '2')
     },
-    permanentEmployees () {
+    sum () {
       return `required|permanentmax:${this.general.number_of_employees | 0}`
     },
+    permanentEmployees () {
+      return `required|permanentmax:${this.general.number_of_employees | 0}|sum:${this.general.temporary_employees | 0},${this.general.number_of_employees | 0}`
+    },
     temporalEmployees () {
-      return `required|temporalmax:${this.general.number_of_employees | 0}`
+      return `required|temporalmax:${this.general.number_of_employees | 0}|sum:${this.general.permanent_employees | 0},${this.general.number_of_employees | 0}`
     },
     femaleEmployees () {
       return `required|femalemax:${this.general.number_of_employees | 0}`

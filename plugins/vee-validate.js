@@ -34,15 +34,25 @@ extend('temporalmax', {
 })
 extend('femalemax', {
   validate (value, { max }) {
+    // eslint-disable-next-line no-console
+    console.log('value:', value)
+    // eslint-disable-next-line no-console
+    console.log('max:', max)
     return value <= max
   },
   message: 'Female employees should not exceed total employees',
   params: ['max']
 })
 extend('sum', {
-  validate ({ first, second, max }) {
-    return first + second <= max
+  validate (value, { other, max }) {
+    // eslint-disable-next-line no-console
+    console.log('value:', value)
+    // eslint-disable-next-line no-console
+    console.log('other:', other)
+    // eslint-disable-next-line no-console
+    console.log('max:', max)
+    return parseInt(value) + parseInt(other) <= max
   },
   message: 'Addition of permanent and temporary employees should not exceed total employees',
-  params: ['first', 'second', 'max']
+  params: ['other', 'max']
 })
