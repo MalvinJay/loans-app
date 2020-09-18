@@ -114,7 +114,7 @@ export default {
     ]
   },
   axios: {
-    baseURL: 'https://mcftest.plendifyloans.com/api'
+    baseURL: 'https://admin.ghrecoveryprogram.com/api'
   },
   auth: {
     localStorage: false,
@@ -141,7 +141,7 @@ export default {
     plugins: ['~/plugins/axios.js', { src: '~/plugins/auth.js', mode: 'client' }]
   },
   env: {
-    baseUrl: process.env.BASE_URL || 'https://mcftest.plendifyloans.com/api'
+    baseUrl: process.env.BASE_URL || 'https://admin.ghrecoveryprogram.com/api'
   },
   /*
   ** Build configuration

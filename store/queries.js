@@ -25,7 +25,7 @@ export const actions = {
   fetchQueries ({ commit, rootState }) {
     commit('SET_STATE', 'LOADING')
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/queries'
+      const url = 'https://admin.ghrecoveryprogram.com/api/queries'
       // const config = {
       //   headers: {
       //     Authorization: 'Bearer ' + rootState.local.token,
@@ -46,7 +46,7 @@ export const actions = {
   },
   makeInquiry ({ commit, rootState }, body) {
     return new Promise((resolve, reject) => {
-      const url = 'https://mcftest.plendifyloans.com/api/queries'
+      const url = 'https://admin.ghrecoveryprogram.com/api/queries'
       // const config = {
       //   headers: {
       //     Authorization: 'Bearer ' + rootState.local.token,
@@ -66,7 +66,7 @@ export const actions = {
   },
   respondToInquiry ({ commit, rootState }, request) {
     return new Promise((resolve, reject) => {
-      const url = `https://mcftest.plendifyloans.com/api/queries/${request.reference}`
+      const url = `https://admin.ghrecoveryprogram.com/api/queries/${request.reference}`
       // const config = {
       //   headers: {
       //     Authorization: 'Bearer ' + rootState.local.token,
