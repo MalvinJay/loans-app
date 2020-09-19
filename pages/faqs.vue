@@ -327,6 +327,14 @@
           No, you do not need to have a bank account or an account with the Program's financial partners to apply for funds.
         </template>
       </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          28. Do I need to open an account with Opportunity International or the rural/community banks before I submit my application?
+        </template>
+        <template v-slot:body>
+          No you do not need to have an account with a partner institution to submit an application.
+        </template>
+      </Accordion>
     </div>
     <div class="mt-24 font-semibold">
       CAUTION: APPLICATION FOR THE MASTERCARD FOUNDATION COVID-19 RESILIENCE AND RECOVERY PROGRAM SUPPORT SCHEME IS FREE. APPLICANTS ARE TO BE MINDFUL OF FRAUDSTERS PURPORTING TO ASSIST APPLICANTS FOR A FEE.
