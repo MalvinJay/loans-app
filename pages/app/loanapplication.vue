@@ -30,18 +30,33 @@
                 N/A
               </td>
               <td class="text blue">
-                <template v-if="loanDetails.status === 'Scored'">
+                <!-- <template v-if="loanDetails.status === 'Scored'">
                   Pending
                 </template>
                 <template v-else>
                   {{ loanDetails.status || 'N/A' }}
-                </template>
-              </td>
-              <td>
+                </template> -->
                 <button class="button-small">
-                  {{ loanStatus }}
+                  <!-- {{ loanStatus }} -->
+                  <template v-if="loanDetails.status_number !== '6'">
+                    Complete
+                  </template>
+                  <template v-else>
+                    {{ loanDetails.status }}
+                  </template>
                 </button>
               </td>
+              <!-- <td>
+                <button class="button-small">
+                  {{ loanStatus }}
+                  <template v-if="loanDetails.status_number !== '6'">
+                    Complete
+                  </template>
+                  <template v-else>
+                    {{ loanDetails.status }}
+                  </template>
+                </button>
+              </td> -->
             </tr>
           </tbody>
         </table>
