@@ -335,6 +335,14 @@
           No you do not need to have an account with a partner institution to submit an application.
         </template>
       </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          29. What picture ID should I use and submit?
+        </template>
+        <template v-slot:body>
+          You should take a picture of your government issued ID such as Passport, Voter's Registration Card and Driver's License. Do not submit passport pictures or personal pictures.
+        </template>
+      </Accordion>
     </div>
     <div class="mt-24 font-semibold">
       CAUTION: APPLICATION FOR THE MASTERCARD FOUNDATION COVID-19 RESILIENCE AND RECOVERY PROGRAM SUPPORT SCHEME IS FREE. APPLICANTS ARE TO BE MINDFUL OF FRAUDSTERS PURPORTING TO ASSIST APPLICANTS FOR A FEE.
