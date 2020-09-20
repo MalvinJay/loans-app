@@ -48,7 +48,14 @@
               </div>
             </ValidationProvider>
           </div>
-
+          <div class="flex items-center">
+            <div class="img">
+              <p class="text-sm text-center pb-4">
+                Dear Applicant, please ensure you upload a valid ID of any of the samples below
+              </p>
+              <img src="@/assets/img/required_ids.png" class="w-full" alt>
+            </div>
+          </div>
           <!-- <div v-if="businessScale !== '1' && businessScale !== '2' && isStartup === false" @drop.prevent="addProofOfPaye" @dragover.prevent>
             <label class="block text-gray-900 text-sm font-bold mb-2 mt-4">Proof of PAYE Payments (last 3 months)</label>
             <div class="d-i border border-gray-900 py-12">
