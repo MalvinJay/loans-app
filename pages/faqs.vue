@@ -343,6 +343,14 @@
           You should take a picture of your government issued ID such as Passport, Voter's Registration Card and Driver's License. Do not submit passport pictures or personal pictures.
         </template>
       </Accordion>
+      <Accordion>
+        <template v-slot:header>
+          30. Are there any fees or interest rates associated with loans from this relief programme?
+        </template>
+        <template v-slot:body>
+          Yes. The interest rate on all loans is 8% per annum. There will also be a one time processing fee of 1.5% of the loan amount.
+        </template>
+      </Accordion>
     </div>
     <div class="mt-24 font-semibold">
       CAUTION: APPLICATION FOR THE MASTERCARD FOUNDATION COVID-19 RESILIENCE AND RECOVERY PROGRAM SUPPORT SCHEME IS FREE. APPLICANTS ARE TO BE MINDFUL OF FRAUDSTERS PURPORTING TO ASSIST APPLICANTS FOR A FEE.
