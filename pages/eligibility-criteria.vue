@@ -274,7 +274,7 @@
           </div>
           <div class="links">
             <p class="text-2xl">
-              Enterprise must be willing and committed to continue maintaining the operation of their business via the accessing of a loan (either with or without the grant) and are unable to avail the required loan collateral
+              Enterprise must be willing and committed to continue maintaining the operation of their business by accessing of a facility from the Program.
             </p>
           </div>
         </div>
