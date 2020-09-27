@@ -62,7 +62,7 @@
         </table>
         <div :class="[{hidden: status}, 'overlay']">
           <div class="redirect py-2 md:py-28 rounded-sm text-center">
-            <div class="h-12 flex flex-col md:items-center">
+            <div class="flex flex-col md:items-center">
               <div class="text-3xl font-bold">
                 LOAN APPLICATION NOT COMPLETE
               </div>
@@ -169,7 +169,6 @@ export default {
     position: relative;
     background: white;
     padding: 20px 30px;
-    height: 25vh;
     h1 {
       font-size: 20px;
     }

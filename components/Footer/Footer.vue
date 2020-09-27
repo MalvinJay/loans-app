@@ -51,7 +51,14 @@
     <div class="copyright flex flex-col sm:flex-row justify-between py-10 text-white px-10 gap-10">
       <div class="text-sm italic font-bold plendify py-4">
         <a href="https://plendify.com" class="hover:underline" target="_blank">
-          <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+          <div class="inline-flex">
+            <div>
+              <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+            </div>
+            <div>
+              <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
+            </div>
+          </div>
         </a>
       </div>
       <div class="flex items-center font-light py-4">

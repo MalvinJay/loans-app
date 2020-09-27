@@ -5,7 +5,14 @@
         <p class="text-sm italic font-bold plendify">
           <a href="https://plendify.com" target="_blank" class="hover:underline">
             <!-- Powered by Plendify -->
-            <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
+            <div class="inline-flex">
+              <div>
+                <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
+              </div>
+              <div>
+                <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
+              </div>
+            </div>
           </a>
         </p>
         <p class="font-normal text-sm flex mobile">
