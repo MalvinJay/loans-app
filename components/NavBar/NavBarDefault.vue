@@ -10,7 +10,7 @@
       <div class="menu" @click="open=true">
         <img src="@/assets/img/menu.png" alt="logo">
       </div>
-      <a href="/" class="logo mt-4 flex rem-margin">
+      <a href="/" class="logo mt-6 md:mt-8 flex rem-margin">
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
@@ -130,7 +130,7 @@ export default {
   top: 0;
   left: 77px;
   img {
-    max-width: 13rem;
+    max-width: 18rem;
     height: auto;
   }
 }
@@ -146,6 +146,13 @@ export default {
   position: absolute;
   right: 77px;
   top: 0;
+}
+@media (min-width: 1200px) and (max-width: 1440px) {
+  .logo {
+    img {
+      max-width: 13rem !important;
+    }
+  }
 }
 @include for-tablet-portrait-only {
   .desktop-links {
@@ -173,6 +180,9 @@ export default {
   }
   .logo {
     left: 1.7rem;
+    img {
+      max-width: 10rem !important;
+    }
   }
   .r-s {
     right: 1.7rem;
