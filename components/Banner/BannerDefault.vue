@@ -23,15 +23,50 @@
     <div class="r-s flex justify-center items-center">
       <img src="@/assets/img/1_2.png" class="w-10/12" alt srcset>
     </div>
+    <Modal v-if="show" :flex="true" :allow="true">
+      <div class="flex flex-col relative">
+        <div class="absolute right-0 top-0 px-4">
+          <img src="@/assets/img/Close.png" class="w-6 cursor-pointer" @click="show = false">
+        </div>
+        <div class="flex justify-center items-center text-3xl text-center" />
+        <div class="flex flex-col pt-4 text-sm">
+          <p class="text-sm">
+            Sorry for any inconvenience caused.
+          </p>
+          <p class="text-sm">
+            We are experiencing an issue with one of our technology partners.
+          </p>
+          <p class="text-sm">
+            Please Try again a few hours from now.
+          </p>
+          <p class="text-sm">
+            Thank you for your patience.
+          </p>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
-export default {}
+import Modal from '@/components/Misc/Modal.vue'
+export default {
+  components: {
+    Modal
+  },
+  data () {
+    return {
+      show: true
+    }
+  }
+}
 </script>
 <style lang="scss" scoped>
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.text-sm {
+  font-size: 1rem!important;
+}
 .banner {
   padding: 5% 0;
   padding-left: 7%;

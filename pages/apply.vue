@@ -59,6 +59,29 @@
       </div>
     </Modal>
 
+    <Modal v-if="show" :flex="true" :allow="true">
+      <div class="flex flex-col relative">
+        <div class="absolute right-0 top-0 px-4">
+          <img src="@/assets/img/Close.png" class="w-6 cursor-pointer" @click="show = false">
+        </div>
+        <div class="flex justify-center items-center text-3xl text-center" />
+        <div class="flex flex-col pt-4 text-sm">
+          <p class="text-sm">
+            Sorry for any inconvenience caused.
+          </p>
+          <p class="text-sm">
+            We are experiencing an issue with one of our technology partners.
+          </p>
+          <p class="text-sm">
+            Please Try again a few hours from now.
+          </p>
+          <p class="text-sm">
+            Thank you for your patience.
+          </p>
+        </div>
+      </div>
+    </Modal>
+
     <NavBar alt />
     <BaseCard>
       <div class="main py-12">
@@ -202,7 +225,8 @@ export default {
       title: 'Apply For Funding',
       description: 'All Ghanaian Micro, Small and Medium-sized Enterprises (MSMEs) that qualify are encouraged to apply for the Emergency Relief Funding Programme.',
       recaptchError: null,
-      showErrorModal: null
+      showErrorModal: null,
+      show: true
     }
   },
   computed: {

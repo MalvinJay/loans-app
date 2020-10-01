@@ -164,6 +164,28 @@
         </template>
       </section>
     </div>
+    <Modal v-if="show" :flex="true" :allow="true">
+      <div class="flex flex-col relative">
+        <div class="absolute right-0 top-0 px-4">
+          <img src="@/assets/img/Close.png" class="w-6 cursor-pointer" @click="show = false">
+        </div>
+        <div class="flex justify-center items-center text-3xl text-center" />
+        <div class="flex flex-col pt-4 text-sm">
+          <p class="text-sm">
+            Sorry for any inconvenience caused.
+          </p>
+          <p class="text-sm">
+            We are experiencing an issue with one of our technology partners.
+          </p>
+          <p class="text-sm">
+            Please Try again a few hours from now.
+          </p>
+          <p class="text-sm">
+            Thank you for your patience.
+          </p>
+        </div>
+      </div>
+    </Modal>
   </div>
 </template>
 <script>
@@ -171,16 +193,19 @@ import { mapGetters } from 'vuex'
 import ProgressBar from '@/components/Forms/ProgressBar.vue'
 import Accordion from '@/components/Misc/Accordion.vue'
 import Loading from '@/components/Misc/Loading.vue'
+import Modal from '@/components/Misc/Modal.vue'
 export default {
   layout: 'appLayout',
   middleware: 'auth',
   components: {
     ProgressBar,
     Accordion,
-    Loading
+    Loading,
+    Modal
   },
   data () {
     return {
+      show: true,
       applicatonIdFile: null,
       loading: false,
       mybool: false,
