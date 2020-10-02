@@ -61,9 +61,9 @@
 
     <Modal v-if="show" :flex="true" :allow="true">
       <div class="flex flex-col relative">
-        <div class="absolute right-0 top-0 px-4">
+        <!-- <div class="absolute right-0 top-0 px-4">
           <img src="@/assets/img/Close.png" class="w-6 cursor-pointer" @click="show = false">
-        </div>
+        </div> -->
         <div class="flex justify-center items-center text-3xl text-center" />
         <div class="flex flex-col pt-4 text-sm">
           <p class="text-sm">
