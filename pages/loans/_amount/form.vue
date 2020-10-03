@@ -120,7 +120,7 @@ export default {
     //     return false
     //   }
     // }
-    window.location = '/'
+    // window.location = '/'
   },
   // beforeRouteLeave (to, from, next) {
   //   if (to.path !== '/loans/submitted') {
