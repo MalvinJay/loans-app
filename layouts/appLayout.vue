@@ -44,12 +44,16 @@
           </ul>
         </div>
         <div class="absolute bottom-0 plendify py-4">
-          <div>
-            <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
-          </div>
-          <div>
-            <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
-          </div>
+          <a href="https://app.plendify.com" class="hover:underline" target="_blank">
+            <div>
+              <img src="@/assets/img/Powered by-white version.png.png" class="w-32" alt="">
+            </div>
+          </a>
+          <a href="https://nbssi.gov.gh" class="hover:underline" target="_blank">
+            <div>
+              <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
+            </div>
+          </a>
         </div>
       </div>
     </div>
