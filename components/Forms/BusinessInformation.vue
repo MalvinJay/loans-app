@@ -4274,7 +4274,9 @@ export default {
 
       if (this.counter > 0) {
         // this.directors_list[this.counter - 1] = {}
-        Object.keys(this.directors_list[this.counter - 1]).forEach((key) => { delete this.directors_list[this.counter - 1][key] })
+        console.log('Current ShareHolder:', this.shareHolders)
+        console.log('Counter:', this.counter)
+        Object.keys(this.directors_list[this.shareHolders - 1]).forEach((key) => { delete this.directors_list[this.shareHolders - 1][key] })
         // Object.assign(this.directors_list[this.counter - 1], {})
         this.shareHolders -= 1
         console.log('Directors:', this.directors_list)

@@ -125,10 +125,10 @@
             </div>
           </template>
           <div>
-            <button class="button-small next" type="submit">
+            <button type="submit" class="button-small next">
               Next
             </button>
-            <button class="button-small previous" @click="movePrevious">
+            <button type="button" class="button-small previous" @click="movePrevious">
               Previous
             </button>
             <button class="button-small previous small" @click="save">
@@ -174,8 +174,6 @@ export default {
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 4)
     },
     movePrevious () {
-      // eslint-disable-next-line no-console
-      console.log('Go back')
       this.$store.commit('pages/SET_CURRENT_TAB_NUMBER', 2)
     },
     addApplicationId (e) {
