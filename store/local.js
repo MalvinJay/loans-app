@@ -42,6 +42,40 @@ export const actions = {
         })
     })
   },
+  verifyPIN ({ commit }, phone) {
+    return new Promise((resolve, reject) => {
+      const url = '/verify-pin'
+
+      const data = {
+        phone_number: phone
+      }
+      this.$axios.$post(url, data)
+        .then((response) => {
+          commit('SET_SUCCESS', response)
+          resolve(response)
+        }).catch((error) => {
+          commit('SET_ERROR', error)
+          reject(error)
+        })
+    })
+  },
+  setNewPIN ({ commit }, info) {
+    return new Promise((resolve, reject) => {
+      const url = '/set-pin'
+      this.$axios.$post(url, info)
+        .then((response) => {
+          commit('SET_TOKEN', response.data.access_token)
+          this.$auth.setToken('local', 'Bearer ' + response.data.access_token)
+          this.$auth.setRefreshToken('local', response.data.refresh_token)
+          this.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
+          this.$auth.ctx.app.$axios.setHeader('Authorization', 'Bearer ' + response.data.access_token)
+          resolve(response)
+        }).catch((error) => {
+          // commit('SET_ERROR', error)
+          reject(error.response.data)
+        })
+    })
+  },
   login ({ commit }, data) {
     return new Promise((resolve, reject) => {
       const url = '/login'

@@ -12,18 +12,18 @@
                 <img src="@/assets/img/logo.png" alt="" srcset="">
               </nuxt-link>
             </div>
-            <div v-if="!pinSent" class="r-c">
+            <div v-if="initial" class="r-c">
               <div class="mb-3">
                 <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
-                  Sign In with Phone Number
+                  Enter Phone Number
                 </p>
               </div>
               <div>
                 <p class="texl-sm md:text-base pb-4 md:p-0">
-                  For security reasons, please enter your mobile number and we will send you a One Time Password
+                  For security reasons, please enter your mobile number to verify
                 </p>
               </div>
-              <form @submit.prevent="getOTP">
+              <form @submit.prevent="verifyPhone">
                 <div class="mb-5">
                   <input v-model="phone" type="text" placeholder="Phone Number">
                 </div>
@@ -41,20 +41,26 @@
                 </div>
               </form>
             </div>
-            <div v-else class="r-c">
+            <div v-if="pinReset" class="r-c">
               <div class="mb-3">
                 <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
-                  One Time Password
+                  Enter A New PIN
                 </p>
               </div>
               <div>
                 <p class="texl-sm md:text-base pb-4 md:p-0">
-                  Please enter the password that was sent to your number
+                  Please enter a new PIN and the OTP received as well
                 </p>
               </div>
-              <form @submit.prevent="login">
-                <div class="mb-5">
+              <form @submit.prevent="setNewPIN">
+                <div class="">
                   <input v-model="OTP" type="password" class="text-xl" placeholder="OTP">
+                </div>
+                <div class="">
+                  <input v-model="newPIN" type="password" class="text-xl" placeholder="New PIN">
+                </div>
+                <div class="mb-6">
+                  <input v-model="confirmNewPIN" type="password" class="text-xl" placeholder="Confirm New PIN">
                 </div>
                 <div>
                   <button class="button-small" type="submit">
@@ -64,13 +70,45 @@
                       </div>
                     </template>
                     <template v-else>
-                      SIGN IN
+                      SET PIN
                     </template>
                   </button>
                 </div>
               </form>
-              <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">
-                Resend Password
+              <!-- <div class="resend pt-4 text-lg cursor-pointer" @click="pinSent = false">
+                Resend PIN
+              </div> -->
+            </div>
+            <div v-if="enterPIN" class="r-c">
+              <div class="mb-3">
+                <p class="text-3xl leading-10 md:text-xl py-4 md:p-0 mb-16 md:tracking-wider font-semibold">
+                  Enter Your PIN
+                </p>
+              </div>
+              <div>
+                <p class="texl-sm md:text-base pb-4 md:p-0">
+                  Please enter your PIN to continue
+                </p>
+              </div>
+              <form @submit.prevent="login">
+                <div class="mb-5">
+                  <input v-model="PIN" type="password" class="text-xl" placeholder="PIN">
+                </div>
+                <div>
+                  <button class="button-small" type="submit">
+                    <template v-if="loading">
+                      <div class="login-spinner flex justify-center w-full">
+                        <img src="@/assets/img/refresh.svg" class="w-6 h-full" alt="">
+                      </div>
+                    </template>
+                    <template v-else>
+                      Enter PIN
+                    </template>
+                  </button>
+                </div>
+              </form>
+              <div class="resend pt-4 text-lg cursor-pointer" @click="resetFlow">
+                Forgotten PIN? RESET
               </div>
             </div>
           </div>
@@ -85,9 +123,16 @@ export default {
   data () {
     return {
       pinSent: false,
+      initial: true,
+      pinReset: false,
+      newPIN: '',
+      confirmNewPIN: '',
+      enterPIN: false,
+      PIN: '',
       loading: false,
       OTP: null,
       phone: '',
+      enterPin: false,
       image_url: '/icon.png',
       url: 'https://nbssi-post-deploy.wl.r.appspot.com/apply',
       title: 'Sign In',
@@ -103,7 +148,7 @@ export default {
       this.loading = true
       const data = {
         phone_number: this.phone,
-        otp: this.OTP
+        pin: this.PIN
       }
       this.$store.dispatch('local/login', data)
         .then((res) => {
@@ -130,18 +175,43 @@ export default {
           this.loading = false
         })
     },
-    getOTP () {
+    verifyPhone () {
       this.loading = true
-      this.$store.dispatch('local/verifyOTP', this.phone)
+      this.$store.dispatch('local/verifyPIN', this.phone)
         .then((res) => {
-          // console.log('OTP Verification', res)
-          // this.$toast.success(res.success)
+          // eslint-disable-next-line no-console
+          console.log('Res:', res.data.set_pin)
           this.$toasted.show(res.success, {
             theme: 'toasted-primary',
             position: 'top-center',
             duration: 5000
           })
-          this.pinSent = true
+
+          this.initial = false
+
+          if (res.data.set_pin) {
+            this.enterPIN = true
+          } else {
+            this.pinReset = true
+            // send OTP
+            this.$store.dispatch('local/verifyOTP', this.phone)
+              .then((res) => {
+                this.$toasted.show(res.success, {
+                  theme: 'toasted-primary',
+                  position: 'top-center',
+                  duration: 5000
+                })
+              })
+              .catch((error) => {
+                switch (error.response.data.status) {
+                  case 400:
+                    this.$toasted.error(error.response.data.error)
+                    break
+                  default:
+                    break
+                }
+              })
+          }
         })
         .catch((error) => {
           switch (error.response.data.status) {
@@ -154,6 +224,81 @@ export default {
         })
         .finally(() => {
           this.loading = false
+        })
+    },
+    setNewPIN () {
+      if (this.newPIN !== this.confirmNewPIN) {
+        this.$toasted.error('Please Ensure both PINs are same', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+        return
+      }
+
+      if (!this.OTP) {
+        this.$toasted.error('Please enter OTP', {
+          theme: 'toasted-primary',
+          position: 'top-center',
+          duration: 5000
+        })
+        return
+      }
+
+      this.loading = true
+      this.$store.dispatch('local/setNewPIN', {
+        otp: this.OTP,
+        phone_number: this.phone,
+        pin: this.newPIN,
+        pin_confirmation: this.confirmNewPIN
+      })
+        .then((res) => {
+          this.$toasted.show(res.success, {
+            theme: 'toasted-primary',
+            position: 'top-center',
+            duration: 5000
+          })
+          this.$store.dispatch('loan/fetchLoanDetails')
+            .finally(() => {
+              if (this.$store.state.loan.loandetails.status === 'complete') {
+                window.location = '/app/dashboard'
+              } else {
+                window.location = '/app/loanapplication'
+              }
+            })
+        })
+        .catch((error) => {
+          switch (error.response.data.status) {
+            case 400:
+              this.$toasted.error(error.response.data.error)
+              break
+            default:
+              break
+          }
+        })
+        .finally(() => {
+          this.loading = false
+        })
+    },
+    resetFlow () {
+      // send OTP
+      this.$store.dispatch('local/verifyOTP', this.phone)
+        .then((res) => {
+          this.$toasted.show(res.success, {
+            theme: 'toasted-primary',
+            position: 'top-center',
+            duration: 5000
+          })
+          this.pinReset = true
+        })
+        .catch((error) => {
+          switch (error.response.data.status) {
+            case 400:
+              this.$toasted.error(error.response.data.error)
+              break
+            default:
+              break
+          }
         })
     }
   },
@@ -241,7 +386,7 @@ export default {
   }
 }
 .r-c {
-  margin: 200px 88px 0 88px;
+  margin: 120px 88px 0 88px;
   text-align: center;
   input {
     background-color: transparent;
