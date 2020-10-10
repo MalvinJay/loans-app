@@ -2,19 +2,18 @@
   <footer class="mt-16">
     <div class="flex justify-between footer">
       <div class="flex justify-between flex-row-reverse">
-        <p class="text-sm italic font-bold plendify">
-          <a href="https://plendify.com" target="_blank" class="hover:underline">
-            <!-- Powered by Plendify -->
-            <div class="inline-flex">
-              <div>
-                <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
-              </div>
-              <div>
-                <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
-              </div>
+        <div class="inline-flex">
+          <a href="https://app.plendify.com" class="hover:underline" target="_blank">
+            <div>
+              <img src="@/assets/img/Powered by-purple version.png" class="w-32" alt="">
             </div>
           </a>
-        </p>
+          <a href="https://nbssi.gov.gh" class="hover:underline" target="_blank">
+            <div>
+              <img src="@/assets/img/nkosuo.png" class="w-40 ml-4" alt="">
+            </div>
+          </a>
+        </div>
         <p class="font-normal text-sm flex mobile">
           <img src="@/assets/img/lock-alt.png" class="h-5" alt="" srcset=""> You are on a secure page
         </p>

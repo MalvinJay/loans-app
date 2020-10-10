@@ -154,6 +154,13 @@ export default {
     }
   }
 }
+// @media (min-width: 901px) and (max-width: 1023px) {
+//   .logo {
+//     img {
+//       max-width: 12rem !important;
+//     }
+//   }
+// }
 @include for-tablet-portrait-only {
   .desktop-links {
     display: none;
@@ -204,7 +211,7 @@ export default {
     // margin-left: 3rem;
     img {
       height: 30px;
-      max-width: 8rem !important;
+      // max-width: 8rem !important;
     }
   }
   .menu {
