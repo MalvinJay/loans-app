@@ -20,7 +20,7 @@
               </div>
               <div>
                 <p class="texl-sm md:text-base pb-4 md:p-0">
-                  For security reasons, please enter your mobile number to verify
+                  For security reasons, please enter your mobile number to verify your identity.
                 </p>
               </div>
               <form @submit.prevent="verifyPhone">
@@ -87,7 +87,7 @@
               </div>
               <div>
                 <p class="texl-sm md:text-base pb-4 md:p-0">
-                  Please enter your PIN to continue
+                  Please enter your PIN to log in
                 </p>
               </div>
               <form @submit.prevent="login">
