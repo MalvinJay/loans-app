@@ -59,8 +59,11 @@
                 <div class="">
                   <input v-model="newPIN" type="password" class="text-xl" placeholder="New PIN">
                 </div>
+                <div>
+                  <span class="text-left">Set new PIN for future logins</span>
+                </div>
                 <div class="mb-6">
-                  <input v-model="confirmNewPIN" type="password" class="text-xl" placeholder="Confirm New PIN">
+                  <input v-model="confirmNewPIN" type="password" class="text-xl mt-0" placeholder="Confirm New PIN">
                 </div>
                 <div>
                   <button class="button-small" type="submit">
@@ -179,13 +182,11 @@ export default {
       this.loading = true
       this.$store.dispatch('local/verifyPIN', this.phone)
         .then((res) => {
-          // eslint-disable-next-line no-console
-          console.log('Res:', res.data.set_pin)
-          this.$toasted.show(res.success, {
-            theme: 'toasted-primary',
-            position: 'top-center',
-            duration: 5000
-          })
+          // this.$toasted.show(res.success, {
+          //   theme: 'toasted-primary',
+          //   position: 'top-center',
+          //   duration: 5000
+          // })
 
           this.initial = false
 
