@@ -283,6 +283,7 @@ export default {
     },
     resetFlow () {
       // send OTP
+      this.enterPIN = false
       this.$store.dispatch('local/verifyOTP', this.phone)
         .then((res) => {
           this.$toasted.show(res.success, {
