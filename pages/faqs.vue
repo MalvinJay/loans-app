@@ -44,7 +44,7 @@
           5. When will the programme application window be closed?
         </template>
         <template v-slot:body>
-          The final application closing date will depend on the number of applicants and amounts requested. We expect all financing requests to be disbursed, and the application process to be closed by the end of October 2020 or when the funds run out.
+          The final application closing date is October 15, 2020.
         </template>
       </Accordion>
       <Accordion>
@@ -128,7 +128,7 @@
                   1-5
                 </td>
                 <td>
-                  25,001 - 135,000
+                  20,001 - 135,000
                 </td>
               </tr>
               <tr>
@@ -348,7 +348,7 @@
           30. Are there any fees or interest rates associated with loans from this relief programme?
         </template>
         <template v-slot:body>
-          Yes. The interest rate on all loans is 8% per annum. There will also be a one time processing fee of 1.5% of the loan amount.
+          Yes. The interest rate on all loans is 7% per annum. There will also be a one time processing fee of 2.5% of the loan amount.
         </template>
       </Accordion>
     </div>

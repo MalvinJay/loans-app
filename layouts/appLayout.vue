@@ -227,7 +227,7 @@ main {
   z-index: 100;
   .logo {
     margin-left: 73px;
-    width: 10rem;
+    width: 18rem;
     height: auto;
     img {
       &:nth-child(1) {
