@@ -283,6 +283,7 @@ export default {
     },
     resetFlow () {
       // send OTP
+      this.enterPIN = false
       this.$store.dispatch('local/verifyOTP', this.phone)
         .then((res) => {
           this.$toasted.show(res.success, {
@@ -331,7 +332,7 @@ export default {
 // @tailwind utilities;
 .signin {
   background: linear-gradient(90deg, #0d247d 0%, #C49000 100%);
-  position: fixed;
+  // position: fixed;
   z-index: 999;
   width: 100%;
   height: 100%;
