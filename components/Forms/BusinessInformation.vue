@@ -1027,7 +1027,7 @@
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
                   <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Input v-model="credit_facilities[0].interest_rate" type="number" small />
+                    <Input v-model.number="credit_facilities[0].interest_rate" small />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -1073,7 +1073,7 @@
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-                  <Input v-model="credit_facilities[1].interest_rate" type="number" small />
+                  <Input v-model.number="credit_facilities[1].interest_rate" small />
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
@@ -1111,7 +1111,7 @@
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Interest Rate</label>
-                  <Input v-model="credit_facilities[2].interest_rate" type="number" small />
+                  <Input v-model.number="credit_facilities[2].interest_rate" small />
                 </div>
                 <div>
                   <label class="block text-gray-900 text-sm font-sm mb-2">Due Date</label>
@@ -3965,7 +3965,14 @@ export default {
         this.region = value.business_region
         if (value.directors_list.length !== 0 && this.show === true) {
           if (value.legal_organization === '3' || value.legal_organization === '4' || value.legal_organization === '5') {
-            this.directors_list = JSON.parse(JSON.stringify([...value.directors_list, ...this.directors_list]))
+            // console.log('value.directors_list..:', value.directors_list)
+            // console.log('this.directors_list..:', this.directors_list)
+            // Map the number of new director list
+            value.directors_list.map((director, index) => {
+              this.directors_list[index] = JSON.parse(JSON.stringify(director))
+            })
+            console.log('New List:', this.directors_list)
+            // this.directors_list = JSON.parse(JSON.stringify([...value.directors_list, ...this.directors_list]))
             this.shareHolders = value.directors_list.length
           } else {
             this.business_owner = JSON.parse(JSON.stringify([...value.directors_list, ...this.business_owner]))
@@ -3985,9 +3992,24 @@ export default {
         this.balance_sheet_2018 = { ...this.balance_sheet_2018, ...value.balance_sheet_2018 }
         this.balance_sheet_2019 = { ...this.balance_sheet_2019, ...value.balance_sheet_2019 }
         this.balance_sheet_2020 = { ...this.balance_sheet_2020, ...value.balance_sheet_2020 }
-        if (this.show === true) {
-          this.credit_facilities = JSON.parse(JSON.stringify([...value.credit_facilities, ...this.credit_facilities]))
+
+        if (value.credit_facilities.length !== 0 && this.show === true) {
+          value.credit_facilities.map((credit, index) => {
+            this.credit_facilities[index] = JSON.parse(JSON.stringify(credit))
+          })
+          console.log('New Credit Facility:', this.credit_facilities)
+
+          // this.credit_facilities = JSON.parse(JSON.stringify([...value.credit_facilities, ...this.credit_facilities]))
         }
+        // Set templates checked
+        // 1.  Employees template
+        // if (value.number_of_employees && value.permanent_employees && value.temporary_employees && value.female_employees) {
+        //   this.doneEmployeesModal()
+        // }
+        // 1.  Business Owner template
+        // if (value.number_of_employees && value.permanent_employees && value.temporary_employees && value.female_employees) {
+        //   this.doneOwnerModal()
+        // }
       },
       deep: true
     },
@@ -4394,8 +4416,7 @@ export default {
         JSON.stringify(this.directors_list)
       ).filter(value => JSON.stringify(value) !== '{}')
 
-      const reducer = (accumulator, currentValue) =>
-        accumulator + currentValue.share
+      const reducer = (accumulator, currentValue) => accumulator + currentValue.share
 
       const total = directorsList.reduce(reducer, 0)
       console.log('Total', total)

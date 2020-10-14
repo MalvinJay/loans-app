@@ -141,6 +141,7 @@
   </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 import { ValidationProvider, ValidationObserver } from 'vee-validate'
 export default {
   components: {
@@ -162,11 +163,36 @@ export default {
     }
   },
   computed: {
+    ...mapState({
+      pendingApplication: state => state.api.pendingApplication
+    }),
+    details: {
+      get () {
+        if (this.pendingApplication) {
+          return Object.assign({}, this.pendingApplication.loan_application)
+        } else {
+          return {}
+        }
+      }
+    },
     businessScale () {
       return this.$store.getters['pages/businessScale']
     },
     isStartup () {
       return this.$store.getters['pages/isStartup']
+    }
+  },
+  watch: {
+    details: {
+      handler (value) {
+        if (value.id_file_name) {
+          this.applicatonIdFile = value.id_file_name
+        }
+        if (value.id_file) {
+          this.temporal(value.id_file)
+        }
+      },
+      deep: true
     }
   },
   methods: {
@@ -202,8 +228,15 @@ export default {
           })
         })
     },
+    async temporal (e) {
+      const { valid } = await this.$refs.provider.validate(e)
+      // eslint-disable-next-line no-console
+      console.log('validation state:', valid)
+    },
     async btnAddApplicationId (e) {
       const { valid } = await this.$refs.provider.validate(e)
+      // eslint-disable-next-line no-console
+      console.log('Valid:', valid)
 
       if (valid) {
         const file = e.target.files[0]
