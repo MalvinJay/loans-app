@@ -747,6 +747,11 @@ export default {
   watch: {
     details: {
       handler (value) {
+        // value.money_storages.map((val) => {
+        //   this.money_storages.push(val)
+        // })
+        // eslint-disable-next-line no-console
+
         this.general = { ...this.general, ...value }
         this.covid_proof_of_march_20 = { ...this.covid_proof_of_march_20, ...value.covid_proof_mar_20 }
         this.covid_proof_of_april_20 = { ...this.covid_proof_of_april_20, ...value.covid_proof_apr_20 }
@@ -756,7 +761,6 @@ export default {
     },
     general: {
       handler (value) {
-        // eslint-disable-next-line no-console
         if (value.covid_impact) {
           this.otherSelected = value.covid_impact.includes('11')
         }
@@ -767,6 +771,16 @@ export default {
 
         if (value.non_financial_supports) {
           this.nonFinancialOtherSelected = value.non_financial_supports.includes(12)
+        }
+
+        if (value.covid_proof_apr_20 && value.covid_proof_mar_20 && value.covid_proof_may_20) {
+          if (value.covid_proof_apr_20.length > 0 || value.covid_proof_mar_20.length > 0 || value.covid_proof_may_20.length > 0) {
+            this.proofOfImpact = true
+            this.impactTemplate = 'Done'
+          } else {
+            this.proofOfImpact = false
+            this.impactTemplate = 'null'
+          }
         }
 
         if (value.financial_institution_id !== '17') {
@@ -959,6 +973,8 @@ export default {
     },
     money_storages (value) {
       // Clear contents of array
+      // eslint-disable-next-line no-console
+      console.log('Money storage coming in:', value)
       this.general.money_storages = []
 
       if (value) {
@@ -995,7 +1011,33 @@ export default {
           this.impactTemplate = 'Done'
         }
       }
+    },
+    savingsInstitutions (value) {
+      if (value) {
+        // eslint-disable-next-line no-console
+        console.log('Institutions now:', value)
+        // eslint-disable-next-line no-console
+        console.log('Return List:', this.details.money_storages)
+        const mappedMoney = []
+
+        if (this.details.money_storages !== undefined) {
+          this.details.money_storages.forEach((el) => {
+            value.forEach((bank) => {
+              if (bank.name.includes(el)) {
+                mappedMoney.push(bank.val)
+              }
+            })
+          })
+        }
+
+        // eslint-disable-next-line no-console
+        console.log('MappedMoney:', mappedMoney)
+        this.money_storages = mappedMoney
+      }
     }
+  },
+  beforeCreate () {
+    // this.$store.dispatch('pages/getDropDowns')
   },
   created () {
     if (this.$route.params.amount < 145000) {
@@ -1005,10 +1047,15 @@ export default {
   mounted () {
     if (this.token && this.pendingApplication) {
       // this.general = this.pendingApplication.loan_application
+      // eslint-disable-next-line no-console
+      // console.log('Money storages:', this.pendingApplication.loan_application.money_storages)
+      // this.general.money_storages = this.pendingApplication.loan_application.money_storages
+      // this.money_storages = this.pendingApplication.loan_application.money_storages
+    } else {
+      this.general.money_storages = []
     }
-    this.general.money_storages = []
+
     this.general.other_money_storages = []
-    // this.proofOfImpact = 'false'
   },
   methods: {
     // setOtherMoneyStorageOption () {
