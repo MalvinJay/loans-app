@@ -5,9 +5,9 @@
         Are you ready to fund your business?
       </p>
       <div class="h-full flex flex-col justify-center">
-        <a href="/apply">
-          <input type="button" value="Apply Now" class="uppercase button-small mr-2">
-        </a>
+        <!-- <a href="/">
+          <input type="button" value="Apply Now" class="uppercase button-small mr-2" disabled>
+        </a> -->
       </div>
     </div>
     <footer class="flex justify-between p-8 md:py-24 md:px-64">

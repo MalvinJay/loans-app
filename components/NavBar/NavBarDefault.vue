@@ -14,7 +14,9 @@
         <img src="@/assets/img/logo.png" alt="logo">
       </a>
       <p class="r-s uppercase logo-margin text-sm rem-margin">
-        <a href="/apply" :class="{invisible: !redundant}"> <input type="button" value="Apply Now" class="uppercase button-small mr-2 cursor-pointer"></a>
+        <a href="/" :class="{invisible: !redundant}">
+          <input type="button" disabled value="" class="">
+        </a>
         <a href="/app/registration/login"><span class="ml-2">Sign in</span></a>
       </p>
     </div>
@@ -145,7 +147,7 @@ export default {
 .r-s {
   position: absolute;
   right: 77px;
-  top: 0;
+  top: 5px;
 }
 @media (min-width: 1200px) and (max-width: 1440px) {
   .logo {
