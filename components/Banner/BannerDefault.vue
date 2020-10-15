@@ -1,6 +1,9 @@
 <template>
-  <div class="banner flex justify-evenly">
+  <div class="banner flex justify-evenly relative">
     <div class="l-s pt-20">
+      <div class="text-center text-5xl text-white absolute inset-x-0 top-i">
+        <!-- Application Ended -->
+      </div>
       <div>
         <p class="text-white">
           Complete your COVID-19
@@ -13,11 +16,11 @@
         </p>
       </div>
       <div class="mt-12">
-        <a href="/apply">
-          <button class="button-medium">
+        <!-- <a href="/">
+          <button class="button-medium" disabled>
             Apply Now
           </button>
-        </a>
+        </a> -->
       </div>
     </div>
     <div class="r-s flex justify-center items-center">
@@ -38,6 +41,9 @@ export default {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+.top-i {
+  top: 1rem
+}
 .text-sm {
   font-size: 1rem!important;
 }
