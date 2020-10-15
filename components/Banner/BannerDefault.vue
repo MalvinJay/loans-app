@@ -1,8 +1,14 @@
 <template>
   <div class="banner flex justify-evenly relative">
     <div class="l-s pt-20">
-      <div class="text-center text-5xl text-white absolute inset-x-0 top-i">
-        <!-- Application Ended -->
+      <div class="text-center text-white sm:absolute inset-x-0 top-i sm:px-8">
+        <div class="text-xl">
+          APPLICATION SYSTEM FOR THE NKOSUO PROGRAM CLOSED
+        </div>
+        <div class="text-sm">
+          Dear Visitor, thank you for your interest in the Nkosuo Program.
+          We have stopped accepting Applications. The Application System is now closed.
+        </div>
       </div>
       <div>
         <p class="text-white">
@@ -42,7 +48,7 @@ export default {
 @tailwind components;
 @tailwind utilities;
 .top-i {
-  top: 1rem
+  top: 1.7rem
 }
 .text-sm {
   font-size: 1rem!important;
@@ -111,6 +117,10 @@ export default {
   }
 }
 @include for-phone-only {
+.top-i {
+  top: 0;
+  padding-top: 1rem!important;
+}
   .banner {
     height: 100%;
     padding: 0 2rem 2rem 2rem;
