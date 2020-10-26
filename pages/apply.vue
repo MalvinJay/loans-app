@@ -65,7 +65,7 @@
           Welcome to the  Mastercard Foundation COVID-19 Recovery and Resilience Program in partnership with NBSSI. Please provide the requested pre-application information below and also thoroughly complete the funding application to the best of your ability.  We will use the information from the submitted funding application to assess your business and provide you with a funding decision.
         </p>
         <div class="mt-10">
-          <ValidationObserver ref="observer" v-slot="{ handleSubmit }">
+          <ValidationObserver ref="observer" v-slot="{ handleSubmit, valid }">
             <!-- <form ref="form" @submit.prevent="handleSubmit(submit)"> -->
             <form ref="form" @submit.prevent="handleSubmit(onSubmit)">
               <div class="grid">
@@ -88,14 +88,13 @@
                       ?
                     </div>
                   </div>
-                  <ValidationProvider v-slot="{ errors }" name="annualSales" rules="required">
+                  <ValidationProvider v-slot="{ errors }" ref="annualsales" name="annualSales" :rules="annualRules">
                     <Input
                       v-model.number="annual_sales"
                       type="number"
                       placeholder="e.g 1,000"
                       small
                       money
-                      :capped="true"
                     />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
@@ -134,8 +133,8 @@
                       ?
                     </div>
                   </div>
-                  <ValidationProvider v-slot="{ errors }" rules="required">
-                    <Input v-model.number="years_in_business" type="number" :yearcapped="true" small />
+                  <ValidationProvider v-slot="{ errors }" ref="yearsinbusiness" :rules="yearsInRules">
+                    <Input v-model.number="years_in_business" type="number" small />
                     <small class="text-sm text-red-700">{{ errors[0] }}</small>
                   </ValidationProvider>
                 </div>
@@ -145,6 +144,11 @@
                 <small class="text-sm text-red-700 font-bold">{{ recaptchError }}</small>
               </div>
               <div class="nav-buttons mt-10">
+                <template v-if="!valid">
+                  <div class="py-2">
+                    <span class="text-red-500 ">Complete all * fields to proceed</span>
+                  </div>
+                </template>
                 <div>
                   <button
                     class="button-small"
@@ -211,7 +215,13 @@ export default {
     },
     ...mapState({
       showModal: state => state.pages.applicantReadiness
-    })
+    }),
+    annualRules () {
+      return `required|maxannual:${this.annual_sales | 0}`
+    },
+    yearsInRules () {
+      return `required|maxyears:${this.years_in_business | 0}`
+    }
   },
   watch: {
     id_type (value) {

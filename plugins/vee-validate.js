@@ -56,3 +56,21 @@ extend('sum', {
   message: 'Addition of permanent and temporary employees should not exceed total employees',
   params: ['other', 'max']
 })
+extend('maxannual', {
+  validate (value) {
+    return value <= 5000000
+  },
+  message: 'Input too big. Max value is GHS 5,000,000.00'
+})
+extend('maxyears', {
+  validate (value) {
+    return value <= 50
+  },
+  message: 'Years cannot exceed 50'
+})
+extend('minlistlength', {
+  validate (value) {
+    return value !== ''
+  },
+  message: 'Select at least one institution'
+})
