@@ -233,7 +233,7 @@
                 </ValidationProvider>
               </div>
             </div>
-            <div v-if="general.requested_loan_amount <= 2000">
+            <div v-if="!general.requested_loan_amount || general.requested_loan_amount <= 2000">
               <label class="block text-gray-900 text-sm font-normal my-2">
                 Mobile Wallet Number (must use your own mobile wallet)
                 <span
@@ -255,6 +255,7 @@
                 <small class="text-sm text-red-700">{{ errors[0] }}</small>
               </ValidationProvider>
             </div>
+            <!-- show="general.requested_loan_amount > 2000" -->
             <div v-else>
               <div class="mb-8">
                 <label class="block text-gray-900 text-sm font-normal mb-4">
@@ -262,7 +263,7 @@
                   Program are you located close to or do you have an existing account?
                   (Please Select Only One)*
                 </label>
-                <ValidationProvider v-slot="{ errors }" rules="required">
+                <ValidationProvider ref="financialid" v-slot="{ errors }" rules="required">
                   <Select v-model="general.financial_institution_id" :items="bankPartner" />
                   <small class="text-sm text-red-700">{{ errors[0] }}</small>
                 </ValidationProvider>
@@ -785,6 +786,21 @@ export default {
 
         if (value.financial_institution_id !== '17') {
           delete this.general.bank_name
+        }
+
+        if (value.requested_loan_amount) {
+          // eslint-disable-next-line no-console
+          console.log('Requested Amount:', value.requested_loan_amount)
+          if (value.requested_loan_amount > 2000) {
+            // eslint-disable-next-line no-console
+            console.log('is financialid available?', this.$refs.financialid)
+            // if (this.$refs.financialid) {
+            this.$nextTick(() => {
+              this.$refs.observer.handleSubmit().then((success) => {
+              })
+            })
+            // }
+          }
         }
       },
       deep: true

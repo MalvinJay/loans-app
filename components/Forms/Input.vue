@@ -155,6 +155,10 @@ export default {
         } if (isNaN(parseFloat(val))) {
           this.errorMessage = 'please enter a valid number'
           this.error = true
+        } if (parseFloat(val) < 0) {
+          this.errorMessage = 'Negative numbers are not accepted'
+          this.error = true
+        } if (this.capped === true && val > 5000000) {
         } if (parseFloat(val) > 1000000000) {
           this.errorMessage = 'Number too big'
           this.error = true
