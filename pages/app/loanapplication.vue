@@ -38,7 +38,7 @@
                 </template> -->
                 <button class="button-small">
                   <!-- {{ loanStatus }} -->
-                  <template v-if="loanDetails.status_number !== '6'">
+                  <template v-if="loanDetails.status_number != 6">
                     Complete
                   </template>
                   <template v-else>

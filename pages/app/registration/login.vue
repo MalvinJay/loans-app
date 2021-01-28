@@ -155,6 +155,8 @@ export default {
       }
       this.$store.dispatch('local/login', data)
         .then((res) => {
+          // eslint-disable-next-line no-console
+          console.log('Response:', res)
           this.$toasted.show('Login Success', {
             theme: 'toasted-primary',
             position: 'top-center',
@@ -172,6 +174,8 @@ export default {
         .catch((error) => {
           // console.log('Error:', error)
           // this.$toasted.error(error)
+          // eslint-disable-next-line no-console
+          console.log('Response:', error)
           this.$toasted.error(error.error)
         })
         .finally(() => {
@@ -217,6 +221,9 @@ export default {
         .catch((error) => {
           switch (error.response.data.status) {
             case 400:
+              this.$toasted.error(error.response.data.error)
+              break
+            case 408:
               this.$toasted.error(error.response.data.error)
               break
             default:
