@@ -18,6 +18,9 @@
               <th>
                 Status
               </th>
+              <th>
+                Remarks
+              </th>
               <th />
             </tr>
           </thead>
@@ -39,12 +42,20 @@
                 <button class="button-small">
                   <!-- {{ loanStatus }} -->
                   <template v-if="loanDetails.status_number != 6">
-                    Complete
+                    Pending
                   </template>
                   <template v-else>
                     {{ loanDetails.status }}
                   </template>
                 </button>
+              </td>
+              <td class="text blue">
+                <template v-if="loanDetails.status_number != 6">
+                  <span>Your information has been received, assessments ongoing and final decisions will be communicated</span>
+                </template>
+                <template v-else>
+                  N/A
+                </template>
               </td>
               <!-- <td>
                 <button class="button-small">
