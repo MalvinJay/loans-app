@@ -39,10 +39,10 @@ export function createRouter () {
         path: '/business-tips',
         component: BusinesTips
       },
-      {
-        path: '/apply',
-        component: Apply
-      },
+      // {
+      //   path: '/apply',
+      //   component: Apply
+      // },
       {
         path: '/loans/:id/form',
         component: Loans
