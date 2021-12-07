@@ -244,7 +244,7 @@ export const mutations = {
 }
 export const actions = {
   getDropDowns ({ commit }) {
-    this.$axios.$get('https://admin.ghrecoveryprogram.com/api/dropdowns')
+    this.$axios.$get('https://admin.migration.plendify.com/api/dropdowns')
       .then((response) => {
         commit('SET_DROPDOWNS', response.data)
       })
