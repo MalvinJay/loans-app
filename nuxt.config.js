@@ -9,14 +9,33 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' }
-      // { 'http-equiv': 'Content-Security-Policy', content: 'upgrade-insecure-requests' }
+      { hid: 'description', name: 'description', content: process.env.npm_package_description || '' },
+      {
+        'http-equiv': 'Content-Security-Policy',
+        content: `
+          default-src 'self';
+          base-uri 'self';
+          connect-src 'self' https://sentry.prod.mozaws.net https://mcftest.plendify.com;
+          font-src 'self' https://fonts.gstatic.com;
+          frame-src 'self' https://ic.paypal.com
+              https://www.google.com/recaptcha/ ;
+          img-src 'self' data: blob:  https://ssl.google-analytics.com
+              https://fonts.gstatic.com https://static.addons.mozilla.net
+              https://ssl.gstatic.com/ https://sentry.prod.mozaws.net;
+          media-src https://videos.cdn.mozilla.net;
+          object-src 'none';
+          script-src 'self' 'unsafe-inline'
+            https://mcftest.plendify.com/api/dropdowns
+            https://www.google.com/recaptcha/
+            https://www.gstatic.com/recaptcha/;
+          style-src 'self' 'unsafe-inline' https://fonts.gstatic.com;
+        `
+      },
+      { 'http-equiv': 'Referrer-Policy', content: 'strict-origin-when-cross-origin' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet', href: 'https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap'
-      },
+      { rel: 'stylesheet', href: 'https://fonts.gstatic.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap' },
       { rel: 'apple-touch-icon', sizes: '57x57', href: '/apple-icon-57x57.png' },
       { rel: 'apple-touch-icon', sizes: '60x60', href: '/apple-icon-60x60.png' },
       { rel: 'apple-touch-icon', sizes: '72x72', href: '/apple-icon-72x72.png' },
