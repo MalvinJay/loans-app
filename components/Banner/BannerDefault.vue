@@ -1,15 +1,6 @@
 <template>
-  <div class="banner flex justify-evenly relative">
+  <div class="banner flex justify-evenly">
     <div class="l-s pt-20">
-      <div class="text-center text-white sm:absolute inset-x-0 top-i sm:px-8">
-        <div class="text-xl">
-          APPLICATION SYSTEM FOR THE NKOSUO PROGRAM CLOSED
-        </div>
-        <div class="text-sm">
-          Dear Visitor, thank you for your interest in the Nkosuo Program.
-          We have stopped accepting Applications. The Application System is now closed.
-        </div>
-      </div>
       <div>
         <p class="text-white">
           Complete your COVID-19
@@ -22,11 +13,11 @@
         </p>
       </div>
       <div class="mt-12">
-        <!-- <a href="/">
-          <button class="button-medium" disabled>
+        <a href="/apply">
+          <button class="button-medium">
             Apply Now
           </button>
-        </a> -->
+        </a>
       </div>
     </div>
     <div class="r-s flex justify-center items-center">
@@ -47,9 +38,6 @@ export default {
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-.top-i {
-  top: 1.7rem
-}
 .text-sm {
   font-size: 1rem!important;
 }
@@ -117,10 +105,6 @@ export default {
   }
 }
 @include for-phone-only {
-.top-i {
-  top: 0;
-  padding-top: 1rem!important;
-}
   .banner {
     height: 100%;
     padding: 0 2rem 2rem 2rem;
