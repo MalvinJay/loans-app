@@ -1,8 +1,8 @@
-@import './_colors';
-@import './_layouts';
+@import "./_colors";
+@import "./_layouts";
 
 $nav-margin: 42px;
-$button-primary-color: #C49000;
+$button-primary-color: #c49000;
 $button-border-radius: 5px;
 $card-border-radius: 20px;
 $default-font-size: 0.7rem;
@@ -22,7 +22,7 @@ $default-font-size: 0.7rem;
   font-size: 17px;
 }
 
-@include for-tablet-landscape-only  {
+@include for-tablet-landscape-only {
   :root {
     font-size: 15px;
   }
@@ -52,7 +52,7 @@ $default-font-size: 0.7rem;
 }
 
 div {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
 }
 
 .tooltip-btn {
